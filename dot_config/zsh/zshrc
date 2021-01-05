@@ -1,0 +1,52 @@
+# vim: filetype=zsh
+
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=100000
+SAVEHIST=100000
+bindkey -e
+
+setopt autocd       # Automatically cd into typed directory.
+stty stop undef     # Disable ctrl-s to freeze terminal.
+
+autoload -Uz compinit
+
+# Highlight selected completion in the list
+zstyle ':completion:*' menu select
+
+# Source: https://superuser.com/a/815317
+# 0 -- vanilla completion (abc => abc)
+# 1 -- smart case completion (abc => Abc)
+# 2 -- word flex completion (abc => A-big-Car)
+# 3 -- full flex completion (abc => ABraCadabra)
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)  # Include hidden files.
+
+[ -f $HOME/.zsh_plugins.sh ] && source $HOME/.zsh_plugins.sh
+
+function custom_prompt() {
+    case "$HOST" in
+        gaston*)
+            prompt_char="ᰜ"
+        ;;
+    esac
+    echo "%(?:%F{green}${prompt_char}%f :%F{red}${prompt_char}%f )"
+}
+PROMPT="$(custom_prompt) %B%F{blue}%c%f%b "
+
+[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
+[ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+source ${ZDOTDIR}/zbindings
+source ${ZDOTDIR}/zalias
+source ${ZDOTDIR}/zfunctions
+
+eval "$(pyenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

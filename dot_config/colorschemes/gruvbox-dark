@@ -1,0 +1,40 @@
+#define BACKGROUND #282828
+#define FOREGROUND #ebdbb2
+
+// Black + DarkGrey
+#define COLOR0  BACKGROUND
+#define COLOR8  #928374
+
+// DarkRed + Red
+#define COLOR1  #cc241d
+#define COLOR9  #fb4934
+
+// DarkGreen + Green
+#define COLOR2  #98971a
+#define COLOR10 #b8bb26
+
+// DarkYellow + Yellow
+#define COLOR3  #d79921
+#define COLOR11 #fabd2f
+
+// DarkBlue + Blue
+#define COLOR4  #458588
+#define COLOR12 #83a598
+
+// DarkMagenta + Magenta
+#define COLOR5  #b16286
+#define COLOR13 #d3869b
+
+// DarkCyan + Cyan
+#define COLOR6  #689d6a
+#define COLOR14 #8ec07c
+
+// LightGrey + White
+#define COLOR7  #a89984
+#define COLOR15 FOREGROUND
+
+// DarOrange + Orange
+#define COLOR16 #d65d0e
+#define COLOR17 #fe8019
+
+// vim: ft=c

@@ -1,0 +1,7 @@
+# vim: filetype=sh
+
+# This hides the mouse after 5 seconds of idleness
+unclutter -b
+
+# Start window manager
+exec i3 > /tmp/i3.log 2>&1

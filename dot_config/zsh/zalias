@@ -1,0 +1,10 @@
+# vim: filetype=zsh
+
+alias v="$EDITOR"
+alias x="exit"
+alias py="ipython"
+alias open="xdg-open"
+alias pbcopy="xclip -selection c"
+alias diff="diff --color"
+alias ls="ls --color=auto"
+alias l="ls -lah"
