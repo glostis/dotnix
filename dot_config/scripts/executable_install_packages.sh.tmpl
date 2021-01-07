@@ -1,0 +1,117 @@
+#! /usr/bin/bash
+# vim: ft=sh
+
+{{ if eq .chezmoi.osRelease.id "arch" -}}
+# Dirty hack taken from https://stackoverflow.com/a/9522766
+# to allow bash multiline command with comments
+CMD=(
+    yay -S --needed
+
+    ## System
+    base
+    efibootmgr
+    grub
+    linux
+    linux-firmware
+    base-devel               # (group)
+    xorg                     # (group)
+    xclip                    # clipboard
+    xdotool                  # xorg
+    xf86-video-intel         # graphics
+    xorg-xinit               # graphics
+    openssh                  # ssh
+
+    ## Programs
+    alacritty                # Terminal
+    chromium                 # Browser
+    qutebrowser              # Browser
+    virtualbox               # VM
+    google-earth-pro         # Google Earth (aur)
+
+    ## Terminal programs
+    bat                      # Fancy `cat`
+    diff-so-fancy            # Fancy `diff`
+    man-db                   # man
+    man-pages                # man
+    mlocate                  # `locate` command
+    ncdu                     # Curses disk usage explorer
+    git-lfs                  # Git Large File Storage
+    chezmoi                  # Dotfiles manager
+    expac                    # pacman database extraction utility
+    feh                      # Background image setter
+    fzf                      # Fuzzy finder
+    htop                     # System resources monitoring
+    imagemagick              # Image manipulation commands
+    jq                       # JSON parser
+    khal                     # Terminal-based calendar
+    vdirsyncer               # Terminal-based calendar
+    lastpass-cli             # Password manager
+    neofetch                 # System information
+    neovim                   # Editor
+    ranger                   # File browser
+    tmux                     # Terminal multiplexer
+    tree                     # Recursive directory listing
+    unzip                    # Unarchiving
+    zsh                      # Shell
+    antibody                 # zsh plugin manager (aur)
+    wget                     # File download
+    reflector                # Sort pacman mirrors
+    ripgrep                  # Fast recursive grep
+    scrot                    # Screenshot
+    pyenv                    # Python manager
+    yay                      # AUR helper (aur)
+    fixjson                  # JSON formatter (aur)
+    universal-ctags-git      # ctags (aur)
+
+    ## Hardware
+    # Audio
+    alsa-utils
+    pamixer
+    playerctl
+    pulseaudio
+    # Screen backlight
+    light
+    # Network
+    networkmanager
+    network-manager-applet
+
+    ## Window manager
+    i3-gaps-rounded-git      # WM (aur)
+    dunst                    # Notifications dameon
+    i3lock                   # Desktop locker
+    autorandr                # Multi-monitor
+    picom                    # Compositor
+    rofi                     # Launcher
+    unclutter                # Remove mouse cursor when idle
+    xidlehook                # Trigger action after some time idle (aur)
+    polybar                  # Status bar (aur)
+    touchpad-indicator-git   # Fix touchpad weirdness (aur)
+
+    # Fonts
+    gnu-free-fonts
+    noto-fonts
+    noto-fonts-emoji
+    ttf-dejavu
+    ttf-droid
+    ttf-font-awesome
+    ttf-inconsolata
+    ttf-liberation
+    ttf-roboto
+    ttf-ubuntu-font-family
+    terminus-font
+    nerd-fonts-meslo        # (aur)
+)
+
+"${CMD[@]}"
+
+CMD=(
+    # The following packages are installed as optional dependencies of other packages
+    yay -S --asdeps --needed
+    python-requests-oauthlib # dep of vdirsyncer
+    pdfjs                    # dep of qutebrowser
+    python-tldextract        # dep of qutebrowser lastpass userscript
+    python-pynvim            # dep of neovim
+)
+
+"${CMD[@]}"
+{{ end -}}
