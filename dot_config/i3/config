@@ -45,7 +45,6 @@ for_window [class=".*"] border pixel 0
 
 gaps inner 10
 gaps top 27
-border_radius 6
 
 # change focus
 bindsym $mod+h focus left
@@ -192,7 +191,7 @@ exec --no-startup-id nm-applet
 
 exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/Wallpapers/*
 
-exec_always --no-startup-id picom
+exec_always --no-startup-id picom -b
 exec_always --no-startup-id dunst
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
