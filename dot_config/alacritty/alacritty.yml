@@ -1,5 +1,8 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+env:
+  WINIT_X11_SCALE_FACTOR: '1'
+
 window:
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true

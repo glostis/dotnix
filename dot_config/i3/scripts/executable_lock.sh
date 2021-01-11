@@ -2,13 +2,15 @@
 
 lock() {
     tmpbg="/tmp/screen.png"
+    rm -f "$tmpbg"
     scrot "$tmpbg"
-    convert "$tmpbg" -scale 5% -scale 2000% -fill black -colorize 25% "$tmpbg"
+    convert "$tmpbg" -scale 20% -scale 500% -fill black -colorize 25% "$tmpbg"
+    corrupter -add 0 -mag 0 "$tmpbg" "$tmpbg"
     i3lock -i "$tmpbg"
 }
 
 if [ -z "$1" ]; then
-    choices="Lock\nSuspend\nShutdown\nReboot\nLogout"
+    choices="Suspend\nLock\nShutdown\nReboot\nLogout"
     choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -lines 5 -p "Farewell")
 else
     choice=$1

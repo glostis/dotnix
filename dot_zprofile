@@ -17,10 +17,6 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 
-# Auto-DPI scaling for Alacritty
-export WINIT_HIDPI_FACTOR=1
-
-
 typeset -U PATH path  # Remove duplicates from PATH
 path=("$HOME/.local/bin" "$path[@]")
 path=("$HOME/.config/scripts" "$path[@]")
