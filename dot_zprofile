@@ -18,11 +18,12 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 
 typeset -U PATH path  # Remove duplicates from PATH
-path=("$HOME/.local/bin" "$path[@]")
+path=("$HOME/.bin" "$path[@]")
 path=("$HOME/.config/scripts" "$path[@]")
 export PATH
 
 [ -f $ZDOTDIR/secrets ] && source $ZDOTDIR/secrets
 
 # Start graphical server on tty1 if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx
+# The ardelay and arinterval options set the key repeat delay and rate in milliseconds
+[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx -- -ardelay 230 -arinterval 20

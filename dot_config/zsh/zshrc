@@ -26,7 +26,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)  # Include hidden files.
 
-[ -f $HOME/.zsh_plugins.sh ] && source $HOME/.zsh_plugins.sh
+if [ -f "$HOME/.zsh_plugins.sh" ]; then
+    source $HOME/.zsh_plugins.sh
+else
+    echo "Bundling zsh plugins..."
+    antibody bundle < $HOME/.config/zsh/plugins.txt > $HOME/.zsh_plugins.sh
+fi
 
 function custom_prompt() {
     case "$HOST" in

@@ -167,34 +167,17 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl --player=spotify prev
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
 
-# Makes the touchpad work (natural scrolling, tap to click, etc.)
-exec --no-startup-id touchpad-indicator
-
-# Set keyboard layout
-bindsym $mod+Shift+k exec --no-startup-id setxkbmap -layout 'us(altgr-intl)' -option 'caps:escape' && xset r rate 230 50
-
 bindsym $mod+n exec --no-startup-id nmcli radio wifi on
 bindsym $mod+Shift+n exec --no-startup-id nmcli radio wifi off
-
-# Change key repeat rate
-# First number is initial delay in ms
-# Second number is the repeat in ms (but a higher number is faster ??)
-exec_always --no-startup-id xset r rate 230 50
 
 for_window [class="vpv"] floating enable
 for_window [instance="dropdown_*"] floating enable
 for_window [instance="dropdown_*"] sticky enable
 for_window [instance="dropdown_*"] border pixel 4
 
-# NetworkManager ("Wifi icon")
-exec --no-startup-id nm-applet
-
 exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/Wallpapers/*
 
-exec_always --no-startup-id picom -b
-exec_always --no-startup-id dunst
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id killall i3-battery-popup; i3-battery-popup -n -i /usr/share/icons/Adwaita/32x32/legacy/battery-low-symbolic.symbolic.png
 
 exec_always --no-startup-id $HOME/.config/i3/scripts/idle.sh
 
