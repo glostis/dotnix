@@ -33,7 +33,7 @@ foreground = ${colors.foreground}
 line-size = 3
 
 padding-left = 0
-padding-right = 2
+padding-right = 1
 
 module-margin-left = 1
 module-margin-right = 1
@@ -65,9 +65,9 @@ offset-x = 50%:-50
 
 [bar/right]
 inherit = bar/base
-modules-right = network backlight pulseaudio memory cpu filesystem battery date
-width = 570
-offset-x = 100%:-580
+modules-right = network xkeyboard backlight pulseaudio memory cpu filesystem battery date
+width = 600
+offset-x = 100%:-610
 
 [module/empty-text]
 type = custom/text
@@ -97,7 +97,12 @@ menu-0-5 = %{T2}%{T-}
 [module/xkeyboard]
 type = internal/xkeyboard
 
-label-layout = %name%
+format = <label-layout><label-indicator>
+label-layout = %{T3}%icon%%{T-}
+
+layout-icon-default = 
+layout-icon-0 = us;
+layout-icon-1 = fr;ﳆ
 
 label-indicator-padding = 2
 label-indicator-foreground = ${colors.background}
