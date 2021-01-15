@@ -15,7 +15,7 @@ isavailable picom && picom -b
 isavailable unclutter && unclutter -b
 
 # Notification daemon
-isavailable dunst &$ dunst
+isavailable dunst && dunst &
 
 # Notify low battery
 isavailable i3-battery-popup && i3-battery-popup -n -i /usr/share/icons/Adwaita/32x32/legacy/battery-low-symbolic.symbolic.png &
