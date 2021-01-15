@@ -1,3 +1,5 @@
+# vim: ft=conf
+
 # Thank you code_nomad: http://9m.no/ꪯ鵞
 # and Arch Wiki contributors: https://wiki.archlinux.org/index.php/Compton
 
@@ -26,6 +28,7 @@ rounded-corners-exclude = [
 glx-no-stencil = true;
 glx-copy-from-front = false;
 
+{{- if .compositor_special_fx }}
 #################################
 #
 # Shadows
@@ -66,6 +69,7 @@ blur: {
   background-frame = false;
   background-fixed = false;
 }
+{{- end }}
 
 #################################
 #
