@@ -112,8 +112,8 @@ label-indicator-background = ${colors.yellow}
 type = custom/script
 exec = ~/.config/polybar/scripts/weather.sh
 interval = 600
-click-left = "alacritty --class dropdown_weather --dimensions 126 38 --position 350 41 -e /bin/bash -c 'curl wttr.in/?lang=fr\&Fq && read -n1'"
-click-right = "alacritty --class dropdown_weather --dimensions 75 43 --position 600 41 -e /bin/bash -c 'curl wttr.in/?lang=fr\&Fq\&format=v2 && read -n1'"
+click-left = "alacritty --class dropdown_weather --option window.dimensions.columns=126 --option window.dimensions.lines=38 --option window.position.x=350 --option window.position.y=41 -e /bin/bash -c 'curl wttr.in/?lang=fr\&Fq && read -n1'"
+click-right = "alacritty --class dropdown_weather --option window.dimensions.columns=75 --option window.dimensions.lines=43 --option window.position.x=600 --option window.position.y=41 -e /bin/bash -c 'curl wttr.in/?lang=fr\&Fq\&format=v2 && read -n1'"
 
 [module/network]
 type = internal/network
@@ -210,7 +210,7 @@ date = "%Y-%m-%d "
 time = %H:%M
 
 format-prefix =
-format =%{A1:alacritty --class dropdown_ikhal --dimensions 120 20 --position 816 41 -e /bin/bash -c 'vdirsyncer sync && ikhal':}<label>%{A}
+format =%{A1:alacritty --class dropdown_ikhal --option window.dimensions.columns=120 --option window.dimensions.lines=20 --option window.position.x=816 --option window.position.y=41 -e /bin/bash -c 'vdirsyncer sync && ikhal':}<label>%{A}
 
 label = %date%%time%
 
