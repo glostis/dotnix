@@ -1,0 +1,7 @@
+glostis/git-open
+glostis/venv-wrapper
+
+valiev/almostontop
+
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
