@@ -38,10 +38,15 @@ function custom_prompt() {
         gaston*)
             prompt_char="ᰜ"
         ;;
+        eugene*)
+            prompt_char="ξ"
+        ;;
     esac
     echo "%(?:%F{green}${prompt_char}%f :%F{red}${prompt_char}%f )"
 }
-PROMPT="$(custom_prompt) %B%F{blue}%c%f%b "
+export ZSH_THEME_GIT_PROMPT_PREFIX="("
+export ZSH_THEME_GIT_PROMPT_SUFFIX=") "
+PROMPT='$(custom_prompt) %B%F{blue}%c%f%b $(git_super_status)'
 
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
 [ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"

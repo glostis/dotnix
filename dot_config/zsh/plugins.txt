@@ -1,6 +1,8 @@
 paulirish/git-open
 glostis/venv-wrapper
 
+zsh-git-prompt/zsh-git-prompt
+
 valiev/almostontop
 
 zsh-users/zsh-completions
