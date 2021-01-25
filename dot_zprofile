@@ -18,11 +18,17 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 
 typeset -U PATH path  # Remove duplicates from PATH
-path=("$HOME/.bin" "$path[@]")
+path=("$HOME/.bin" "$path[@]")  # Custom executables
+path=("$HOME/.local/bin" "$path[@]")  # pipx executables
+path=("$HOME/.pyenv/bin" "$path[@]")
 path=("$HOME/.config/scripts" "$path[@]")
 export PATH
 
 [ -f $ZDOTDIR/secrets ] && source $ZDOTDIR/secrets
+
+if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then
+    . ${HOME}/.nix-profile/etc/profile.d/nix.sh
+fi
 
 # Start graphical server on tty1 if not already running.
 # The ardelay and arinterval options set the key repeat delay and rate in milliseconds

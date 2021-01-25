@@ -17,7 +17,7 @@ floating_modifier $mod
 font pango:monospace 8
 
 # start a terminal
-bindsym $mod+Return exec alacritty -e /usr/bin/tmux new-session -A -s work
+bindsym $mod+Return exec alacritty -e tmux new-session -A -s work
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -71,7 +71,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+x move workspace to output left
-bindsym $mod+Alt+x move workspace to output up
+bindsym $mod+Mod1+x move workspace to output up
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
