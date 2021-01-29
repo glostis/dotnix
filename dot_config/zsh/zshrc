@@ -33,7 +33,9 @@ else
     antibody bundle < $HOME/.config/zsh/plugins.txt > $HOME/.zsh_plugins.sh
 fi
 
-function custom_prompt() {
+# This shows a squiggly character in green if the previous return code
+# was zero (success) or in red if the previous return code was non-zero (failure)
+function return_code() {
     case "$HOST" in
         gaston*)
             prompt_char="ᰜ"
@@ -42,11 +44,22 @@ function custom_prompt() {
             prompt_char="ξ"
         ;;
     esac
-    echo "%(?:%F{green}${prompt_char}%f :%F{red}${prompt_char}%f )"
+    echo "%(?:%F{green}${prompt_char}%f:%F{red}${prompt_char}%f)"
 }
+
+function pyenv_venv() {
+    if [[ -n $PYENV_SHELL ]]; then
+        local version
+        version=$(pyenv version-name)
+        if [[ $version != system ]]; then
+            echo "($version) "
+        fi
+    fi
+}
+
 export ZSH_THEME_GIT_PROMPT_PREFIX="("
 export ZSH_THEME_GIT_PROMPT_SUFFIX=") "
-PROMPT='$(custom_prompt) %B%F{blue}%c%f%b $(git_super_status)'
+PROMPT='$(pyenv_venv)$(return_code) %B%F{blue}%c%f%b $(git_super_status)'
 
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
 [ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"

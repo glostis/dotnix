@@ -32,4 +32,4 @@ fi
 
 # Start graphical server on tty1 if not already running.
 # The ardelay and arinterval options set the key repeat delay and rate in milliseconds
-[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx -- -ardelay 230 -arinterval 20
+[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx -- -ardelay 230 -arinterval 20 -keeptty &> ${HOME}/.xorg.log
