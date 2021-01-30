@@ -49,17 +49,6 @@ config.set(
     "https://drive.google.com/*",
 )
 
-# List of URLs of lists which contain hosts to block.  The file can be
-# in one of the following formats:  - An `/etc/hosts`-like file - One
-# host per line - A zip-file of any of the above, with either only one
-# file, or a file   named `hosts` (with any extension).  It's also
-# possible to add a local file or directory via a `file://` URL. In case
-# of a directory, all files in the directory are read as adblock lists.
-# The file `~/.config/qutebrowser/blocked-hosts` is always read if it
-# exists.
-# Type: List of Url
-c.content.host_blocking.lists = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"]
-
 # Duration (in milliseconds) to wait before removing finished downloads.
 # If set to -1, downloads are never removed.
 # Type: Int
@@ -88,6 +77,12 @@ c.hints.mode = "number"
 
 c.hints.auto_follow = "always"
 c.hints.auto_follow_timeout = 500
+
+c.content.blocking.adblock.lists = [
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+]
 
 # Needed for the "click to copy URL" on Github clone URL to work
 c.content.javascript.can_access_clipboard = True
@@ -141,7 +136,7 @@ config.bind("t", "open -t")
 config.unbind("<Ctrl+h>")
 
 # Taken from https://github.com/qutebrowser/qutebrowser/issues/2668
-config.bind("<Escape>", "leave-mode ;; jseval -q document.activeElement.blur()", mode="insert")
+config.bind("<Escape>", "mode-leave ;; jseval -q document.activeElement.blur()", mode="insert")
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
@@ -171,7 +166,8 @@ base0D = colors["bright"]["blue"]
 base0E = colors["bright"]["magenta"]
 # base0F = None
 
-if colors["primary"]["background"] == y["schemes"]["gruvbox-dark"]["primary"]["background"]:
+# if colors["primary"]["background"] == y["schemes"]["gruvbox-dark"]["primary"]["background"]:
+if False:
     c.colors.webpage.darkmode.enabled = True
     c.colors.webpage.bg = base00
 else:
