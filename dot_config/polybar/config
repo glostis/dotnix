@@ -99,6 +99,7 @@ type = internal/xkeyboard
 
 format = <label-layout><label-indicator>
 label-layout = %{T3}%icon%%{T-}
+; label-layout = %number% %{T3}%icon%%{T-}
 
 layout-icon-default = 
 layout-icon-0 = us;
@@ -210,7 +211,7 @@ date = "%Y-%m-%d "
 time = %H:%M
 
 format-prefix =
-format =%{A1:alacritty --class dropdown_ikhal --option window.dimensions.columns=120 --option window.dimensions.lines=20 --option window.position.x=816 --option window.position.y=41 -e /bin/bash -c 'vdirsyncer sync && ikhal':}<label>%{A}
+format =%{A1:alacritty --class dropdown_ikhal --option window.dimensions.columns=120 --option window.dimensions.lines=20 --option window.position.x=816 --option window.position.y=41 -e /bin/bash -c 'ikhal':}%{A3:vdirsyncer sync && notify-send --urgency=low 'Calendar synced':}<label>%{A}%{A}
 
 label = %date%%time%
 

@@ -115,13 +115,14 @@ c.fonts.tabs.selected = "bold default_size default_family"
 c.input.insert_mode.auto_load = True
 
 c.url.searchengines = {
-    "DEFAULT": "https://www.google.com/search?hl=en&q={}",
+    # "DEFAULT": "https://www.google.com/search?hl=en&q={}",
+    "DEFAULT": "https://duckduckgo.com/?q={}",
     "gh": "https://github.com/{}",
     "ghs": "https://github.com/search?q={}",
     "py": "https://pypi.org/search/?q={}",
 }
 
-c.url.default_page = "https://www.google.com"
+c.url.default_page = "https://duckduckgo.com"
 c.url.open_base_url = True
 
 # Bindings

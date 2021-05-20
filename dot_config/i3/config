@@ -29,8 +29,8 @@ bindsym $mod+w exec rofi -show window -show-icons
 # Open qutebrowser
 bindsym $mod+c exec --no-startup-id qutebrowser
 
-# Open Chromium
-bindsym $mod+Shift+c exec --no-startup-id chromium
+# Open Google Chrome
+bindsym $mod+Shift+c exec --no-startup-id google-chrome
 
 bindsym $mod+t exec --no-startup-id python "$HOME/.config/colorschemes/switcher.py"
 
@@ -169,6 +169,8 @@ bindsym XF86MonBrightnessDown exec light -U 10
 
 bindsym $mod+n exec --no-startup-id nmcli radio wifi on
 bindsym $mod+Shift+n exec --no-startup-id nmcli radio wifi off
+bindsym $mod+v exec --no-startup-id nmcli connection up 'VPN'
+bindsym $mod+Shift+v exec --no-startup-id nmcli connection down 'VPN'
 
 for_window [class="vpv"] floating enable
 for_window [instance="dropdown_*"] floating enable
@@ -185,6 +187,7 @@ set $red      #cc241d
 set $orange   #d65d0e
 set $blue     #458588
 set $darkgray #1d2021
+set $white    #ffffff
 
 # class                 border    backgr    text      indicator child_border
 client.focused          $orange   $orange   $darkgray $blue     $orange

@@ -1,3 +1,4 @@
 #! /bin/bash
 
 bash $HOME/.config/polybar/launch.sh
+notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"

@@ -380,6 +380,7 @@ autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType html setlocal tabstop=4 shiftwidth=4
 autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType zsh setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType dockerfile setlocal tabstop=4 shiftwidth=4 expandtab
 
 autocmd BufRead,BufNewFile *.geojson setfiletype json
 autocmd BufRead,BufNewFile *.vrt setfiletype xml
