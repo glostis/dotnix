@@ -24,6 +24,8 @@ path=("$HOME/.pyenv/bin" "$path[@]")
 path=("$HOME/.config/scripts" "$path[@]")
 export PATH
 
+eval "$(pyenv init --path)"
+
 [ -f $ZDOTDIR/secrets ] && source $ZDOTDIR/secrets
 
 if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then

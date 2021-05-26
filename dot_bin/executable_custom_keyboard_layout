@@ -16,3 +16,5 @@ if [ -f $HOME/.config/xkb/symbols/glostis ]; then
     sed -e '/xkb_symbols/s/"[[:space:]]/+glostis(french_accents)&/' > $HOME/.config/xkb/map
     xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/map $DISPLAY
 fi
+
+xset r rate 230 50
