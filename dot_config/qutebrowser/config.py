@@ -125,6 +125,11 @@ c.url.searchengines = {
 c.url.default_page = "https://duckduckgo.com"
 c.url.open_base_url = True
 
+c.fileselect.handler = "external"
+c.fileselect.single_file.command = "alacritty --class dropdown_ranger --option window.dimensions.columns=150 --option window.dimensions.lines=38 -e ranger --choosefile={}".split(" ")
+c.fileselect.multiple_files.command = "alacritty --class dropdown_ranger --option window.dimensions.columns=150 --option window.dimensions.lines=38 -e ranger --choosefiles={}".split(" ")
+c.fileselect.folder.command = "alacritty --class dropdown_ranger --option window.dimensions.columns=150 --option window.dimensions.lines=38 -e ranger --choosedir={}".split(" ")
+
 # Bindings
 config.bind("<Ctrl+l>", "spawn --userscript qute-lastpass", mode="insert")
 config.bind("<Ctrl+t>", "open -t", mode="passthrough")
