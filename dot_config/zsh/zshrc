@@ -61,6 +61,8 @@ export ZSH_THEME_GIT_PROMPT_PREFIX="("
 export ZSH_THEME_GIT_PROMPT_SUFFIX=") "
 PROMPT='$(pyenv_venv)$(return_code) %B%F{blue}%c%f%b $(git_super_status)'
 
+[ -n "$RANGER_LEVEL" ] && PROMPT="(ranger) $PROMPT"
+
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
 [ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git'"
