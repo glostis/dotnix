@@ -112,7 +112,7 @@ c.input.links_included_in_focus_chain = False
 c.fonts.tabs.selected = "bold default_size default_family"
 
 # Automatically enter insert mode if an editable element is focused after loading the page.
-c.input.insert_mode.auto_load = True
+# c.input.insert_mode.auto_load = True
 
 c.url.searchengines = {
     # "DEFAULT": "https://www.google.com/search?hl=en&q={}",
