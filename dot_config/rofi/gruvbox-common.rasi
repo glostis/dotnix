@@ -9,7 +9,7 @@
 window {
     background-color: @background;
     border:           2;
-    border-radius:    10;
+    border-radius:   10;
     padding:          4;
 }
 
@@ -125,4 +125,8 @@ textbox-prompt-sep {
     str:        ":";
     text-color: @normal-foreground;
     margin:     0 0.3em 0 0;
+}
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
 }
