@@ -50,7 +50,7 @@ font-2 = "MesloLGM Nerd Font Mono:style=Regular:size=20;4"
 [bar/left]
 inherit = bar/base
 modules-left = powermenu i3
-modules-right = weather
+modules-right = network bluetooth
 width = 380
 offset-x = 10
 
@@ -65,9 +65,9 @@ offset-x = 50%:-50
 
 [bar/right]
 inherit = bar/base
-modules-right = network xkeyboard backlight pulseaudio memory cpu filesystem battery date
-width = 600
-offset-x = 100%:-610
+modules-right = xkeyboard backlight pulseaudio memory cpu filesystem battery date
+width = 570
+offset-x = 100%:-580
 
 [module/empty-text]
 type = custom/text
@@ -116,11 +116,16 @@ interval = 600
 click-left = "alacritty --class dropdown_weather --option window.dimensions.columns=126 --option window.dimensions.lines=38 --option window.position.x=350 --option window.position.y=41 -e /bin/bash -c 'curl wttr.in/?lang=fr\&Fq && read -n1'"
 click-right = "alacritty --class dropdown_weather --option window.dimensions.columns=75 --option window.dimensions.lines=43 --option window.position.x=600 --option window.position.y=41 -e /bin/bash -c 'curl wttr.in/?lang=fr\&Fq\&format=v2 && read -n1'"
 
+[module/bluetooth]
+type = custom/script
+exec = rofi-bluetooth --status
+interval = 5
+click-left = rofi-bluetooth &
+
 [module/network]
 type = internal/network
-; Name of the network interface to display. You can get the names of the
-; interfaces on your machine with `ip link`
-; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
+; The `interface-type` is not part of a released version of polybar (as of 3.5.6),
+; so the `git` version has to be used in order for the module to work
 interface-type = wireless
 label-connected = %{T3}%{T-}
 label-disconnected = %{T3}%{T-}

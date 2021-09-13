@@ -11,7 +11,7 @@ lock() {
 
 if [ -z "$1" ]; then
     choices="Suspend\nLock\nShutdown\nReboot\nLogout"
-    choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -lines 5 -p "Farewell")
+    choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -l 5 -p "Farewell")
 else
     choice=$1
 fi

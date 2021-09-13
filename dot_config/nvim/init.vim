@@ -377,7 +377,7 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType json setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType html setlocal tabstop=4 shiftwidth=4
+autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType zsh setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType dockerfile setlocal tabstop=4 shiftwidth=4 expandtab
