@@ -53,6 +53,7 @@ modules-left = powermenu i3
 modules-right = network bluetooth
 width = 380
 offset-x = 10
+padding-right = 2
 
 [bar/center]
 inherit = bar/base
