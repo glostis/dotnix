@@ -140,6 +140,8 @@ config.bind("K", "tab-next")
 config.bind("x", "tab-close")
 config.bind("t", "open -t")
 config.unbind("<Ctrl+h>")
+config.bind("<Ctrl+PgDown>", "tab-next", mode="passthrough")
+config.bind("<Ctrl+PgUp>", "tab-prev", mode="passthrough")
 
 # Taken from https://github.com/qutebrowser/qutebrowser/issues/2668
 config.bind("<Escape>", "mode-leave ;; jseval -q document.activeElement.blur()", mode="insert")

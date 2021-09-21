@@ -40,7 +40,7 @@ function return_code() {
         gaston*)
             prompt_char="ᰜ"
         ;;
-        eugene*)
+        fr-glostis-g3*)
             prompt_char="ξ"
         ;;
     esac
