@@ -170,6 +170,8 @@ bindsym $mod+Shift+n exec --no-startup-id nmcli radio wifi off
 bindsym $mod+v exec --no-startup-id nmcli connection up 'VPN'
 bindsym $mod+Shift+v exec --no-startup-id nmcli connection down 'VPN'
 
+bindsym $mod+b exec --no-startup-id rofi-bluetooth
+
 for_window [class="vpv"] floating enable
 for_window [instance="dropdown_*"] floating enable
 for_window [instance="dropdown_*"] sticky enable

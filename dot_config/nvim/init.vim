@@ -77,9 +77,6 @@ Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Automatically generate tags for the current repository
-Plug 'ludovicchabant/vim-gutentags'
-
 " ------------------------------------ UI --------------------------------------
 Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
