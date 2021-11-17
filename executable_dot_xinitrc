@@ -23,6 +23,10 @@ isavailable i3-battery-popup && i3-battery-popup -n -i /usr/share/icons/Adwaita/
 # Reacts to device connection/disconnection events; see ~/.config/xplugrc
 isavailable xplugd && xplugd &
 
+# Removes blue light from screen depending on sun elevation
+# Hack taken from https://wiki.archlinux.org/title/Redshift#Automatic_location_based_on_GPS to bypass the whole geoclue2 service headache
+isavailable redshift-gtk && redshift-gtk -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq '.location.lat, .location.lng' | tr '\n' ':' | sed 's/:$//')
+
 if [ -f $HOME/.bin/custom_keyboard_layout ]; then
     $HOME/.bin/custom_keyboard_layout &
 fi
