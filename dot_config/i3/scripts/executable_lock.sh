@@ -10,7 +10,7 @@ lock() {
 }
 
 if [ -z "$1" ]; then
-    choices="Suspend\nLock\nShutdown\nReboot\nHibernate\nLogout"
+    choices="Suspend\nLock\nShutdown\nReboot\nLogout"
     choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -l 5 -p "Farewell")
 else
     choice=$1
@@ -26,9 +26,6 @@ case "$choice" in
     Suspend)
         lock && systemctl suspend
         ;;
-    Hibernate)
-        lock && systemctl hibernate
-        ;;
     Reboot)
         systemctl reboot
         ;;
@@ -36,7 +33,7 @@ case "$choice" in
         systemctl poweroff
         ;;
     *)
-        echo "Usage: $0 {Lock|Suspend|Shutdown|Reboot|Hibernate|Logout}"
+        echo "Usage: $0 {Lock|Suspend|Shutdown|Reboot|Logout}"
         exit 2
 esac
 
