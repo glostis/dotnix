@@ -67,7 +67,8 @@ tmux set-option -wg clock-mode-colour "$gvbx_orange"
 
 # statusbar formatting
 # "#fe8019" MUST be in lowercase here (conflicts with statusline alias otherwise)
-tmux set-option -g status-left "#[fg=$gvbx_bg1, bg=$gvbx_fg4]#{?client_prefix,#[bg=$gvbx_orange] #{session_name} #[bg=$gvbx_fg4], #{session_name} }"
+tmux set-option -g status-left-length 20
+tmux set-option -g status-left "#[fg=$gvbx_bg1, bg=$gvbx_fg4]#{?client_prefix,#[bg=$gvbx_orange] #{host} #[bg=$gvbx_fg4], #{host} }"
 tmux set-option -g status-right "#[fg=$gvbx_bg1, bg=$gvbx_fg4]#{?client_prefix,#[bg=$gvbx_orange] %Y-%m-%d %H:%M #[bg=$gvbx_fg4], %Y-%m-%d %H:%M }"
 
 tmux set-option -wg window-status-current-format " #{window_index}#{?window_flags,#F, } #{window_name} "
