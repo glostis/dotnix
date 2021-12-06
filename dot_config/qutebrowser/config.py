@@ -154,9 +154,10 @@ base0D = colors["bright"]["blue"]
 base0E = colors["bright"]["magenta"]
 # base0F = None
 
-# if colors["primary"]["background"] == y["schemes"]["gruvbox-dark"]["primary"]["background"]:
-if False:
+if colors["primary"]["background"] == y["schemes"]["gruvbox-dark"]["primary"]["background"]:
+# if False:
     c.colors.webpage.darkmode.enabled = True
+    c.colors.webpage.preferred_color_scheme = "dark"
     c.colors.webpage.bg = base00
 else:
     c.colors.webpage.darkmode.enabled = False
