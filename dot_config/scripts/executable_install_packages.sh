@@ -1,7 +1,6 @@
 #! /usr/bin/bash
 # vim: ft=sh
 
-{{ if eq .chezmoi.osRelease.id "arch" -}}
 # Dirty hack taken from https://stackoverflow.com/a/9522766
 # to allow bash multiline command with comments
 CMD=(
@@ -34,12 +33,16 @@ CMD=(
     vpv                      # Image viewer (aur)
     redshift                 # Turns screen to red to avoid blue light
     libreoffice-fresh        # Bureautique
-    bitwarden-bin            # Password manager GUI (aur)
+    bitwarden                # Password manager GUI
+    gthumb                   # Quick photo editing
+    gimp                     # Not-so-quick photo editing
+    mupdf                    # pdf viewer
 
     ## Terminal programs
     bat                      # Fancy `cat`
     diff-so-fancy            # Fancy `diff`
     docker                   # Containers
+    docker-compose           # Containers
     man-db                   # man
     man-pages                # man
     mlocate                  # `locate` command
@@ -69,7 +72,9 @@ CMD=(
     pyenv                    # Python manager
     yay                      # AUR helper (aur)
     fixjson                  # JSON formatter (aur)
-    universal-ctags-git      # ctags (aur)
+    ctags                    # ctags
+    bc                       # Command-line calculations
+    w3m                      # Text-based web browser
 
     ## Hardware
     # Audio
@@ -77,11 +82,16 @@ CMD=(
     pamixer
     playerctl
     pulseaudio
+    pulseaudio-alsa
+    pulseaudio-bluetooth
+    pavucontrol
     # Screen backlight
     light
     # Network
     networkmanager
     network-manager-applet
+    bluez
+    bluez-utils
 
     ## Window manager
     i3-gaps                  # WM
@@ -94,9 +104,10 @@ CMD=(
     rofi                     # Launcher
     unclutter                # Remove mouse cursor when idle
     xidlehook                # Trigger action after some time idle (aur)
-    polybar                  # Status bar (aur)
+    polybar-git              # Status bar (aur)
     touchpad-indicator-git   # Fix touchpad weirdness (aur)
     xplugd-git               # Execute action on device plug/unplug (aur)
+    rofi-bluetooth-git       # Rofi front-end to bluetoothctl (aur)
 
     # Fonts
     gnu-free-fonts
@@ -124,4 +135,3 @@ CMD=(
 )
 
 "${CMD[@]}"
-{{ end -}}
