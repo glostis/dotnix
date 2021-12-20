@@ -80,16 +80,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+a floating toggle
 
 # switch to workspace
 set $ws1 "1. qutebrowser"
@@ -171,6 +162,9 @@ bindsym $mod+v exec --no-startup-id nmcli connection up 'VPN'
 bindsym $mod+Shift+v exec --no-startup-id nmcli connection down 'VPN'
 
 bindsym $mod+b exec --no-startup-id rofi-bluetooth
+
+bindsym $mod+space exec --no-startup-id dunstctl close-all
+bindsym $mod+Shift+space exec --no-startup-id "${HOME}/.config/i3/scripts/dunst_pause.sh"
 
 for_window [class="vpv"] floating enable
 for_window [instance="dropdown_*"] floating enable
