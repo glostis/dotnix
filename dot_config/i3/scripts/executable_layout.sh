@@ -1,7 +1,7 @@
 #! /bin/bash
 
 choices="Laptop\nDual - Left\nDual - Top"
-choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -lines 3 -p "Screen layout")
+choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -l 3 -p "Screen layout")
 laptop_monitor=$(xrandr | sed -n '/^eDP/p' | cut -d\  -f1)
 connected_monitor=$(xrandr | sed -n '/ connected/p' | grep -v '^eDP' | cut -d\  -f1)
 disconnected_monitor=$(xrandr | sed -n '/ disconnected/p' | cut -d\  -f1)
