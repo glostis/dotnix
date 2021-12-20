@@ -70,7 +70,7 @@ CMD=(
     ripgrep                  # Fast recursive grep
     scrot                    # Screenshot
     pyenv                    # Python manager
-    yay                      # AUR helper (aur)
+    yay-bin                  # AUR helper (aur)
     fixjson                  # JSON formatter (aur)
     ctags                    # ctags
     bc                       # Command-line calculations
@@ -108,6 +108,7 @@ CMD=(
     touchpad-indicator-git   # Fix touchpad weirdness (aur)
     xplugd-git               # Execute action on device plug/unplug (aur)
     rofi-bluetooth-git       # Rofi front-end to bluetoothctl (aur)
+    networkmanager-dmenu-git # Rofi front-end to networkmanager (aur)
 
     # Fonts
     gnu-free-fonts
