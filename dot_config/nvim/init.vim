@@ -112,12 +112,16 @@ Plug 'machakann/vim-highlightedyank'
 
 " Close a buffer without closing the window, using :BDelete
 Plug 'moll/vim-bbye'
-"
+
 " " Go-to with s{char}{char}
 " Plug 'justinmk/vim-sneak'
 "
 " " Highlight a unique character per word to ease f/F/t/T
 " Plug 'unblevable/quick-scope'
+
+
+" Show indent guides
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -370,14 +374,11 @@ set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
 " Tabs...
 filetype plugin indent on
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
+setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType json setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType zsh setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType dockerfile setlocal tabstop=4 shiftwidth=4 expandtab
 
 autocmd BufRead,BufNewFile *.geojson setfiletype json
 autocmd BufRead,BufNewFile *.vrt setfiletype xml
