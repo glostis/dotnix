@@ -17,7 +17,7 @@ floating_modifier $mod
 font pango:monospace 8
 
 # start a terminal
-bindsym $mod+Return exec alacritty -e tmux new-session -A -s work
+bindsym $mod+space exec alacritty -e tmux new-session -A -s work
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -163,8 +163,8 @@ bindsym $mod+Shift+v exec --no-startup-id nmcli connection down 'VPN'
 
 bindsym $mod+b exec --no-startup-id rofi-bluetooth
 
-bindsym $mod+space exec --no-startup-id dunstctl close-all
-bindsym $mod+Shift+space exec --no-startup-id "${HOME}/.config/i3/scripts/dunst_pause.sh"
+bindsym $mod+Return exec --no-startup-id dunstctl close-all
+bindsym $mod+Shift+Return exec --no-startup-id "${HOME}/.config/i3/scripts/dunst_pause.sh"
 
 for_window [class="vpv"] floating enable
 for_window [instance="dropdown_*"] floating enable
