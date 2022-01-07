@@ -1,6 +1,5 @@
 // ==UserScript==
 // @match https://docs.google.com/*
-// @match https://duckduckgo.com/*
 // @match https://*github.com/*
 // @match https://stackoverflow.com/*
 // ==/UserScript==

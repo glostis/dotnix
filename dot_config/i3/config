@@ -30,7 +30,7 @@ bindsym $mod+w exec rofi -show window -show-icons
 bindsym $mod+c exec --no-startup-id qutebrowser
 
 # Open Google Chrome
-bindsym $mod+Shift+c exec --no-startup-id google-chrome
+bindsym $mod+Shift+c exec --no-startup-id google-chrome-stable
 
 bindsym $mod+t exec --no-startup-id python "$HOME/.config/colorschemes/switcher.py"
 

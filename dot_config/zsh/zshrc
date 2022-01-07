@@ -1,6 +1,7 @@
 # vim: filetype=zsh
 
 HISTFILE=~/.cache/zsh/history
+mkdir -p $(dirname $HISTFILE)
 HISTSIZE=100000
 SAVEHIST=100000
 bindkey -e
