@@ -44,6 +44,9 @@ function return_code() {
         fr-glostis-g3*)
             prompt_char="ξ"
         ;;
+        *)
+            prompt_char="?"
+        ;;
     esac
     echo "%(?:%F{green}${prompt_char}%f:%F{red}${prompt_char}%f)"
 }
