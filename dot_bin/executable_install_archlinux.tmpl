@@ -43,6 +43,7 @@ CMD=(
     man-pages                # man
     mlocate                  # `locate` command
     ncdu                     # Curses disk usage explorer
+    git                      # Version control
     git-lfs                  # Git Large File Storage
     chezmoi                  # Dotfiles manager
     expac                    # pacman database extraction utility
@@ -59,6 +60,7 @@ CMD=(
     ranger                   # File browser
     tmux                     # Terminal multiplexer
     tree                     # Recursive directory listing
+    zip                      # Archiving
     unzip                    # Unarchiving
     zsh                      # Shell
     antibody                 # zsh plugin manager (aur)
@@ -71,6 +73,7 @@ CMD=(
     ctags                    # ctags
     bc                       # Command-line calculations
     w3m                      # Text-based web browser
+    python-pipx              # Install executables in python venvs from PyPI
 
     ## Hardware
     # Audio
@@ -117,7 +120,23 @@ CMD=(
     ttf-roboto
     ttf-ubuntu-font-family
     terminus-font
-    nerd-fonts-meslo        # (aur)
+    nerd-fonts-meslo         # (aur)
+
+    {{- if eq .chezmoi.hostname "fr-glostis-g3" }}
+
+    ## Machine specific
+    aws-cli                  # Command-line interaction with AWS services
+    gnome-keyring            # Required to play nice with 1password
+    intel-ucode              # Stuff for Intel CPUs
+    networkmanager-openvpn   # networkmanager extension for OpenVPN
+    qgis                     # GIS Software
+    sof-firmware             # Required to have functional speaker and microphone on Dell G3
+    zram-generator           # Type of swap
+    1password                # Password manager (aur)
+    google-earth-pro         # GIS Software (aur)
+    slack-desktop            # Messaging (aur)
+    vpv                      # Image time-series viewer (aur)
+    {{- end }}
 )
 
 "${CMD[@]}"
