@@ -54,8 +54,6 @@ CMD=(
     htop                     # System resources monitoring
     imagemagick              # Image manipulation commands
     jq                       # JSON parser
-    khal                     # Terminal-based calendar
-    vdirsyncer               # Terminal-based calendar
     neofetch                 # System information
     neovim                   # Editor
     ranger                   # File browser
@@ -127,7 +125,6 @@ CMD=(
 CMD=(
   # The following packages are installed as optional dependencies of other packages
   yay -S --asdeps --needed
-    python-requests-oauthlib # dep of vdirsyncer
     pdfjs                    # dep of qutebrowser
     python-pynvim            # dep of neovim
 )

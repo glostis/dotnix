@@ -217,7 +217,7 @@ date = "%Y-%m-%d "
 time = %H:%M
 
 format-prefix =
-format =%{A1:alacritty --class dropdown_ikhal --option window.dimensions.columns=120 --option window.dimensions.lines=20 --option window.position.x=816 --option window.position.y=41 -e /bin/bash -c 'ikhal':}%{A3:vdirsyncer sync && notify-send --urgency=low 'Calendar synced':}<label>%{A}%{A}
+format =<label>
 
 label = %date%%time%
 
