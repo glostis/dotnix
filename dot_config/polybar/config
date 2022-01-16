@@ -125,9 +125,13 @@ click-left = rofi-bluetooth &
 
 [module/network]
 type = internal/network
-; The `interface-type` is not part of a released version of polybar (as of 3.5.6),
-; so the `git` version has to be used in order for the module to work
-interface-type = wireless
+; Wireless interfaces have different names from machine to machine,
+; so maintaining a single polybar config is challenging.
+; The `interface-type` option was introduced in polybar to solve this,
+; but it is not part of a released version of polybar (as of 3.5.7)
+; We therefore use a workaround taken from
+; https://github.com/polybar/polybar/issues/339#issuecomment-447674287
+interface = ${env:DEFAULT_NETWORK_INTERFACE}
 label-connected = %{T3}%{T-}
 label-disconnected = %{T3}%{T-}
 label-disconnected-foreground = #666
