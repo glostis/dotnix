@@ -7,3 +7,5 @@ if [ -f $path ]; then
         sudo sed -i "s/^#${param}/${param}/" $path
     done
 fi
+
+sed -i "s/^#ParallelDownloads.*$/ParallelDownloads = 5/" $path
