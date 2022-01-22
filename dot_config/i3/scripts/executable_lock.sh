@@ -2,8 +2,7 @@
 
 lock() {
     tmpbg="/tmp/screen.png"
-    rm -f "$tmpbg"
-    scrot "$tmpbg"
+    $HOME/.bin/screenshot "$tmpbg"
     convert "$tmpbg" -scale 20% -scale 500% -fill black -colorize 25% "$tmpbg"
     corrupter -add 0 -mag 0 "$tmpbg" "$tmpbg"
     i3lock -i "$tmpbg"

@@ -34,6 +34,8 @@ bindsym $mod+Shift+c exec --no-startup-id google-chrome-stable
 
 bindsym $mod+t exec --no-startup-id python "$HOME/.config/colorschemes/switcher.py"
 
+bindsym $mod+y exec --no-startup-id "$HOME/.bin/screenshot"
+
 # rofi interfaces to lock/shutdown and to change screen layout
 bindsym $mod+z exec --no-startup-id "$HOME/.config/i3/scripts/lock.sh"
 bindsym $mod+s exec --no-startup-id "$HOME/.config/i3/scripts/layout.sh"
