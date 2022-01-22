@@ -111,10 +111,7 @@ c.fileselect.multiple_files.command = "alacritty --class dropdown_ranger --optio
 c.fileselect.folder.command = "alacritty --class dropdown_ranger --option window.dimensions.columns=150 --option window.dimensions.lines=38 -e ranger --choosedir={}".split(" ")
 
 # Bindings
-config.bind("<Ctrl+l>", "spawn --userscript qute-lastpass", mode="insert")
 config.bind("<Ctrl+t>", "open -t", mode="passthrough")
-config.bind("<Ctrl+u>", "spawn --userscript qute-lastpass --username-only", mode="insert")
-config.bind("<Ctrl+p>", "spawn --userscript qute-lastpass --password-only", mode="insert")
 config.bind("J", "tab-prev")
 config.bind("K", "tab-next")
 config.bind("x", "tab-close")
