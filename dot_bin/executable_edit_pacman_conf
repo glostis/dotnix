@@ -8,4 +8,4 @@ if [ -f $path ]; then
     done
 fi
 
-sed -i "s/^#ParallelDownloads.*$/ParallelDownloads = 5/" $path
+sudo sed -i "s/^#ParallelDownloads.*$/ParallelDownloads = 5/" $path
