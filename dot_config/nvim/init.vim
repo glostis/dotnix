@@ -353,7 +353,7 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 " ============================== General stuff =================================
 " Tell neovim where to find the python binary that has the neovim package
 " installed
-let g:python3_host_prog = $HOME."/.venv/neovim/bin/python"
+let g:python3_host_prog = $HOME."/.pyenv/versions/neovim/bin/python"
 
 " Keep 5 lines above and below cursor to keep it centered vertically
 set scrolloff=5

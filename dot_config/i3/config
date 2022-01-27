@@ -41,10 +41,12 @@ bindsym $mod+z exec --no-startup-id "$HOME/.config/i3/scripts/lock.sh"
 bindsym $mod+s exec --no-startup-id "$HOME/.config/i3/scripts/layout.sh"
 
 # Disable window title bar
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 1
 
 gaps inner 10
 gaps top 27
+# Only show a border when more than one window is visible
+smart_borders on
 
 # change focus
 bindsym $mod+h focus left
@@ -78,7 +80,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
-bindsym $mod+Shift+e layout tabbed
+bindsym $mod+Shift+e layout toggle stacking split
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -185,7 +187,7 @@ set $darkgray #282828
 set $white    #ebdbb2
 
 # class                 border    backgr    text      indicator child_border
-client.focused          $orange   $orange   $darkgray $blue     $orange
-client.focused_inactive $darkgray $darkgray $white    $blue     $orange
-client.unfocused        $darkgray $darkgray $white    $blue     $orange
+client.focused          $orange   $orange   $darkgray $blue     $white
+client.focused_inactive $darkgray $darkgray $white    $blue     $white
+client.unfocused        $darkgray $darkgray $white    $blue     $darkgray
 client.urgent           $red      $red      $white    $red      $red
