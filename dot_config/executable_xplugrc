@@ -9,7 +9,7 @@
 #          |    |       `---- connected or disconnected
 #          |     `----------- HDMI3, LVDS1, VGA1, etc.
 #           `---------------- keyboard, pointer, display
-
 if [ "$1" = "keyboard" ]; then
-    custom_keyboard_layout  # This is a script from ~/.bin
+    # For some reason, I can't manage to get xplugrc to source my zsh PATH, which includes ~/.bin...
+    ${HOME}/.bin/custom_keyboard_layout
 fi
