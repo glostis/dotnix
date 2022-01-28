@@ -1,5 +1,10 @@
 # vim: filetype=zsh
 
+
+eval "$(pyenv init --path)"
+
+[ -f $ZDOTDIR/secrets ] && source $ZDOTDIR/secrets
+
 HISTFILE=~/.cache/zsh/history
 mkdir -p $(dirname $HISTFILE)
 HISTSIZE=100000
@@ -60,6 +65,7 @@ function pyenv_venv() {
         fi
     fi
 }
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 export ZSH_THEME_GIT_PROMPT_PREFIX="("
 export ZSH_THEME_GIT_PROMPT_SUFFIX=") "

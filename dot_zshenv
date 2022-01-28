@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+# This is supposedly always sourced, both in login and interactive shells
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+
+typeset -U PATH path  # Remove duplicates from PATH
+path=("$HOME/.bin" "$path[@]")  # Custom executables
+path=("$HOME/.local/bin" "$path[@]")  # pipx executables
+path=("$HOME/.pyenv/bin" "$path[@]")
+path=("$HOME/.config/scripts" "$path[@]")
+export PATH
+
+# Default programs:
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export BROWSER="qutebrowser"
+
+# ~/ Clean-up:
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export LESSHISTFILE="-"
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+
