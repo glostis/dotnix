@@ -1,0 +1,80 @@
+# i3wm stuff
+
+super + {h,j,k,l}
+    i3-msg -q focus {left,down,up,right}
+
+super + {Left,Down,Up,Right}
+    i3-msg -q move {left,down,up,right}
+
+super + alt + {h,j,k,l}
+    i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 5 px or 5 ppt
+
+super + x
+    i3-msg -q move workspace to output left
+
+super + {_,shift +} f
+    i3-msg -q {fullscreen,floating} toggle
+
+super + {_,shift +} {1-9}
+    i3-msg -q {workspace,move container to workspace} {1-9}
+
+super + shift + r
+    i3-msg -q restart
+
+super + {_,shift +} e
+    i3-msg -q layout toggle {split,stacking split}
+
+super + q
+    i3-msg -q kill
+
+# Application launches
+super + space
+    alacritty -e tmux new-session -A -s work
+
+super + w
+    rofi -show window -show-icons
+
+super + d
+    rofi -modi drun -show drun -show-icons
+
+super + o ; {q,c,g,s,b}
+    {qutebrowser,google-chrome-stable,qgis,slack,bitwarden}
+
+super + y
+    screenshot
+
+super + z; {z,x,l,h,s,r}
+    farewell {_,Suspend,Lock,Hibernate,Shutdown,Reboot}
+
+super + s
+    monitor-layout
+
+# Sound control
+XF86Audio{Raise,Lower}Volume
+    volumectl {increase,decrease}
+
+XF86AudioMute
+    pamixer --toggle-mute
+
+XF86AudioPlay
+    playerctl --player=spotify play-pause && dunstify --appname="volume" "Play/pause"
+
+XF86Audio{Next,Prev}
+    playerctl --player=spotify {next,prev}
+
+# Screen brightness controls
+# Uses https://github.com/haikarainen/light
+# Need to add the user to the `video` group
+XF86MonBrightness{Up,Down}
+    light -{A,U} 10
+
+# Toggle wifi, VPN and bluetooth on and off
+super + {n,v,b}
+    networking-toggle {wifi,vpn,bluetooth}
+
+super + shift + {n,b}
+    {networkmanager_dmenu,rofi-bluetooth}
+
+# Notifications (dunst)
+super + {_,shift +} Return
+    {dunstctl close-all,dunst-pause}

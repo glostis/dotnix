@@ -133,6 +133,10 @@ Plug 'chrisbra/Colorizer'
 
 " TOML syntax highlighting
 Plug 'cespare/vim-toml'
+
+" sxhkdrc syntax highlighting
+Plug 'baskerville/vim-sxhkdrc'
+
 call plug#end()
 " ==============================================================================
 

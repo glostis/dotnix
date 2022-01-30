@@ -120,7 +120,7 @@ click-right = "alacritty --class dropdown_weather --option window.dimensions.col
 [module/bluetooth]
 type = custom/script
 exec = rofi-bluetooth --status
-interval = 5
+interval = 2
 click-left = rofi-bluetooth &
 
 [module/network]
@@ -154,15 +154,15 @@ label-focused-underline= ${colors.yellow}
 label-focused-padding = 1
 
 fuzzy-match = true
-ws-icon-0 = qutebrowser;%{T2}%{T-}
-ws-icon-1 = terminal1;%{T2}%{T-}
-ws-icon-2 = terminal2;%{T2}%{T-}
+ws-icon-0 = 1;%{T2}%{T-}
+ws-icon-1 = 2;%{T2}%{T-}
+ws-icon-2 = 3;%{T2}%{T-}
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
-ws-icon-5 = zoom;%{T2}%{T-}
-ws-icon-6 = chrome;%{T2}%{T-}
-ws-icon-7 = music;%{T2}%{T-}
-ws-icon-8 = slack;%{T2}%{T-}
+ws-icon-5 = 6;%{T2}%{T-}
+ws-icon-6 = 7;%{T2}%{T-}
+ws-icon-7 = 8;%{T2}%{T-}
+ws-icon-8 = 9;%{T2}%{T-}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = ${self.label-focused}

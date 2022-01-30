@@ -1,3 +1,5 @@
+#! /bin/bash
+
 ispaused=$(dunstctl is-paused)
 
 if [ "$ispaused" = "true" ]; then
