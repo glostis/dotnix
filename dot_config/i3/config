@@ -1,3 +1,4 @@
+# i3 config file (v4)
 # See https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set "super" as i3 modifier key
@@ -9,7 +10,8 @@ floating_modifier $mod
 font pango:MesloLGM Nerd Font Mono 11
 
 # Disable window title bar
-for_window [class=".*"] border pixel 1
+default_border pixel 1
+default_floating_border none
 
 gaps inner 10
 gaps top 27
