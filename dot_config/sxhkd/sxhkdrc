@@ -10,7 +10,7 @@ super + alt + {h,j,k,l}
     i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 5 px or 5 ppt
 
 super + x
-    i3-msg -q move workspace to output left
+    i3-msg -q move workspace to output next
 
 super + {_,shift +} f
     i3-msg -q {fullscreen,floating} toggle
