@@ -1,55 +1,73 @@
 # i3wm stuff
 
+# i3 focus windows
 super + {h,j,k,l}
     i3-msg -q focus {left,down,up,right}
 
+# i3 move windows
 super + {Left,Down,Up,Right}
     i3-msg -q move {left,down,up,right}
 
+# i3 resize
 super + alt + {h,j,k,l}
     i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 5 px or 5 ppt
 
+# i3 move workspace to other output/screen/monitor
 super + x
     i3-msg -q move workspace to output next
 
+# i3 toggle {fullscreen,floating}
 super + {_,shift +} f
     i3-msg -q {fullscreen,floating} toggle
 
+# i3 {focus,move container to} workspace
 super + {_,shift +} {1-9}
     i3-msg -q {workspace,move container to workspace} {1-9}
 
+# i3 restart
 super + shift + r
     i3-msg -q restart
 
-super + {_,shift +} e
-    i3-msg -q layout toggle {split,stacking split}
+# i3 toggle layout stacking split v/h
+super + e
+    i3-msg -q layout toggle stacking splitv splith
 
+# i3 kill (quit/close window)
 super + q
     i3-msg -q kill
 
 # Application launches
-super + space
-    alacritty -e tmux new-session -A -s work
 
+# Launch alacritty
+super + space
+    alacritty -e tmux new-session -A -s session
+
+# rofi i3 windows
 super + w
     rofi -show window -show-icons
 
+# rofi launcher
 super + d
     rofi -modi drun -show drun -show-icons
 
+# Launch {qutebrowser,Google Chrome,QGIS,Slack,Bitwarden}
 super + o ; {q,c,g,s,b}
-    {qutebrowser,google-chrome-stable,qgis,slack,bitwarden}
+    {qutebrowser,google-chrome-stable,qgis,slack,bitwarden-desktop}
 
+# Screenshot
 super + y
     screenshot
 
+# Farewell {rofi,suspend,lock,hibernate,shutdown,reboot}
 super + z; {z,x,l,h,s,r}
     farewell {_,Suspend,Lock,Hibernate,Shutdown,Reboot}
 
-super + s
+# Change monitor layout
+super + m
     monitor-layout
 
 # Sound control
+
 XF86Audio{Raise,Lower}Volume
     volumectl {increase,decrease}
 
@@ -68,13 +86,18 @@ XF86Audio{Next,Prev}
 XF86MonBrightness{Up,Down}
     light -{A,U} 10
 
-# Toggle wifi, VPN and bluetooth on and off
+# Toggle on/off {wifi,VPN,bluetooth}
 super + {n,v,b}
     networking-toggle {wifi,vpn,bluetooth}
 
+# Rofi {network manager,bluetooth}
 super + shift + {n,b}
     {networkmanager_dmenu,rofi-bluetooth}
 
-# Notifications (dunst)
+# Notifications (dunst) {close,pause toggle}
 super + {_,shift +} Return
     {dunstctl close-all,dunst-pause}
+
+# sxhkd rofi helper menu
+super + s
+    sxhkhmenu

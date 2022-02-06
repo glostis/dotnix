@@ -15,9 +15,9 @@ xidlehook \
     'dunstify --close="$sleep_notif_id"' \
   `# Lock and turn off screen after 10 more seconds` \
   --timer 10 \
-    'dunstify --close="$sleep_notif_id" && "$HOME"/.config/i3/scripts/lock.sh Lock && xset dpms force off' \
+    'dunstify --close="$sleep_notif_id" && "$HOME"/.bin/farewell Lock && xset dpms force off' \
     '' \
-  `# Finally, suspend half an hour after it locks` \
-  --timer 1800 \
+  `# Finally, suspend 10 more minutes after it locks` \
+  --timer 600 \
     'systemctl suspend' \
     ''

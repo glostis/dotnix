@@ -39,8 +39,6 @@ exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec_always --no-startup-id $HOME/.bin/idlehook
-
 set $red       #cc241d
 set $orange    #d65d0e
 set $blue      #458588
