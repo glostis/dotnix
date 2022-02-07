@@ -31,6 +31,7 @@ for_window [class="Spotify"] move to workspace 8
 assign [class="Slack"] 9
 
 for_window [class="vpv"] floating enable
+for_window [class="vpv"] fullscreen enable
 for_window [instance="dropdown_*"] floating enable
 for_window [instance="dropdown_*"] sticky enable
 for_window [instance="dropdown_*"] border pixel 0
