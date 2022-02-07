@@ -8,12 +8,18 @@
 // altgr + key -> letter
 // w -> è
 // r -> ê
+// t -> t
+// (I override the mapping of letter t as the default
+// US-altgr-intl layout assigns it a weird þ, Þ,
+// and I often type words like "côté" where it
+// creates mistakes)
 // u -> ù
 // i -> î
 // o -> ô
 // a -> à
 // s -> â
 // c -> ç
+// ; -> : and ; -> : (because : is used more often)
 //
 // The current key -> symbols table in use can be seen by inspecting the
 // contents of `xkbcomp $DISPLAY xkb.dump`.
@@ -28,6 +34,9 @@ xkb_symbols "french_accents" {
     };
     key <AD04> {
         symbols[Group1]= [ r, R, ecircumflex, Ecircumflex ]
+    };
+    key <AD05> {
+        symbols[Group1]= [ t, T, t, T ]
     };
     key <AD07> {
         symbols[Group1]= [ u, U, ugrave, Ugrave ]
@@ -46,5 +55,8 @@ xkb_symbols "french_accents" {
     };
     key <AB03> {
         symbols[Group1]= [ c, C, ccedilla, Ccedilla ]
+    };
+    key <AC10> {
+        symbols[Group1]= [ colon, semicolon, degree, degree ]
     };
 };
