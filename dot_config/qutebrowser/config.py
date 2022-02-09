@@ -90,6 +90,8 @@ c.tabs.background = True
 c.input.links_included_in_focus_chain = False
 
 c.fonts.tabs.selected = "bold default_size default_family"
+c.fonts.default_family = "MesloLGM Nerd Font Mono"
+c.fonts.default_size = "12pt"
 
 # Automatically enter insert mode if an editable element is focused after loading the page.
 # c.input.insert_mode.auto_load = True
