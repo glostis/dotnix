@@ -11,5 +11,14 @@
 #           `---------------- keyboard, pointer, display
 if [ "$1" = "keyboard" ]; then
     # For some reason, I can't manage to get xplugrc to source my zsh PATH, which includes ~/.bin...
-    ${HOME}/.bin/custom_keyboard_layout
+    case "$4" in
+        "Kinesis Advantage2"*)
+            dunstify "Kinesis"
+            ${HOME}/.bin/custom_keyboard_layout kinesis
+            ;;
+        *)
+            dunstify "Normal"
+            ${HOME}/.bin/custom_keyboard_layout normal
+            ;;
+    esac
 fi
