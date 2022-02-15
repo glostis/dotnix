@@ -34,6 +34,7 @@ CMD=(
     gthumb                   # Quick photo editing
     gimp                     # Not-so-quick photo editing
     mupdf                    # pdf viewer
+    spotify                  # Music streaming (aur)
 
     ## Terminal programs
     bat                      # Fancy `cat`
@@ -130,7 +131,7 @@ CMD=(
     terminus-font
     nerd-fonts-meslo         # (aur)
 
-    {{- if eq .chezmoi.hostname "fr-glostis-g3" }}
+    {{- if eq .chezmoi.hostname "fr-glostis-xps" }}
 
     ## Machine specific
     aws-cli                  # Command-line interaction with AWS services
@@ -138,17 +139,16 @@ CMD=(
     seahorse                 # UI to gnome-keyring
     networkmanager-openvpn   # networkmanager extension for OpenVPN
     qgis                     # GIS Software
-    sof-firmware             # Required to have functional speaker and microphone on Dell G3
     1password                # Password manager (aur)
     google-earth-pro         # GIS Software (aur)
     slack-desktop            # Messaging (aur)
     vpv                      # Image time-series viewer (aur)
-    nvidia                   # GPU nightmare
-    nvidia-settings          # GPU nightmare
-    nvidia-utils             # GPU nightmare
-    nvidia-container-toolkit # GPU nightmare (aur)
-    optimus-manager          # GPU nightmare (aur)
     zedfree                  # Encrypted file containers (aur)
+    wine                     # Adobe reader
+    wine-gecko               # Adobe reader
+    wine-mono                # Adobe reader
+    winetricks               # Adobe reader
+    adobe-reader-11          # Adobe reader (aur)
     {{- end }}
 )
 

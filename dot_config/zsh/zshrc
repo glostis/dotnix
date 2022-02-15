@@ -46,7 +46,7 @@ function return_code() {
         gaston*)
             prompt_char="ᰜ"
         ;;
-        fr-glostis-g3*)
+        fr-glostis-xps*)
             prompt_char="ξ"
         ;;
         *)
