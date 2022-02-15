@@ -1,5 +1,8 @@
 #! /bin/bash
 
+set -e
+
+sudo pacman -S zsh
 chsh -s /bin/zsh
 
 ${HOME}/.bin/add_touchpad_conf
