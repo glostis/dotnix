@@ -17,7 +17,6 @@ CMD=(
     xorg                     # (group)
     xclip                    # clipboard
     xdotool                  # xorg
-    xf86-video-intel         # graphics
     xorg-xinit               # graphics
     openssh                  # ssh
 
@@ -35,6 +34,8 @@ CMD=(
     gimp                     # Not-so-quick photo editing
     mupdf                    # pdf viewer
     spotify                  # Music streaming (aur)
+    rhythmbox                # Local music player
+    qmk                      # Programmable keyboard configuration
 
     ## Terminal programs
     bat                      # Fancy `cat`
@@ -69,6 +70,7 @@ CMD=(
     wget                     # File download
     ripgrep                  # Fast recursive grep
     maim                     # Screenshot
+    rofi-screenshot-git      # Take screencaptures (.mp4 or .gif) (aur)
     pyenv                    # Python manager
     pyenv-virtualenv         # pyenv virtualenv plugin (aur)
     yay-bin                  # AUR helper (aur)
@@ -76,7 +78,11 @@ CMD=(
     ctags                    # ctags
     bc                       # Command-line calculations
     w3m                      # Text-based web browser
+    python-pip               # Just pip.
     python-pipx              # Install executables in python venvs from PyPI
+    parallel                 # Runs commands in parallel
+    usbutils                 # Provides `lsusb` to show connected USB devices
+
 
     ## Hardware
     # Audio
@@ -140,7 +146,9 @@ CMD=(
     networkmanager-openvpn   # networkmanager extension for OpenVPN
     qgis                     # GIS Software
     1password                # Password manager (aur)
+    libldap24                # Required for 1password or something else?? (aur)
     google-earth-pro         # GIS Software (aur)
+    esa-snap-bin             # ESA Sentinel processing toolbox (aur)
     slack-desktop            # Messaging (aur)
     vpv                      # Image time-series viewer (aur)
     zedfree                  # Encrypted file containers (aur)
@@ -149,6 +157,9 @@ CMD=(
     wine-mono                # Adobe reader
     winetricks               # Adobe reader
     adobe-reader-11          # Adobe reader (aur)
+    wireguard-tools          # VPN
+    systemd-resolvconf       # VPN dependency
+    libxcrypt-compat         # Work antivirus dependency
     {{- end }}
 )
 
@@ -159,6 +170,8 @@ CMD=(
   yay -S --asdeps --needed
     pdfjs                    # dep of qutebrowser
     python-pynvim            # dep of neovim
+    libdvdcss                # dep of vlc to read DVDs
+    libdvdnav                # dep of vlc to read DVDs
 )
 
 "${CMD[@]}"
