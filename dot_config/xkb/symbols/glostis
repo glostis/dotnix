@@ -56,8 +56,14 @@ xkb_symbols "french_accents" {
     key <AB03> {
         symbols[Group1]= [ c, C, ccedilla, Ccedilla ]
     };
+    key <AB09> {
+        symbols[Group1]= [ period, greater, rightarrow, leftarrow ]
+    };
     key <AC10> {
         symbols[Group1]= [ colon, semicolon, degree, degree ]
+    };
+    key <AE11> {
+        symbols[Group1]= [ minus, underscore, emdash, emdash]
     };
 };
 

@@ -20,18 +20,19 @@ gaps top 27
 smart_borders on
 
 # Workspaces:
-# 1: qutebrowser, 2: terminal1, 3: terminal2, 4: unassigned,
+# 1: qutebrowser, 2: terminal1, 3: terminal2, 4: qgis,
 # 5: unassigned, 6: unassigned, 7: chrome, 8: music, 9: slack
 
 # Assign windows to specific workspaces
 assign [class="qutebrowser"] 1
-assign [class="zoom"] 6
 assign [class="Google-chrome"] 7
 for_window [class="Spotify"] move to workspace 8
 assign [class="Slack"] 9
+assign [class="QGIS3"] 4
+for_window [class="QGIS3"] border pixel 2
 
 for_window [class="vpv"] floating enable
-for_window [class="vpv"] fullscreen enable
+# for_window [class="vpv"] fullscreen enable
 for_window [instance="dropdown_*"] floating enable
 for_window [instance="dropdown_*"] sticky enable
 for_window [instance="dropdown_*"] border pixel 0

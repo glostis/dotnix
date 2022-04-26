@@ -28,6 +28,9 @@ super + {_,shift +} {1-9}
 super + shift + r
     i3-msg -q restart
 
+super + {_,shift +} c
+    rofi-screenshot {_,-s}
+
 # i3 toggle layout stacking split v/h
 super + e
     i3-msg -q layout toggle stacking splitv splith
@@ -75,10 +78,10 @@ XF86AudioMute
     pamixer --toggle-mute
 
 XF86AudioPlay
-    playerctl --player=spotify play-pause && dunstify --appname="volume" "Play/pause"
+    playerctl play-pause && dunstify --appname="volume" "Play/pause"
 
 XF86Audio{Next,Prev}
-    playerctl --player=spotify {next,prev}
+    playerctl {next,prev}
 
 # Screen brightness controls
 # Uses https://github.com/haikarainen/light
@@ -98,6 +101,12 @@ super + shift + {n,b}
 super + {_,shift +} Return
     {dunstctl close-all,dunst-pause}
 
+super + t
+    python /home/glostis/.config/colorschemes/switcher.py
+
 # sxhkd rofi helper menu
-super + s
+super + shift + s
     sxhkhmenu
+
+super + s
+    i3-msg -q split toggle
