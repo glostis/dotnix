@@ -137,6 +137,9 @@ Plug 'cespare/vim-toml'
 " sxhkdrc syntax highlighting
 Plug 'baskerville/vim-sxhkdrc'
 
+" kmonad config file syntax highlighting
+Plug 'kmonad/kmonad-vim'
+
 call plug#end()
 " ==============================================================================
 
