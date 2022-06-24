@@ -1,7 +1,6 @@
 // ==UserScript==
 // @match https://docs.google.com/*
 // @match https://*github.com/*
-// @match https://stackoverflow.com/*
 // ==/UserScript==
 
 // This greasemonkey script "whitelists" websites with the `match` statements

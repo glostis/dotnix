@@ -427,7 +427,14 @@ function! LoadColorScheme()
     redraw
 endfunction
 
+function! ReloadColorScheme()
+    call LoadColorScheme()
+    execute ":AirlineRefresh"
+endfunction
+
 call LoadColorScheme()
+
+autocmd Signal SIGUSR1 call ReloadColorScheme()
 
 " More natural split locations
 set splitbelow

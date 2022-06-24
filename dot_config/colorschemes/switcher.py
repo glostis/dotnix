@@ -20,7 +20,7 @@ def apply_polybar(colors):
 
     with open(os.path.expanduser("~/.config/polybar/colors"), "w") as f:
         f.write(polybar_colors)
-    subprocess.run([os.path.expanduser("~/.config/polybar/launch.sh")], check=True)
+    subprocess.run([os.path.expanduser("~/.config/polybar/launch.sh")])
 
 
 def apply_alacritty(theme):
@@ -43,16 +43,36 @@ def apply_rofi(theme):
             f.write(re.sub(regex, f'"{theme}.rasi"', line))
 
 
+def apply_gtk(theme):
+    path = os.path.expanduser("~/.config/gtk-3.0/settings.ini")
+    with open(path) as f:
+        lines = f.readlines()
+    if theme.split("-")[-1] == "dark":
+        b = "true"
+    else:
+        b = "false"
+    regex = re.compile(r"^gtk-application-prefer-dark-theme = .*$")
+    with open(path, "w") as f:
+        for line in lines:
+            f.write(re.sub(regex, f"gtk-application-prefer-dark-theme = {b}", line))
+    subprocess.run("(pgrep 1password && killall 1password) || true", shell=True, check=True)
+
+
 def apply_neovim():
     subprocess.run("(pgrep nvim && killall -USR1 nvim) || true", shell=True, check=True)
 
 
 def apply_tmux():
-    subprocess.run(["tmux", "source-file", os.path.expanduser("~/.config/tmux/tmux.conf")], check=True)
+    subprocess.run(
+        ["tmux", "source-file", os.path.expanduser("~/.config/tmux/tmux.conf")],
+        check=True,
+    )
 
 
 def apply_qutebrowser():
-    subprocess.run("(pgrep -f qutebrowser && qutebrowser :restart) || true", shell=True, check=True)
+    subprocess.run(
+        "(pgrep -f qutebrowser && qutebrowser :restart) || true", shell=True, check=True
+    )
 
 
 def main():
@@ -60,25 +80,27 @@ def main():
     with open(alacritty_yaml) as f:
         y = yaml.load(f.read(), Loader=yaml.Loader)
 
-    themes = set(y["schemes"].keys())
-    p = subprocess.run(
-        ["rofi", "-dmenu", "-i", "-hide-scrollbar", "-lines", str(len(themes)), "-p", "Theme"],
-        capture_output=True,
-        check=True,
-        input="\n".join(themes),
-        text=True,
-    )
-    theme = p.stdout.strip()
-    assert theme in themes
+    with open(alacritty_yaml) as f:
+        lines = f.readlines()
 
-    colors = y["schemes"][theme]
+    regex = re.compile(r"^colors: \*(.*)$")
+    for line in lines:
+        if m := regex.search(line):
+            current_theme = m.group(1)
+            break
+
+    themes = set(y["schemes"].keys())
+    new_theme = (themes - set((current_theme,))).pop()
+
+    colors = y["schemes"][new_theme]
 
     apply_polybar(colors)
-    apply_alacritty(theme)
-    apply_rofi(theme)
-    # apply_neovim()
+    apply_alacritty(new_theme)
+    apply_rofi(new_theme)
+    apply_gtk(new_theme)
+    apply_neovim()
     apply_tmux()
-    # apply_qutebrowser()
+    apply_qutebrowser()
 
 
 if __name__ == "__main__":
