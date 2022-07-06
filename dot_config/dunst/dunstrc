@@ -291,13 +291,17 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#a89984"
-    foreground = "#ebdbb2"
+    background = "#282828"  # color dark
+    foreground = "#ebdbb2"  # color dark
+    # background = "#fbf1c7"  # color light
+    # foreground = "#3c3836"  # color light
     timeout = 3
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#ebdbb2"
+    background = "#282828"  # color dark
+    foreground = "#ebdbb2"  # color dark
+    # background = "#fbf1c7"  # color light
+    # foreground = "#3c3836"  # color light
     timeout = 8
 
 [urgency_critical]

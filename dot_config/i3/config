@@ -41,15 +41,13 @@ exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-set $red       #cc241d
-set $orange    #d65d0e
-set $blue      #458588
-set $bckgd     #282828
-set $bckgd_alt #3c3836
-set $white     #ebdbb2
+set_from_resource $orange    orange         #000000
+set_from_resource $bckgd     background     #000000
+set_from_resource $bckgd_alt background-alt #000000
+set_from_resource $text      foreground     #000000
 
 # class                 border     backgr     text      indicator child_border
-client.focused          $bckgd_alt $bckgd_alt $white    $blue     $white
-client.focused_inactive $bckgd     $bckgd     $white    $blue     $white
-client.unfocused        $bckgd     $bckgd     $white    $blue     $bckgd
-client.urgent           $red       $red       $white    $red      $red
+client.focused          $bckgd_alt $bckgd_alt $text     $orange   $text
+client.focused_inactive $bckgd     $bckgd     $text     $orange   $text
+client.unfocused        $bckgd     $bckgd     $text     $orange   $bckgd
+client.urgent           $orange    $orange    $text     $orange   $orange

@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import re
 import subprocess
 
@@ -20,7 +21,10 @@ def apply_polybar(colors):
 
     with open(os.path.expanduser("~/.config/polybar/colors"), "w") as f:
         f.write(polybar_colors)
-    subprocess.run([os.path.expanduser("~/.config/polybar/launch.sh")])
+
+    # The bars are launched using `--reload` which auto-reloads them when the config
+    # changes, so touching the config to "change" it
+    Path("~/.config/polybar/config").expanduser().touch()
 
 
 def apply_alacritty(theme):
@@ -31,6 +35,30 @@ def apply_alacritty(theme):
     with open(path, "w") as f:
         for line in lines:
             f.write(re.sub(regex, f"colors: *{theme}", line))
+
+
+def apply_dunst(theme):
+    if theme.split("-")[-1] == "dark":
+        new_theme = "dark"
+        old_theme = "light"
+    else:
+        new_theme = "light"
+        old_theme = "dark"
+
+    path = os.path.expanduser("~/.config/dunst/dunstrc")
+    with open(path) as f:
+        lines = f.readlines()
+    to_comment = re.compile(fr"^([ ]*)(.*  # color {old_theme})$")
+    to_uncomment = re.compile(fr"^([ ]*)# (.*  # color {new_theme})$")
+    with open(path, "w") as f:
+        for line in lines:
+            if to_comment.match(line):
+                f.write(to_comment.sub(fr"\1# \2", line))
+            elif to_uncomment.match(line):
+                f.write(to_uncomment.sub(fr"\1\2", line))
+            else:
+                f.write(line)
+    subprocess.run("(pgrep dunst && killall dunst) || true", shell=True, check=True)
 
 
 def apply_rofi(theme):
@@ -56,6 +84,16 @@ def apply_gtk(theme):
         for line in lines:
             f.write(re.sub(regex, f"gtk-application-prefer-dark-theme = {b}", line))
     subprocess.run("(pgrep 1password && killall 1password) || true", shell=True, check=True)
+
+
+def apply_i3(theme):
+    theme = theme.split("-")[-1]  # "dark" or "light"
+    resources_path = os.path.expanduser(f"~/.config/colorschemes/Xresources-{theme}")
+    symlink_path = os.path.expanduser("~/.Xresources")
+    if os.path.exists(symlink_path):
+        os.unlink(symlink_path)
+    os.symlink(resources_path, symlink_path)
+    subprocess.run("xrdb ~/.Xresources && i3-msg reload", shell=True, check=True)
 
 
 def apply_neovim():
@@ -96,6 +134,8 @@ def main():
 
     apply_polybar(colors)
     apply_alacritty(new_theme)
+    apply_i3(new_theme)
+    apply_dunst(new_theme)
     apply_rofi(new_theme)
     apply_gtk(new_theme)
     apply_neovim()
