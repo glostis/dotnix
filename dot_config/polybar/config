@@ -16,9 +16,6 @@
 ;
 ;==========================================================
 
-[colors]
-include-file = /home/glostis/.config/polybar/colors
-
 [bar/base]
 monitor = ${env:MONITOR:}
 override-redirect = true
@@ -27,8 +24,8 @@ height = 27
 fixed-center = true
 radius-bottom = 6
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${xrdb:background:#000000}
+foreground = ${xrdb:foreground:#000000}
 
 line-size = 3
 
@@ -107,8 +104,8 @@ layout-icon-0 = us;
 layout-icon-1 = fr;ﳆ
 
 label-indicator-padding = 2
-label-indicator-foreground = ${colors.background}
-label-indicator-background = ${colors.yellow}
+label-indicator-foreground = ${xrdb:background:#000000}
+label-indicator-background = ${xrdb:orange:#000000}
 
 [module/weather]
 type = custom/script
@@ -144,13 +141,13 @@ pin-workspaces = true
 
 # When in i3 custom mode
 label-mode-padding = 1
-label-mode-foreground = ${colors.background}
-label-mode-background = ${colors.yellow}
+label-mode-foreground = ${xrdb:background:#000000}
+label-mode-background = ${xrdb:orange:#000000}
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.yellow}
+label-focused-background = ${xrdb:background-alt:#000000}
+label-focused-underline= ${xrdb:orange:#000000}
 label-focused-padding = 1
 
 fuzzy-match = true
@@ -175,7 +172,7 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = ${self.label-focused}
-label-urgent-background = ${colors.red}
+label-urgent-background = ${xrdb:orange:#000000}
 label-urgent-padding = ${self.label-focused-padding}
 
 
@@ -263,7 +260,7 @@ ramp-capacity-6 = 
 ramp-capacity-7 = 
 ramp-capacity-8 = 
 ramp-capacity-9 = 
-ramp-capacity-foreground = ${colors.foreground}
+ramp-capacity-foreground = ${xrdb:foreground:#000000}
 
 [settings]
 screenchange-reload = true

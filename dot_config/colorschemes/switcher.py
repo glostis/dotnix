@@ -6,27 +6,6 @@ import subprocess
 import yaml
 
 
-def apply_polybar(colors):
-    polybar_colors = f"""
-    background = #{colors['primary']['background'].lstrip('#')}
-    background-alt = #{colors['primary']['background-alt'].lstrip('#')}
-    foreground = {colors['primary']['foreground']}
-    red = {colors['normal']['red']}
-    green = {colors['normal']['green']}
-    yellow = {colors['normal']['yellow']}
-    blue = {colors['normal']['blue']}
-    magenta = {colors['normal']['magenta']}
-    cyan = {colors['normal']['cyan']}
-    """
-
-    with open(os.path.expanduser("~/.config/polybar/colors"), "w") as f:
-        f.write(polybar_colors)
-
-    # The bars are launched using `--reload` which auto-reloads them when the config
-    # changes, so touching the config to "change" it
-    Path("~/.config/polybar/config").expanduser().touch()
-
-
 def apply_alacritty(theme):
     path = os.path.expanduser("~/.config/alacritty/alacritty.yml")
     with open(path) as f:
@@ -86,14 +65,21 @@ def apply_gtk(theme):
     subprocess.run("(pgrep 1password && killall 1password) || true", shell=True, check=True)
 
 
-def apply_i3(theme):
+def apply_i3_polybar(theme):
+    # Update the symlink to ~/.Xresources
     theme = theme.split("-")[-1]  # "dark" or "light"
     resources_path = os.path.expanduser(f"~/.config/colorschemes/Xresources-{theme}")
     symlink_path = os.path.expanduser("~/.Xresources")
     if os.path.exists(symlink_path):
         os.unlink(symlink_path)
     os.symlink(resources_path, symlink_path)
+
+    # Relaunch xrdb and i3
     subprocess.run("xrdb ~/.Xresources && i3-msg reload", shell=True, check=True)
+
+    # The polybar bars are launched using `--reload` which auto-reloads them when the
+    # config changes, so touching the config to "change" it
+    Path("~/.config/polybar/config").expanduser().touch()
 
 
 def apply_neovim():
@@ -132,9 +118,8 @@ def main():
 
     colors = y["schemes"][new_theme]
 
-    apply_polybar(colors)
     apply_alacritty(new_theme)
-    apply_i3(new_theme)
+    apply_i3_polybar(new_theme)
     apply_dunst(new_theme)
     apply_rofi(new_theme)
     apply_gtk(new_theme)
