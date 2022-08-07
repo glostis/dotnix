@@ -29,3 +29,10 @@ pactree -r package_name
 ```
 
 Use `paccache` (from package `pacman-contrib`) to remove the old cached versions of packages. Warning: this only concerns the `pacman` cache, not the `yay` cache for packages installed from the AUR.
+
+Sometimes, when running a `pacman` udpate after not doing so for a long while, you might get errors regarding invalid PGP key signatures or something like that.
+This can generally be solved by following [the advice on the Arch wiki](https://wiki.archlinux.org/title/Pacman/Package_signing#Upgrade_system_regularly), and/or by running:
+```
+sudo pacman-key --refresh-keys
+```
+and then running the `pacman` update.
