@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+theme_variant=$(cat ~/.config/alacritty/alacritty.yml | grep '^colors:' | cut -d- -f2)
+
+GTK_THEME="Adwaita:${theme_variant}" firefox -P $1

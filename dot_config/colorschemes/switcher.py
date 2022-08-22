@@ -125,7 +125,7 @@ def main():
     apply_gtk(new_theme)
     apply_neovim()
     apply_tmux()
-    apply_qutebrowser()
+    # apply_qutebrowser()
 
 
 if __name__ == "__main__":

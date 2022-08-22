@@ -9,79 +9,82 @@ CMD=(
     ## System
     base
     efibootmgr
-    intel-ucode              # Stuff for Intel CPUs
-    zram-generator           # Type of swap
+    intel-ucode                     # Stuff for Intel CPUs
+    zram-generator                  # Type of swap
     linux
     linux-firmware
-    base-devel               # (group)
-    xorg                     # (group)
-    xclip                    # clipboard
-    xdotool                  # xorg
-    xorg-xinit               # graphics
-    openssh                  # ssh
+    base-devel                      # (group)
+    xorg                            # (group)
+    xclip                           # clipboard
+    xdotool                         # xorg
+    xorg-xinit                      # graphics
+    openssh                         # ssh
 
     ## Programs
-    alacritty                # Terminal
-    google-chrome            # Browser (aur)
-    qutebrowser              # Browser
-    virtualbox               # VM
-    arandr                   # GUI to xrandr, to configure monitors
-    vlc                      # Video viewer
-    redshift                 # Turns screen to red to avoid blue light
-    libreoffice-fresh        # Bureautique
-    bitwarden                # Password manager GUI
-    gthumb                   # Quick photo editing
-    gimp                     # Not-so-quick photo editing
-    mupdf                    # pdf viewer
-    spotify                  # Music streaming (aur)
-    rhythmbox                # Local music player
-    qmk                      # Programmable keyboard configuration
+    alacritty                       # Terminal
+    firefox                         # Browser
+    firefox-tridactyl               # Keyboard-driven Firefox addon
+    firefox-tridactyl-native-bin    # Tridactyl native client (aur)
+    google-chrome                   # Browser (aur)
+    qutebrowser                     # Browser
+    virtualbox                      # VM
+    arandr                          # GUI to xrandr, to configure monitors
+    vlc                             # Video viewer
+    redshift                        # Turns screen to red to avoid blue light
+    libreoffice-fresh               # Bureautique
+    bitwarden                       # Password manager GUI
+    gthumb                          # Quick photo editing
+    gimp                            # Not-so-quick photo editing
+    mupdf                           # pdf viewer
+    spotify                         # Music streaming (aur)
+    rhythmbox                       # Local music player
+    qmk                             # Programmable keyboard configuration
 
     ## Terminal programs
-    bat                      # Fancy `cat`
-    diff-so-fancy            # Fancy `diff`
-    docker                   # Containers
-    docker-compose           # Containers
-    man-db                   # man
-    man-pages                # man
-    mlocate                  # `locate` command
-    ncdu                     # Curses disk usage explorer
-    git                      # Version control
-    git-lfs                  # Git Large File Storage
-    chezmoi                  # Dotfiles manager
-    expac                    # pacman database extraction utility
-    pacman-contrib           # pacman scripts such as paccache, pacdiff
-    pacutils                 # pacman utils
-    reflector                # Sort pacman mirrors
-    feh                      # Background image setter
-    fzf                      # Fuzzy finder
-    htop                     # System resources monitoring
-    imagemagick              # Image manipulation commands
-    jq                       # JSON parser
-    neofetch                 # System information
-    neovim                   # Editor
-    ranger                   # File browser
-    tmux                     # Terminal multiplexer
-    tree                     # Recursive directory listing
-    zip                      # Archiving
-    unzip                    # Unarchiving
-    zsh                      # Shell
-    antibody-bin             # zsh plugin manager (aur)
-    wget                     # File download
-    ripgrep                  # Fast recursive grep
-    maim                     # Screenshot
-    rofi-screenshot-git      # Take screencaptures (.mp4 or .gif) (aur)
-    pyenv                    # Python manager
-    pyenv-virtualenv         # pyenv virtualenv plugin (aur)
-    yay-bin                  # AUR helper (aur)
-    fixjson                  # JSON formatter (aur)
-    ctags                    # ctags
-    bc                       # Command-line calculations
-    w3m                      # Text-based web browser
-    python-pip               # Just pip.
-    python-pipx              # Install executables in python venvs from PyPI
-    parallel                 # Runs commands in parallel
-    usbutils                 # Provides `lsusb` to show connected USB devices
+    bat                             # Fancy `cat`
+    diff-so-fancy                   # Fancy `diff`
+    docker                          # Containers
+    docker-compose                  # Containers
+    man-db                          # man
+    man-pages                       # man
+    mlocate                         # `locate` command
+    ncdu                            # Curses disk usage explorer
+    git                             # Version control
+    git-lfs                         # Git Large File Storage
+    chezmoi                         # Dotfiles manager
+    expac                           # pacman database extraction utility
+    pacman-contrib                  # pacman scripts such as paccache, pacdiff
+    pacutils                        # pacman utils
+    reflector                       # Sort pacman mirrors
+    feh                             # Background image setter
+    fzf                             # Fuzzy finder
+    htop                            # System resources monitoring
+    imagemagick                     # Image manipulation commands
+    jq                              # JSON parser
+    neofetch                        # System information
+    neovim                          # Editor
+    ranger                          # File browser
+    tmux                            # Terminal multiplexer
+    tree                            # Recursive directory listing
+    zip                             # Archiving
+    unzip                           # Unarchiving
+    zsh                             # Shell
+    antibody-bin                    # zsh plugin manager (aur)
+    wget                            # File download
+    ripgrep                         # Fast recursive grep
+    maim                            # Screenshot
+    rofi-screenshot-git             # Take screencaptures (.mp4 or .gif) (aur)
+    pyenv                           # Python manager
+    pyenv-virtualenv                # pyenv virtualenv plugin (aur)
+    yay-bin                         # AUR helper (aur)
+    fixjson                         # JSON formatter (aur)
+    ctags                           # ctags
+    bc                              # Command-line calculations
+    w3m                             # Text-based web browser
+    python-pip                      # Just pip.
+    python-pipx                     # Install executables in python venvs from PyPI
+    parallel                        # Runs commands in parallel
+    usbutils                        # Provides `lsusb` to show connected USB devices
 
 
     ## Hardware
@@ -102,26 +105,26 @@ CMD=(
     bluez-utils
 
     ## Window manager
-    i3-gaps                  # WM
-    dunst                    # Notifications dameon
+    i3-gaps                         # WM
+    dunst                           # Notifications dameon
     lightdm
-    lightdm-gtk-greeter      # "Greeter" (login manager)
-    xinit-xsession           # Enables the use of ~/.xinitrc as a session in greeter (aur)
-    i3lock                   # Desktop locker
-    corrupter-bin            # Script that "corrupts" an image for i3lock bg (aur)
-    i3-battery-popup-git     # Send notification when battery is low (aur)
-    autorandr                # Multi-monitor
-    picom-git                # Compositor (aur)
-    rofi                     # Launcher
-    unclutter                # Remove mouse cursor when idle
-    xidlehook                # Trigger action after some time idle (aur)
-    polybar                  # Status bar (aur)
-    xplugd-git               # Execute action on device plug/unplug (aur)
-    rofi-bluetooth-git       # Rofi front-end to bluetoothctl (aur)
-    networkmanager-dmenu-git # Rofi front-end to networkmanager (aur)
-    uswsusp-git              # Easier hibernation (suspend to disk) (aur)
-    sxhkd                    # Simple X hotkey daemon
-    sxhkhm-git               # Simple X hotkey daemon helper menu (rofi) (aur)
+    lightdm-gtk-greeter             # "Greeter" (login manager)
+    xinit-xsession                  # Enables the use of ~/.xinitrc as a session in greeter (aur)
+    i3lock                          # Desktop locker
+    corrupter-bin                   # Script that "corrupts" an image for i3lock bg (aur)
+    i3-battery-popup-git            # Send notification when battery is low (aur)
+    autorandr                       # Multi-monitor
+    picom-git                       # Compositor (aur)
+    rofi                            # Launcher
+    unclutter                       # Remove mouse cursor when idle
+    xidlehook                       # Trigger action after some time idle (aur)
+    polybar                         # Status bar
+    xplugd-git                      # Execute action on device plug/unplug (aur)
+    rofi-bluetooth-git              # Rofi front-end to bluetoothctl (aur)
+    networkmanager-dmenu-git        # Rofi front-end to networkmanager (aur)
+    uswsusp-git                     # Easier hibernation (suspend to disk) (aur)
+    sxhkd                           # Simple X hotkey daemon
+    sxhkhm-git                      # Simple X hotkey daemon helper menu (rofi) (aur)
 
     # Fonts
     gnu-free-fonts
@@ -135,31 +138,31 @@ CMD=(
     ttf-roboto
     ttf-ubuntu-font-family
     terminus-font
-    nerd-fonts-meslo         # (aur)
+    nerd-fonts-meslo                # (aur)
 
     {{- if eq .chezmoi.hostname "fr-glostis-xps" }}
 
     ## Machine specific
-    aws-cli                  # Command-line interaction with AWS services
-    gnome-keyring            # Required to play nice with 1password
-    seahorse                 # UI to gnome-keyring
-    networkmanager-openvpn   # networkmanager extension for OpenVPN
-    qgis                     # GIS Software
-    1password                # Password manager (aur)
-    libldap24                # Required for 1password or something else?? (aur)
-    google-earth-pro         # GIS Software (aur)
-    esa-snap-bin             # ESA Sentinel processing toolbox (aur)
-    slack-desktop            # Messaging (aur)
-    vpv                      # Image time-series viewer (aur)
-    zedfree                  # Encrypted file containers (aur)
-    wine                     # Adobe reader
-    wine-gecko               # Adobe reader
-    wine-mono                # Adobe reader
-    winetricks               # Adobe reader
-    adobe-reader-11          # Adobe reader (aur)
-    wireguard-tools          # VPN
-    systemd-resolvconf       # VPN dependency
-    libxcrypt-compat         # Work antivirus dependency
+    aws-cli                         # Command-line interaction with AWS services
+    gnome-keyring                   # Required to play nice with 1password
+    seahorse                        # UI to gnome-keyring
+    networkmanager-openvpn          # networkmanager extension for OpenVPN
+    qgis                            # GIS Software
+    1password                       # Password manager (aur)
+    libldap24                       # Required for 1password or something else?? (aur)
+    google-earth-pro                # GIS Software (aur)
+    esa-snap-bin                    # ESA Sentinel processing toolbox (aur)
+    slack-desktop                   # Messaging (aur)
+    vpv                             # Image time-series viewer (aur)
+    zedfree                         # Encrypted file containers (aur)
+    wine                            # Adobe reader
+    wine-gecko                      # Adobe reader
+    wine-mono                       # Adobe reader
+    winetricks                      # Adobe reader
+    adobe-reader-11                 # Adobe reader (aur)
+    wireguard-tools                 # VPN
+    systemd-resolvconf              # VPN dependency
+    libxcrypt-compat                # Work antivirus dependency
     {{- end }}
 )
 
@@ -168,10 +171,10 @@ CMD=(
 CMD=(
   # The following packages are installed as optional dependencies of other packages
   yay -S --asdeps --needed
-    pdfjs                    # dep of qutebrowser
-    python-pynvim            # dep of neovim
-    libdvdcss                # dep of vlc to read DVDs
-    libdvdnav                # dep of vlc to read DVDs
+    pdfjs                           # dep of qutebrowser
+    python-pynvim                   # dep of neovim
+    libdvdcss                       # dep of vlc to read DVDs
+    libdvdnav                       # dep of vlc to read DVDs
 )
 
 "${CMD[@]}"

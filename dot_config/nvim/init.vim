@@ -140,6 +140,9 @@ Plug 'baskerville/vim-sxhkdrc'
 " kmonad config file syntax highlighting
 Plug 'kmonad/kmonad-vim'
 
+" tridactyl config file syntax highlighting
+Plug 'tridactyl/vim-tridactyl'
+
 call plug#end()
 " ==============================================================================
 

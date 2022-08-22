@@ -1,0 +1,46 @@
+" Binds
+
+sanitise tridactyllocal tridactylsync
+
+bind <C-p> pin
+" Do not close pinned tabs
+set tabclosepinned false
+
+bind J tabnext
+bind K tabprev
+
+unbind <C-f>
+unbind <C-e>
+unbind <F1>
+
+" Comment toggler for Reddit, Hacker News and Lobste.rs
+bind ,c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
+" Git{Hub,Lab} git clone via SSH yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+
+set newtab about:blank
+
+" Only hint search results on Google and DDG
+bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
+bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
+bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate; tabdetach
+
+" Sane hinting mode
+set hintfiltermode vimperator-reflow
+set hintnames numeric
+
+set searchengine duckduckgo
+
+bind / fillcmdline find
+bind n findnext 1
+bind N findnext -1
+" Add `nohlsearch` to the default behavior of <Escape>
+bind <Escape> composite mode normal ; hidecmdline ; nohlsearch
+
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
