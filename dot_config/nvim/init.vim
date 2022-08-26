@@ -143,6 +143,9 @@ Plug 'kmonad/kmonad-vim'
 " tridactyl config file syntax highlighting
 Plug 'tridactyl/vim-tridactyl'
 
+" Embed a neovim GUI in Firefox/Chrome text areas
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 call plug#end()
 " ==============================================================================
 
@@ -452,5 +455,32 @@ map <Leader>j :%!python -m json.tool<CR>
 set ignorecase
 set smartcase
 set noshowmode
+
+" ==============================================================================
+
+
+" ============================== Firenvim stuff ================================
+" In Github text areas, the keyboard shortcut to launch Firenvim (Control-E) is already
+" taken, so I enable Firenvim by default on this domain
+let g:firenvim_config = {
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'firenvim',
+            \ 'takeover': 'never',
+        \ },
+        \ '.*github\.com.*': {
+            \ 'takeover': 'always',
+        \ },
+    \ }
+\ }
+
+if exists('g:started_by_firenvim')
+  set laststatus=0 nonumber norelativenumber noruler noshowcmd
+  let g:loaded_airline = 1
+  set guifont=Meslo_LGM_Nerd_Font_Mono:h11
+endif
 
 " ==============================================================================

@@ -1,0 +1,68 @@
+/* Turn Tridactyl's mode indicator (the small box at the bottom left that indicates the current mode) */
+/* into a colored triangle. */
+/* Taken from https://github.com/tridactyl/tridactyl/issues/1511#issuecomment-903207669 */
+
+.TridactylStatusIndicator {
+    /* NOTE: we can't change the size of the border directly in container tabs
+     * because the span for the status indicator sets "style = ... !important".
+     *
+     * HACK: we effectively set the border using size and scale together
+     **/
+    --mode-indicator-size: 20pt;
+    --mode-indicator-scale: 4.0;
+    --mode-indicator-width: var(--mode-indicator-size);
+    --mode-indicator-height: calc(var(--mode-indicator-size) / 2);
+    --mode-indicator-offset: calc(var(--mode-indicator-width) / 2), calc(var(--mode-indicator-height)/  2);
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    right: 0 !important;
+    bottom: 0 !important;
+    position: fixed !important;
+    width: var(--mode-indicator-width) !important;
+    height: var(--mode-indicator-height)  !important;
+    transform: translate(var(--mode-indicator-offset)) rotate(-45deg) scale(var(--mode-indicator-scale)) !important;
+
+    opacity: 1 !important;
+    font-size: 0pt !important;
+    color: rgba(0, 0, 0, 0.0) !important;
+    background: rgba(0, 0, 0, 0.0) !important;
+
+}
+
+/* when mouse is hovering over status indicator */
+.TridactylStatusIndicator.TridactylInvisible {
+    opacity: 0.0 !important;
+    background: rgba(0, 0, 0, 0.0) !important;
+}
+
+/* normal mode */
+.TridactylStatusIndicator.TridactylModenormal {
+    background: rgba(0, 0, 0, 0.0) !important;
+}
+
+/* ignore mode */
+.TridactylStatusIndicator.TridactylModeignore {
+    background: red !important;
+}
+
+/* visual mode */
+.TridactylStatusIndicator.TridactylModevisual {
+    background: orange !important;
+}
+
+/* input mode */
+.TridactylStatusIndicator.TridactylModeinput {
+    background: pink !important;
+}
+
+/* insert mode */
+.TridactylStatusIndicator.TridactylModeinsert {
+    background: purple !important;
+}
+
+/* hint mode */
+.TridactylStatusIndicator.TridactylModehint {
+    background: yellow !important;
+}
