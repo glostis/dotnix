@@ -12,6 +12,10 @@ super + {Left,Down,Up,Right}
 super + alt + {h,j,k,l}
     i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 5 px or 5 ppt
 
+# emoji picker
+super + shift + j
+    rofimoji
+
 # i3 move workspace to other output/screen/monitor
 super + x
     i3-msg -q move workspace to output next
@@ -110,3 +114,7 @@ super + shift + s
 
 super + s
     i3-msg -q split toggle
+
+# greenclip (clipboard manager)
+super + g
+    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
