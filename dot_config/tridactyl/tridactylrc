@@ -81,6 +81,15 @@ set hintnames numeric
 
 set searchengine duckduckgo
 
+" Make sure that the "Tridactyl escape hatch" (<C-,>) doesn't
+" close Tree Style Tab's sidebar
+" https://github.com/tridactyl/tridactyl/issues/2775
+set escapehatchsidebarhack false
+
+" Open new Tree Style Tab "tab group"
+" Taken from https://github.com/piroor/treestyletab/issues/770
+bind ,g fillcmdline_notrail tabopen about:treestyletab-group?title=
+
 bind / fillcmdline find
 bind n findnext 1
 bind N findnext -1
