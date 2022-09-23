@@ -21,11 +21,11 @@ smart_borders on
 
 # Workspaces:
 # 1: qutebrowser, 2: terminal1, 3: terminal2, 4: qgis,
-# 5: unassigned, 6: unassigned, 7: chrome, 8: music, 9: slack
+# 5: unassigned, 6: visio, 7: chrome, 8: music, 9: slack
 
 # Assign windows to specific workspaces
 assign [class="qutebrowser"] 1
-assign [class="Google-chrome"] 7
+assign [class="Google-chrome"] 1
 for_window [class="Spotify"] move to workspace 8
 assign [class="Slack"] 9
 assign [class="QGIS3"] 4

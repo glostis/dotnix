@@ -49,10 +49,6 @@ super + q
 super + space
     alacritty -e tmux new-session -A -s session
 
-# rofi i3 windows
-super + w
-    rofi -show window -show-icons
-
 # rofi launcher
 super + d
     rofi -modi drun -show drun -show-icons
