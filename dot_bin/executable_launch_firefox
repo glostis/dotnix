@@ -6,4 +6,4 @@ theme_variant=$(cat ~/.config/alacritty/alacritty.yml | grep '^colors:' | cut -d
 # cf https://github.com/piroor/treestyletab/blob/34f353c5eca4906b378f00b2951bd21e09ef0037/README.md#appearance
 # MOZ_USE_XINPUT2 is used to enable pixel-perfect trackpad scrolling
 # cf https://wiki.archlinux.org/title/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
-GTK_THEME="Adwaita:${theme_variant}" MOZ_USE_XINPUT2=1 firefox -P $1
+GTK_THEME="Adwaita:${theme_variant}" MOZ_USE_XINPUT2=1 firefox
