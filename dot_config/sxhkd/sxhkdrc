@@ -53,9 +53,9 @@ super + space
 super + d
     rofi -modi drun -show drun -show-icons
 
-# Launch {qutebrowser,Firefox,Google Chrome,QGIS,Slack,Bitwarden,1password}
-super + o ; {q,f,c,g,s,b,p}
-    {qutebrowser,launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
+# Launch {Firefox,Google Chrome,QGIS,Slack,Bitwarden,1password}
+super + o ; {f,c,g,s,b,p}
+    {launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
 
 # Screenshot
 super + y

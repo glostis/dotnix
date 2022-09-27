@@ -26,7 +26,6 @@ CMD=(
     firefox-tridactyl               # Keyboard-driven Firefox addon
     firefox-tridactyl-native-bin    # Tridactyl native client (aur)
     google-chrome                   # Browser (aur)
-    qutebrowser                     # Browser
     virtualbox                      # VM
     arandr                          # GUI to xrandr, to configure monitors
     vlc                             # Video viewer
@@ -145,12 +144,12 @@ CMD=(
     {{- if eq .chezmoi.hostname "fr-glostis-xps" }}
 
     ## Machine specific
-    aws-cli                         # Command-line interaction with AWS services
+    aws-cli-v2-bin                  # Command-line interaction with AWS services (aur)
     gnome-keyring                   # Required to play nice with 1password
     seahorse                        # UI to gnome-keyring
-    networkmanager-openvpn          # networkmanager extension for OpenVPN
-    qgis                            # GIS Software
     1password                       # Password manager (aur)
+    qgis                            # GIS Software
+    endpoint-verification-chrome    # Google Chrome plugin (aur)
     libldap24                       # Required for 1password or something else?? (aur)
     google-earth-pro                # GIS Software (aur)
     esa-snap-bin                    # ESA Sentinel processing toolbox (aur)
@@ -162,6 +161,7 @@ CMD=(
     wine-mono                       # Adobe reader
     winetricks                      # Adobe reader
     adobe-reader-11                 # Adobe reader (aur)
+    networkmanager-openvpn          # networkmanager extension for OpenVPN
     wireguard-tools                 # VPN
     systemd-resolvconf              # VPN dependency
     libxcrypt-compat                # Work antivirus dependency
@@ -174,7 +174,6 @@ CMD=(
 CMD=(
   # The following packages are installed as optional dependencies of other packages
   yay -S --asdeps --needed
-    pdfjs                           # dep of qutebrowser
     python-pynvim                   # dep of neovim
     libdvdcss                       # dep of vlc to read DVDs
     libdvdnav                       # dep of vlc to read DVDs
