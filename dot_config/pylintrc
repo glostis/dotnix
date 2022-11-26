@@ -10,7 +10,8 @@ disable=import-error,
         empty-docstring,
         missing-docstring,
         redundant-keyword-arg,
-        unbalanced-tuple-unpacking
+        unbalanced-tuple-unpacking,
+	    unspecified-encoding
 
 [BASIC]
 

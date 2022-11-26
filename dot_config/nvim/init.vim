@@ -29,6 +29,9 @@ Plug 'airblade/vim-gitgutter'
 " :Gdiff, :Gblame, etc.
 Plug 'tpope/vim-fugitive'
 
+" <leader>gh to open current line in Github
+Plug 'ruanyl/vim-gh-line'
+
 " ---------------------------------- Python ------------------------------------
 " Sort python imports
 Plug 'stsewd/isort.nvim'

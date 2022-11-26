@@ -57,6 +57,10 @@ super + d
 super + o ; {f,c,g,s,b,p}
     {launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
 
+# 1password quick access
+super + p
+    1password --quick-access
+
 # Screenshot
 super + y
     screenshot
