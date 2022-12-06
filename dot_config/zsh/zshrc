@@ -9,6 +9,7 @@ HISTFILE=~/.cache/zsh/history
 mkdir -p $(dirname $HISTFILE)
 HISTSIZE=100000
 SAVEHIST=100000
+# Use emacs-mode bindings
 bindkey -e
 
 setopt autocd       # Automatically cd into typed directory.
@@ -38,6 +39,9 @@ else
     echo "Bundling zsh plugins..."
     antibody bundle < $HOME/.config/zsh/plugins.txt > $HOME/.zsh_plugins.sh
 fi
+
+# Run compinit again since some plugins might define custom completions
+compinit
 
 # This shows a squiggly character in green if the previous return code
 # was zero (success) or in red if the previous return code was non-zero (failure)

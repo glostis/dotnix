@@ -27,8 +27,12 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"             up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}"           down-line-or-beginning-search
+# Control-left/right = move cursor word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+# Control-backspace = delete word
+# From https://stackoverflow.com/a/21252464/9977650
+bindkey '^H' backward-kill-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
