@@ -20,7 +20,7 @@ gaps inner 10
 gaps top 27
 
 # Only show a border when more than one window is visible
-smart_borders on
+# smart_borders on
 
 # Workspaces:
 # 1: browser, 2: terminal1, 3: terminal2, 4: qgis,
@@ -49,7 +49,7 @@ set_from_resource $bckgd_alt background-alt #000000
 set_from_resource $text      foreground     #000000
 
 # class                 border     backgr     text      indicator child_border
-client.focused          $bckgd_alt $bckgd_alt $text     $orange   $text
-client.focused_inactive $bckgd     $bckgd     $text     $orange   $text
+client.focused          $border    $bckgd_alt $text     $orange   $border
+client.focused_inactive $bckgd     $bckgd     $text     $orange   $bckgd
 client.unfocused        $bckgd     $bckgd     $text     $orange   $bckgd
 client.urgent           $orange    $orange    $text     $orange   $orange
