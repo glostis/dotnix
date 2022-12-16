@@ -10,7 +10,7 @@ super + {Left,Down,Up,Right}
 
 # i3 resize
 super + alt + {h,j,k,l}
-    i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 5 px or 5 ppt
+    i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 10 px
 
 # emoji picker
 super + shift + j
