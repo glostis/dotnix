@@ -1,0 +1,55 @@
+(defcfg
+    input (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+    output (uinput-sink "My kmonad output")
+    fallthrough true
+    allow-cmd true
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]
+  caps a    s    d    f    g    h    j    k    l    ;    '    \    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt prnt rctl
+)
+
+;; (deflayer empty
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _              _              _    _    _
+;; )
+
+(defalias
+    navigation (layer-toggle navigation)
+    nav (tap-next esc @navigation)
+    qwe (tap-macro (cmd-button "polybar-msg action kmonad send") (layer-switch qwerty))
+    nal (tap-macro (cmd-button "polybar-msg action kmonad send '  '") (layer-switch navigationlock))
+    sal (around lsft lalt)
+    sct (around lsft lctl)
+)
+
+(deflayer qwerty
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]
+  @nav a    s    d    f    g    h    j    k    l    ;    '    \    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt prnt rctl
+)
+
+(deflayer navigation
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
+  _    _    _    lalt lctl _    left down up   rght bspc @nal _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+(deflayer navigationlock
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
+  @qwe _    _    lalt lctl _    left down up   rght bspc _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
