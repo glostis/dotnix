@@ -51,8 +51,11 @@ toolbox[inFullscreen=true] { display: none; }
 #tracking-protection-icon-box,
 #save-to-pocket-button,
 #stop-reload-button,
-#back-button,
-#forward-button,
+/* I've had to comment the removal of the back/fwd buttons */
+/* because a recent update of Firefox also hides the plugin icons */
+/* when I try to hide these buttons... */
+/* #back-button, */
+/* #forward-button, */
 #star-button-box,
 toolbarspring {
   visibility: collapse !important;
