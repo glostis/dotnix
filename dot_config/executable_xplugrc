@@ -13,11 +13,11 @@ if [ "$1" = "keyboard" ]; then
     # For some reason, I can't manage to get xplugrc to source my zsh PATH, which includes ~/.bin...
     case "$3,$4" in
         "connected","Kinesis Advantage2"*)
-            layout="kinesis"
+            kb_type="kinesis"
             ;;
         "disconnected",*)
-            layout="normal"
+            kb_type="normal"
             ;;
     esac
-    ${HOME}/.bin/custom_keyboard_layout ${layout}
+    ${HOME}/.bin/custom_keyboard_layout us ${kb_type}
 fi
