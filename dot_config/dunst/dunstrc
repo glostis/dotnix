@@ -380,4 +380,9 @@
     timeout = 1
     new_icon = "/usr/share/icons/Adwaita/32x32/legacy/multimedia-volume-control.png"
 
+[launchapp]
+    appname = "launchapp"
+    history_ignore = yes
+    timeout = 1
+
 # vim: ft=cfg

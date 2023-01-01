@@ -79,7 +79,7 @@ def apply_i3_polybar(theme):
 
     # The polybar bars are launched using `--reload` which auto-reloads them when the
     # config changes, so touching the config to "change" it
-    Path("~/.config/polybar/config").expanduser().touch()
+    Path("~/.config/polybar/config.ini").expanduser().touch()
 
 
 def apply_neovim():
