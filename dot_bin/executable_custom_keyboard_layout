@@ -11,14 +11,28 @@
 # Note: according to http://who-t.blogspot.com/2020/02/user-specific-xkb-configuration-part-1.html,
 # this process could be made easier by libxkbcommon, but it is used by Wayland, not X...
 
-if [ -f $HOME/.config/xkb/symbols/glostis ]; then
-    symbols_options="+glostis(french_accents)"
-    if [ "$1" = "kinesis" ]; then
+kb_layout=$1
+kb_type=$2
+
+if [ "$kb_layout" = "us" ]; then
+    symbols_options="+glostis(hacks)"
+    if [ "$kb_type" = "kinesis" ]; then
         symbols_options="${symbols_options}+glostis(kinesis)"
     fi
-    setxkbmap -layout 'us(altgr-intl),fr' -option 'caps:swapescape' -print | \
+    # -option compose:ralt is needed to play nice with kmonad
+    setxkbmap -layout 'us(altgr-intl),fr' -print | \
     sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
     xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/map $DISPLAY
+
+    pgrep kmonad || kmonad ${HOME}/.config/kmonad/config.kbd &
+
+elif [ "$kb_layout" = "fr" ]; then
+    setxkbmap -layout 'fr'
+
+    killall kmonad
+else
+    echo Keyboard layout ${kb_layout} not known
+    exit 2
 fi
 
 xset r rate 230 50

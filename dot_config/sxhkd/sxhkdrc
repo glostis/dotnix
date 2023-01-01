@@ -55,7 +55,7 @@ super + d
 
 # Launch {Firefox,Google Chrome,QGIS,Slack,Bitwarden,1password}
 super + o ; {f,c,g,s,b,p}
-    {launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
+    launch_application {launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
 
 # 1password quick access
 super + p

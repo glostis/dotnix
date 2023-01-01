@@ -9,7 +9,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]
   caps a    s    d    f    g    h    j    k    l    ;    '    \    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet lalt           spc            ralt prnt rctl
 )
 
@@ -17,24 +17,30 @@
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-;;   _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
 ;;   _    _    _              _              _    _    _
 ;; )
 
 (defalias
-    navigation (layer-toggle navigation)
-    nav (tap-next esc @navigation)
-    qwe (tap-macro (cmd-button "polybar-msg action kmonad send") (layer-switch qwerty))
+    sym (layer-toggle symbols)
+    nav (tap-hold-next-release 200 esc (layer-toggle navigation))
+    qwe (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch qwerty))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send '  '") (layer-switch navigationlock))
+    lsh (tap-hold-next-release 200 (around-next @sym) lsft)
+    rsh (tap-hold-next-release 200 (around-next @sym) rsft)
     sal (around lsft lalt)
     sct (around lsft lctl)
+    cz  (around lctl z)
+    cx  (around lctl x)
+    cc  (around lctl c)
+    cv  (around lctl v)
 )
 
 (deflayer qwerty
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]
   @nav a    s    d    f    g    h    j    k    l    ;    '    \    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @lsh 102d z    x    c    v    b    n    m    ,    .    /    @rsh
   lctl lmet lalt           spc            ralt prnt rctl
 )
 
@@ -42,7 +48,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
   _    _    _    lalt lctl _    left down up   rght bspc @nal _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
   _    _    _              _              _    _    _
 )
 
@@ -50,6 +56,14 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
   @qwe _    _    lalt lctl _    left down up   rght bspc _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+(deflayer symbols
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    !    @    #    $    %    ^    &    *    -    \_   _    _
+  _    \(   [    {    <    _    _    >    }    ]    \)   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _              _              _    _    _
 )

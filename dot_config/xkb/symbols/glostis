@@ -1,24 +1,10 @@
 // vim: ft=c
 
 // This custom symbols file is used to override some
-// keymaps from the us(altgr-intl) layout in order to
-// be more convenient to use to type accentuated French.
+// keymaps from the us(altgr-intl) layout
 //
 // It adds the following mappings:
 // altgr + key -> letter
-// w -> è
-// r -> ê
-// t -> t
-// (I override the mapping of letter t as the default
-// US-altgr-intl layout assigns it a weird þ, Þ,
-// and I often type words like "côté" where it
-// creates mistakes)
-// u -> ù
-// i -> î
-// o -> ô
-// a -> à
-// s -> â
-// c -> ç
 // ; -> : and ; -> : (because : is used more often)
 //
 // The current key -> symbols table in use can be seen by inspecting the
@@ -28,30 +14,42 @@
 // glostis symbols file is applied.
 
 partial alphanumeric_keys
-xkb_symbols "french_accents" {
+xkb_symbols "hacks" {
+    key <AD01> {
+        symbols[Group1]= [ q, Q, agrave, Agrave ]
+    };
     key <AD02> {
         symbols[Group1]= [ w, W, egrave, Egrave ]
     };
+    key <AD03> {
+        symbols[Group1]= [ e, E, idiaeresis, Idiaeresis ]
+    };
     key <AD04> {
-        symbols[Group1]= [ r, R, ecircumflex, Ecircumflex ]
+        symbols[Group1]= [ r, R, oe, OE ]
     };
     key <AD05> {
-        symbols[Group1]= [ t, T, t, T ]
-    };
-    key <AD07> {
-        symbols[Group1]= [ u, U, ugrave, Ugrave ]
-    };
-    key <AD08> {
-        symbols[Group1]= [ i, I, icircumflex, Icircumflex ]
-    };
-    key <AD09> {
-        symbols[Group1]= [ o, O, ocircumflex, Ocircumflex ]
+        symbols[Group1]= [ t, T, ugrave, Ugrave ]
     };
     key <AC01> {
-        symbols[Group1]= [ a, A, agrave, Agrave ]
+        symbols[Group1]= [ a, A, acircumflex, Acircumflex ]
     };
     key <AC02> {
-        symbols[Group1]= [ s, S, acircumflex, Acircumflex ]
+        symbols[Group1]= [ s, S, ecircumflex, Ecircumflex ]
+    };
+    key <AC03> {
+        symbols[Group1]= [ d, D, icircumflex, Icircumflex ]
+    };
+    key <AC04> {
+        symbols[Group1]= [ f, F, ocircumflex, Ocircumflex ]
+    };
+    key <AC05> {
+        symbols[Group1]= [ g, G, ucircumflex, Ucircumflex ]
+    };
+    key <AB01> {
+        symbols[Group1]= [ z, Z, ediaeresis, Ediaeresis ]
+    };
+    key <AB02> {
+        symbols[Group1]= [ x, X, eacute, Eacute ]
     };
     key <AB03> {
         symbols[Group1]= [ c, C, ccedilla, Ccedilla ]
