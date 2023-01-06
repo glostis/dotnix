@@ -44,6 +44,7 @@ exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 set_from_resource $orange    orange         #000000
+set_from_resource $border    border         #000000
 set_from_resource $bckgd     background     #000000
 set_from_resource $bckgd_alt background-alt #000000
 set_from_resource $text      foreground     #000000
