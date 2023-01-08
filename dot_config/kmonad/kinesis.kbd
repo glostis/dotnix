@@ -1,0 +1,47 @@
+(defcfg
+    input (device-file "/dev/input/by-id/usb-Kinesis_Advantage2_Keyboard_314159265359-if01-event-kbd")
+    output (uinput-sink "Kinesis kmonad")
+    fallthrough true
+    allow-cmd true
+)
+
+(defsrc
+  =    1    2    3    4    5    6    7    8    9    0    -
+  tab  q    w    e    r    t    y    u    i    o    p    \
+  caps a    s    d    f    g    h    j    k    l    ;    '
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+       grv  102d                               [    ]
+                 spc  del            ret  bspc
+)
+
+;; (deflayer empty
+  ;; _    _    _    _    _    _    _    _    _    _    _    _
+  ;; _    _    _    _    _    _    _    _    _    _    _    _
+  ;; _    _    _    _    _    _    _    _    _    _    _    _
+  ;; _    _    _    _    _    _    _    _    _    _    _    _
+  ;;      _    _                                  _    _
+  ;;                _    _              _    _
+;; )
+
+(defalias
+    sym (layer-toggle symbols)
+    lsh (tap-hold-next 200 (around-next @sym) lsft)
+)
+
+(deflayer qwerty
+  =    1    2    3    4    5    6    7    8    9    0    -
+  tab  q    w    e    r    t    y    u    i    o    p    \
+  esc  a    s    d    f    g    h    j    k    l    ;    '
+  del  z    x    c    v    b    n    m    ,    .    /    del
+       grv  102d                               [    ]
+                 spc  @lsh           ret  bspc
+)
+
+(deflayer symbols
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    !    @    #    $    %    ^    &    *    -    \_   _
+  _    \(   [    {    <    _    _    >    }    ]    \)   _
+  _    _    _    _    _    _    _    _    _    _    _    _
+       _    _                                  _    _
+                 _    _              _    _
+)

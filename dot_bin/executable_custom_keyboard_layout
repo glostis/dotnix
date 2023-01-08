@@ -18,22 +18,19 @@ echo ${kb_layout} ${kb_type}
 if [ "$kb_layout" = "us" ]; then
     symbols_options="+glostis(hacks)"
     if [ "$kb_type" = "kinesis" ]; then
-        symbols_options="${symbols_options}+glostis(kinesis)"
-        setxkbmap -layout 'us(altgr-intl),fr' -option 'caps:swapescape' -print | \
-        sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
-        xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/map $DISPLAY
-    else
-        setxkbmap -layout 'us(altgr-intl),fr' -print | \
-        sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
-        xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/map $DISPLAY
-
-        pgrep kmonad || kmonad ${HOME}/.config/kmonad/config.kbd &
+        pgrep -af 'kmonad*.kinesis' || kmonad ${HOME}/.config/kmonad/kinesis.kbd &
     fi
+    pgrep -af 'kmonad.*laptop' || kmonad ${HOME}/.config/kmonad/laptop.kbd &
+
+    setxkbmap -layout 'us(altgr-intl),fr' -print | \
+    sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
+    xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/map $DISPLAY
 
 elif [ "$kb_layout" = "fr" ]; then
     setxkbmap -layout 'fr'
 
     killall kmonad
+
 else
     echo Keyboard layout ${kb_layout} not known
     exit 2

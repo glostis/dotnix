@@ -9,14 +9,15 @@
 #          |    |       `---- connected or disconnected
 #          |     `----------- HDMI3, LVDS1, VGA1, etc.
 #           `---------------- keyboard, pointer, display
+
+# FYI: xplugd sees Bluetooth headsets as keyboards...
+# So when a Bluetooth headset is {,dis}connected, it triggers
+# an xplug event with device=keyboard
 if [ "$1" = "keyboard" ]; then
     # For some reason, I can't manage to get xplugrc to source my zsh PATH, which includes ~/.bin...
     case "$3,$4" in
         "connected","Kinesis Advantage2"*)
             kb_type="kinesis"
-            ;;
-        "disconnected",*)
-            kb_type="normal"
             ;;
     esac
     ${HOME}/.bin/custom_keyboard_layout us ${kb_type}
