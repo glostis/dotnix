@@ -16,6 +16,10 @@ super + alt + {h,j,k,l}
 super + shift + j
     rofimoji
 
+# Paste markdown link
+super + shift + l
+    paste_markdown_link
+
 # i3 move workspace to other output/screen/monitor
 super + x
     i3-msg -q move workspace to output next && i3-msg -q focus output next

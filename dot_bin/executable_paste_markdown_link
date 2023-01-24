@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# This scripts takes a URL from the clipboard,
+# types "[]($the_url)" (Markdown link syntax)
+# using `xdotool` and then emits Left keypresses
+# to put the cursor back between the "[]"
+
+url="$(xclip -o -selection clipboard)"
+
+# The =~ operator matches a regex
+if [[ ${url} =~ ^https?:// ]]; then
+    sleep 0.1
+
+    xdotool type --clearmodifiers "[](${url})"
+
+    url_length=$(echo ${#url})
+    shift_length=$((url_length+3))
+    for ((i=1;i<=shift_length;i++)); do
+        xdotool key --clearmodifiers Left
+    done
+
+    # Due to bug: https://github.com/jordansissel/xdotool/issues/43
+    xdotool keyup Super_L Super_R Shift_L Shift_R
+else
+    dunstify "Clipboard content not a URL"
+fi
