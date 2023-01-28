@@ -143,12 +143,6 @@ Plug 'baskerville/vim-sxhkdrc'
 " kmonad config file syntax highlighting
 Plug 'kmonad/kmonad-vim'
 
-" tridactyl config file syntax highlighting
-Plug 'tridactyl/vim-tridactyl'
-
-" Embed a neovim GUI in Firefox/Chrome text areas
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
 call plug#end()
 " ==============================================================================
 
@@ -158,12 +152,6 @@ if vim_plug_just_installed
 endif
 
 " ================================= Mappings ===================================
-" Map ; to : to avoid pressing shift to enter command mode
-" http://vim.wikia.com/wiki/Map_semicolon_to_colon
-map ; :
-" Keep functionality of native ; by using ;;
-noremap ;; ;
-
 let mapleader=","
 
 " Close the current buffer and move to the previous one
@@ -180,12 +168,8 @@ nnoremap Q @@
 nnoremap Y y$
 
 " copy/pasting sanity
-noremap <leader>y "+y
-noremap <leader>yy "+yy
-noremap <leader>Y "+Y
-
-" preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  +<CR>:set nopaste<CR>
+" Make all yank/paste operations in vim use the */+ system clipboard
+set clipboard+=unnamedplus
 
 " Type double escape to remove search highlighting until next search
 nnoremap <silent> <esc><esc> :noh<return>
