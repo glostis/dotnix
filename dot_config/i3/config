@@ -14,10 +14,9 @@ font pango:MesloLGM Nerd Font Mono 11
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
-default_floating_border none
 
-gaps inner 10
-gaps top 27
+gaps inner 5
+gaps top 25
 
 # Only show a border when more than one window is visible
 # smart_borders on
@@ -31,13 +30,8 @@ assign [class="Google-chrome"] 1
 for_window [class="Spotify"] move to workspace 8
 assign [class="Slack"] 9
 assign [class="QGIS3"] 4
-for_window [class="QGIS3"] border pixel 2
 
 for_window [class="vpv"] floating enable
-# for_window [class="vpv"] fullscreen enable
-for_window [instance="dropdown_*"] floating enable
-for_window [instance="dropdown_*"] sticky enable
-for_window [instance="dropdown_*"] border pixel 0
 
 exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/Wallpapers/*
 
@@ -53,4 +47,4 @@ set_from_resource $text      foreground     #000000
 client.focused          $border    $bckgd_alt $text     $orange   $border
 client.focused_inactive $bckgd     $bckgd     $text     $orange   $bckgd
 client.unfocused        $bckgd     $bckgd     $text     $orange   $bckgd
-client.urgent           $orange    $orange    $text     $orange   $orange
+client.urgent           $border    $orange    $text     $orange   $border
