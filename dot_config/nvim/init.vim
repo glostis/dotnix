@@ -169,7 +169,14 @@ nnoremap Y y$
 
 " copy/pasting sanity
 " Make all yank/paste operations in vim use the */+ system clipboard
-set clipboard+=unnamedplus
+noremap <leader>y "+y
+noremap <leader>yy "+yy
+noremap <leader>Y "+Y
+
+" preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  +<CR>:set nopaste<CR>
+
+" set clipboard+=unnamed
 
 " Type double escape to remove search highlighting until next search
 nnoremap <silent> <esc><esc> :noh<return>

@@ -28,6 +28,10 @@ super + x
 super + {_,shift +} f
     i3-msg -q {fullscreen,floating} toggle
 
+# i3 toggle focus between tiling and floating containers (grave = `)
+super + grave
+    i3-msg -q focus mode_toggle
+
 # i3 {focus,move container to} workspace
 super + {_,shift +} {1-9}
     i3-msg -q {workspace,move container to workspace} {1-9}
@@ -59,7 +63,11 @@ super + d
 
 # Launch {Firefox,Google Chrome,QGIS,Slack,Bitwarden,1password}
 super + o ; {f,c,g,s,b,p}
-    launch_application {launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
+    launch_application {launch_firefox,google-chrome-stable,qgis,slack,bitwarden-desktop,1password,}
+
+# Launch Google Drive
+super + o ; d
+    /opt/google/chrome/google-chrome --profile-directory=Default --app-id=aghbiahbpaijignceidepookljebhfak
 
 # 1password quick access
 super + p
