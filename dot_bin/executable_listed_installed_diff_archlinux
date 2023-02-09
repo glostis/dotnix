@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # vim: ft=sh
 
-install_pack=$(which install_archlinux)
+install_pack=$(which install_archlinux install_archlinux_work 2> /dev/null)
 
 ###
 # Find native explicitly installed packages that are not listed in $install_pack
@@ -12,7 +12,7 @@ pacman -Qneq | sort > /tmp/all.txt
 
 # All explicitly installed native packages that were in fact installed as part of a group
 rm -f /tmp/group.tmp
-groups=$(cat $install_pack | grep '(group)$' | awk '{print $1}')
+groups=$(cat $install_pack | grep '(group)$' | awk '{print $1}' | sort -u)
 for group in $groups; do
 	pacman -Qgq $group >> /tmp/group.tmp
 done
@@ -22,7 +22,7 @@ cat /tmp/group.tmp | sort > /tmp/group.txt
 comm -23 /tmp/all.txt /tmp/group.txt > /tmp/ind.txt
 
 # Individually installed native packages listed in $install_pack
-cat $install_pack | grep '^    [a-zA-Z][^ ]' | grep -v '(aur)$' | grep -v '(group)$' | grep -v ' dep of ' | awk '{print $1}' | sort > /tmp/ind_listed.txt
+cat $install_pack | grep '^    [a-zA-Z][^ ]' | grep -v '(aur)$' | grep -v '(group)$' | grep -v ' dep of ' | awk '{print $1}' | sort -u > /tmp/ind_listed.txt
 
 echo "Native packages:"
 echo "The following packages are installed but not listed in $install_pack:"
@@ -44,7 +44,7 @@ rm /tmp/all.txt /tmp/group.txt /tmp/group.tmp /tmp/ind{,_listed}.txt
 pacman -Qmeq | sort > /tmp/all.txt
 
 # Installed external packages listed in $install_pack
-cat $install_pack | grep '(aur)$' | awk '{print $1}' | sort > /tmp/listed.txt
+cat $install_pack | grep '(aur)$' | awk '{print $1}' | sort -u > /tmp/listed.txt
 
 echo "External packages (AUR):"
 echo "The following packages are installed but not listed in $install_pack:"

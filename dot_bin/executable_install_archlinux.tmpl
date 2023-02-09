@@ -92,6 +92,8 @@ CMD=(
     android-file-transfer           # Required to connect to Android phones through USB
     android-udev                    # Dependency of android-file-transfer
     python-pyaml                    # Dependency of my custom colorswitcher python script
+    devour                          # Open a new program by hiding the current window (aur)
+    gpsbabel                        # GPS file format swiss-knife
 
 
     ## Hardware
@@ -147,34 +149,6 @@ CMD=(
     ttf-ubuntu-font-family
     terminus-font
     ttf-meslo-nerd
-
-    {{- if eq .chezmoi.hostname "fr-glostis-xps" }}
-
-    ## Machine specific
-    aws-cli-v2-bin                  # Command-line interaction with AWS services (aur)
-    gnome-keyring                   # Required to play nice with 1password
-    seahorse                        # UI to gnome-keyring
-    1password                       # Password manager (aur)
-    qgis                            # GIS Software
-    endpoint-verification-chrome    # Google Chrome plugin (aur)
-    libldap24                       # Required for 1password or something else?? (aur)
-    google-earth-pro                # GIS Software (aur)
-    esa-snap-bin                    # ESA Sentinel processing toolbox (aur)
-    slack-desktop                   # Messaging (aur)
-    vpv                             # Image time-series viewer (aur)
-    zedfree                         # Encrypted file containers (aur)
-    docker-buildx                   # Containers
-    wine                            # Adobe reader
-    wine-gecko                      # Adobe reader
-    wine-mono                       # Adobe reader
-    winetricks                      # Adobe reader
-    adobe-reader-11                 # Adobe reader (aur)
-    networkmanager-openvpn          # networkmanager extension for OpenVPN
-    wireguard-tools                 # VPN
-    systemd-resolvconf              # VPN dependency
-    libxcrypt-compat                # Work antivirus dependency
-    zoom                            # Visio (aur)
-    {{- end }}
 )
 
 "${CMD[@]}"
