@@ -9,7 +9,7 @@ isavailable() {
 isavailable nm-applet && nm-applet &
 
 # Compositor
-isavailable picom && picom --experimental-backends -b
+isavailable picom && picom -b
 
 # This hides the mouse after 5 seconds of idleness
 isavailable unclutter && unclutter -b

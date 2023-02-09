@@ -45,7 +45,7 @@ set_from_resource $bckgd_alt background-alt #000000
 set_from_resource $text      foreground     #000000
 
 # class                 border     backgr     text      indicator child_border
-client.focused          $border    $bckgd_alt $text     $orange   $border
-client.focused_inactive $bckgd     $bckgd     $text     $orange   $bckgd
-client.unfocused        $bckgd     $bckgd     $text     $orange   $bckgd
-client.urgent           $border    $orange    $text     $orange   $border
+client.focused          $border    $bckgd_alt $text     $border   $border
+client.focused_inactive $bckgd     $bckgd     $text     $bckgd    $bckgd
+client.unfocused        $bckgd     $bckgd     $text     $bckgd    $bckgd
+client.urgent           $orange    $orange    $text     $orange   $orange
