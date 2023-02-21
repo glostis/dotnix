@@ -13,5 +13,5 @@ ec2() {
 }
 
 s3url() {
-    echo $1 | sed -E 's@https://s3\.console\.aws\.amazon\.com/s3/buckets/(.*)\?.*prefix=([^&]*).*@s3://\1/\2@'
+    echo $1 | sed -E 's@https://s3\.console\.aws\.amazon\.com/s3/(buckets|object)/(.*)\?.*prefix=([^&]*).*@s3://\2/\3@'
 }
