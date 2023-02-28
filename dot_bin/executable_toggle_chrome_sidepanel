@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+sleep 0.1
+
+# Taken from https://superuser.com/a/1769037/1732981
+xdotool key --clearmodifiers F10
+xdotool key --clearmodifiers Left
+xdotool key --clearmodifiers Left
+xdotool key --clearmodifiers space
+
+# Due to bug: https://github.com/jordansissel/xdotool/issues/43
+xdotool keyup Super_L Super_R Alt_L Alt_R

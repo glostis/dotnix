@@ -106,6 +106,12 @@ schemes:
 
 colors: *gruvbox-dark
 
+# Startup directory
+#
+# Directory the shell is started in. If this is unset, or `None`, the working
+# directory of the parent process will be used.
+working_directory: /home/glostis/
+
 mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true

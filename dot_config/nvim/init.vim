@@ -81,7 +81,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " ------------------------------------ UI --------------------------------------
-Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
 
 " Airline
@@ -152,7 +151,7 @@ if vim_plug_just_installed
 endif
 
 " ================================= Mappings ===================================
-let mapleader=","
+let mapleader=" "
 
 " Close the current buffer and move to the previous one
 noremap <leader>x :Bdelete<CR>
@@ -195,7 +194,10 @@ let g:context_filetype#same_filetypes._ = '_'
 
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)
-set wildmode=list:longest
+" See :h wildmode for this obscure option :)
+set wildmode=longest:full,full
+
+set wildignorecase
 
 let g:deoplete#sources#jedi#show_docstring = 1
 
@@ -386,6 +388,7 @@ autocmd FileType json setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType lua setlocal tabstop=2 shiftwidth=2 expandtab
 
 autocmd BufRead,BufNewFile *.geojson setfiletype json
 autocmd BufRead,BufNewFile *.vrt setfiletype xml
@@ -406,8 +409,8 @@ endfunction
 
 " Better color display, somehow?
 if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 

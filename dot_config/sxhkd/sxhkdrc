@@ -20,6 +20,10 @@ super + shift + j
 super + shift + l
     paste_markdown_link
 
+# Toggle Google Chrome side panel
+super + alt + s
+    toggle_chrome_sidepanel
+
 # i3 move workspace to other output/screen/monitor
 super + x
     i3-msg -q move workspace to output next && i3-msg -q focus output next
