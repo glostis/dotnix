@@ -1,0 +1,7 @@
+# See https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+# Never include the contents of a .git/ directory
+--glob=!.git/
+
+# Always include dotfiles
+--hidden

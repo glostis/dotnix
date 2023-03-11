@@ -30,6 +30,10 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 zmodload zsh/complist
+
+# Sometimes there's some completion functions in there
+fpath+="$HOME/.zfunc"
+
 compinit
 _comp_options+=(globdots)  # Include hidden files.
 
@@ -81,6 +85,8 @@ PROMPT='$(pyenv_venv)$(return_code) %B%F{blue}%c%f%b $(git_super_status)'
 [ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
 
 source ${ZDOTDIR}/zbindings
 source ${ZDOTDIR}/zalias

@@ -1,3 +1,5 @@
+# vim: ft=sxhkdrc
+
 # i3wm stuff
 
 # i3 focus windows
@@ -9,8 +11,8 @@ super + {Left,Down,Up,Right}
     i3-msg -q move {left,down,up,right}
 
 # i3 resize
-super + alt + {h,j,k,l}
-    i3-msg -q resize {shrink,grow,shrink,grow} {width,height,width,height} 10 px
+super + alt + {h,l}
+    i3-msg -q resize {shrink,grow} width 10 px
 
 # emoji picker
 super + shift + j

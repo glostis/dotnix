@@ -7,3 +7,5 @@ valiev/almostontop
 
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
+
+reegnz/jq-zsh-plugin

@@ -7,6 +7,9 @@ alias open="xdg-open"
 alias copy="xclip -selection c"
 alias ls="ls --color=auto"
 alias l="ls -lah"
+alias rm="echo Don\'t use rm, use trash-put instead. Or use \\rm if you really want to.; false"
+alias tp="trash-put"
+alias tl="trash-list"
 alias ranger="TERM=screen-256color ranger"
 ec2() {
     aws ec2 describe-instances | jq -r '{attributes:[ .Reservations[].Instances[] | { name: (try (.Tags[] | select (.Key as $key | "Name" | IN($key)).Value) // "undefined"), type: .InstanceType, status: .State.Name, ip: .PrivateIpAddress, id: .InstanceId } ]} |.attributes|=sort_by(.name)|.attributes | (.[0]|keys_unsorted|(.,map(length*"-"))),.[]|map(.)|@tsv' | column -ts $'\t'
