@@ -348,7 +348,17 @@ local function open_nvim_tree(data)
 end
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
-require("telescope").setup({})
+local actions = require("telescope.actions")
+require("telescope").setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = "close",
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      },
+    },
+  },
+})
 
 -- Enable telescope fzf native, if installed
 require("telescope").load_extension("fzf")
