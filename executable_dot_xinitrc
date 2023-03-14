@@ -30,8 +30,8 @@ isavailable sxhkd && sxhkd &
 isavailable greenclip && greenclip daemon &
 
 # Removes blue light from screen depending on sun elevation
-# Hack taken from https://wiki.archlinux.org/title/Redshift#Automatic_location_based_on_GPS to bypass the whole geoclue2 service headache
-isavailable redshift-gtk && redshift-gtk -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq '.location.lat, .location.lng' | tr '\n' ':' | sed 's/:$//') &
+# Hard-coded to Paris location to avoid having to call an external service
+isavailable redshift-gtk && redshift-gtk -l 2.3:4.85 &
 
 # Automatically lock and suspend computer after X minutes of idleness
 if [ -f $HOME/.bin/idlehook ]; then
