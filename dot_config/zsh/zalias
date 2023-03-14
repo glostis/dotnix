@@ -1,6 +1,17 @@
 # vim: filetype=zsh
 
-alias v="$EDITOR"
+v() {
+    if [ -z "$PYENV_VIRTUAL_ENV" ]; then
+        $EDITOR $@
+    else
+        # The python LSPs such as `pyright` do not automatically use
+        # the auto-activated pyenv virtualenv.
+        # Setting PYENV_VERSION explicitly makes sure they do.
+        # See https://github.com/microsoft/pyright/discussions/4420 for more info on pyright vs pyenv
+        # See ~/.config/zsh/zshrc file for more information on the PYENV_* env vars
+        PYENV_VERSION="$(echo $PYENV_VIRTUAL_ENV | rev | cut -d/ -f1 | rev)" $EDITOR $@
+    fi
+}
 alias x="exit"
 alias py="ipython"
 alias open="xdg-open"

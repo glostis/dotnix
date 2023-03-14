@@ -94,4 +94,12 @@ source ${ZDOTDIR}/zfunctions
 
 eval "$(pyenv init -)"
 
+# Auto-activates a virtualenv when in a directory
+# which contains a .python-version file with the
+# name of a pyenv virtualenv
+#
+# Warning: this only sets the PYENV_VIRTUAL_ENV env var,
+# not the PYENV_VERSION one
+eval "$(pyenv virtualenv-init -)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
