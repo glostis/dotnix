@@ -47,6 +47,10 @@ fi
 # Run compinit again since some plugins might define custom completions
 compinit
 
+# When set to 1, `z` will print the matched directory before navigating to it.
+export _ZO_ECHO=1
+eval "$(zoxide init zsh)"
+
 # This shows a squiggly character in green if the previous return code
 # was zero (success) or in red if the previous return code was non-zero (failure)
 function return_code() {

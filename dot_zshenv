@@ -6,10 +6,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 typeset -U PATH path  # Remove duplicates from PATH
-path=("$HOME/.bin" "$path[@]")  # Custom executables
+path=("$HOME/.bin" "$path[@]")  # My custom executables
 path=("$HOME/.local/bin" "$path[@]")  # pipx executables
 path=("$HOME/.pyenv/bin" "$path[@]")
-path=("$HOME/.config/scripts" "$path[@]")
 export PATH
 
 # Default programs:
@@ -17,11 +16,16 @@ export EDITOR="nvim"
 export TERMINAL="alacritty"
 
 # ~/ Clean-up:
-export XDG_CONFIG_HOME="$HOME/.config"
+# See https://github.com/b3nj5m1n/xdg-ninja for configuration of lots of programs
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export LESSHISTFILE="-"
-export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export XDG_STATE_HOME="$HOME/.state"
+
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
+export DVDCSS_CACHE="$XDG_DATA_HOME"/dvdcss
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
-
+export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export W3M_DIR="$XDG_DATA_HOME"/w3m
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel

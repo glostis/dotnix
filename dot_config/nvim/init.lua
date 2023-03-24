@@ -75,8 +75,9 @@ key_mapper("n", "<leader>t", ":NvimTreeToggle<CR>")
 
 -- Telescope mappings
 key_mapper("n", "<leader>ff", ":Telescope find_files<CR>") -- "find files"
+key_mapper("n", "<leader>fo", ":Telescope oldfiles<CR>") -- "find old"
 key_mapper("n", "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>") -- "search"
-key_mapper("n", "<leader>gg", ":Telescope live_grep<CR>") -- "grep"
+key_mapper("n", "<leader>gg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>") -- "grep"
 key_mapper("n", "<leader>gw", ":Telescope grep_string<CR>") -- "grep word"
 
 -- -------------- Packages/plugins declaration and customization --------------
@@ -155,6 +156,9 @@ require("lazy").setup({
 
   -- Highlight HEX/RGB colors in a buffer
   { "NvChad/nvim-colorizer.lua", opts = {} },
+
+  -- Symbols outline using LSP
+  { "simrat39/symbols-outline.nvim", opts = {} },
 
   -- kmonad config file syntax highlighting
   "kmonad/kmonad-vim",
@@ -242,7 +246,14 @@ require("lazy").setup({
   { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { "nvim-telescope/telescope.nvim", version = "*", dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "nvim-telescope/telescope.nvim",
+    version = "*",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
+    },
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -269,24 +280,32 @@ require("lazy").setup({
   },
 }, {})
 
--- Colorscheme configuration
-vim.cmd([[
-  " Override the IncSearch and Search highlight groups
-  function! s:gruvbox_material_custom() abort
-    let l:palette = gruvbox_material#get_palette('medium', 'original', {})
-    call gruvbox_material#highlight('IncSearch', l:palette.bg0, l:palette.orange)
-    call gruvbox_material#highlight('Search', l:palette.bg0, l:palette.yellow)
-  endfunction
+-- [[ Colorscheme / background configuration ]]
+local setBackground = function()
+  background = "dark"
+  vim.o.background = background
 
-  augroup GruvboxMaterialCustom
-    autocmd!
-    autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
-  augroup END
+  -- Colorscheme configuration
+  vim.cmd([[
+    " Override the IncSearch and Search highlight groups
+    function! s:gruvbox_material_custom() abort
+      let l:palette = gruvbox_material#get_palette('medium', 'original', {})
+      call gruvbox_material#highlight('IncSearch', l:palette.bg0, l:palette.orange)
+      call gruvbox_material#highlight('Search', l:palette.bg0, l:palette.yellow)
+    endfunction
 
-  let g:gruvbox_material_foreground = 'original'
+    augroup GruvboxMaterialCustom
+      autocmd!
+      autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
+    augroup END
 
-  colorscheme gruvbox-material
-]])
+    let g:gruvbox_material_foreground = 'original'
+
+    colorscheme gruvbox-material
+  ]])
+end
+
+setBackground()
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -325,16 +344,13 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   end,
 })
 
--- Open NvimTree at startup on directory or [No Name] buffer
+-- Open NvimTree at startup on directory
 -- Taken from https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup
 local function open_nvim_tree(data)
   -- buffer is a directory
   local directory = vim.fn.isdirectory(data.file) == 1
 
-  -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-
-  if not (directory or no_name) then
+  if not directory then
     return
   end
 
@@ -358,10 +374,23 @@ require("telescope").setup({
       },
     },
   },
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true,
+      mappings = {
+        i = {
+          ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -g'!tests/' " }),
+        },
+      },
+    },
+  },
 })
 
 -- Enable telescope fzf native, if installed
 require("telescope").load_extension("fzf")
+
+-- Enables to add ripgrep options such as `-g` to the "Live Grep" Telescope finder
+require("telescope").load_extension("live_grep_args")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -510,9 +539,10 @@ local on_attach = function(client, bufnr)
   nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+  nmap("<leader>s", ":SymbolsOutline<CR>", "Open symbols outline")
 
   nmap("K", vim.lsp.buf.hover, "Hover documentation")
-  nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
+  -- nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
 
   nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")

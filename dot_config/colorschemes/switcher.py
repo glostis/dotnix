@@ -1,7 +1,7 @@
 import os
-from pathlib import Path
 import re
 import subprocess
+from pathlib import Path
 
 import yaml
 
@@ -27,14 +27,14 @@ def apply_dunst(theme):
     path = os.path.expanduser("~/.config/dunst/dunstrc")
     with open(path) as f:
         lines = f.readlines()
-    to_comment = re.compile(fr"^([ ]*)(.*  # color {old_theme})$")
-    to_uncomment = re.compile(fr"^([ ]*)# (.*  # color {new_theme})$")
+    to_comment = re.compile(rf"^([ ]*)(.*  # color {old_theme})$")
+    to_uncomment = re.compile(rf"^([ ]*)# (.*  # color {new_theme})$")
     with open(path, "w") as f:
         for line in lines:
             if to_comment.match(line):
-                f.write(to_comment.sub(fr"\1# \2", line))
+                f.write(to_comment.sub(rf"\1# \2", line))
             elif to_uncomment.match(line):
-                f.write(to_uncomment.sub(fr"\1\2", line))
+                f.write(to_uncomment.sub(rf"\1\2", line))
             else:
                 f.write(line)
     subprocess.run("(pgrep dunst && killall dunst) || true", shell=True, check=True)
@@ -62,20 +62,17 @@ def apply_gtk(theme):
     with open(path, "w") as f:
         for line in lines:
             f.write(re.sub(regex, f"gtk-application-prefer-dark-theme = {b}", line))
-    subprocess.run("(pgrep 1password && killall 1password) || true", shell=True, check=True)
+    subprocess.run(
+        "(pgrep 1password && killall 1password) || true", shell=True, check=True
+    )
 
 
 def apply_i3_polybar(theme):
-    # Update the symlink to ~/.Xresources
     theme = theme.split("-")[-1]  # "dark" or "light"
     resources_path = os.path.expanduser(f"~/.config/colorschemes/Xresources-{theme}")
-    symlink_path = os.path.expanduser("~/.Xresources")
-    if os.path.exists(symlink_path):
-        os.unlink(symlink_path)
-    os.symlink(resources_path, symlink_path)
 
     # Relaunch xrdb and i3
-    subprocess.run("xrdb ~/.Xresources && i3-msg reload", shell=True, check=True)
+    subprocess.run(f"xrdb {resources_path} && i3-msg reload", shell=True, check=True)
 
     # The polybar bars are launched using `--reload` which auto-reloads them when the
     # config changes, so touching the config to "change" it
