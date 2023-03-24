@@ -68,11 +68,16 @@ def apply_gtk(theme):
 
 
 def apply_i3_polybar(theme):
+    # Update the symlink to ~/.Xresources
     theme = theme.split("-")[-1]  # "dark" or "light"
     resources_path = os.path.expanduser(f"~/.config/colorschemes/Xresources-{theme}")
+    symlink_path = os.path.expanduser("~/.Xresources")
+    if os.path.exists(symlink_path):
+        os.unlink(symlink_path)
+    os.symlink(resources_path, symlink_path)
 
     # Relaunch xrdb and i3
-    subprocess.run(f"xrdb {resources_path} && i3-msg reload", shell=True, check=True)
+    subprocess.run("xrdb ~/.Xresources && i3-msg reload", shell=True, check=True)
 
     # The polybar bars are launched using `--reload` which auto-reloads them when the
     # config changes, so touching the config to "change" it
