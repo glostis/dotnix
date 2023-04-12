@@ -14,6 +14,7 @@ export PATH
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="alacritty"
+export PAGER="less"
 
 # ~/ Clean-up:
 # See https://github.com/b3nj5m1n/xdg-ninja for configuration of lots of programs

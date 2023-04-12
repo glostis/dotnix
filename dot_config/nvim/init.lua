@@ -49,6 +49,17 @@ vim.o.listchars = "tab:▷⋅,trail:⋅,nbsp:⋅"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Override vim-gh-line default keymap
+vim.g.gh_line_map = "<leader>og"
+vim.g.gh_line_blame_map_default = 0
+-- A gh_repo_map_default variable is missing:
+-- https://github.com/ruanyl/vim-gh-line/blob/fbf368bdfad7e5478009a6dc62559e6b2c72d603/plugin/vim-gh-line.vim#L37-L39
+vim.g.gh_repo_map = "_"
+
+-- Remove zoomwintab default keymaps
+vim.g.zoomwintab_remap = 0
+vim.g.zoomwintab_hidetabbar = 0
+
 -- Taken from https://bryankegley.me/posts/nvim-getting-started/
 local key_mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
@@ -56,10 +67,14 @@ end
 
 -- Close the current buffer and move to the previous one
 -- (depends on the moll/vim-bbye plugin)
-key_mapper("", "<leader>x", ":Bdelete<CR>")
+key_mapper("n", "<leader>x", ":Bdelete<CR>")
+
+-- Zoom/unzoom the current window
+key_mapper("n", "<leader>z", ":ZoomWinTabToggle<CR>")
 
 -- Mappings to yank to system clipboard
 key_mapper("n", "<leader>y", '"+y')
+key_mapper("n", "<leader>ya", 'magg"+yG`a') -- "yank all"
 key_mapper("v", "<leader>y", '"+y')
 key_mapper("n", "<leader>Y", '"+Y')
 key_mapper("v", "<leader>Y", '"+Y')
@@ -71,14 +86,15 @@ key_mapper("n", "<leader>P", ":set paste<CR>:put!  +<CR>:set nopaste<CR>")
 -- Toggle and resize ranger and nvim-tree file explorers
 key_mapper("n", "<leader>r", ":RnvimrToggle<CR>")
 key_mapper("t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>")
-key_mapper("n", "<leader>t", ":NvimTreeToggle<CR>")
+key_mapper("n", "<leader>tt", ":NvimTreeToggle<CR>")
 
 -- Telescope mappings
-key_mapper("n", "<leader>ff", ":Telescope find_files<CR>") -- "find files"
-key_mapper("n", "<leader>fo", ":Telescope oldfiles<CR>") -- "find old"
+key_mapper("n", "<leader>e", ":Telescope find_files<CR>") -- "edit"
+key_mapper("n", "<leader>of", ":Telescope oldfiles<CR>") -- "oldfiles"
 key_mapper("n", "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>") -- "search"
-key_mapper("n", "<leader>gg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>") -- "grep"
-key_mapper("n", "<leader>gw", ":Telescope grep_string<CR>") -- "grep word"
+key_mapper("n", "<leader>g", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>") -- "grep"
+key_mapper("n", "<leader>wg", ":Telescope grep_string<CR>") -- "word grep"
+key_mapper("n", "<leader>tr", ":Telescope resume<CR>") -- "word grep"
 
 -- -------------- Packages/plugins declaration and customization --------------
 -- Bootstrap installation of the lazy.nvim package manager
@@ -202,6 +218,9 @@ require("lazy").setup({
       },
     },
   },
+
+  -- zoom/unzoom the current window
+  { "troydm/zoomwintab.vim" },
 
   { -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
@@ -477,7 +496,7 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.ruff,
     null_ls.builtins.formatting.json_tool,
     null_ls.builtins.formatting.stylua,
   },
@@ -509,9 +528,9 @@ vim.keymap.set(
   vim.diagnostic.goto_next,
   { noremap = true, silent = true, desc = "Go to next diagnostic message" }
 )
-vim.keymap.set("n", "<leader>e", function()
+vim.keymap.set("n", "<leader>d", function()
   vim.diagnostic.open_float({ source = true })
-end, { noremap = true, silent = true, desc = "Open floating diagnostic message" })
+end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
 vim.keymap.set(
   "n",
   "<leader>q",
@@ -537,7 +556,7 @@ local on_attach = function(client, bufnr)
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
   nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
   nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-  nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+  -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
   nmap("<leader>s", ":SymbolsOutline<CR>", "Open symbols outline")
 
@@ -568,8 +587,6 @@ require("mason").setup()
 local mason_installer = require("mason-tool-installer")
 mason_installer.setup({
   ensure_installed = {
-    "black",
-    "isort",
     "pyright",
     "ruff-lsp",
     "stylua",
@@ -604,7 +621,7 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     -- ['<C-Space>'] = cmp.mapping.complete {},   -- Don't know what this does
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }), -- `select = true`: Accept currently selected item / `select = false`: Only confirm explicitly selected items
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -623,7 +640,21 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "buffer", keyword_length = 3 },
+    {
+      name = "buffer",
+      keyword_length = 3,
+      option = {
+        -- Complete using all visible buffers, taken from
+        -- https://github.com/hrsh7th/cmp-buffer#visible-buffers
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end,
+      },
+    },
   },
   formatting = {
     format = function(entry, vim_item)
