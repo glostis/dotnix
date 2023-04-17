@@ -1,1 +1,1 @@
-dunstify --appname="launchapp" "Launching $1" && exec "$1"
+dunstify --appname="launchapp" "Launching $@" && exec "$@"

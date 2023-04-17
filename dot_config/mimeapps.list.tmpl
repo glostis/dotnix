@@ -1,17 +1,14 @@
 [Default Applications]
-{{- if eq .chezmoi.hostname "fr-glostis-xps" }}
-text/html=google-chrome.desktop
-x-scheme-handler/http=google-chrome.desktop
-x-scheme-handler/https=google-chrome.desktop
-x-scheme-handler/about=google-chrome.desktop
-x-scheme-handler/unknown=google-chrome.desktop
-{{- else}}
 text/html=firefox.desktop
+{{- if eq .chezmoi.hostname "fr-glostis-xps" }}
+x-scheme-handler/http=custom-open-url.desktop
+x-scheme-handler/https=custom-open-url.desktop
+{{- else}}
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+{{- end}}
 x-scheme-handler/about=firefox.desktop
 x-scheme-handler/unknown=firefox.desktop
-{{- end}}
 application/pdf=mupdf.desktop
 text/plain=nvim.desktop
 text/x-shellscript=nvim.desktop

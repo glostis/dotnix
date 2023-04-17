@@ -26,13 +26,12 @@ gaps top 25
 # 5: unassigned, 6: visio, 7: unassigned, 8: music, 9: slack
 
 # Assign windows to specific workspaces
-assign [class="Google-chrome"] 1
+assign [class="Google-chrome"] 6
 for_window [class="Spotify"] move to workspace 8
 assign [class="Slack"] 9
 assign [class="QGIS3"] 4
 
 for_window [class="vpv"] floating enable
-for_window [class="Google-chrome" window_role="pop-up" title="Google Drive - My Drive - Google Drive"] floating enable
 
 exec_always --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/Wallpapers/*
 

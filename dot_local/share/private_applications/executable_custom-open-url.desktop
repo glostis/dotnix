@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Custom URL handler
+Comment=Open an HTTP/HTTPS URL with a particular browser
+TryExec=custom_open_url
+Exec=custom_open_url %u
+X-MultipleArgs=false
+Type=Application
+Terminal=false
+NoDisplay=true
+MimeType=x-scheme-handler/http;x-scheme-handler/https

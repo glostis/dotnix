@@ -1,10 +1,11 @@
 # Setup
 To setup Firefox:
 
-- Create 1 profile by going to `about:profiles`
+- Create 2 profiles by going to `about:profiles`
     - One named `perso` linked to my personal Firefox account, in the folder `~/.mozilla/firefox/profile-perso/`
+    - One named `work` linked to my work Firefox account, in the folder `~/.mozilla/firefox/profile-work/`
     - Set the preferred one as default profile
-- Log in to the Firefox account and activate sync, which should restore all settings / extensions
+- Log in to the respective Firefox accounts and activate sync, which should restore all settings / extensions
 
 # Customization
 
