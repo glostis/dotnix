@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 DEFAULT_BROWSER = "firefox"
 CUSTOM_BROWSER = "google-chrome-stable"
-CUSTOM_DOMAINS = ["drive.google.com", "docs.google.com"]
+CUSTOM_DOMAINS = ["drive.google.com", "docs.google.com", "forms.gle"]
 
 
 def http_url(url):

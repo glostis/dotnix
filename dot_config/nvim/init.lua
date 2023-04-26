@@ -291,6 +291,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-context",
       "nvim-treesitter/playground",
     },
     config = function()
@@ -319,6 +320,8 @@ local setBackground = function()
     augroup END
 
     let g:gruvbox_material_foreground = 'original'
+
+    set bg=dark
 
     colorscheme gruvbox-material
   ]])

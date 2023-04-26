@@ -48,18 +48,18 @@ toolbox[inFullscreen=true] { display: none; }
  * Hide certain elements of the navbar
  */
 
-#tracking-protection-icon-box,
-#save-to-pocket-button,
-#stop-reload-button,
-/* I've had to comment the removal of the back/fwd buttons */
-/* because a recent update of Firefox also hides the plugin icons */
-/* when I try to hide these buttons... */
-/* #back-button, */
-/* #forward-button, */
-#star-button-box,
-toolbarspring {
-  visibility: collapse !important;
-}
+/* #tracking-protection-icon-box, */
+/* #save-to-pocket-button, */
+/* #stop-reload-button, */
+/* /* I've had to comment the removal of the back/fwd buttons */ */
+/* /* because a recent update of Firefox also hides the plugin icons */ */
+/* /* when I try to hide these buttons... */ */
+/* /* #back-button, */ */
+/* /* #forward-button, */ */
+/* #star-button-box, */
+/* toolbarspring { */
+/*   visibility: collapse !important; */
+/* } */
 
 /*
  * Hide certain elements of the sidebar (for Tree Style Tab)
@@ -94,9 +94,11 @@ statuspanel[type=overLink], statuspanel[inactive][previoustype=overLink]
 
 #statuspanel
 {
+  padding-top: 0 !important;
   top: 0 !important;
-  margin-top: 0 !important;
+  inset-inline: auto !important;
   font-size: 16px !important;
+  bottom: auto !important;
 }
 
 #statuspanel-inner
@@ -109,4 +111,21 @@ statuspanel[type=overLink], statuspanel[inactive][previoustype=overLink]
   padding: 5px !important;
   background-color: black !important;
   color: white !important;
+}
+
+/* Remove some stuff from the "right-click" context menu */
+#context-savepage,
+#context-pocket,
+#context-openlink,
+#context-openlinkprivate,
+#context-openlinkinusercontext-menu,
+#context-savelink,
+#context-savelinktopocket,
+#context-selectall,
+#context-sendpagetodevice,
+#context-sendlinktodevice,
+#context-inspect-a11y,
+#context-printselection
+{
+  display: none !important;
 }
