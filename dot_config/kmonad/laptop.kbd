@@ -24,7 +24,7 @@
 (defalias
     nav (tap-hold-next-release 200 esc (layer-toggle navigation))
     qwe (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch qwerty))
-    nal (tap-macro (cmd-button "polybar-msg action kmonad send '  '") (layer-switch navigationlock))
+    nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
     lsh (tap-hold-next 200 \( lsft)
     rsh (tap-hold-next 200 \) rsft)
     sal (around lsft lalt)

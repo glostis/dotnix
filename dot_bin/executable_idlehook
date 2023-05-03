@@ -11,7 +11,7 @@ xidlehook \
   --not-when-audio \
   `# Notify the user that the computer is about to go to sleep after 10 minutes of idleness` \
   --timer 600 \
-    'dunstify --appname="sleep" --replace="$sleep_notif_id" --urgency=critical "⏾ 鈴" "About to go to sleep in 10 seconds..."' \
+    'dunstify --appname="sleep" --replace="$sleep_notif_id" --urgency=critical "⏾ 󰒲" "About to go to sleep in 10 seconds..."' \
     'dunstify --close="$sleep_notif_id"' \
   `# Lock and turn off screen after 10 more seconds` \
   --timer 10 \
