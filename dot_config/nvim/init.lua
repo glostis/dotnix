@@ -94,7 +94,8 @@ key_mapper("n", "<leader>of", ":Telescope oldfiles<CR>") -- "oldfiles"
 key_mapper("n", "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>") -- "search"
 key_mapper("n", "<leader>g", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>") -- "grep"
 key_mapper("n", "<leader>wg", ":Telescope grep_string<CR>") -- "word grep"
-key_mapper("n", "<leader>tr", ":Telescope resume<CR>") -- "word grep"
+key_mapper("n", "<leader>tr", ":Telescope resume<CR>")
+key_mapper("n", "<leader>tb", ":Telescope buffers<CR>")
 
 -- -------------- Packages/plugins declaration and customization --------------
 -- Bootstrap installation of the lazy.nvim package manager
@@ -322,6 +323,7 @@ local setBackground = function()
     let g:gruvbox_material_foreground = 'original'
 
     set bg=dark
+    " set bg=light
 
     colorscheme gruvbox-material
   ]])

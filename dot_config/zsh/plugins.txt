@@ -9,3 +9,5 @@ zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
 
 reegnz/jq-zsh-plugin
+
+wfxr/forgit

@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode
+set -euo pipefail
+IFS=$'\n\t'
 
 # This script is used to add some custom keymaps on top of the us(altgr-intl)
 # (see ~/.config/xkb/symbols/glostis for the actual keymaps)
@@ -10,6 +14,7 @@
 #
 # Note: according to http://who-t.blogspot.com/2020/02/user-specific-xkb-configuration-part-1.html,
 # this process could be made easier by libxkbcommon, but it is used by Wayland, not X...
+
 
 kb_layout=$1
 kb_type=$2
