@@ -31,7 +31,7 @@ isavailable greenclip && greenclip daemon &
 
 # Removes blue light from screen depending on sun elevation
 # Hard-coded to Paris location to avoid having to call an external service
-isavailable redshift-gtk && redshift-gtk -l 2.3:4.85 &
+isavailable redshift-gtk && redshift-gtk -l 48.5:2.3 &
 
 # Automatically lock and suspend computer after X minutes of idleness
 if [ -f $HOME/.bin/idlehook ]; then
