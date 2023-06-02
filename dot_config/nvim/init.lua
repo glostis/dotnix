@@ -175,7 +175,9 @@ require("lazy").setup({
   { "NvChad/nvim-colorizer.lua", opts = {} },
 
   -- Symbols outline using LSP
-  { "simrat39/symbols-outline.nvim", opts = {} },
+  { "simrat39/symbols-outline.nvim", opts = {
+    autofold_depth = 1,
+  } },
 
   -- kmonad config file syntax highlighting
   "kmonad/kmonad-vim",

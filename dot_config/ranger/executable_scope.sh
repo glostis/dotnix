@@ -343,8 +343,21 @@ handle_fallback() {
     exit 1
 }
 
+# Taken from https://unix.stackexchange.com/a/470017
+drop_bigsize() {
+    # 51200 == 50 MB * 1024
+    # change this number for different sizes
+    if [[ `du "${FILE_PATH}" | cut -f1` -gt 51200 ]]; then
+        echo '----- TOO BIG FILE -----'
+        exit 0
+    fi
+}
+
 
 MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
+
+drop_bigsize
+
 if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
     handle_image "${MIMETYPE}"
 fi

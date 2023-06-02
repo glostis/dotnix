@@ -16,9 +16,8 @@ This repo https://github.com/Timvde/UserChrome-Tweaks contains nice snippets.
  * Taken from https://github.com/jonhoo/configs/blob/master/gui/.mozilla/firefox/chrome/userChrome.css
  */
 
-#browser {
-	-moz-box-ordinal-group: 0 !important;
-}
+#main-window body { flex-direction: column-reverse !important; }
+#navigator-toolbox { flex-direction: column-reverse !important; }
 
 #urlbar {
     top: unset !important;
@@ -44,29 +43,16 @@ This repo https://github.com/Timvde/UserChrome-Tweaks contains nice snippets.
 
 toolbox[inFullscreen=true] { display: none; }
 
-/*
- * Hide certain elements of the navbar
- */
+/* Remove annoying stuff from the search bar */
+.search-one-offs { display: none !important; }
 
-/* #tracking-protection-icon-box, */
-/* #save-to-pocket-button, */
-/* #stop-reload-button, */
-/* /* I've had to comment the removal of the back/fwd buttons */ */
-/* /* because a recent update of Firefox also hides the plugin icons */ */
-/* /* when I try to hide these buttons... */ */
-/* /* #back-button, */ */
-/* /* #forward-button, */ */
-/* #star-button-box, */
-/* toolbarspring { */
-/*   visibility: collapse !important; */
-/* } */
 
 /*
  * Hide certain elements of the sidebar (for Tree Style Tab)
  * and move its header to the bottom
  */
 #sidebar-box {
-  -moz-box-direction: reverse;
+  flex-direction: column-reverse !important;
 }
 
 #sidebar-title,
