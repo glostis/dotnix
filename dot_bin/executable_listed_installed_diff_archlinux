@@ -16,7 +16,15 @@ groups=$(cat $install_pack | grep '(group)$' | awk '{print $1}' | sort -u)
 for group in $groups; do
 	pacman -Qgq $group >> /tmp/group.tmp
 done
-cat /tmp/group.tmp | sort > /tmp/group.txt
+
+# All explicitly installed native packages that were in fact installed as part of a meta-package
+rm -f /tmp/meta.tmp
+metas=$(cat $install_pack | grep '(meta)$' | awk '{print $1}' | sort -u)
+for meta in $metas; do
+	# Taken from https://wiki.archlinux.org/title/Pacman/Tips_and_tricks
+	expac -l '\n' '%E' $meta >> /tmp/meta.tmp
+done
+cat /tmp/group.tmp /tmp/meta.tmp | sort -u > /tmp/group.txt
 
 # Individually installed packages is the difference between the two files
 comm -23 /tmp/all.txt /tmp/group.txt > /tmp/ind.txt

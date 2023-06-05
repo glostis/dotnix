@@ -7,14 +7,13 @@ CMD=(
   yay -S --needed
 
     ## System
-    base
+    base                            # (meta)
     efibootmgr
     intel-ucode                     # Stuff for Intel CPUs
     zram-generator                  # Type of swap
     linux
     linux-firmware
-    base-devel                      # (group)
-    base-devel                      #
+    base-devel                      # (meta)
     xorg                            # (group)
     xclip                           # clipboard
     xdotool                         # xorg
@@ -42,6 +41,8 @@ CMD=(
     josm                            # OpenStreetMap editor
     homebank                        # Personal accounting software
     gparted                         # GUI for partioning disks and writing filesystems
+    postgresql                      # DB
+    postgis                         # Geospatial DB extension
 
     ## Terminal programs
     bat                             # Fancy `cat`
@@ -66,11 +67,10 @@ CMD=(
     jq                              # JSON parser
     neofetch                        # System information
     neovim                          # Editor
-    ranger                          # File browser
+    ranger-git                      # File browser (aur)
     tmux                            # Terminal multiplexer
     tree                            # Recursive directory listing
     zip                             # Archiving
-    gzip                            # Archiving
     unzip                           # Unarchiving
     zsh                             # Shell
     antibody-bin                    # zsh plugin manager (aur)
@@ -83,6 +83,7 @@ CMD=(
     yay-bin                         # AUR helper (aur)
     fixjson                         # JSON formatter (aur)
     ctags                           # ctags
+    entr                            # run arbitrary commands when files change
     bc                              # Command-line calculations
     w3m                             # Text-based web browser
     python-pip                      # Just pip.
@@ -99,11 +100,8 @@ CMD=(
     gpsbabel                        # GPS file format swiss-knife
     csvkit                          # CSV manipulation on the command-line
     pdftk                           # PDF manipulation on the command-line
-    sed                             # Stream editor (regex)
-    sudo                            # Super-user do
     zoxide                          # Super-powered `cd`
     github-cli                      # Does what it says: `gh`
-
 
     ## Hardware
     # Audio

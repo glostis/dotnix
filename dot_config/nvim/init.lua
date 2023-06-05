@@ -359,6 +359,9 @@ vim.filetype.add({
     geojson = "json",
     vrt = "xml",
   },
+  pattern = {
+    [".*%.nomad%.tpl"] = "hcl",
+  },
 })
 
 -- Restore cursor position
