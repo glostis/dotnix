@@ -27,9 +27,15 @@ if [ "$kb_layout" = "us" ]; then
     fi
     pgrep -af 'kmonad.*laptop' || kmonad ${HOME}/.config/kmonad/laptop.kbd &
 
+    echo "Launched kmonad"
+
+    sleep 1
+
     setxkbmap -layout 'us(altgr-intl),fr' -print | \
     sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
     xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/map $DISPLAY
+
+    echo "Launched xkbcomp"
 
 elif [ "$kb_layout" = "fr" ]; then
     setxkbmap -layout 'fr'
@@ -41,4 +47,7 @@ else
     exit 2
 fi
 
+
 xset r rate 230 50
+
+echo "Launched xset rate"
