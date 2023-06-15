@@ -39,7 +39,7 @@ if [ -f $HOME/.bin/idlehook ]; then
 fi
 
 if [ -f $HOME/.bin/custom_keyboard_layout ]; then
-    $HOME/.bin/custom_keyboard_layout us &
+    $HOME/.bin/custom_keyboard_layout us laptop &
 fi
 
 # Start window manager
