@@ -60,6 +60,13 @@ vim.g.gh_repo_map = "_"
 vim.g.zoomwintab_remap = 0
 vim.g.zoomwintab_hidetabbar = 0
 
+-- Disable Neovim Python provider which bloats startuptime when in a "heavy" Python virtualenv
+-- (taken from `:h python-provider`)
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+
 -- Taken from https://bryankegley.me/posts/nvim-getting-started/
 local key_mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
@@ -96,6 +103,13 @@ key_mapper("n", "<leader>g", ":lua require('telescope').extensions.live_grep_arg
 key_mapper("n", "<leader>wg", ":Telescope grep_string<CR>") -- "word grep"
 key_mapper("n", "<leader>tr", ":Telescope resume<CR>")
 key_mapper("n", "<leader>tb", ":Telescope buffers<CR>")
+
+-- Trouble (diagnostics window) mappings
+key_mapper("n", "<leader>dd", "<cmd>TroubleToggle<cr>")
+key_mapper("n", "<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+key_mapper("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>")
+key_mapper("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>")
+key_mapper("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
 
 -- -------------- Packages/plugins declaration and customization --------------
 -- Bootstrap installation of the lazy.nvim package manager
@@ -267,6 +281,14 @@ require("lazy").setup({
   -- "Fake" LSP server to run stuff like linters and formatters
   { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      mode = "document_diagnostics",
+    },
+  },
+
   -- Fuzzy Finder (files, lsp, etc)
   {
     "nvim-telescope/telescope.nvim",
@@ -400,6 +422,7 @@ require("telescope").setup({
       i = {
         ["<esc>"] = "close",
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<C-f>"] = actions.to_fuzzy_refine,
       },
     },
   },
@@ -538,15 +561,6 @@ vim.keymap.set(
   vim.diagnostic.goto_next,
   { noremap = true, silent = true, desc = "Go to next diagnostic message" }
 )
-vim.keymap.set("n", "<leader>d", function()
-  vim.diagnostic.open_float({ source = true })
-end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
-vim.keymap.set(
-  "n",
-  "<leader>q",
-  vim.diagnostic.setloclist,
-  { noremap = true, silent = true, desc = "Open diagnostics list" }
-)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -563,7 +577,7 @@ local on_attach = function(client, bufnr)
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-  nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+  -- nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
   nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
   nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
@@ -600,6 +614,9 @@ mason_installer.setup({
     "pyright",
     "ruff-lsp",
     "stylua",
+    "bash-language-server",
+    "docker-compose-language-service",
+    "dockerfile-language-server",
   },
 })
 
