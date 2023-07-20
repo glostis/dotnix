@@ -13,7 +13,7 @@ def apply_alacritty(theme):
     regex = re.compile(r"^colors: \*.*$")
     with open(path, "w") as f:
         for line in lines:
-            f.write(re.sub(regex, f"colors: *{theme}", line))
+            f.write(regex.sub(f"colors: *{theme}", line))
 
 
 def apply_dunst(theme):
@@ -32,9 +32,9 @@ def apply_dunst(theme):
     with open(path, "w") as f:
         for line in lines:
             if to_comment.match(line):
-                f.write(to_comment.sub(rf"\1# \2", line))
+                f.write(to_comment.sub(r"\1# \2", line))
             elif to_uncomment.match(line):
-                f.write(to_uncomment.sub(rf"\1\2", line))
+                f.write(to_uncomment.sub(r"\1\2", line))
             else:
                 f.write(line)
     subprocess.run("(pgrep dunst && killall dunst) || true", shell=True, check=True)
@@ -95,10 +95,18 @@ def apply_tmux():
     )
 
 
-def apply_qutebrowser():
-    subprocess.run(
-        "(pgrep -f qutebrowser && qutebrowser :restart) || true", shell=True, check=True
-    )
+def apply_bat(theme):
+    # `dark` or `light`
+    shade = theme.split("-")[-1]
+
+    path = os.path.expanduser("~/.config/bat/config")
+    with open(path) as f:
+        lines = f.readlines()
+    prefix = "gruvbox-"
+    regex = re.compile(rf"{prefix}(dark|light)")
+    with open(path, "w") as f:
+        for line in lines:
+            f.write(regex.sub(rf"{prefix}{shade}", line))
 
 
 def main():
@@ -109,6 +117,7 @@ def main():
     with open(alacritty_yaml) as f:
         lines = f.readlines()
 
+    current_theme = "gruvbox-dark"
     regex = re.compile(r"^colors: \*(.*)$")
     for line in lines:
         if m := regex.search(line):
@@ -118,16 +127,14 @@ def main():
     themes = set(y["schemes"].keys())
     new_theme = (themes - set((current_theme,))).pop()
 
-    colors = y["schemes"][new_theme]
-
     apply_alacritty(new_theme)
     apply_i3_polybar(new_theme)
     apply_dunst(new_theme)
     apply_rofi(new_theme)
     apply_gtk(new_theme)
+    apply_bat(new_theme)
     apply_neovim()
     apply_tmux()
-    # apply_qutebrowser()
 
 
 if __name__ == "__main__":

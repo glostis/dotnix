@@ -8,7 +8,6 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 typeset -U PATH path  # Remove duplicates from PATH
 path=("$HOME/.bin" "$path[@]")  # My custom executables
 path=("$HOME/.local/bin" "$path[@]")  # pipx executables
-path=("$HOME/.pyenv/bin" "$path[@]")
 export PATH
 
 # Default programs:
