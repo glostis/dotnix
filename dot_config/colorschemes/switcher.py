@@ -109,6 +109,29 @@ def apply_bat(theme):
             f.write(regex.sub(rf"{prefix}{shade}", line))
 
 
+def apply_delta(theme):
+    # `dark` or `light`
+    shade = theme.split("-")[-1]
+
+    path = os.path.expanduser("~/.config/git/config")
+    with open(path) as f:
+        lines = f.readlines()
+    prefix = "gruvbox-"
+    regex1 = re.compile(rf"{prefix}(dark|light)")
+
+    regex2 = re.compile(r"light = (true|false)")
+    if shade == "light":
+        light = "true"
+    else:
+        light = "false"
+
+    with open(path, "w") as f:
+        for line in lines:
+            line = regex1.sub(rf"{prefix}{shade}", line)
+            line = regex2.sub(rf"light = {light}", line)
+            f.write(line)
+
+
 def main():
     alacritty_yaml = os.path.expanduser("~/.config/alacritty/alacritty.yml")
     with open(alacritty_yaml) as f:
@@ -133,6 +156,7 @@ def main():
     apply_rofi(new_theme)
     apply_gtk(new_theme)
     apply_bat(new_theme)
+    apply_delta(new_theme)
     apply_neovim()
     apply_tmux()
 

@@ -5,27 +5,22 @@
 	name = Guillaume Lostis
 	email = {{ .email }}
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	light = false
+	syntax-theme = gruvbox-dark
+	side-by-side = true
+[diff]
+	colorMoved = default
 [alias]
 	st = status -sb
 	co = checkout
 	sub = submodule update
 [color]
 	ui = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-[diff-so-fancy]
-	markEmptyLines = false
 [commit]
 	verbose = true
 [filter "lfs"]
