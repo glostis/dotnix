@@ -18,7 +18,9 @@ IFS=$'\n\t'
 
 kb_layout=$1
 kb_type=$2
-echo ${kb_layout} ${kb_type}
+
+# Sleep to avoid having endless "enter/return" when starting kmonad by hand
+sleep 2
 
 if [ "$kb_layout" = "us" ]; then
     symbols_options="+glostis(hacks)"

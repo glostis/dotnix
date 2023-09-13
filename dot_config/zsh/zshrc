@@ -79,9 +79,33 @@ function pyenv_venv() {
 }
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
+function aws_profile() {
+    if [[ -n $AWS_PROFILE ]]; then
+        echo "(aws: $AWS_PROFILE) "
+    fi
+}
+
+# There is no builtin way to determine if we are inside a `nix shell`
+# (see https://github.com/NixOS/nix/issues/6677)
+# so we rely on the fact that some `/nix/store/<hash>-program-<version/bin` paths are added to $PATH
+function nix_shell() {
+    nix_shell_binaries=$(echo "$PATH" | tr ':' '\n' | grep nix/store | sed -E 's/[^-]*-([^\/]*).*/\1/' | sort -u | tr '\n' ' ')
+    if [[ -z $nix_shell_binaries ]]; then
+        exit 0
+    else
+        printf '\033[2;3mNix shell (lvl %s): %s\033[0m' "$((SHLVL-2))" "$nix_shell_binaries"
+    fi
+}
+
+PROMPT=""
+# Inelegant way to introduce a newline in the prompt
+[ -n "$(nix_shell)" ] && PROMPT="
+$(nix_shell)
+↪️ $PROMPT"
+
 export ZSH_THEME_GIT_PROMPT_PREFIX="("
 export ZSH_THEME_GIT_PROMPT_SUFFIX=") "
-PROMPT='$(pyenv_venv)$(return_code) %B%F{blue}%c%f%b $(git_super_status)'
+PROMPT="$PROMPT$(pyenv_venv)$(aws_profile)$(return_code) %B%F{blue}%c%f%b $(git_super_status)"
 
 [ -n "$RANGER_LEVEL" ] && PROMPT="(ranger) $PROMPT"
 
