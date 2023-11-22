@@ -105,7 +105,7 @@ $(nix_shell)
 
 export ZSH_THEME_GIT_PROMPT_PREFIX="("
 export ZSH_THEME_GIT_PROMPT_SUFFIX=") "
-PROMPT="$PROMPT$(pyenv_venv)$(aws_profile)$(return_code) %B%F{blue}%c%f%b $(git_super_status)"
+PROMPT=$(echo "$PROMPT"'$(pyenv_venv)$(aws_profile)$(return_code) %B%F{blue}%c%f%b $(git_super_status)')
 
 [ -n "$RANGER_LEVEL" ] && PROMPT="(ranger) $PROMPT"
 
