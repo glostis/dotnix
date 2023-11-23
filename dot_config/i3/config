@@ -7,7 +7,7 @@ set $mod Mod4
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-font pango:MesloLGM Nerd Font Mono 11
+font pango:MesloLGS NF 11
 
 # Disable window title bar
 # See https://github.com/i3/i3/issues/5149

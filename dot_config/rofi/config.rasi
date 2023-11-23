@@ -1,4 +1,4 @@
 configuration {
- font: "MesloLGM Nerd Font Mono 12";
+ font: "MesloLGS NF Regular 12";
 }
 @theme "gruvbox-dark.rasi"
