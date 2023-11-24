@@ -5,17 +5,17 @@ Custom URL opener, to open certain domains using one browser and others using an
 Taken from https://askubuntu.com/a/1164362
 """
 
-import subprocess
-import logging
 import argparse
-import syslog
+import logging
+import os
+import re
+import subprocess
 import sys
-
-from urllib.parse import urlparse
+import syslog
 
 DEFAULT_BROWSER = "firefox"
 CUSTOM_BROWSER = "google-chrome-stable"
-CUSTOM_DOMAINS = ["drive.google.com", "docs.google.com", "forms.gle"]
+CUSTOM_REGEXES = os.environ.get("CUSTOM_OPEN_URL_REGEXES", "").split(";")
 
 
 def http_url(url):
@@ -57,11 +57,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     logging.basicConfig(level=args.loglevel)
     logging.debug("args.url = '{}'".format(args.url))
-    parsed = urlparse(args.url)
-    if parsed.hostname in CUSTOM_DOMAINS:
-        browser = CUSTOM_BROWSER
-    else:
-        browser = DEFAULT_BROWSER
+    browser = DEFAULT_BROWSER
+    for re_str in CUSTOM_REGEXES:
+        if re_str and re.search(re_str, args.url):
+            browser = CUSTOM_BROWSER
+            break
     logging.info("browser = '{}'".format(browser))
     cmd = [browser, args.url]
     try:
