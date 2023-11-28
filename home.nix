@@ -14,11 +14,11 @@ in
 
   # Required for packages like spotify
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #     inherit pkgs;
+  #   };
+  # };
 
   # Example of what an overlay can look like
   # nixpkgs.overlays = [
@@ -275,29 +275,29 @@ in
   programs.nix-index.enable = true;
 
   # Doesn't show up in dmenu/rofi
-  programs.firefox = 
-  let
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        darkreader
-        tree-style-tab
-        vimium
-    ];
-  in
-  {
-    enable = true;
-    profiles.work = {
-      isDefault = true;
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
-        onepassword-password-manager
-      ];
-    };
-    profiles.perso = {
-      isDefault = false;
-      id = 1;
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
-        bitwarden
-      ];
-    };
-  };
+  # programs.firefox = 
+  # let
+  #   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+  #       ublock-origin
+  #       darkreader
+  #       tree-style-tab
+  #       vimium
+  #   ];
+  # in
+  # {
+  #   enable = true;
+  #   profiles.work = {
+  #     isDefault = true;
+  #     extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
+  #       onepassword-password-manager
+  #     ];
+  #   };
+  #   profiles.perso = {
+  #     isDefault = false;
+  #     id = 1;
+  #     extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
+  #       bitwarden
+  #     ];
+  #   };
+  # };
 }
