@@ -240,13 +240,7 @@ require("lazy").setup({
   { "troydm/zoomwintab.vim" },
 
   { -- Add indentation guides even on blank lines
-    "lukas-reineke/indent-blankline.nvim",
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = "┊",
-      show_trailing_blankline_indent = false,
-    },
+    "lukas-reineke/indent-blankline.nvim", main="ibl", opts = {},
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -259,6 +253,8 @@ require("lazy").setup({
       vim.fn["mkdp#util#install"]()
     end,
   },
+
+  "github/copilot.vim",
 
   -- TODO: python testing, tmux interaction
 
