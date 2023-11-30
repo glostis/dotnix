@@ -52,9 +52,6 @@ in
 
     ## Programs
 
-    # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
-    # alacritty                       # Terminal
-
     # virtualbox                      # VM
     arandr                          # GUI to xrandr, to configure monitors
     vlc                             # Video viewer
@@ -426,13 +423,12 @@ in
 
   xsession.enable = true;
 
-  # Is broken due to OpenGL - should use NixGL instead, but can't be bothered.
+  # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
   # programs.alacritty.enable = true;
 
   programs.nix-index.enable = true;
 
-  # Doesn't show up in dmenu/rofi
-  programs.firefox = 
+  programs.firefox =
   let
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
@@ -440,6 +436,16 @@ in
         tree-style-tab
         vimium
     ];
+    extraConfig = builtins.readFile ./chezmoi/.chezmoitemplates/firefox/user.js;
+    userChrome = builtins.readFile ./chezmoi/.chezmoitemplates/firefox/userChrome.css;
+    userContent = builtins.readFile ./chezmoi/.chezmoitemplates/firefox/userContent.css;
+    search = {
+      default = "kagi";
+      force = true;
+      engines.kagi.urls = [
+        { template = "https://kagi.com/search?q={searchTerms}"; }
+      ];
+    };
   in
   {
     enable = true;
@@ -448,6 +454,7 @@ in
       extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
         onepassword-password-manager
       ];
+      inherit extraConfig search userChrome userContent;
     };
     profiles.perso = {
       isDefault = false;
@@ -455,6 +462,7 @@ in
       extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
         bitwarden
       ];
+      inherit extraConfig search userChrome userContent;
     };
   };
 }

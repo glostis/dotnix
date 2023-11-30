@@ -1,3 +1,4 @@
 .zshenv
 .config/zsh
 .config/ripgreprc
+.mozilla
