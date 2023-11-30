@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgsflake, ... }:
 
 let
   username = "glostis";
@@ -9,16 +9,8 @@ in
   home.username = username;
   home.homeDirectory = "/home/"+username;
 
-  # Remove annoying warning, to solve and remove later on
-  home.enableNixpkgsReleaseCheck = false;
-
   # Required for packages like spotify
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-  #     inherit pkgs;
-  #   };
-  # };
 
   # Example of what an overlay can look like
   # nixpkgs.overlays = [
@@ -59,10 +51,10 @@ in
     ncurses
 
     ## Programs
+
     # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
     # alacritty                       # Terminal
-    # Already handled by programs.firefox
-    # firefox                         # Browser
+
     # virtualbox                      # VM
     arandr                          # GUI to xrandr, to configure monitors
     vlc                             # Video viewer
@@ -74,33 +66,26 @@ in
     mupdf                           # pdf viewer
     spotify                         # Music streaming (aur)
     rhythmbox                       # Local music player
-    # qmk                             # Programmable keyboard configuration
-    # josm                            # OpenStreetMap editor
-    # homebank                        # Personal accounting software
     gparted                         # GUI for partioning disks and writing filesystems
-    # postgresql                      # DB
-    # postgis                         # Geospatial DB extension
     foliate                         # e-book reader
 
     ## Terminal programs
     bat                             # Fancy `cat`
     delta                           # Fancy `diff`
-    docker                          # Containers
-    docker-compose                  # Containers
-    # man-db                          # man
-    # man-pages                       # man
+
+    # Disabled because can't figure out how to start the systemd service when on non-NixOS
+    # docker                          # Containers
+    # docker-compose                  # Containers
+
     # Using nix's plocate on non-NixOS is a pain:
     # - doing `sudo updatedb` doesn't work, because `updatedb` is not on super-user's path (`plocate`'s binaries are only installed on my user's path)
     # - cannot find a way to activate the systemd service installed by this package, when not on NixOS
     # mlocate                         # `locate` command
+
     ncdu                            # Curses disk usage explorer
     git                             # Version control
     git-lfs                         # Git Large File Storage
     chezmoi                         # Dotfiles manager
-    # expac                           # pacman database extraction utility
-    # pacman-contrib                  # pacman scripts such as paccache, pacdiff
-    # pacutils                        # pacman utils
-    # reflector                       # Sort pacman mirrors
     feh                             # Background image setter
     fzf                             # Fuzzy finder
     htop                            # System resources monitoring
@@ -116,18 +101,13 @@ in
     zsh                             # Shell
     antibody                        # zsh plugin manager (aur)
     wget                            # File download
-    ripgrep                         # Fast recursive grep
     maim                            # Screenshot
     rofi-screenshot                 # Take screencaptures (.mp4 or .gif) (aur)
-    pyenv                           # Python manager
-    # pyenv-virtualenv                # pyenv virtualenv plugin (aur)
-    # yay-bin                         # AUR helper (aur)
+    python310
     nodePackages.fixjson            # JSON formatter (aur)
-    # ctags                           # ctags
     entr                            # run arbitrary commands when files change
     bc                              # Command-line calculations
     w3m                             # Text-based web browser
-    # python-pip                      # Just pip.
     pipx                            # Install executables in python venvs from PyPI
     parallel                        # Runs commands in parallel
     usbutils                        # Provides `lsusb` to show connected USB devices
@@ -141,8 +121,7 @@ in
     gpsbabel                        # GPS file format swiss-knife
     csvkit                          # CSV manipulation on the command-line
     pdftk                           # PDF manipulation on the command-line
-    zoxide                          # Super-powered `cd`
-    gh                              # Does what it says: `gh`
+    # gh                              # Does what it says: `gh`
     shellcheck                      # Shell (bash) file linter/LSP
 
     ## Window manager
@@ -158,7 +137,7 @@ in
     autorandr                       # Multi-monitor
     picom                           # Compositor (aur)
     rofi-unwrapped                  # Launcher
-    unclutter                       # Remove mouse cursor when idle
+    unclutter-xfixes                # Remove mouse cursor when idle
     xidlehook                       # Trigger action after some time idle (aur)
     # polybarFull comes with i3 support
     # This could also be done with just `polybar` with an override to add `i3Support = true;`,
@@ -170,7 +149,7 @@ in
     # uswsusp-git                     # Easier hibernation (suspend to disk) (aur)
     sxhkd                           # Simple X hotkey daemon
     # sxhkhm-git                      # Simple X hotkey daemon helper menu (rofi) (aur)
-    pandoc                          # Document conversino utility (aur)
+    pandoc                          # Document conversion utility (aur)
 
     ## Hardware
     # Audio
@@ -202,7 +181,6 @@ in
     meslo-lgs-nf
 
     # Work
-    # awscli2
     # _1password-gui
     # qgis-ltr
     # bind
@@ -218,38 +196,60 @@ in
 
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/glostis/etc/profile.d/hm-session-vars.sh
-  #
+  home.sessionPath = [
+    # Contains all of my custom executable scripts
+    "${config.home.homeDirectory}/.bin"
+  ];
   home.sessionVariables = {
     # This is used by `alacritty`
     SHELL = "$(which zsh)";
     # This is used by `rofi` to look for desktop applications
     XDG_DATA_DIRS = "${config.home.profileDirectory}/share:/usr/local/share:/usr/share";
+
+    EDITOR = "nvim";
+    TERMINAL = "alacritty";
+    PAGER = "less";
+
+    # ~/ Clean-up:
+    # See https://github.com/b3nj5m1n/xdg-ninja for configuration of lots of programs
+    LESSHISTFILE = "${config.xdg.configHome}/less/history";
+    DVDCSS_CACHE = "${config.xdg.dataHome}/dvdcss";
+    IPYTHONDIR = "${config.xdg.configHome}/ipython";
+    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+    JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
+    W3M_DIR = "${config.xdg.dataHome}/w3m";
+    PARALLEL_HOME = "${config.xdg.configHome}/parallel";
+
+    # When set to 1, `z` will print the matched directory before navigating to it.
+    _ZO_ECHO=1;
+
+    # `less` with colors
+    # Taken from https://wiki.archlinux.org/title/Color_output_in_console#Environment_variables
+    LESS = "-R --use-color -Dd+r\\$Du+b\$";
+
+    # `man` with colors
+    # Taken from https://github.com/sharkdp/bat#man
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    MANROFFOPT = "-c";
   };
+
+  home.shellAliases = {
+      # Need to re-do the pyright shenanigans for nvim, but without pyenv
+      v = "nvim";
+      x = "exit";
+      py = "ipython";
+      open = "xdg-open";
+      copy = "xclip -selection c";
+      diff = "diff --color=auto";
+      grep = "grep --color=auto";
+      l = "eza -la";
+      rm = "echo Use trash-put instead. Or use 'backslash rm' if you really want to.; false";
+      tp = "trash-put";
+      tl = "trash-list";
+      ranger = "TERM=screen-256color ranger";
+      cm = "chezmoi --source ${config.home.homeDirectory}/dotfiles";
+      hm = "home-manager --flake ${config.home.homeDirectory}/dotfiles";
+    };
 
   # To activate later: there are some clashes with ~/.Xresources and ~/.config/gtk-3.0/settings.ini
 
@@ -262,8 +262,165 @@ in
   #   x11.enable = true;
   # };
 
+  # Make `nix run np#<some-package>` use the same nixpkgs as the one used by this flake
+  nix.registry.np.flake = nixpkgsflake;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.zoxide.enable = true;
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      git_branch = {
+        symbol = " ";
+      };
+      nix_shell = {
+        heuristic = true;
+      };
+      python = {
+        symbol = " ";
+      };
+      shlvl = {
+        threshold = 3;
+        disabled = false;
+        format = "[shlvl $shlvl]($style) ";
+      };
+    };
+  };
+
+  programs.awscli.enable = true;
+  programs.granted.enable = true;
+
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+  };
+
+  programs.fzf = rec {
+    enable = true;
+    defaultCommand = "rg --files --hidden -g '!.git'";
+    fileWidgetCommand = defaultCommand;
+  };
+
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      # Never include the contents of a .git/ directory
+      "--glob=!.git/"
+      # Always include dotfiles
+      "--hidden"
+    ];
+  };
+
+  programs.command-not-found.enable = false;
+
+  programs.bash.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    antidote = {
+      enable = true;
+      plugins = [
+        "paulirish/git-open"
+        "valiev/almostontop"
+        "zsh-users/zsh-completions"
+        "wfxr/forgit"
+      ];
+      useFriendlyNames = true;
+    };
+    # defaultKeymap = "emacs";
+    dotDir = ".config/zsh";
+    history = {
+      expireDuplicatesFirst = true;
+      extended = true;
+      ignoreDups = true;
+      save = 100000;
+      size = 100000;
+      share = false;
+    };
+    initExtra = ''
+      ### START OF MY CUSTOM zshrc ###
+
+      stty stop undef  # Disable ctrl-s to freeze terminal.
+
+      # Highlight selected completion in the list
+      zstyle ':completion:*' menu select
+
+      # Source: https://superuser.com/a/815317
+      # 0 -- vanilla completion (abc => abc)
+      # 1 -- smart case completion (abc => Abc)
+      # 2 -- word flex completion (abc => A-big-Car)
+      # 3 -- full flex completion (abc => ABraCadabra)
+      zstyle ':completion:*' matcher-list "" \
+        'm:{a-z\-}={A-Z\_}' \
+        'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+        'r:|?=** m:{a-z\-}={A-Z\_}'
+      zmodload zsh/complist
+
+      # Sometimes there's some completion functions in there
+      fpath+="$HOME/.zfunc"
+
+      _comp_options+=(globdots)  # Include hidden files.
+
+      # Taken from https://wiki.archlinux.org/index.php/zsh
+      # create a zkbd compatible hash;
+      # to add other keys to this hash, see: man 5 terminfo
+      typeset -g -A key
+
+      key[Home]="''${terminfo[khome]}"
+      key[End]="''${terminfo[kend]}"
+      key[Delete]="''${terminfo[kdch1]}"
+      key[Up]="''${terminfo[kcuu1]}"
+      key[Down]="''${terminfo[kcud1]}"
+      key[PageUp]="''${terminfo[kpp]}"
+      key[PageDown]="''${terminfo[knp]}"
+      key[Shift-Tab]="''${terminfo[kcbt]}"
+
+      autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+      zle -N up-line-or-beginning-search
+      zle -N down-line-or-beginning-search
+
+      # setup key accordingly
+      [[ -n "''${key[Home]}"      ]] && bindkey -- "''${key[Home]}"      beginning-of-line
+      [[ -n "''${key[End]}"       ]] && bindkey -- "''${key[End]}"       end-of-line
+      [[ -n "''${key[Delete]}" ]] && bindkey -- "''${key[Delete]}"       delete-char
+      [[ -n "''${key[PageUp]}"    ]] && bindkey -- "''${key[PageUp]}"    beginning-of-history
+      [[ -n "''${key[PageDown]}"  ]] && bindkey -- "''${key[PageDown]}"  end-of-history
+      [[ -n "''${key[Shift-Tab]}" ]] && bindkey -- "''${key[Shift-Tab]}" reverse-menu-complete
+      [[ -n "''${key[Up]}"   ]] && bindkey -- "''${key[Up]}"             up-line-or-beginning-search
+      [[ -n "''${key[Down]}" ]] && bindkey -- "''${key[Down]}"           down-line-or-beginning-search
+      # Control-left/right = move cursor word
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+      # Control-backspace = delete word
+      # From https://stackoverflow.com/a/21252464/9977650
+      bindkey '^H' backward-kill-word
+
+      # Finally, make sure the terminal is in application mode, when zle is
+      # active. Only then are the values from ''$terminfo valid.
+      if (( ''${+terminfo[smkx]} && ''${+terminfo[rmkx]} )); then
+              autoload -Uz add-zle-hook-widget
+              function zle_application_mode_start { echoti smkx }
+              function zle_application_mode_stop { echoti rmkx }
+              add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+              add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+      fi
+
+      autoload edit-command-line; zle -N edit-command-line
+      bindkey '^e' edit-command-line
+
+      ### END OF MY CUSTOM zshrc ###
+    '';
+    syntaxHighlighting.enable = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+  };
+
+  programs.gh.enable = true;
 
   fonts.fontconfig.enable = true;
 
@@ -275,29 +432,29 @@ in
   programs.nix-index.enable = true;
 
   # Doesn't show up in dmenu/rofi
-  # programs.firefox = 
-  # let
-  #   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-  #       ublock-origin
-  #       darkreader
-  #       tree-style-tab
-  #       vimium
-  #   ];
-  # in
-  # {
-  #   enable = true;
-  #   profiles.work = {
-  #     isDefault = true;
-  #     extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
-  #       onepassword-password-manager
-  #     ];
-  #   };
-  #   profiles.perso = {
-  #     isDefault = false;
-  #     id = 1;
-  #     extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
-  #       bitwarden
-  #     ];
-  #   };
-  # };
+  programs.firefox = 
+  let
+    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        darkreader
+        tree-style-tab
+        vimium
+    ];
+  in
+  {
+    enable = true;
+    profiles.work = {
+      isDefault = true;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
+        onepassword-password-manager
+      ];
+    };
+    profiles.perso = {
+      isDefault = false;
+      id = 1;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
+        bitwarden
+      ];
+    };
+  };
 }

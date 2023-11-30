@@ -17,12 +17,12 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations.glostis = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        # pkgs = import nixpkgs {
-        #   overlays = [
-        #     nurpkgs.overlay
-        #   ];
-        # };
+        pkgs = import nixpkgs {
+        system = system;
+          overlays = [
+            nurpkgs.overlay
+          ];
+        };
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
@@ -32,7 +32,7 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        # extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { nixpkgsflake = nixpkgs; };
       };
     };
 }
