@@ -201,7 +201,8 @@ in
     # This is used by `alacritty`
     SHELL = "$(which zsh)";
     # This is used by `rofi` to look for desktop applications
-    XDG_DATA_DIRS = "${config.home.profileDirectory}/share:/usr/local/share:/usr/share";
+    # conflicts with what is set by genericLinux
+    # XDG_DATA_DIRS = "${config.home.profileDirectory}/share:/usr/local/share:/usr/share";
 
     EDITOR = "nvim";
     TERMINAL = "alacritty";
@@ -265,6 +266,9 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Make Home-Manager work better on non-NixOS Linux distributions
+  targets.genericLinux.enable = true;
+
   programs.zoxide.enable = true;
 
   programs.starship = {
@@ -287,7 +291,7 @@ in
     };
   };
 
-  programs.awscli.enable = true;
+  # programs.awscli.enable = true;
   programs.granted.enable = true;
 
   programs.eza = {
@@ -310,8 +314,6 @@ in
       "--hidden"
     ];
   };
-
-  programs.command-not-found.enable = false;
 
   programs.bash.enable = true;
   programs.zsh = {
@@ -426,43 +428,5 @@ in
   # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
   # programs.alacritty.enable = true;
 
-  programs.nix-index.enable = true;
-
-  programs.firefox =
-  let
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        darkreader
-        tree-style-tab
-        vimium
-    ];
-    extraConfig = builtins.readFile ./chezmoi/.chezmoitemplates/firefox/user.js;
-    userChrome = builtins.readFile ./chezmoi/.chezmoitemplates/firefox/userChrome.css;
-    userContent = builtins.readFile ./chezmoi/.chezmoitemplates/firefox/userContent.css;
-    search = {
-      default = "kagi";
-      force = true;
-      engines.kagi.urls = [
-        { template = "https://kagi.com/search?q={searchTerms}"; }
-      ];
-    };
-  in
-  {
-    enable = true;
-    profiles.work = {
-      isDefault = true;
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
-        onepassword-password-manager
-      ];
-      inherit extraConfig search userChrome userContent;
-    };
-    profiles.perso = {
-      isDefault = false;
-      id = 1;
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; extensions ++ [
-        bitwarden
-      ];
-      inherit extraConfig search userChrome userContent;
-    };
-  };
+  # programs.nix-index.enable = true;
 }

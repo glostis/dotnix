@@ -14,7 +14,6 @@
   outputs = { nixpkgs, home-manager, nurpkgs, ... } @ inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations.glostis = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -27,7 +26,8 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          ./home.nix
+          ./home-manager/home.nix
+          (import ./home-manager/firefox {enableWorkProfile = true;})
         ];
 
         # Optionally use extraSpecialArgs
