@@ -15,7 +15,7 @@
     let
       system = "x86_64-linux";
     in {
-      homeConfigurations.glostis = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."glostis@fr-glostis-xps" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
         system = system;
           overlays = [
@@ -27,6 +27,10 @@
         # the path to your home.nix.
         modules = [
           ./home-manager/home.nix
+          ./home-manager/terminal.nix
+          ./home-manager/graphical.nix
+          ./home-manager/xps.nix
+          ./home-manager/zsh
           (import ./home-manager/firefox {enableWorkProfile = true;})
         ];
 
