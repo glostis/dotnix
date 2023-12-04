@@ -31,6 +31,7 @@
           ./home-manager/graphical.nix
           ./home-manager/xps.nix
           ./home-manager/zsh
+          ./home-manager/neovim
           (import ./home-manager/firefox {enableWorkProfile = true;})
         ];
 

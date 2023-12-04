@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   home.packages = with pkgs; [
 
@@ -7,7 +7,7 @@
     # virtualbox                      # VM
     arandr                          # GUI to xrandr, to configure monitors
     vlc                             # Video viewer
-    # redshift                        # Turns screen to red to avoid blue light
+    redshift                        # Turns screen to red to avoid blue light
     libreoffice-fresh               # Bureautique
     bitwarden                       # Password manager GUI
     gthumb                          # Quick photo editing
@@ -54,6 +54,8 @@
     # uswsusp-git                     # Easier hibernation (suspend to disk) (aur)
     sxhkd                           # Simple X hotkey daemon
     # sxhkhm-git                      # Simple X hotkey daemon helper menu (rofi) (aur)
+
+    xdg-utils                       # Provides command-line tools such as `xdg-open`
 
     ## Hardware
     # Audio

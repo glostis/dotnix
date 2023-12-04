@@ -36,11 +36,7 @@
   home.sessionVariables = {
     # This is used by `alacritty`
     SHELL = "$(which zsh)";
-    # This is used by `rofi` to look for desktop applications
-    # conflicts with what is set by genericLinux
-    # XDG_DATA_DIRS = "${config.home.profileDirectory}/share:/usr/local/share:/usr/share";
 
-    EDITOR = "nvim";
     TERMINAL = "alacritty";
     PAGER = "less";
 

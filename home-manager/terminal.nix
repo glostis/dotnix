@@ -5,6 +5,8 @@
     xdotool                         # xorg
     ntfs3g                          # For NTFS filestystem (eg USB sticks)
     trash-cli                       # Use trash-put instead of rm to keep a version of deleted files
+    gnumake                         # `make`
+    gcc                             # C compiler
 
     bat                             # Fancy `cat`
     delta                           # Fancy `diff`
@@ -18,7 +20,6 @@
     imagemagick                     # Image manipulation commands
     jq                              # JSON parser
     neofetch                        # System information
-    neovim                          # Editor
     ranger                          # File browser (aur)
     tmux                            # Terminal multiplexer
     tree                            # Recursive directory listing
@@ -36,7 +37,6 @@
     gpsbabel                        # GPS file format swiss-knife
     csvkit                          # CSV manipulation on the command-line
     pdftk                           # PDF manipulation on the command-line
-    # gh                              # Does what it says: `gh`
     shellcheck                      # Shell (bash) file linter/LSP
 
     pandoc                          # Document conversion utility (aur)
