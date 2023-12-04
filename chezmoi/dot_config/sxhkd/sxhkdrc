@@ -68,7 +68,7 @@ super + d
     rofi -modi drun -show drun -show-icons
 
 # Launch {Firefox,Google Chrome,QGIS,Slack,Bitwarden,1password}
-super + o ; {f + p, f + w,c,g,s,b,p}
+super + o ; {f ; p, f ; w,c,g,s,b,p}
     launch_application {launch_firefox perso,launch_firefox work,google-chrome-stable,qgis,slack,bitwarden-desktop,1password}
 
 # 1password quick access

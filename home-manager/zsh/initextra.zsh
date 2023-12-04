@@ -26,28 +26,28 @@ _comp_options+=(globdots)  # Include hidden files.
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
 
-key[Home]="''${terminfo[khome]}"
-key[End]="''${terminfo[kend]}"
-key[Delete]="''${terminfo[kdch1]}"
-key[Up]="''${terminfo[kcuu1]}"
-key[Down]="''${terminfo[kcud1]}"
-key[PageUp]="''${terminfo[kpp]}"
-key[PageDown]="''${terminfo[knp]}"
-key[Shift-Tab]="''${terminfo[kcbt]}"
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+key[PageUp]="${terminfo[kpp]}"
+key[PageDown]="${terminfo[knp]}"
+key[Shift-Tab]="${terminfo[kcbt]}"
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 # setup key accordingly
-[[ -n "''${key[Home]}"      ]] && bindkey -- "''${key[Home]}"      beginning-of-line
-[[ -n "''${key[End]}"       ]] && bindkey -- "''${key[End]}"       end-of-line
-[[ -n "''${key[Delete]}" ]] && bindkey -- "''${key[Delete]}"       delete-char
-[[ -n "''${key[PageUp]}"    ]] && bindkey -- "''${key[PageUp]}"    beginning-of-history
-[[ -n "''${key[PageDown]}"  ]] && bindkey -- "''${key[PageDown]}"  end-of-history
-[[ -n "''${key[Shift-Tab]}" ]] && bindkey -- "''${key[Shift-Tab]}" reverse-menu-complete
-[[ -n "''${key[Up]}"   ]] && bindkey -- "''${key[Up]}"             up-line-or-beginning-search
-[[ -n "''${key[Down]}" ]] && bindkey -- "''${key[Down]}"           down-line-or-beginning-search
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
+[[ -n "${key[Delete]}" ]] && bindkey -- "${key[Delete]}"       delete-char
+[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-history
+[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-history
+[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"             up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}"           down-line-or-beginning-search
 # Control-left/right = move cursor word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -56,8 +56,8 @@ bindkey "^[[1;5D" backward-word
 bindkey '^H' backward-kill-word
 
 # Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from ''$terminfo valid.
-if (( ''${+terminfo[smkx]} && ''${+terminfo[rmkx]} )); then
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
       autoload -Uz add-zle-hook-widget
       function zle_application_mode_start { echoti smkx }
       function zle_application_mode_stop { echoti rmkx }

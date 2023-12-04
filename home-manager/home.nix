@@ -29,6 +29,8 @@
   home.sessionPath = [
     # Contains all of my custom executable scripts
     "${config.home.homeDirectory}/.bin"
+    # programs such as `pipx` put some stuff there
+    "${config.home.homeDirectory}/.local/bin"
   ];
 
   home.sessionVariables = {

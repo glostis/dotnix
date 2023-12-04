@@ -32,15 +32,15 @@
 
     i3                              # WM
     dunst                           # Notifications dameon
-    lightdm
-    lightdm-gtk-greeter             # "Greeter" (login manager)
+    # lightdm
+    # lightdm-gtk-greeter             # "Greeter" (login manager)
     # xinit-xsession                  # Enables the use of ~/.xinitrc as a session in greeter (aur)
     i3lock                          # Desktop locker
     # Need to package myself?
     # corrupter-bin                   # Script that "corrupts" an image for i3lock bg (aur)
     # i3-battery-popup-git            # Send notification when battery is low (aur)
     autorandr                       # Multi-monitor
-    picom                           # Compositor (aur)
+    # picom                           # Compositor (aur) - better handled by the host OS
     rofi-unwrapped                  # Launcher
     unclutter-xfixes                # Remove mouse cursor when idle
     xidlehook                       # Trigger action after some time idle (aur)
@@ -57,17 +57,18 @@
 
     ## Hardware
     # Audio
-    alsa-utils
     pamixer
     playerctl
-    pulseaudioFull
     pavucontrol
-    # Screen backlight
-    light
     # Network
     networkmanager
     networkmanagerapplet
-    bluez
+
+    # The following are better handled by the host OS:
+    # light
+    # alsa-utils
+    # pulseaudioFull
+    # bluez
     # bluez-utils
 
 
@@ -87,7 +88,13 @@
 
   fonts.fontconfig.enable = true;
 
-  xsession.enable = true;
+  xsession = {
+    enable = true;
+    # Tried to get a display manager to work with my ~/.xinitrc, but failed miserably...
+    # initExtra = ''
+    #   .  /home/glostis/.xinitrc
+    # '';
+  };
 
   # To activate later: there are some clashes with ~/.Xresources and ~/.config/gtk-3.0/settings.ini
 
