@@ -21,7 +21,6 @@
     jq                              # JSON parser
     neofetch                        # System information
     ranger                          # File browser (aur)
-    tmux                            # Terminal multiplexer
     tree                            # Recursive directory listing
     zip                             # Archiving
     unzip                           # Unarchiving
