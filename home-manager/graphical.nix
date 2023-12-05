@@ -58,6 +58,8 @@
     xdg-utils                       # Provides command-line tools such as `xdg-open`
 
     ## Hardware
+    # Backlight
+    brightnessctl
     # Audio
     pamixer
     playerctl
@@ -67,7 +69,6 @@
     networkmanagerapplet
 
     # The following are better handled by the host OS:
-    # light
     # alsa-utils
     # pulseaudioFull
     # bluez
