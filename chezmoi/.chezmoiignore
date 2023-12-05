@@ -1,6 +1,0 @@
-.zshenv
-.config/zsh
-.config/ripgreprc
-.config/nvim/init.lua
-.config/tmux
-.mozilla
