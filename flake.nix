@@ -9,9 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { nixpkgs, home-manager, nurpkgs, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, nurpkgs, nix-colors, ... } @ inputs:
     let
       system = "x86_64-linux";
     in {
@@ -38,7 +39,7 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        extraSpecialArgs = { nixpkgsflake = nixpkgs; };
+        extraSpecialArgs = { nixpkgsflake = nixpkgs; inherit nix-colors; };
       };
     };
 }

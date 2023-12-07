@@ -1,9 +1,6 @@
 # vim: filetype=gitconfig
 # vim: set noexpandtab:
 
-[user]
-	name = Guillaume Lostis
-	email = {{ .email }}
 [core]
 	pager = delta
 [interactive]
@@ -34,3 +31,7 @@
 	branch = false
 [pull]
 	rebase = false
+[includeIf "gitdir/i:~/code-work/"]
+	path = ~/code-work/.gitconfig
+[includeIf "gitdir/i:~/code-perso/"]
+	path = ~/code-perso/.gitconfig
