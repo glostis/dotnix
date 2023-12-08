@@ -50,10 +50,25 @@ sudo apt install \
     picom \
     seahorse \
     i3lock \
-    lightdm
+    lightdm \
+    network-manager
 sudo apt remove command-not-found xdg-desktop-portal
 ```
 *Note: `xdg-desktop-portal` is removed due to [creating slow startup issues of applications like Firefox](https://github.com/flatpak/xdg-desktop-portal/issues/1032)*
+
+[Switch from netplan to NetworkManager](https://askubuntu.com/a/1463401):
+```
+sudo vim /etc/NetworkManager/conf.d/manage-all.conf
+```
+```
+[keyfile]
+unmanaged-devices=none
+```
+```
+sudo systemctl restart NetworkManager
+sudo systemctl disable --now systemd-networkd.service systemd-networkd.socket networkd-dispatcher.service && sudo systemctl restart NetworkManager
+sudo apt purge netplan netplan.io -y
+```
 
 ## TODO list
 
