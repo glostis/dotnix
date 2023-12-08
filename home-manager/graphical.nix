@@ -13,7 +13,7 @@
     gthumb                          # Quick photo editing
     gimp                            # Not-so-quick photo editing
     mupdf                           # pdf viewer
-    spotify                         # Music streaming (aur)
+    # spotify                         # Music streaming (aur)
     rhythmbox                       # Local music player
     gparted                         # GUI for partioning disks and writing filesystems
     foliate                         # e-book reader
@@ -36,7 +36,7 @@
     # lightdm
     # lightdm-gtk-greeter             # "Greeter" (login manager)
     # xinit-xsession                  # Enables the use of ~/.xinitrc as a session in greeter (aur)
-    i3lock                          # Desktop locker
+    # i3lock                          # Desktop locker
     # Need to package myself?
     # corrupter-bin                   # Script that "corrupts" an image for i3lock bg (aur)
     # i3-battery-popup-git            # Send notification when battery is low (aur)

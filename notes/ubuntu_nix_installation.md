@@ -48,7 +48,9 @@ sudo apt install \
     pulseaudio \
     bluez \
     picom \
-    seahorse
+    seahorse \
+    i3lock \
+    lightdm
 sudo apt remove command-not-found xdg-desktop-portal
 ```
 *Note: `xdg-desktop-portal` is removed due to [creating slow startup issues of applications like Firefox](https://github.com/flatpak/xdg-desktop-portal/issues/1032)*
