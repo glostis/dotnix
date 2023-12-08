@@ -22,11 +22,11 @@ gaps top 25
 # smart_borders on
 
 # Workspaces:
-# 1: browser, 2: terminal1, 3: terminal2, 4: qgis,
-# 5: unassigned, 6: visio, 7: unassigned, 8: music, 9: slack
+# 1: browser1, 2: chrome, 3: browser2, 4: qgis,
+# 5: unassigned, 6: terminal1, 7: terminal2, 8: music, 9: slack
 
 # Assign windows to specific workspaces
-assign [class="Google-chrome"] 6
+assign [class="Google-chrome"] 2
 for_window [class="Spotify"] move to workspace 8
 assign [class="Slack"] 9
 assign [class="QGIS3"] 4

@@ -32,6 +32,7 @@
 
     i3                              # WM
     dunst                           # Notifications dameon
+    libnotify                       # Provides `notify-send`
     # lightdm
     # lightdm-gtk-greeter             # "Greeter" (login manager)
     # xinit-xsession                  # Enables the use of ~/.xinitrc as a session in greeter (aur)
@@ -65,8 +66,9 @@
     playerctl
     pavucontrol
     # Network
-    networkmanager
-    networkmanagerapplet
+    # Better handled by the host OS
+    # networkmanager
+    # networkmanagerapplet
 
     # The following are better handled by the host OS:
     # alsa-utils
@@ -91,13 +93,13 @@
 
   fonts.fontconfig.enable = true;
 
-  xsession = {
-    enable = true;
-    # Tried to get a display manager to work with my ~/.xinitrc, but failed miserably...
-    # initExtra = ''
-    #   .  /home/glostis/.xinitrc
-    # '';
-  };
+  # xsession = {
+  #   enable = true;
+  #   # Tried to get a display manager to work with my ~/.xinitrc, but failed miserably...
+  #   # initExtra = ''
+  #   #   .  /home/glostis/.xinitrc
+  #   # '';
+  # };
 
   # To activate later: there are some clashes with ~/.Xresources and ~/.config/gtk-3.0/settings.ini
 

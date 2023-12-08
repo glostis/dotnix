@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-theme_variant=$(cat ~/.config/alacritty/alacritty.yml | grep '^colors:' | cut -d- -f2)
+theme_variant="dark"
 
 # GTK_THEME is used to make sure that the Tree Style Tab addon gets the correct dark/light color
 # cf https://github.com/piroor/treestyletab/blob/34f353c5eca4906b378f00b2951bd21e09ef0037/README.md#appearance

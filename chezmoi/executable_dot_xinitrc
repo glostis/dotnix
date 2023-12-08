@@ -42,5 +42,8 @@ if [ -f $HOME/.bin/custom_keyboard_layout ]; then
     $HOME/.bin/custom_keyboard_layout us laptop &
 fi
 
+# Taken from https://wiki.archlinux.org/title/GNOME/Keyring#Launching
+dbus-update-activation-environment --all
+
 # Start window manager
 exec i3 > /tmp/i3.log 2>&1

@@ -11,12 +11,13 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 ### Chezmoi installation and application
 ```
-nix run "nixpkgs#chezmoi" --source ~/dotfiles init glostis --branch nix
-nix run "nixpkgs#chezmoi" --source ~/dotfiles apply
+nix run "nixpkgs#chezmoi" -- --source ~/dotfiles init glostis --branch nix
+nix run "nixpkgs#chezmoi" -- --source ~/dotfiles apply
 ```
 
 ### Home-manager installation and profile switch
 ```
+rm -f ~/.profile ~/.bashrc
 nix run --no-write-lock-file github:nix-community/home-manager -- --flake ~/dotfiles switch
 ```
 
@@ -29,8 +30,8 @@ sudo snap remove lxd
 sudo snap remove core20
 sudo snap remove snapd
 sudo rm -rf /var/cache/snapd/
-sudo apt autoremove --purge snapd gnome-software-plugin-snap
-rm -fr ~/snap
+sudo apt autoremove --purge snapd
+rm -rf ~/snap
 sudo apt-mark hold snapd
 ```
 
@@ -46,7 +47,8 @@ sudo apt install \
     apt-file \
     pulseaudio \
     bluez \
-    picom
+    picom \
+    seahorse
 sudo apt remove command-not-found xdg-desktop-portal
 ```
 *Note: `xdg-desktop-portal` is removed due to [creating slow startup issues of applications like Firefox](https://github.com/flatpak/xdg-desktop-portal/issues/1032)*
