@@ -40,7 +40,7 @@ sudo apt-mark hold snapd
 sudo apt update
 sudo add-apt-repository ppa:aslatter/ppa  # for alacritty
 sudo apt upgrade
-sudo apt install \
+sudo apt install --no-install-recommends \
     xorg \
     plocate \
     alacritty \
