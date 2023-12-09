@@ -33,6 +33,8 @@ isavailable greenclip && greenclip daemon &
 # Hard-coded to Paris location to avoid having to call an external service
 isavailable redshift-gtk && redshift-gtk -l 48.5:2.3 &
 
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
 # Automatically lock and suspend computer after X minutes of idleness
 if [ -f $HOME/.bin/idlehook ]; then
     $HOME/.bin/idlehook &

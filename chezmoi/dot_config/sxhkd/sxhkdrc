@@ -61,7 +61,7 @@ super + q
 
 # Launch alacritty
 super + space
-    alacritty -e tmux new-session -A -s session
+    alacritty
 
 # rofi launcher
 super + d

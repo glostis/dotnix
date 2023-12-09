@@ -1,5 +1,28 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
+
+  xdg.configFile."nvim/lua/colorscheme.lua".text = ''
+    -- Colorscheme configuration
+    vim.cmd([[
+      " Override the IncSearch and Search highlight groups
+      function! s:gruvbox_material_custom() abort
+        let l:palette = gruvbox_material#get_palette('medium', 'original', {})
+        call gruvbox_material#highlight('IncSearch', l:palette.bg0, l:palette.orange)
+        call gruvbox_material#highlight('Search', l:palette.bg0, l:palette.yellow)
+      endfunction
+
+      augroup GruvboxMaterialCustom
+        autocmd!
+        autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
+      augroup END
+
+      let g:gruvbox_material_foreground = 'original'
+
+      set bg=${config.colorScheme.kind}
+
+      colorscheme gruvbox-material
+    ]])
+  '';
 
   programs.neovim = {
     enable = true;

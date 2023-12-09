@@ -1,5 +1,11 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./zsh
+    ./neovim
+    ./tmux
+  ];
+
   home.packages = with pkgs; [
     xclip                           # clipboard
     xdotool                         # xorg
@@ -60,6 +66,7 @@
   # Nice modular shell prompt
   programs.starship = {
     enable = true;
+    enableBashIntegration = false;
     settings = {
       git_branch = {
         symbol = " ";

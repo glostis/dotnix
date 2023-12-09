@@ -111,35 +111,7 @@ key_mapper("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>")
 key_mapper("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>")
 key_mapper("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
 
--- [[ Colorscheme / background configuration ]]
-local setBackground = function()
-  background = "dark"
-  vim.o.background = background
-
-  -- Colorscheme configuration
-  vim.cmd([[
-    " Override the IncSearch and Search highlight groups
-    function! s:gruvbox_material_custom() abort
-      let l:palette = gruvbox_material#get_palette('medium', 'original', {})
-      call gruvbox_material#highlight('IncSearch', l:palette.bg0, l:palette.orange)
-      call gruvbox_material#highlight('Search', l:palette.bg0, l:palette.yellow)
-    endfunction
-
-    augroup GruvboxMaterialCustom
-      autocmd!
-      autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
-    augroup END
-
-    let g:gruvbox_material_foreground = 'original'
-
-    set bg=dark
-    " set bg=light
-
-    colorscheme gruvbox-material
-  ]])
-end
-
-setBackground()
+require("colorscheme")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

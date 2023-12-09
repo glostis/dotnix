@@ -1,11 +1,8 @@
-{ config, pkgs, nixpkgsflake, nix-colors, lib, ... }:
-
+{ config, nixpkgsflake, ... }:
 {
   imports = [
-    nix-colors.homeManagerModules.default
+    ./day-n-night.nix
   ];
-
-  colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
 
   home.username = "glostis";
   home.homeDirectory = "/home/glostis";
@@ -31,6 +28,8 @@
   # release notes.
   home.stateVersion = "23.05";
 
+  # Disable `man home-configuration.nix`
+  manual.manpages.enable = false;
 
   home.sessionPath = [
     # Contains all of my custom executable scripts
@@ -40,9 +39,6 @@
   ];
 
   home.sessionVariables = {
-    # This is used by `alacritty`
-    SHELL = "$(which zsh)";
-
     TERMINAL = "alacritty";
     PAGER = "less";
 
@@ -95,72 +91,4 @@
 
   # Make Home-Manager work better on non-NixOS Linux distributions
   targets.genericLinux.enable = true;
-
-  xdg.configFile."alacritty/alacritty.yml".text = ''
-    # Configuration for Alacritty, the GPU enhanced terminal emulator.
-
-    env:
-      WINIT_X11_SCALE_FACTOR: '1'
-
-    window:
-      # Spread additional padding evenly around the terminal content.
-      dynamic_padding: true
-
-      # Window padding (changes require restart)
-      #
-      # Blank space added around the window in pixels. This padding is scaled
-      # by DPI and the specified value is always added at both opposing sides.
-      padding:
-        x: 5
-        y: 0
-
-      # Window decorations
-      #
-      # Values for `decorations`:
-      #     - full: Borders and title bar
-      #     - none: Neither borders nor title bar
-      decorations: none
-
-    # Font configuration
-    font:
-      # Normal (roman) font face
-      normal:
-        # Font family
-        #
-        family: MesloLGS NF
-
-        # The `style` can be specified to pick a specific face.
-        # style: Regular
-
-      # Point size
-      size: 11.0
-
-    colors:
-      primary:
-        background:         "#${config.colorScheme.colors.base00}"
-        # background-alt:     '#3c3836'
-        # background-alt-alt: '#504945'
-
-    # Startup directory
-    #
-    # Directory the shell is started in. If this is unset, or `None`, the working
-    # directory of the parent process will be used.
-    working_directory: /home/glostis/
-
-    mouse:
-      # If this is `true`, the cursor is temporarily hidden when typing.
-      hide_when_typing: true
-
-    key_bindings:
-      # Taken from https://github.com/alacritty/alacritty/issues/2930#issuecomment-1059833970
-      # This is required to have Control+Backspace work as expected (i.e. delete word)
-      # Otherwise, it sends Control+G which switches horizontal pane
-      - { key: Back, mods: Control, chars: "\u0017" }
-  '';
-
-  # specialisation.imsospecial.configuration = {
-  #   home.sessionVariables = lib.mkForce {
-  #     SPECIAL = "normal";
-  #   };
-  # };
 }

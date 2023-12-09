@@ -31,9 +31,6 @@
           ./home-manager/terminal.nix
           ./home-manager/graphical.nix
           ./home-manager/xps.nix
-          ./home-manager/zsh
-          ./home-manager/neovim
-          ./home-manager/tmux
           (import ./home-manager/firefox {enableWorkProfile = true;})
         ];
 

@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
+  imports = [
+    ./alacritty.nix
+  ];
+
   home.packages = with pkgs; [
 
     ## Graphical applications
@@ -27,7 +31,6 @@
     haskellPackages.kmonad          # Advanced keyboard configuration (aur)
     android-file-transfer           # Required to connect to Android phones through USB
     android-udev-rules              # Dependency of android-file-transfer
-    # python-pyaml                    # Dependency of my custom colorswitcher python script
     devour                          # Open a new program by hiding the current window (aur)
 
     i3                              # WM
@@ -75,7 +78,6 @@
     # pulseaudioFull
     # bluez
     # bluez-utils
-
 
     # Fonts
     freefont_ttf
