@@ -28,10 +28,11 @@
         # the path to your home.nix.
         modules = [
           ./home-manager/home.nix
-          ./home-manager/terminal.nix
-          ./home-manager/graphical.nix
+          ./home-manager/terminal
+          ./home-manager/graphical
           ./home-manager/xps.nix
-          (import ./home-manager/firefox {enableWorkProfile = true;})
+          # There's probably a more elegant way to do this...
+          (import ./home-manager/graphical/firefox {enableWorkProfile = true;})
         ];
 
         # Optionally use extraSpecialArgs

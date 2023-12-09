@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./zsh
     ./neovim
     ./tmux
+    ./git.nix
   ];
 
   home.packages = with pkgs; [
@@ -14,12 +15,7 @@
     gnumake                         # `make`
     gcc                             # C compiler
 
-    bat                             # Fancy `cat`
-    delta                           # Fancy `diff`
-
     ncdu                            # Curses disk usage explorer
-    git                             # Version control
-    git-lfs                         # Git Large File Storage
     chezmoi                         # Dotfiles manager
     fzf                             # Fuzzy finder
     htop                            # System resources monitoring
@@ -82,6 +78,13 @@
         disabled = false;
         format = "[shlvl $shlvl]($style) ";
       };
+    };
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "gruvbox-${config.colorScheme.kind}";
     };
   };
 
