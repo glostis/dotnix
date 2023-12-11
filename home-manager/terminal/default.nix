@@ -42,18 +42,6 @@
 
     pandoc                          # Document conversion utility (aur)
     bind                            # DNS resolution through `dig`
-
-    ## Stuff that doesn't work
-
-    # Disabled because can't figure out how to start the systemd service when on non-NixOS
-    # docker                          # Containers
-    # docker-compose                  # Containers
-    # docker-buildx
-
-    # Using nix's plocate on non-NixOS is a pain:
-    # - doing `sudo updatedb` doesn't work, because `updatedb` is not on super-user's path (`plocate`'s binaries are only installed on my user's path)
-    # - cannot find a way to activate the systemd service installed by this package, when not on NixOS
-    # mlocate                         # `locate` command
   ];
 
   # Easy directory switching using `z` or `zi`

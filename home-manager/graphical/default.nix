@@ -1,7 +1,36 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  gtkTheme = "Gruvbox-${if ("${config.colorScheme.kind}" == "dark") then "Dark" else "Light"}-BL";
+  preferDark = if ("${config.colorScheme.kind}" == "dark") then true else false;
+
+  # Taken from https://github.com/PassiveLemon/lemonix/blob/fa5b9a2765ae180db717650a43c26d964020c221/pkgs/corrupter/default.nix
+  # because not (yet?) packaged in nixpkgs
+  corrupter = pkgs.buildGoModule rec {
+    pname = "corrupter";
+    version = "1.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "r00tman";
+      repo = "corrupter";
+      # Upstream does provide a release but it cannot be built due to missing go.mod. This commit has it. https://github.com/r00tman/corrupter/issues/15
+      rev = "d7aecbb8b622a2c6fafe7baea5f718b46155be15";
+      sha256 = "sha256-GEia3wZqI/j7/dpBbL1SQLkOXZqEwanKGM4wY9nLIqE=";
+    };
+
+    vendorHash = null;
+
+    meta = with lib; {
+      description = "Simple image glitcher";
+      homepage = "https://github.com/r00tman/corrupter";
+      license = licenses.bsd2;
+      maintainers = with maintainers; [ PassiveLemon ];
+      platforms = [ "x86_64-linux" ];
+    };
+  };
+in
 {
   imports = [
     ./alacritty.nix
+    ./dunst
   ];
 
   home.packages = with pkgs; [
@@ -34,17 +63,9 @@
     devour                          # Open a new program by hiding the current window (aur)
 
     i3                              # WM
-    dunst                           # Notifications dameon
     libnotify                       # Provides `notify-send`
-    # lightdm
-    # lightdm-gtk-greeter             # "Greeter" (login manager)
-    # xinit-xsession                  # Enables the use of ~/.xinitrc as a session in greeter (aur)
-    # i3lock                          # Desktop locker
-    # Need to package myself?
-    # corrupter-bin                   # Script that "corrupts" an image for i3lock bg (aur)
-    # i3-battery-popup-git            # Send notification when battery is low (aur)
+    corrupter                       # Script that "corrupts" an image for i3lock bg (aur)
     autorandr                       # Multi-monitor
-    # picom                           # Compositor (aur) - better handled by the host OS
     rofi-unwrapped                  # Launcher
     unclutter-xfixes                # Remove mouse cursor when idle
     xidlehook                       # Trigger action after some time idle (aur)
@@ -55,9 +76,7 @@
     xplugd                          # Execute action on device plug/unplug (aur)
     rofi-bluetooth                  # Rofi front-end to bluetoothctl (aur)
     networkmanager_dmenu            # Rofi front-end to networkmanager (aur)
-    # uswsusp-git                     # Easier hibernation (suspend to disk) (aur)
     sxhkd                           # Simple X hotkey daemon
-    # sxhkhm-git                      # Simple X hotkey daemon helper menu (rofi) (aur)
 
     xdg-utils                       # Provides command-line tools such as `xdg-open`
 
@@ -95,24 +114,98 @@
 
   fonts.fontconfig.enable = true;
 
-  # xsession = {
+  xsession = {
+    enable = true;
+    windowManager.i3 = {
+      enable = true;
+      config = null;
+      extraConfig = builtins.readFile ./i3/config;
+    };
+    initExtra = ''
+      picom -b
+      ${pkgs.xplugd}/bin/xplugd &
+      ${pkgs.haskellPackages.greenclip}/bin/greenclip daemon &
+      ${pkgs.sxhkd}/bin/sxhkd &
+      if [ -f $HOME/.bin/custom_keyboard_layout ]; then
+          $HOME/.bin/custom_keyboard_layout us laptop &
+      fi
+    '';
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "${gtkTheme}";
+      # Override to an older commit that still contained the Light theme versions
+      # See https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme/issues/42
+      package = pkgs.gruvbox-gtk-theme.overrideAttrs (previousAttrs: {
+        version = "fixed-version-with-light";
+        src = pkgs.fetchFromGitHub {
+          owner = "Fausto-Korpsvart";
+          repo = "Gruvbox-GTK-Theme";
+          rev = "c7a852728717e60a41c2b2fbeac70d2b2269b86c";
+          hash = "sha256-sbSQbyvgd3LOnLXuV2ALNckz2mh0O8KB0d6jzfBT1yA=";
+        };
+      });
+    };
+    gtk2.extraConfig = ''
+      gtk-application-prefer-dark-theme=${toString preferDark}
+    '';
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = preferDark;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = preferDark;
+    iconTheme = {
+      package = pkgs.gruvbox-dark-icons-gtk;
+      name = "gruvbox-dark";
+    };
+  };
+
+  home.pointerCursor = {
+    package = pkgs.graphite-cursors;
+    name = "graphite-${config.colorScheme.kind}";
+    size = 16;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  services.gnome-keyring.enable = true;
+  services.network-manager-applet.enable = true;
+  services.redshift = {
+    enable = true;
+    latitude = 48.5;
+    longitude = 2.3;
+    tray = true;
+    temperature = {
+      day = 5700;
+      night = 3500;
+    };
+  };
+
+  # The service does not work on my machine, so I launch it directly in xsessions.initExtra
+  # services.sxhkd = {
   #   enable = true;
-  #   # Tried to get a display manager to work with my ~/.xinitrc, but failed miserably...
-  #   # initExtra = ''
-  #   #   .  /home/glostis/.xinitrc
-  #   # '';
+  #   extraConfig = builtins.readFile ./sxhkd/sxhkdrc;
   # };
 
-  # To activate later: there are some clashes with ~/.Xresources and ~/.config/gtk-3.0/settings.ini
-
-  # gtk.enable = true;
-  # home.pointerCursor = {
-  #   package = pkgs.graphite-cursors;
-  #   name = "graphite-dark";
-  #   size = 16;
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  # };
+  xdg.configFile."sxhkd/sxhkdrc".source = ./sxhkd/sxhkdrc;
+  services.unclutter = {
+    enable = true;
+    timeout = 5;
+  };
+  services.xidlehook = {
+    enable = true;
+    environment = {
+      sleep_notif_id = "123497";
+    };
+    not-when-audio = true;
+    not-when-fullscreen = true;
+    timers = [
+      {
+        delay = 600;
+        command = "${pkgs.dunst}/bin/dunstify --appname='sleep' --replace=$sleep_notif_id --urgency=critical '⏾ 󰒲' 'About to go to sleep in 10 seconds...'";
+        canceller = "${pkgs.dunst}/bin/dunstify --close=$sleep_notif_id";
+      }
+    ];
+  };
 
   # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
   # programs.alacritty.enable = true;

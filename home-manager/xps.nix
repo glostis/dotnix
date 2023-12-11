@@ -2,10 +2,10 @@
 {
   home.packages = with pkgs; [
     _1password-gui
-    # qgis-ltr
+    qgis-ltr
     slack
     # vpv      # OpenGL issue
-    # ctop     # terminfo issue?
+    ctop     # terminfo issue?
     dive
     act
   ];

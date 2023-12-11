@@ -91,4 +91,7 @@
 
   # Make Home-Manager work better on non-NixOS Linux distributions
   targets.genericLinux.enable = true;
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
 }

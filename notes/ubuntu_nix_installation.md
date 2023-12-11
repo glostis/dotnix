@@ -41,19 +41,19 @@ sudo apt update
 sudo add-apt-repository ppa:aslatter/ppa  # for alacritty
 sudo apt upgrade
 sudo apt install --no-install-recommends \
-    xorg \
-    plocate \
     alacritty \
     apt-file \
-    pulseaudio \
     bluez \
-    picom \
-    seahorse \
     i3lock \
     lightdm \
     lightdm-gtk-greeter \
-    network-manager-gnome \
-    policykit-1-gnome
+    network-manager \
+    picom \
+    plocate \
+    policykit-1-gnome \
+    pulseaudio \
+    seahorse \
+    xorg
 sudo apt remove command-not-found xdg-desktop-portal
 ```
 *Note: `xdg-desktop-portal` is removed due to [creating slow startup issues of applications like Firefox](https://github.com/flatpak/xdg-desktop-portal/issues/1032)*
@@ -71,6 +71,8 @@ sudo systemctl restart NetworkManager
 sudo systemctl disable --now systemd-networkd.service systemd-networkd.socket networkd-dispatcher.service && sudo systemctl restart NetworkManager
 sudo apt purge netplan netplan.io -y
 ```
+
+### Install Docker
 
 ## TODO list
 
