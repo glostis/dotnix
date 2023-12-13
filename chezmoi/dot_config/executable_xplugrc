@@ -22,3 +22,7 @@ if [ "$1" = "keyboard" ]; then
     esac
     ${HOME}/.bin/custom_keyboard_layout us ${kb_type}
 fi
+
+if [ "$1" = "display" ]; then
+    autorandr --change
+fi

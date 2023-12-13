@@ -23,6 +23,8 @@
     ignores = [
       ".ipynb_checkpoints/"
       "__pycache__/"
+      ".direnv/"
+      ".envrc"
     ];
     includes = [
       {

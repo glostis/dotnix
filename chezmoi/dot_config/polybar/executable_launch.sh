@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Wait until already running bar instances have been shut down
-while pgrep -x polybar >/dev/null; do killall -q polybar; sleep 0.1; done
+while pgrep polybar >/dev/null; do pkill polybar; sleep 0.1; done
 
 net_interface=$(ip link | grep '^[0-9]' | sed 's/^.* \([a-z][a-z0-9]*\): .*$/\1/' | grep '^wl')
 

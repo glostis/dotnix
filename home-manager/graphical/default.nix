@@ -65,7 +65,6 @@ in
     i3                              # WM
     libnotify                       # Provides `notify-send`
     corrupter                       # Script that "corrupts" an image for i3lock bg (aur)
-    autorandr                       # Multi-monitor
     rofi-unwrapped                  # Launcher
     unclutter-xfixes                # Remove mouse cursor when idle
     xidlehook                       # Trigger action after some time idle (aur)
@@ -167,7 +166,6 @@ in
     x11.enable = true;
   };
 
-  services.gnome-keyring.enable = true;
   services.network-manager-applet.enable = true;
   services.redshift = {
     enable = true;
@@ -206,6 +204,21 @@ in
       }
     ];
   };
+
+  programs.autorandr = {
+    enable = true;
+    hooks.postswitch."myswitch" = ''
+      # See https://github.com/phillipberndt/autorandr/issues/326#issuecomment-1426853781 for why this dirty `i3-msg` hack...
+      ${pkgs.i3}/bin/i3-msg exec $HOME/.config/polybar/launch.sh
+
+      ${pkgs.feh}/bin/feh --no-fehbg --randomize --bg-fill $HOME/Pictures/Wallpapers/*
+      ${pkgs.dunst}/bin/dunstify --appname="display" "Display profile" "$AUTORANDR_CURRENT_PROFILE"
+    '';
+  };
+  xdg.configFile."autorandr/settings.ini".text = ''
+    [config]
+    skip-options=gamma
+  '';
 
   # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
   # programs.alacritty.enable = true;
