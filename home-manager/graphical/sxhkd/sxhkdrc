@@ -14,17 +14,13 @@ super + {Left,Down,Up,Right}
 super + alt + {h,l}
     i3-msg -q resize {shrink,grow} width 10 px
 
+# i3 resize
+super + alt + {j,k}
+    i3-msg -q resize {shrink,grow} height 10 px
+
 # emoji picker
 super + shift + j
     rofimoji
-
-# Paste markdown link
-super + shift + l
-    paste_markdown_link
-
-# Toggle Google Chrome side panel
-super + alt + s
-    toggle_chrome_sidepanel
 
 # i3 move workspace to other output/screen/monitor
 super + x
@@ -105,7 +101,7 @@ XF86Audio{Next,Prev}
 # Uses https://github.com/Hummer12007/brightnessctl
 # Need to add the user to the `video` group
 XF86MonBrightness{Up,Down}
-    brightnessctl s {+10%,10%-}
+    brightnessctl s {+5%,5%-}
 
 # Toggle on/off {wifi,VPN,bluetooth}
 super + {n,v,b}
@@ -119,12 +115,8 @@ super + shift + {n,b}
 super + {_,shift +} Return
     {dunstctl close-all,dunst-pause}
 
-super + t
-    python /home/glostis/.config/colorschemes/switcher.py
-
-# sxhkd rofi helper menu
-super + shift + s
-    sxhkhmenu
+super + {_,shift +} t
+    day-n-night {day,night}
 
 super + s
     i3-msg -q split toggle

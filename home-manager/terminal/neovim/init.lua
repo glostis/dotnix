@@ -81,7 +81,7 @@ key_mapper("n", "<leader>z", ":ZoomWinTabToggle<CR>")
 
 -- Mappings to yank to system clipboard
 key_mapper("n", "<leader>y", '"+y')
-key_mapper("n", "<leader>ya", 'magg"+yG`a') -- "yank all"
+key_mapper("n", "<leader>yA", 'magg"+yG`a') -- "yank all"
 key_mapper("v", "<leader>y", '"+y')
 key_mapper("n", "<leader>Y", '"+Y')
 key_mapper("v", "<leader>Y", '"+Y')

@@ -5,6 +5,7 @@
     ./neovim
     ./tmux
     ./git.nix
+    ./direnv.nix
   ];
 
   home.packages = with pkgs; [
@@ -61,6 +62,9 @@
       python = {
         symbol = " ";
       };
+      package = {
+        disabled = true;
+      };
       shlvl = {
         threshold = 3;
         disabled = false;
@@ -99,9 +103,13 @@
 
   programs.bash.enable = true;
 
-  programs.direnv = {
-    enable = true;
-  };
+  xdg.configFile."pypoetry/config.toml".text = /* toml */ ''
+    [virtualenvs]
+    in-project = true
+    [virtualenvs.options]
+    always-copy = true
+  '';
+
 
   programs.gh.enable = true;
 

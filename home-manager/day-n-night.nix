@@ -18,26 +18,36 @@
   home.packages = with pkgs; [
     (writeShellApplication {
       name = "day-n-night";
-      runtimeInputs = with pkgs; [ home-manager gawk neovim-remote xorg.xrdb i3 ];
+      runtimeInputs = with pkgs; [ home-manager gawk neovim-remote xorg.xrdb i3 tmux ];
       text = ''
-        hm_gen=$(home-manager generations | head -n 1 | awk '{print $7}')
-        if [ -f "$hm_gen"/specialisation/light/activate ]; then
-          "$hm_gen"/specialisation/light/activate
-        else
-          home-manager --flake ~/dotfiles switch
-        fi
+        for gen in $(home-manager generations | awk '{print $5","$7}'); do
+          # gen_id=$(echo "$gen" | cut -d, -f1)
+          gen_path=$(echo "$gen" | cut -d, -f2)
+          if [ -f "$gen_path"/specialisation/light/activate ]; then
+            if [ "$1" = "day" ]; then
+              dunstify "G'day mate"
+              "$gen_path"/specialisation/light/activate
+            elif [ "$1" = "night" ]; then
+              dunstify "Good night"
+              "$gen_path"/activate
+            fi
+            break
+          fi
+        done
 
         # Use neovim-remote to re-source the colorshcheme.lua module in all existing neovim instances
         for s in $(nvr --serverlist); do
-            nvr --nostart --servername "$s" -c "source $HOME/.config/nvim/lua/colorscheme.lua"
+            nvr --nostart --servername "$s" -c "source $HOME/.config/nvim/lua/colorscheme.lua" &
         done
 
         # Relaunch xrdb and i3
-        xrdb "$HOME"/.Xresources && i3-msg reload
+        xrdb "$HOME"/.Xresources && i3-msg reload &
 
         # The polybar bars are launched using `--reload` which auto-reloads them when the
         # config changes, so touching the config to "change" it
         touch "$HOME"/.config/polybar/config.ini
+
+        tmux source-file "$HOME"/.config/tmux/tmux.conf &
       '';
     })
   ];

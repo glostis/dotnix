@@ -31,6 +31,7 @@ in
   imports = [
     ./alacritty.nix
     ./dunst
+    ./sxhkd
   ];
 
   home.packages = with pkgs; [
@@ -65,7 +66,6 @@ in
     i3                              # WM
     libnotify                       # Provides `notify-send`
     corrupter                       # Script that "corrupts" an image for i3lock bg (aur)
-    rofi-unwrapped                  # Launcher
     unclutter-xfixes                # Remove mouse cursor when idle
     xidlehook                       # Trigger action after some time idle (aur)
     # polybarFull comes with i3 support
@@ -75,7 +75,6 @@ in
     xplugd                          # Execute action on device plug/unplug (aur)
     rofi-bluetooth                  # Rofi front-end to bluetoothctl (aur)
     networkmanager_dmenu            # Rofi front-end to networkmanager (aur)
-    sxhkd                           # Simple X hotkey daemon
 
     xdg-utils                       # Provides command-line tools such as `xdg-open`
 
@@ -178,13 +177,6 @@ in
     };
   };
 
-  # The service does not work on my machine, so I launch it directly in xsessions.initExtra
-  # services.sxhkd = {
-  #   enable = true;
-  #   extraConfig = builtins.readFile ./sxhkd/sxhkdrc;
-  # };
-
-  xdg.configFile."sxhkd/sxhkdrc".source = ./sxhkd/sxhkdrc;
   services.unclutter = {
     enable = true;
     timeout = 5;
@@ -219,6 +211,11 @@ in
     [config]
     skip-options=gamma
   '';
+
+  programs.rofi = {
+    enable = true;
+    theme = "gruvbox-${config.colorScheme.kind}";
+  };
 
   # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
   # programs.alacritty.enable = true;

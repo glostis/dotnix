@@ -1,4 +1,0 @@
-configuration {
- font: "MesloLGS NF Regular 12";
-}
-@theme "gruvbox-dark.rasi"
