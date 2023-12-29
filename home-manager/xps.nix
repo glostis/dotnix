@@ -8,6 +8,8 @@
     ctop     # terminfo issue?
     dive
     act
+
+    nodejs_21  # Needed for "Open in Chrome/Firefox" browser extension
   ];
 
   # `awscli` seems very long to install, disabling for now

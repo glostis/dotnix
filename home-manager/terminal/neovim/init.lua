@@ -55,6 +55,8 @@ vim.g.gh_line_blame_map_default = 0
 -- A gh_repo_map_default variable is missing:
 -- https://github.com/ruanyl/vim-gh-line/blob/fbf368bdfad7e5478009a6dc62559e6b2c72d603/plugin/vim-gh-line.vim#L37-L39
 vim.g.gh_repo_map = "_"
+-- Nix+Ubuntu hell - don't ask...
+vim.g.gh_open_command = 'LD_LIBRARY_PATH="" google-chrome-stable '
 
 -- Remove zoomwintab default keymaps
 vim.g.zoomwintab_remap = 0
@@ -105,11 +107,14 @@ key_mapper("n", "<leader>tr", ":Telescope resume<CR>")
 key_mapper("n", "<leader>tb", ":Telescope buffers<CR>")
 
 -- Trouble (diagnostics window) mappings
-key_mapper("n", "<leader>dd", "<cmd>TroubleToggle<cr>")
+key_mapper("n", "<leader>dl", "<cmd>TroubleToggle<cr>")
 key_mapper("n", "<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
-key_mapper("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>")
-key_mapper("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>")
+-- key_mapper("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>")
+-- key_mapper("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>")
 key_mapper("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
+vim.keymap.set("n", "<leader>dd", function()
+  vim.diagnostic.open_float({ source = true })
+end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
 
 require("colorscheme")
 
@@ -309,7 +314,7 @@ local on_attach = function(client, bufnr)
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
   -- nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
   nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-  nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+  -- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
   nmap("<leader>s", ":SymbolsOutline<CR>", "Open symbols outline")

@@ -194,6 +194,14 @@ in
         command = "${pkgs.dunst}/bin/dunstify --appname='sleep' --replace=$sleep_notif_id --urgency=critical '⏾ 󰒲' 'About to go to sleep in 10 seconds...'";
         canceller = "${pkgs.dunst}/bin/dunstify --close=$sleep_notif_id";
       }
+      {
+        delay = 10;
+        command = "${pkgs.dunst}/bin/dunstify --close=$sleep_notif_id && ${config.home.homeDirectory}/.bin/farewell Lock && xset dpms force off";
+      }
+      {
+        delay = 600;
+        command = "systemctl suspend";
+      }
     ];
   };
 

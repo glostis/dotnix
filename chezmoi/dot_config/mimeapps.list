@@ -1,9 +1,9 @@
 [Default Applications]
-text/html=firefox.desktop
-x-scheme-handler/http=custom-open-url.desktop
-x-scheme-handler/https=custom-open-url.desktop
-x-scheme-handler/about=firefox.desktop
-x-scheme-handler/unknown=firefox.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
 application/pdf=mupdf.desktop
 text/plain=nvim.desktop
 text/x-shellscript=nvim.desktop

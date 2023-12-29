@@ -40,6 +40,7 @@
     csvkit                          # CSV manipulation on the command-line
     pdftk                           # PDF manipulation on the command-line
     shellcheck                      # Shell (bash) file linter/LSP
+    gh
 
     pandoc                          # Document conversion utility (aur)
     bind                            # DNS resolution through `dig`
@@ -101,7 +102,12 @@
     ];
   };
 
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    profileExtra = /* bash */ ''
+      [[ -f ${config.home.homeDirectory}/.secrets ]] && . ${config.home.homeDirectory}/.secrets
+    '';
+  };
 
   xdg.configFile."pypoetry/config.toml".text = /* toml */ ''
     [virtualenvs]
@@ -110,8 +116,6 @@
     always-copy = true
   '';
 
-
-  programs.gh.enable = true;
 
   # Need to figure out how to plug-in the index cache
   # programs.nix-index.enable = true;
