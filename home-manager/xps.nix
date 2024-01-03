@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     _1password-gui
-    qgis-ltr
+    qgis
     slack
     # vpv      # OpenGL issue
     ctop     # terminfo issue?

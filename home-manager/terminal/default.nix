@@ -22,6 +22,7 @@
     htop                            # System resources monitoring
     imagemagick                     # Image manipulation commands
     jq                              # JSON parser
+    gron                            # Make JSON greppable!
     neofetch                        # System information
     ranger                          # File browser (aur)
     tree                            # Recursive directory listing
