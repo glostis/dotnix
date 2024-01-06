@@ -1,6 +1,18 @@
 { config, pkgs, ... }:
 {
 
+  editorconfig = {
+    enable = true;
+    settings = {
+      # Force tab style for python files, because in some cases vim-sleuth's auto-detection goes crazy
+      # (for example in python files that contain lots of multiline strings)
+      "*.py" = {
+        indent_style = "space";
+        indent_size = 4;
+      };
+    };
+  };
+
   xdg.configFile."nvim/lua/colorscheme.lua".text = ''
     -- Colorscheme configuration
     vim.cmd([[
