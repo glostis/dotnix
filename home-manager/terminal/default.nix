@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./zsh
     ./neovim
@@ -9,42 +12,42 @@
   ];
 
   home.packages = with pkgs; [
-    xclip                           # clipboard
-    xdotool                         # xorg
-    ntfs3g                          # For NTFS filestystem (eg USB sticks)
-    trash-cli                       # Use trash-put instead of rm to keep a version of deleted files
-    gnumake                         # `make`
-    gcc                             # C compiler
+    xclip # clipboard
+    xdotool # xorg
+    ntfs3g # For NTFS filestystem (eg USB sticks)
+    trash-cli # Use trash-put instead of rm to keep a version of deleted files
+    gnumake # `make`
+    gcc # C compiler
 
-    ncdu                            # Curses disk usage explorer
-    chezmoi                         # Dotfiles manager
-    fzf                             # Fuzzy finder
-    htop                            # System resources monitoring
-    imagemagick                     # Image manipulation commands
-    jq                              # JSON parser
-    gron                            # Make JSON greppable!
-    neofetch                        # System information
-    ranger                          # File browser (aur)
-    tree                            # Recursive directory listing
-    zip                             # Archiving
-    unzip                           # Unarchiving
-    wget                            # File download
+    ncdu # Curses disk usage explorer
+    chezmoi # Dotfiles manager
+    fzf # Fuzzy finder
+    htop # System resources monitoring
+    imagemagick # Image manipulation commands
+    jq # JSON parser
+    gron # Make JSON greppable!
+    neofetch # System information
+    ranger # File browser (aur)
+    tree # Recursive directory listing
+    zip # Archiving
+    unzip # Unarchiving
+    wget # File download
     python310
-    nodePackages.fixjson            # JSON formatter (aur)
-    entr                            # run arbitrary commands when files change
-    bc                              # Command-line calculations
-    w3m                             # Text-based web browser
-    pipx                            # Install executables in python venvs from PyPI
-    parallel                        # Runs commands in parallel
-    usbutils                        # Provides `lsusb` to show connected USB devices
-    gpsbabel                        # GPS file format swiss-knife
-    csvkit                          # CSV manipulation on the command-line
-    pdftk                           # PDF manipulation on the command-line
-    shellcheck                      # Shell (bash) file linter/LSP
+    nodePackages.fixjson # JSON formatter (aur)
+    entr # run arbitrary commands when files change
+    bc # Command-line calculations
+    w3m # Text-based web browser
+    pipx # Install executables in python venvs from PyPI
+    parallel # Runs commands in parallel
+    usbutils # Provides `lsusb` to show connected USB devices
+    gpsbabel # GPS file format swiss-knife
+    csvkit # CSV manipulation on the command-line
+    pdftk # PDF manipulation on the command-line
+    shellcheck # Shell (bash) file linter/LSP
     gh
 
-    pandoc                          # Document conversion utility (aur)
-    bind                            # DNS resolution through `dig`
+    pandoc # Document conversion utility (aur)
+    bind # DNS resolution through `dig`
   ];
 
   # Easy directory switching using `z` or `zi`
@@ -105,18 +108,25 @@
 
   programs.bash = {
     enable = true;
-    profileExtra = /* bash */ ''
-      [[ -f ${config.home.homeDirectory}/.secrets ]] && . ${config.home.homeDirectory}/.secrets
-    '';
+    profileExtra =
+      /*
+      bash
+      */
+      ''
+        [[ -f ${config.home.homeDirectory}/.secrets ]] && . ${config.home.homeDirectory}/.secrets
+      '';
   };
 
-  xdg.configFile."pypoetry/config.toml".text = /* toml */ ''
-    [virtualenvs]
-    in-project = true
-    [virtualenvs.options]
-    always-copy = true
-  '';
-
+  xdg.configFile."pypoetry/config.toml".text =
+    /*
+    toml
+    */
+    ''
+      [virtualenvs]
+      in-project = true
+      [virtualenvs.options]
+      always-copy = true
+    '';
 
   # Need to figure out how to plug-in the index cache
   # programs.nix-index.enable = true;

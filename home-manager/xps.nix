@@ -1,15 +1,14 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     _1password-gui
     qgis
     slack
     # vpv      # OpenGL issue
-    ctop     # terminfo issue?
+    ctop # terminfo issue?
     dive
     act
 
-    nodejs_21  # Needed for "Open in Chrome/Firefox" browser extension
+    nodejs_21 # Needed for "Open in Chrome/Firefox" browser extension
   ];
 
   # `awscli` seems very long to install, disabling for now

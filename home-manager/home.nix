@@ -1,5 +1,8 @@
-{ config, nixpkgsflake, ... }:
 {
+  config,
+  nixpkgsflake,
+  ...
+}: {
   imports = [
     ./day-n-night.nix
   ];
@@ -53,7 +56,7 @@
     PARALLEL_HOME = "${config.xdg.configHome}/parallel";
 
     # When set to 1, `z` will print the matched directory before navigating to it.
-    _ZO_ECHO=1;
+    _ZO_ECHO = 1;
 
     # `less` with colors
     # Taken from https://wiki.archlinux.org/title/Color_output_in_console#Environment_variables
@@ -66,22 +69,22 @@
   };
 
   home.shellAliases = {
-      # Need to re-do the pyright shenanigans for nvim, but without pyenv
-      v = "nvim";
-      x = "exit";
-      py = "ipython";
-      open = "xdg-open";
-      copy = "xclip -selection c";
-      diff = "diff --color=auto";
-      grep = "grep --color=auto";
-      l = "eza -la";
-      rm = "echo Use trash-put instead. Or use 'backslash rm' if you really want to.; false";
-      tp = "trash-put";
-      tl = "trash-list";
-      ranger = "TERM=screen-256color ranger";
-      cm = "chezmoi --source ${config.home.homeDirectory}/dotfiles";
-      hm = "home-manager --flake ${config.home.homeDirectory}/dotfiles";
-    };
+    # Need to re-do the pyright shenanigans for nvim, but without pyenv
+    v = "nvim";
+    x = "exit";
+    py = "ipython";
+    open = "xdg-open";
+    copy = "xclip -selection c";
+    diff = "diff --color=auto";
+    grep = "grep --color=auto";
+    l = "eza -la";
+    rm = "echo Use trash-put instead. Or use 'backslash rm' if you really want to.; false";
+    tp = "trash-put";
+    tl = "trash-list";
+    ranger = "TERM=screen-256color ranger";
+    cm = "chezmoi --source ${config.home.homeDirectory}/dotfiles";
+    hm = "home-manager --flake ${config.home.homeDirectory}/dotfiles";
+  };
 
   # Make `nix run np#<some-package>` use the same nixpkgs as the one used by this flake
   nix.registry.np.flake = nixpkgsflake;

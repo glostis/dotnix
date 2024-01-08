@@ -12,32 +12,40 @@
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { nixpkgs, home-manager, nurpkgs, nix-colors, ... } @ inputs:
-    let
-      system = "x86_64-linux";
-    in {
-      homeConfigurations."glostis@fr-glostis-xps" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nurpkgs,
+    nix-colors,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+  in {
+    homeConfigurations."glostis@fr-glostis-xps" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
         system = system;
-          overlays = [
-            nurpkgs.overlay
-          ];
-        };
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home-manager/home.nix
-          ./home-manager/terminal
-          ./home-manager/graphical
-          ./home-manager/xps.nix
-          # There's probably a more elegant way to do this...
-          (import ./home-manager/graphical/firefox {enableWorkProfile = true;})
+        overlays = [
+          nurpkgs.overlay
         ];
+      };
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-        extraSpecialArgs = { nixpkgsflake = nixpkgs; inherit nix-colors; };
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [
+        ./home-manager/home.nix
+        ./home-manager/terminal
+        ./home-manager/graphical
+        ./home-manager/xps.nix
+        # There's probably a more elegant way to do this...
+        (import ./home-manager/graphical/firefox {enableWorkProfile = true;})
+      ];
+
+      # Optionally use extraSpecialArgs
+      # to pass through arguments to home.nix
+      extraSpecialArgs = {
+        nixpkgsflake = nixpkgs;
+        inherit nix-colors;
       };
     };
+  };
 }

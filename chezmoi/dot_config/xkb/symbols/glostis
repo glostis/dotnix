@@ -64,6 +64,6 @@ xkb_symbols "hacks" {
         symbols[Group1]= [ colon, semicolon, degree, degree ]
     };
     key <AE11> {
-        symbols[Group1]= [ minus, underscore, emdash, emdash]
+        symbols[Group1]= [ minus, underscore, emdash, plusminus]
     };
 };

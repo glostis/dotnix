@@ -1,7 +1,18 @@
-{ config, pkgs, lib, ... }:
-let
-  gtkTheme = "Gruvbox-${if ("${config.colorScheme.kind}" == "dark") then "Dark" else "Light"}-BL";
-  preferDark = if ("${config.colorScheme.kind}" == "dark") then true else false;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  gtkTheme = "Gruvbox-${
+    if ("${config.colorScheme.kind}" == "dark")
+    then "Dark"
+    else "Light"
+  }-BL";
+  preferDark =
+    if ("${config.colorScheme.kind}" == "dark")
+    then true
+    else false;
 
   # Taken from https://github.com/PassiveLemon/lemonix/blob/fa5b9a2765ae180db717650a43c26d964020c221/pkgs/corrupter/default.nix
   # because not (yet?) packaged in nixpkgs
@@ -22,12 +33,11 @@ let
       description = "Simple image glitcher";
       homepage = "https://github.com/r00tman/corrupter";
       license = licenses.bsd2;
-      maintainers = with maintainers; [ PassiveLemon ];
-      platforms = [ "x86_64-linux" ];
+      maintainers = with maintainers; [PassiveLemon];
+      platforms = ["x86_64-linux"];
     };
   };
-in
-{
+in {
   imports = [
     ./alacritty.nix
     ./dunst
@@ -35,48 +45,47 @@ in
   ];
 
   home.packages = with pkgs; [
-
     ## Graphical applications
 
     # virtualbox                      # VM
-    arandr                          # GUI to xrandr, to configure monitors
-    vlc                             # Video viewer
-    redshift                        # Turns screen to red to avoid blue light
-    libreoffice-fresh               # Bureautique
-    bitwarden                       # Password manager GUI
-    gthumb                          # Quick photo editing
-    gimp                            # Not-so-quick photo editing
-    mupdf                           # pdf viewer
+    arandr # GUI to xrandr, to configure monitors
+    vlc # Video viewer
+    redshift # Turns screen to red to avoid blue light
+    libreoffice-fresh # Bureautique
+    bitwarden # Password manager GUI
+    gthumb # Quick photo editing
+    gimp # Not-so-quick photo editing
+    mupdf # pdf viewer
     # spotify                         # Music streaming (aur)
-    rhythmbox                       # Local music player
-    gparted                         # GUI for partioning disks and writing filesystems
-    foliate                         # e-book reader
+    rhythmbox # Local music player
+    gparted # GUI for partioning disks and writing filesystems
+    foliate # e-book reader
 
     ## Window manager
-    feh                             # Background image setter
-    maim                            # Screenshot
-    rofi-screenshot                 # Take screencaptures (.mp4 or .gif) (aur)
-    rofimoji                        # Provides an emoji picker using rofi
-    haskellPackages.greenclip       # Rofi-based clipboard manager (aur)
-    haskellPackages.kmonad          # Advanced keyboard configuration (aur)
-    android-file-transfer           # Required to connect to Android phones through USB
-    android-udev-rules              # Dependency of android-file-transfer
-    devour                          # Open a new program by hiding the current window (aur)
+    feh # Background image setter
+    maim # Screenshot
+    rofi-screenshot # Take screencaptures (.mp4 or .gif) (aur)
+    rofimoji # Provides an emoji picker using rofi
+    haskellPackages.greenclip # Rofi-based clipboard manager (aur)
+    haskellPackages.kmonad # Advanced keyboard configuration (aur)
+    android-file-transfer # Required to connect to Android phones through USB
+    android-udev-rules # Dependency of android-file-transfer
+    devour # Open a new program by hiding the current window (aur)
 
-    i3                              # WM
-    libnotify                       # Provides `notify-send`
-    corrupter                       # Script that "corrupts" an image for i3lock bg (aur)
-    unclutter-xfixes                # Remove mouse cursor when idle
-    xidlehook                       # Trigger action after some time idle (aur)
+    i3 # WM
+    libnotify # Provides `notify-send`
+    corrupter # Script that "corrupts" an image for i3lock bg (aur)
+    unclutter-xfixes # Remove mouse cursor when idle
+    xidlehook # Trigger action after some time idle (aur)
     # polybarFull comes with i3 support
     # This could also be done with just `polybar` with an override to add `i3Support = true;`,
     # but then polybar gets compiled locally which is a bit of a pain.
-    polybarFull                     # Status bar
-    xplugd                          # Execute action on device plug/unplug (aur)
-    rofi-bluetooth                  # Rofi front-end to bluetoothctl (aur)
-    networkmanager_dmenu            # Rofi front-end to networkmanager (aur)
+    polybarFull # Status bar
+    xplugd # Execute action on device plug/unplug (aur)
+    rofi-bluetooth # Rofi front-end to bluetoothctl (aur)
+    networkmanager_dmenu # Rofi front-end to networkmanager (aur)
 
-    xdg-utils                       # Provides command-line tools such as `xdg-open`
+    xdg-utils # Provides command-line tools such as `xdg-open`
 
     ## Hardware
     # Backlight

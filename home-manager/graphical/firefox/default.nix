@@ -1,17 +1,12 @@
-{enableWorkProfile ? false}:
-{ pkgs, ... }:
-
-let
+{enableWorkProfile ? false}: {pkgs, ...}: let
   firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
-in
-{
-  programs.firefox =
-  let
+in {
+  programs.firefox = let
     extensions = with firefox-addons; [
-        ublock-origin
-        darkreader
-        tree-style-tab
-        vimium
+      ublock-origin
+      darkreader
+      tree-style-tab
+      vimium
     ];
     extraConfig = builtins.readFile ./user.js;
     userChrome = builtins.readFile ./userChrome.css;
@@ -20,27 +15,34 @@ in
       default = "kagi";
       force = true;
       engines.kagi.urls = [
-        { template = "https://kagi.com/search?q={searchTerms}"; }
+        {template = "https://kagi.com/search?q={searchTerms}";}
       ];
     };
-  in
-  {
+  in {
     enable = true;
     profiles = {
       perso = {
         isDefault = !enableWorkProfile;
         id = 1;
-        extensions = with firefox-addons; extensions ++ [
-          bitwarden
-        ];
+        extensions = with firefox-addons;
+          extensions
+          ++ [
+            bitwarden
+          ];
         inherit extraConfig search userChrome userContent;
       };
       # This hack makes sure that `profiles.work` does not exist if not enableWorkProfile
-      ${if enableWorkProfile then "work" else null} = {
+      ${
+        if enableWorkProfile
+        then "work"
+        else null
+      } = {
         isDefault = true;
-        extensions = with firefox-addons; extensions ++ [
-          onepassword-password-manager
-        ];
+        extensions = with firefox-addons;
+          extensions
+          ++ [
+            onepassword-password-manager
+          ];
         inherit extraConfig search userChrome userContent;
       };
     };

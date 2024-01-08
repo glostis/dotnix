@@ -1,5 +1,10 @@
-{ config, pkgs, nix-colors, lib, ... }:
 {
+  config,
+  pkgs,
+  nix-colors,
+  lib,
+  ...
+}: {
   imports = [
     nix-colors.homeManagerModules.default
   ];
@@ -7,18 +12,18 @@
   colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
 
   xresources.properties = {
-    background     = "#${config.colorScheme.colors.base00}";
+    background = "#${config.colorScheme.colors.base00}";
     background-alt = "#${config.colorScheme.colors.base01}";
-    foreground     = "#${config.colorScheme.colors.base06}";
-    border         = "#${config.colorScheme.colors.base04}";
-    border-alt     = "#${config.colorScheme.colors.base00}";
-    orange         = "#${config.colorScheme.colors.base09}";
+    foreground = "#${config.colorScheme.colors.base06}";
+    border = "#${config.colorScheme.colors.base04}";
+    border-alt = "#${config.colorScheme.colors.base00}";
+    orange = "#${config.colorScheme.colors.base09}";
   };
 
   home.packages = with pkgs; [
     (writeShellApplication {
       name = "day-n-night";
-      runtimeInputs = with pkgs; [ home-manager gawk neovim-remote xorg.xrdb i3 tmux ];
+      runtimeInputs = with pkgs; [home-manager gawk neovim-remote xorg.xrdb i3 tmux];
       text = ''
         for gen in $(home-manager generations | awk '{print $5","$7}'); do
           # gen_id=$(echo "$gen" | cut -d, -f1)

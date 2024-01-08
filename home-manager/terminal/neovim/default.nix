@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   editorconfig = {
     enable = true;
     settings = {
@@ -137,6 +139,7 @@
       ruff-lsp
       black
       stylua
+      alejandra
       docker-compose-language-service
       dockerfile-language-server-nodejs
     ];

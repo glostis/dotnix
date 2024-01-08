@@ -267,6 +267,7 @@ null_ls.setup({
     null_ls.builtins.formatting.ruff_format,
     null_ls.builtins.formatting.json_tool,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.alejandra,
   },
   on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>b", function()

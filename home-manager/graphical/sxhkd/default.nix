@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
-    sxhkd  # Simple X hotkey daemon
+    sxhkd # Simple X hotkey daemon
   ];
 
   # The service does not work on my machine, so I launch it directly in xsessions.initExtra

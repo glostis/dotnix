@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     git-lfs
   ];
@@ -11,11 +14,15 @@
       co = "checkout";
       sub = "submodule update";
     };
-    delta = {  # Fancy `git diff`
+    delta = {
+      # Fancy `git diff`
       enable = true;
       options = {
         navigate = true;
-        light = if ("${config.colorScheme.kind}" == "light") then true else false;
+        light =
+          if ("${config.colorScheme.kind}" == "light")
+          then true
+          else false;
         syntax-theme = "gruvbox-${config.colorScheme.kind}";
         side-by-side = true;
       };
