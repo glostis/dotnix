@@ -98,8 +98,6 @@
       which-key-nvim
       # Markdown previewer in the browser
       markdown-preview-nvim
-      # Github Copilot
-      copilot-vim
 
       # ~~~~~~~~ LSP ~~~~~~~~
       nvim-lspconfig

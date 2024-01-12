@@ -6,9 +6,6 @@
     # vpv      # OpenGL issue
     ctop # terminfo issue?
     dive
-    act
-
-    nodejs_21 # Needed for "Open in Chrome/Firefox" browser extension
   ];
 
   # `awscli` seems very long to install, disabling for now
@@ -19,7 +16,7 @@
 
   services.gnome-keyring = {
     enable = true;
-    components = ["pkcs11" "secrets" "ssh"];
+    components = ["pkcs11" "secrets"];
   };
   services.ssh-agent.enable = true;
 }

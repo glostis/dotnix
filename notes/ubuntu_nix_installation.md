@@ -44,6 +44,7 @@ sudo apt install --no-install-recommends \
     alacritty \
     apt-file \
     bluez \
+    pulseaudio-module-bluetooth \
     i3lock \
     lightdm \
     lightdm-gtk-greeter \
