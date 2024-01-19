@@ -138,6 +138,7 @@
       black
       stylua
       alejandra
+      sqlfluff
       docker-compose-language-service
       dockerfile-language-server-nodejs
     ];

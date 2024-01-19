@@ -268,6 +268,9 @@ null_ls.setup({
     null_ls.builtins.formatting.json_tool,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.alejandra,
+    null_ls.builtins.formatting.sqlfluff.with({
+      extra_args = { "--dialect", "postgres" },
+    }),
   },
   on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>b", function()
