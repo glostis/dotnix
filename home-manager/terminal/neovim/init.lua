@@ -481,3 +481,5 @@ require("ibl").setup()
 require("which-key").setup()
 
 require("trouble").setup({ mode = "document_diagnostics" })
+
+require("nvim-navbuddy").setup({ lsp = { auto_attach = true } })

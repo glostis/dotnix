@@ -129,6 +129,10 @@
       nvim-treesitter-textobjects
       nvim-treesitter-context
       playground
+
+      nvim-navbuddy
+      nvim-navic # Dep of navbuddy
+      nui-nvim # Dep of navbuddy
     ];
     extraPackages = with pkgs; [
       nodePackages.pyright
