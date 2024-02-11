@@ -58,7 +58,7 @@ in {
     mupdf # pdf viewer
     # spotify                         # Music streaming (aur)
     rhythmbox # Local music player
-    gparted # GUI for partioning disks and writing filesystems
+    # gparted # GUI for partioning disks and writing filesystems
     foliate # e-book reader
 
     ## Window manager
