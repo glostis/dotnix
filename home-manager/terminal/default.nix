@@ -32,7 +32,7 @@
     zip # Archiving
     unzip # Unarchiving
     wget # File download
-    python310
+    # python310
     nodePackages.fixjson # JSON formatter (aur)
     entr # run arbitrary commands when files change
     bc # Command-line calculations
@@ -81,7 +81,7 @@
   programs.bat = {
     enable = true;
     config = {
-      theme = "gruvbox-${config.colorScheme.kind}";
+      theme = "gruvbox-${config.colorScheme.variant}";
     };
   };
 

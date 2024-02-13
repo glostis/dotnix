@@ -5,12 +5,12 @@
   ...
 }: let
   gtkTheme = "Gruvbox-${
-    if ("${config.colorScheme.kind}" == "dark")
+    if ("${config.colorScheme.variant}" == "dark")
     then "Dark"
     else "Light"
   }-BL";
   preferDark =
-    if ("${config.colorScheme.kind}" == "dark")
+    if ("${config.colorScheme.variant}" == "dark")
     then true
     else false;
 
@@ -168,7 +168,7 @@ in {
 
   home.pointerCursor = {
     package = pkgs.graphite-cursors;
-    name = "graphite-${config.colorScheme.kind}";
+    name = "graphite-${config.colorScheme.variant}";
     size = 16;
     gtk.enable = true;
     x11.enable = true;
@@ -231,7 +231,7 @@ in {
 
   programs.rofi = {
     enable = true;
-    theme = "gruvbox-${config.colorScheme.kind}";
+    theme = "gruvbox-${config.colorScheme.variant}";
   };
 
   # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.

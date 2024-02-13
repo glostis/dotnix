@@ -11,6 +11,11 @@
   # `awscli` seems very long to install, disabling for now
   # programs.awscli.enable = true;
 
+  home.sessionVariables = {
+    # Make `pipx` use the system python instead of the nix python
+    PIPX_DEFAULT_PYTHON = "/bin/python3";
+  };
+
   # Easy switching between different AWS profiles using `assume`
   programs.granted.enable = true;
 

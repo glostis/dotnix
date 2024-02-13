@@ -35,7 +35,7 @@
         });
         extraConfig = ''
           set -g @extrakto_grab_area 'recent'
-          set -g @extrakto_filter_order 'line word all'
+          set -g @extrakto_filter_order 'word all line'
           set -g @extrakto_popup_size '60%,60%'
         '';
       }
@@ -50,7 +50,7 @@
       {
         # Color theme
         plugin = gruvbox;
-        extraConfig = "set -g @tmux-gruvbox '${config.colorScheme.kind}'";
+        extraConfig = "set -g @tmux-gruvbox '${config.colorScheme.variant}'";
       }
       prefix-highlight
     ];

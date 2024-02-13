@@ -81,13 +81,13 @@
         per_monitor_dpi = false
 
     [urgency_low]
-        background = "#${config.colorScheme.colors.base00}"
-        foreground = "#${config.colorScheme.colors.base06}"
+        background = "#${config.colorScheme.palette.base00}"
+        foreground = "#${config.colorScheme.palette.base06}"
         timeout = 3
 
     [urgency_normal]
-        background = "#${config.colorScheme.colors.base00}"
-        foreground = "#${config.colorScheme.colors.base06}"
+        background = "#${config.colorScheme.palette.base00}"
+        foreground = "#${config.colorScheme.palette.base06}"
         timeout = 8
 
     [urgency_critical]

@@ -12,12 +12,12 @@
   colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
 
   xresources.properties = {
-    background = "#${config.colorScheme.colors.base00}";
-    background-alt = "#${config.colorScheme.colors.base01}";
-    foreground = "#${config.colorScheme.colors.base06}";
-    border = "#${config.colorScheme.colors.base04}";
-    border-alt = "#${config.colorScheme.colors.base00}";
-    orange = "#${config.colorScheme.colors.base09}";
+    background = "#${config.colorScheme.palette.base00}";
+    background-alt = "#${config.colorScheme.palette.base01}";
+    foreground = "#${config.colorScheme.palette.base06}";
+    border = "#${config.colorScheme.palette.base04}";
+    border-alt = "#${config.colorScheme.palette.base00}";
+    orange = "#${config.colorScheme.palette.base09}";
   };
 
   home.packages = with pkgs; [

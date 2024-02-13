@@ -265,7 +265,9 @@ null_ls.setup({
     null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.formatting.ruff,
     null_ls.builtins.formatting.ruff_format,
-    null_ls.builtins.formatting.json_tool,
+    null_ls.builtins.formatting.json_tool.with({
+      command = { "python3" },
+    }),
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.alejandra,
     null_ls.builtins.formatting.sqlfluff.with({

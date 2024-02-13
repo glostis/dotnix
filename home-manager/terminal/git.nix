@@ -20,10 +20,10 @@
       options = {
         navigate = true;
         light =
-          if ("${config.colorScheme.kind}" == "light")
+          if ("${config.colorScheme.variant}" == "light")
           then true
           else false;
-        syntax-theme = "gruvbox-${config.colorScheme.kind}";
+        syntax-theme = "gruvbox-${config.colorScheme.variant}";
         side-by-side = true;
       };
     };

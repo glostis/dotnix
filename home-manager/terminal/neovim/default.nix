@@ -32,7 +32,7 @@
 
       let g:gruvbox_material_foreground = 'original'
 
-      set bg=${config.colorScheme.kind}
+      set bg=${config.colorScheme.variant}
 
       colorscheme gruvbox-material
     ]])
