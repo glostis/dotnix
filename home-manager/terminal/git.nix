@@ -46,7 +46,8 @@
     lfs.enable = true;
     extraConfig = {
       diff = {
-        colorMoved = "default";
+        # This is hardly readable with `delta`
+        colorMoved = "false";
       };
       color = {
         ui = true;
