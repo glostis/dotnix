@@ -41,7 +41,8 @@
     parallel # Runs commands in parallel
     usbutils # Provides `lsusb` to show connected USB devices
     gpsbabel # GPS file format swiss-knife
-    csvkit # CSV manipulation on the command-line
+    # csvkit fails to build, see https://github.com/NixOS/nixpkgs/pull/291423
+    # csvkit # CSV manipulation on the command-line
     pdftk # PDF manipulation on the command-line
     shellcheck # Shell (bash) file linter/LSP
     gh
