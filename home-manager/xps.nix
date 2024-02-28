@@ -8,7 +8,7 @@
     (writeShellApplication {
       name = "qgis";
       runtimeInputs = with pkgs; [qgis];
-      text = /* bash */ ''
+      text = ''
         nixGLIntel qgis
       '';
     })

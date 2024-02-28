@@ -7,7 +7,7 @@
     (writeShellApplication {
       name = "alacritty";
       runtimeInputs = with pkgs; [alacritty];
-      text = /* bash */ ''
+      text = ''
         nixGLIntel alacritty
       '';
     })

@@ -46,6 +46,8 @@
     pdftk # PDF manipulation on the command-line
     shellcheck # Shell (bash) file linter/LSP
     gh
+    pre-commit # Run hooks before committing on a Git repo
+    alejandra # Nix file auto-formatter
 
     pandoc # Document conversion utility (aur)
     bind # DNS resolution through `dig`
