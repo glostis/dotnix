@@ -38,10 +38,8 @@ sudo apt-mark hold snapd
 ### `apt` installs
 ```bash
 sudo apt update
-sudo add-apt-repository ppa:aslatter/ppa  # for alacritty
 sudo apt upgrade
 sudo apt install --no-install-recommends \
-    alacritty \
     apt-file \
     bluez \
     pulseaudio-module-bluetooth \

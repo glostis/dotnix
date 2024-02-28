@@ -1,11 +1,17 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     _1password-gui
-    qgis
     slack
     # vpv      # OpenGL issue
     ctop # terminfo issue?
     dive
+    (writeShellApplication {
+      name = "qgis";
+      runtimeInputs = with pkgs; [qgis];
+      text = /* bash */ ''
+        nixGLIntel qgis
+      '';
+    })
   ];
 
   # `awscli` seems very long to install, disabling for now

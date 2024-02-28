@@ -3,6 +3,16 @@
   pkgs,
   ...
 }: {
+  home.packages = with pkgs; [
+    (writeShellApplication {
+      name = "alacritty";
+      runtimeInputs = with pkgs; [alacritty];
+      text = /* bash */ ''
+        nixGLIntel alacritty
+      '';
+    })
+  ];
+
   xdg.configFile."alacritty/alacritty.toml".text =
     /*
     toml

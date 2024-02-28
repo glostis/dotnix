@@ -117,6 +117,9 @@ in {
     ubuntu_font_family
     terminus_font
     meslo-lgs-nf
+
+    # OpenGL on non-NixOS
+    nixgl.nixGLIntel
   ];
 
   fonts.fontconfig.enable = true;
@@ -233,7 +236,4 @@ in {
     enable = true;
     theme = "gruvbox-${config.colorScheme.variant}";
   };
-
-  # Disabled due to OpenGL issues. NixGL should be a workaround, but seems like a hassle to set up.
-  # programs.alacritty.enable = true;
 }

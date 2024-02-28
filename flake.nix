@@ -10,6 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -17,6 +21,7 @@
     home-manager,
     nurpkgs,
     nix-colors,
+    nixgl,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -26,6 +31,7 @@
         system = system;
         overlays = [
           nurpkgs.overlay
+          nixgl.overlay
         ];
       };
 
