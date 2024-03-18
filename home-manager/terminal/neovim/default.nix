@@ -143,6 +143,7 @@
       stylua
       alejandra
       sqlfluff
+      hclfmt
       docker-compose-language-service
       dockerfile-language-server-nodejs
     ];
