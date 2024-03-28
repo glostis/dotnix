@@ -23,12 +23,14 @@ In `~/code-*/.gitconfig`:
 ## Switching between two different SSH key pairs
 
 This relies on the `GIT_SSH_COMMAND` environment variable, or the `core.sshCommand` git configuration, which can be set
-to `ssh -i PATH/TO/KEY/FILE -o IdentitiesOnly=yes` in order to use a non-default SSH key pair.
+to `ssh -i PATH/TO/PRIVATEKEY/FILE -o IdentitiesOnly=yes -F /dev/null` in order to use a non-default SSH key pair.
+(`-F /dev/null` makes sure that `ssh` does not go and look into `~/.ssh/config` to find other identities to
+authenticate with)
 
 See [StackOverflow](https://stackoverflow.com/a/38474137) for reference.
 
 The above snippet can therefore be extended with `~/code-*/.gitconfig`:
 ```toml
 [core]
-    sshCommand = ssh -i PATH/TO/KEY/FILE -o IdentitiesOnly=yes
+    sshCommand = ssh -i PATH/TO/PRIVATEKEY/FILE -o IdentitiesOnly=yes -F /dev/null
 ```
