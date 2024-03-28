@@ -56,7 +56,7 @@
         verbose = true;
       };
       push = {
-        default = "simple";
+        autoSetupRemote = true;
       };
       pull = {
         rebase = false;

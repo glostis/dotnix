@@ -44,6 +44,9 @@ vim.o.wildignorecase = true
 vim.o.list = true
 vim.o.listchars = "tab:▷⋅,trail:⋅,nbsp:⋅"
 
+-- When pressing `*` to search for word under cursor, consider that `-` is part of a word.
+vim.opt_local.iskeyword:append("-")
+
 -- -------------- Mappings --------------
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
@@ -260,12 +263,6 @@ require("nvim-treesitter.configs").setup({
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
-    null_ls.builtins.diagnostics.ruff,
-    null_ls.builtins.formatting.ruff,
-    null_ls.builtins.formatting.ruff_format,
-    null_ls.builtins.formatting.json_tool.with({
-      command = { "python3" },
-    }),
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.alejandra,
     null_ls.builtins.formatting.sqlfluff.with({
@@ -278,10 +275,6 @@ null_ls.setup({
       vim.lsp.buf.format({
         async = true,
         bufnr = bufnr,
-        -- Make sure that only null-ls does the formatting
-        filter = function(client)
-          return client.name == "null-ls"
-        end,
       })
     end, { buffer = bufnr, desc = "[B]eautify (format) current buffer", noremap = true })
   end,
@@ -317,15 +310,11 @@ local on_attach = function(client, bufnr)
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-  -- nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
   nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-  -- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-  -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
   nmap("<leader>s", ":SymbolsOutline<CR>", "Open symbols outline")
 
   nmap("K", vim.lsp.buf.hover, "Hover documentation")
-  -- nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
 
   nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
@@ -333,6 +322,13 @@ local on_attach = function(client, bufnr)
   nmap("<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "[W]orkspace [L]ist Folders")
+
+  vim.keymap.set({ "n", "v" }, "<leader>b", function()
+    vim.lsp.buf.format({
+      async = true,
+      bufnr = bufnr,
+    })
+  end, { buffer = bufnr, desc = "[B]eautify (format) current buffer", noremap = true })
 end
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -356,6 +352,10 @@ require("lspconfig").dockerls.setup({
   on_attach = on_attach,
 })
 require("lspconfig").docker_compose_language_service.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+require("lspconfig").jsonls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
@@ -441,6 +441,31 @@ require("nvim-tree").setup({
 })
 
 require("colorizer").setup()
+
+require("flash").setup({
+  -- Deactivate the label for the first match (you can jump to it with `<CR>`)
+  label = {
+    current = false,
+  },
+  search = {
+    -- Entering a label is triggered only when typing `;` first, to prevent jumping to random labels
+    -- when searching for a word that doesn't exist.
+    trigger = ";",
+  },
+  modes = {
+    -- clever-f is better in my opinion than flash for smart f, F, t, T
+    char = {
+      enabled = false,
+    },
+  },
+})
+vim.api.nvim_set_hl(0, "FlashLabel", { link = "IncSearch", bold = true })
+vim.keymap.set({ "n", "x", "o" }, "S", function()
+  require("flash").treesitter()
+end, { noremap = true, silent = true, desc = "Flash Treesitter" })
+vim.keymap.set("o", "r", function()
+  require("flash").remote()
+end, { noremap = true, silent = true, desc = "Flash remote" })
 
 require("symbols-outline").setup({ autofold_depth = 1 })
 

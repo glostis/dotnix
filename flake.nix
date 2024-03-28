@@ -4,6 +4,7 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nurpkgs.url = "github:nix-community/nur";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,6 +19,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     nurpkgs,
     nix-colors,
@@ -50,6 +52,7 @@
       # to pass through arguments to home.nix
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
+        pkgs-stable = import nixpkgs {system = system;};
         inherit nix-colors;
       };
     };

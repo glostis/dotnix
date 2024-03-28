@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   lib,
   ...
 }: let
@@ -67,7 +68,8 @@ in {
     rofi-screenshot # Take screencaptures (.mp4 or .gif) (aur)
     rofimoji # Provides an emoji picker using rofi
     haskellPackages.greenclip # Rofi-based clipboard manager (aur)
-    haskellPackages.kmonad # Advanced keyboard configuration (aur)
+    # Temporarily disable due to build issues
+    # haskellPackages.kmonad # Advanced keyboard configuration (aur)
     android-file-transfer # Required to connect to Android phones through USB
     android-udev-rules # Dependency of android-file-transfer
     devour # Open a new program by hiding the current window (aur)

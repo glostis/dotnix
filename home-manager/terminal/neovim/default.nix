@@ -70,6 +70,10 @@
       vim-bbye
       # Deactivate search highlighting when search finished
       vim-cool
+      # Navigate your code with search labels, enhanced character motions and Treesitter integration
+      flash-nvim
+      # Extended f, F, t and T key mappings for Vim.
+      clever-f-vim
 
       # ~~~~~~~~ UI ~~~~~~~~
       # Colorscheme
@@ -137,7 +141,6 @@
     extraPackages = with pkgs; [
       nodePackages.pyright
       nodePackages.bash-language-server
-      ruff
       ruff-lsp
       black
       stylua
@@ -146,6 +149,8 @@
       hclfmt
       docker-compose-language-service
       dockerfile-language-server-nodejs
+      # Provides `jsonls`
+      vscode-langservers-extracted
     ];
   };
 }
