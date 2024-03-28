@@ -229,9 +229,11 @@ in {
       ${pkgs.dunst}/bin/dunstify --appname="display" "Display profile" "$AUTORANDR_CURRENT_PROFILE"
     '';
   };
+  # Skip gamma to avoid `redshift` from interfering, and skip `crtc` due to problems when using a DiplayLink card
+  # (see https://github.com/phillipberndt/autorandr/issues/207)
   xdg.configFile."autorandr/settings.ini".text = ''
     [config]
-    skip-options=gamma
+    skip-options=gamma,crtc
   '';
 
   programs.rofi = {
