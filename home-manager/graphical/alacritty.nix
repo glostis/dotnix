@@ -55,7 +55,7 @@
       hide_when_typing = true
 
       [shell]
-      args = ["--login", "-c", "tmux new-session -A -s session"]
+      args = ["--login", "-c", "tmux new-session -A -s ࿋"]
       program = "${pkgs.zsh}/bin/zsh"
 
       [window]

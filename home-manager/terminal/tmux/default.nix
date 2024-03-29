@@ -49,7 +49,15 @@
       }
       {
         # Color theme
-        plugin = gruvbox;
+        plugin = gruvbox.overrideAttrs (previousAttrs: {
+          version = "unstable-2024-03-28";
+          src = pkgs.fetchFromGitHub {
+            owner = "glostis";
+            repo = "tmux-gruvbox";
+            rev = "1635e007dae99617bf9ae9a1a8c9d28230301405";
+            sha256 = "sha256-uNnX3XScVHuDToSqvkLD2O5qd02sUThhYhVqFP7qy90";
+          };
+        });
         extraConfig = "set -g @tmux-gruvbox '${config.colorScheme.variant}'";
       }
       prefix-highlight
