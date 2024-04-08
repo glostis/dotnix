@@ -23,9 +23,11 @@ kb_type=$2
 sleep 2
 
 if [ "$kb_layout" = "us" ]; then
-    symbols_options="+glostis(hacks)"
     if [ "$kb_type" = "kinesis" ]; then
+        symbols_options="+glostis(colemak)"
         pgrep -af 'kmonad*.kinesis' || kmonad ${HOME}/.config/kmonad/kinesis.kbd &
+    else
+        symbols_options="+glostis(qwerty)"
     fi
     pgrep -af 'kmonad.*laptop' || kmonad ${HOME}/.config/kmonad/laptop.kbd &
 

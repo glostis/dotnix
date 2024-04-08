@@ -448,9 +448,9 @@ require("flash").setup({
     current = false,
   },
   search = {
-    -- Entering a label is triggered only when typing `;` first, to prevent jumping to random labels
+    -- Entering a label is triggered only when typing `:` first, to prevent jumping to random labels
     -- when searching for a word that doesn't exist.
-    trigger = ";",
+    trigger = ":",
   },
   modes = {
     -- clever-f is better in my opinion than flash for smart f, F, t, T
