@@ -139,7 +139,7 @@ in {
       ${pkgs.haskellPackages.greenclip}/bin/greenclip daemon &
       ${pkgs.sxhkd}/bin/sxhkd &
       if [ -f $HOME/.bin/custom_keyboard_layout ]; then
-          $HOME/.bin/custom_keyboard_layout us laptop &
+          $HOME/.bin/custom_keyboard_layout laptop &
       fi
     '';
   };

@@ -1,0 +1,104 @@
+// vim: ft=c
+
+// This custom symbols file is used to override some
+// keymaps from the us(altgr-intl) layout
+//
+// It adds the following mappings:
+// altgr + key -> letter
+//
+// The current key -> symbols table in use can be seen by inspecting the
+// contents of `xkbcomp $DISPLAY xkb.dump`.
+//
+// See ~/.bin/custom_keyboard_layout for more information on how this custom
+// glostis symbols file is applied.
+
+partial alphanumeric_keys
+xkb_symbols "baguette" {
+    key <AD01> {
+        symbols[Group1]= [ q, Q, oe, OE ]
+    };
+    key <AD02> {
+        symbols[Group1]= [ w, W, idiaeresis, Idiaeresis ]
+    };
+    key <AD03> {
+        symbols[Group1]= [ e, E, egrave, Egrave ]
+    };
+    key <AD04> {
+        symbols[Group1]= [ r, R, ediaeresis, Ediaeresis ]
+    };
+    key <AD05> {
+        symbols[Group1]= [ t, T, ugrave, Ugrave ]
+    };
+    key <AD06> {
+        symbols[Group1]= [ y, Y, y, Y ]
+    };
+    key <AD07> {
+        symbols[Group1]= [ u, U, u, U ]
+    };
+    key <AD08> {
+        symbols[Group1]= [ i, I, i, I ]
+    };
+    key <AD09> {
+        symbols[Group1]= [ o, O, o, O ]
+    };
+    key <AD10> {
+        symbols[Group1]= [ p, P, p, P ]
+    };
+    key <AC01> {
+        symbols[Group1]= [ a, A, ocircumflex, Ocircumflex ]
+    };
+    key <AC02> {
+        symbols[Group1]= [ s, S, icircumflex, Icircumflex ]
+    };
+    key <AC03> {
+        symbols[Group1]= [ d, D, eacute, Eacute ]
+    };
+    key <AC04> {
+        symbols[Group1]= [ f, F, agrave, Agrave ]
+    };
+    key <AC05> {
+        symbols[Group1]= [ g, G, ucircumflex, Ucircumflex ]
+    };
+    key <AC06> {
+        symbols[Group1]= [ h, H, h, H ]
+    };
+    key <AC07> {
+        symbols[Group1]= [ j, J, j, J ]
+    };
+    key <AC08> {
+        symbols[Group1]= [ k, K, k, K ]
+    };
+    key <AC09> {
+        symbols[Group1]= [ l, L, l, L ]
+    };
+    key <AC10> {
+        symbols[Group1]= [ colon, semicolon, degree, degree ]
+    };
+    key <AB01> {
+        symbols[Group1]= [ z, Z, z, Z ]
+    };
+    key <AB02> {
+        symbols[Group1]= [ x, X, x, X ]
+    };
+    key <AB03> {
+        symbols[Group1]= [ c, C, ecircumflex, Ecircumflex ]
+    };
+    key <AB04> {
+        symbols[Group1]= [ v, V, acircumflex, Acircumflex ]
+    };
+    key <AB05> {
+        symbols[Group1]= [ b, B, b, B ]
+    };
+    key <AB06> {
+        symbols[Group1]= [ n, N, n, N ]
+    };
+    key <AB07> {
+        symbols[Group1]= [ m, M, m, M ]
+    };
+    key <AB09> {
+        symbols[Group1]= [ period, greater, rightarrow, leftarrow ]
+    };
+    key <AE11> {
+        symbols[Group1]= [ minus, underscore, emdash, plusminus]
+    };
+};

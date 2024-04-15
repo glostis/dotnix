@@ -15,44 +15,30 @@ IFS=$'\n\t'
 # Note: according to http://who-t.blogspot.com/2020/02/user-specific-xkb-configuration-part-1.html,
 # this process could be made easier by libxkbcommon, but it is used by Wayland, not X...
 
-
-kb_layout=$1
-kb_type=$2
+kb_type=$1
 
 # Sleep to avoid having endless "enter/return" when starting kmonad by hand
 sleep 2
 
-if [ "$kb_layout" = "us" ]; then
-    if [ "$kb_type" = "kinesis" ]; then
-        symbols_options="+glostis(colemak)"
-        pgrep -af 'kmonad*.kinesis' || kmonad ${HOME}/.config/kmonad/kinesis.kbd &
-    else
-        symbols_options="+glostis(qwerty)"
-    fi
-    pgrep -af 'kmonad.*laptop' || kmonad ${HOME}/.config/kmonad/laptop.kbd &
-
-    echo "Launched kmonad"
-
-    sleep 1
-
-    setxkbmap -layout 'us(altgr-intl),fr' -print | \
-    sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
-    # `-w 0` disables all warnings because `xkbcomp` is very verbose
-    # Remove if need to debug
-    xkbcomp -I$HOME/.config/xkb -w 0 $HOME/.config/xkb/map $DISPLAY
-
-    echo "Launched xkbcomp"
-
-elif [ "$kb_layout" = "fr" ]; then
-    setxkbmap -layout 'fr'
-
-    killall kmonad
-
+if [ "$kb_type" = "kinesis" ]; then
+    symbols_options="+glostis-colemak(baguette)"
+    pgrep -af 'kmonad*.kinesis' || kmonad ${HOME}/.config/kmonad/kinesis.kbd &
 else
-    echo Keyboard layout ${kb_layout} not known
-    exit 2
+    symbols_options="+glostis-qwerty(baguette)"
 fi
+pgrep -af 'kmonad.*laptop' || kmonad ${HOME}/.config/kmonad/laptop.kbd &
 
+echo "Launched kmonad"
+
+sleep 1
+
+setxkbmap -layout 'us(altgr-intl)' -print | \
+sed -e "/xkb_symbols/s/\"[[:space:]]/${symbols_options}&/" > $HOME/.config/xkb/map
+# `-w 0` disables all warnings because `xkbcomp` is very verbose
+# Remove if need to debug
+xkbcomp -I$HOME/.config/xkb -w 0 $HOME/.config/xkb/map $DISPLAY
+
+echo "Launched xkbcomp"
 
 xset r rate 230 50
 

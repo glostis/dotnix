@@ -23,6 +23,7 @@
 
 (defalias
     nav (tap-hold-next-release 200 esc (layer-toggle navigation))
+    sym (tap-hold-next-release 200 tab (layer-toggle symbols))
     qwe (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch qwerty))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
     lsh (tap-hold-next 200 \( lsft)
@@ -37,7 +38,7 @@
 
 (deflayer qwerty
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]
+  @sym q    w    e    r    t    y    u    i    o    p    [    ]
   @nav a    s    d    f    g    h    j    k    l    ;    '    \    ret
   @lsh 102d z    x    c    v    b    n    m    ,    .    /    @rsh
   lctl lmet lalt           spc            ralt prnt rctl
@@ -59,13 +60,13 @@
   _    _    _              _              _    _    _
 )
 
-;; (deflayer symbols
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-;;   _    !    @    #    $    %    ^    &    *    -    \_   _    _
-;;   _    \(   [    {    <    _    _    >    }    ]    \)   _    _    _
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _
-;;   _    _    _              _              _    _    _
-;; )
+(deflayer symbols
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    !    @    #    $    %    ^    &    *    -    \_   _    _
+  _    _    {    [   \(    <    >   \)    ]    }    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
 
 ;; (deflayer accents
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _

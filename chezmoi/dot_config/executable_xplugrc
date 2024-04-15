@@ -20,7 +20,7 @@ if [ "$1" = "keyboard" ]; then
             kb_type="kinesis"
             ;;
     esac
-    ${HOME}/.bin/custom_keyboard_layout us ${kb_type}
+    ${HOME}/.bin/custom_keyboard_layout ${kb_type}
 fi
 
 if [ "$1" = "display" ]; then

@@ -33,23 +33,23 @@
 ;; )
 
 ;; https://dreymar.colemak.org/tarmak-steps.html#tmk-dh
-(deflayer tarmak1
-  =    1    2    3    4    5    6    7    8    9    0    -
-  tab  q    w    j    r    t    y    u    i    o    p    \
-  esc  a    s    d    f    g    h    n    e    l    ;    '
-  \(   z    x    c    v    b    k    m    ,    .    /    \)
-       grv  del                                [    ]
-                 spc  lsft           ret  bspc
-)
-
-;; (deflayer tarmak2
+;; (deflayer tarmak1
 ;;   =    1    2    3    4    5    6    7    8    9    0    -
-;;   tab  q    w    f    r    b    y    u    i    o    p    \
-;;   esc  a    s    d    t    g    h    n    e    l    ;    '
-;;   \(   z    x    c    j    v    k    m    ,    .    /    \)
+;;   tab  q    w    j    r    t    y    u    i    o    p    \
+;;   esc  a    s    d    f    g    h    n    e    l    ;    '
+;;   \(   z    x    c    v    b    k    m    ,    .    /    \)
 ;;        grv  del                                [    ]
 ;;                  spc  lsft           ret  bspc
 ;; )
+
+(deflayer tarmak2
+  =    1    2    3    4    5    6    7    8    9    0    -
+  tab  q    w    f    r    b    y    u    i    o    p    \
+  esc  a    s    d    t    g    h    n    e    l    ;    '
+  \(   z    x    c    j    v    k    m    ,    .    /    \)
+       grv  del                                [    ]
+                 spc  lsft           ret  bspc
+)
 
 ;; (deflayer tarmak3
 ;;   =    1    2    3    4    5    6    7    8    9    0    -
@@ -71,8 +71,8 @@
 
 ;; (deflayer colemak-dh
 ;;   =    1    2    3    4    5    6    7    8    9    0    -
-;;   tab  q    w    f    p    b    j    l    o    y    ;    \
-;;   esc  a    r    s    t    g    h    n    e    i    u    '
+;;   tab  q    w    f    p    b    j    l    u    y    ;    \
+;;   esc  a    r    s    t    g    h    n    e    i    o    '
 ;;   \(   z    x    c    d    v    k    m    ,    .    /    \)
 ;;        grv  del                                [    ]
 ;;                  spc  lsft           ret  bspc

@@ -17,7 +17,7 @@
     ntfs3g # For NTFS filestystem (eg USB sticks)
     trash-cli # Use trash-put instead of rm to keep a version of deleted files
     gnumake # `make`
-    gcc # C compiler
+    # gcc # C compiler
 
     ncdu # Curses disk usage explorer
     chezmoi # Dotfiles manager
