@@ -64,6 +64,10 @@
       pager = {
         branch = false;
       };
+      rerere = {
+        # Remember how merge/rebase conflicts were solved
+        enabled = true;
+      };
     };
   };
 }

@@ -26,10 +26,12 @@
     sym (tap-hold-next-release 200 tab (layer-toggle symbols))
     qwe (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch qwerty))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
-    lsh (tap-hold-next 200 \( lsft)
-    rsh (tap-hold-next 200 \) rsft)
     sal (around lsft lalt)
     sct (around lsft lctl)
+    tmx (around lctl spc)
+    stc (sticky-key 500 lctl)
+    sra (sticky-key 500 ralt)
+    sft (sticky-key 500 lsft)
     cz  (around lctl z)
     cx  (around lctl x)
     cc  (around lctl c)
@@ -40,14 +42,14 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @sym q    w    e    r    t    y    u    i    o    p    [    ]
   @nav a    s    d    f    g    h    j    k    l    ;    '    \    ret
-  @lsh 102d z    x    c    v    b    n    m    ,    .    /    @rsh
-  lctl lmet lalt           spc            ralt prnt rctl
+  @sft 102d z    x    c    v    b    n    m    ,    .    /    @sft
+  lctl lmet lalt           spc            @sra prnt rctl
 )
 
 (deflayer navigation
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
-  _    _    _    lalt lctl _    left down up   rght bspc @nal _    _
+  _    _    @tmx lalt @stc _    left down up   rght bspc @nal _    _
   _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
   _    _    _              _              _    _    _
 )

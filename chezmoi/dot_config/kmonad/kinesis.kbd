@@ -12,6 +12,7 @@
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
        grv  102d                               [    ]
                  spc  del            ret  bspc
+                                     ralt
 )
 
 ;; (deflayer empty
@@ -23,24 +24,12 @@
   ;;                _    _              _    _
 ;; )
 
-;; (deflayer qwerty
-;;   =    1    2    3    4    5    6    7    8    9    0    -
-;;   tab  q    w    e    r    t    y    u    i    o    p    \
-;;   esc  a    s    d    f    g    h    j    k    l    ;    '
-;;   \(   z    x    c    v    b    n    m    ,    .    /    \)
-;;        grv  del                                [    ]
-;;                  spc  lsft           ret  bspc
-;; )
+(defalias
+    sra (sticky-key 500 ralt)
+    sft (sticky-key 500 lsft)
+)
 
 ;; https://dreymar.colemak.org/tarmak-steps.html#tmk-dh
-;; (deflayer tarmak1
-;;   =    1    2    3    4    5    6    7    8    9    0    -
-;;   tab  q    w    j    r    t    y    u    i    o    p    \
-;;   esc  a    s    d    f    g    h    n    e    l    ;    '
-;;   \(   z    x    c    v    b    k    m    ,    .    /    \)
-;;        grv  del                                [    ]
-;;                  spc  lsft           ret  bspc
-;; )
 
 (deflayer tarmak2
   =    1    2    3    4    5    6    7    8    9    0    -
@@ -48,7 +37,8 @@
   esc  a    s    d    t    g    h    n    e    l    ;    '
   \(   z    x    c    j    v    k    m    ,    .    /    \)
        grv  del                                [    ]
-                 spc  lsft           ret  bspc
+                 spc  @sft           ret  bspc
+                                     @sra
 )
 
 ;; (deflayer tarmak3
