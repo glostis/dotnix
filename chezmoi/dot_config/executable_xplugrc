@@ -10,17 +10,17 @@
 #          |     `----------- HDMI3, LVDS1, VGA1, etc.
 #           `---------------- keyboard, pointer, display
 
-# FYI: xplugd sees Bluetooth headsets as keyboards...
-# So when a Bluetooth headset is {,dis}connected, it triggers
+# FYI: udev sees Bluetooth headsets and some mice as keyboards...
+# So when a Bluetooth headset or mouse is {,dis}connected, it triggers
 # an xplug event with device=keyboard
 if [ "$1" = "keyboard" ]; then
-    # For some reason, I can't manage to get xplugrc to source my zsh PATH, which includes ~/.bin...
-    case "$3,$4" in
-        "connected","Kinesis Advantage2"*)
-            kb_type="kinesis"
-            ;;
-    esac
-    ${HOME}/.bin/custom_keyboard_layout ${kb_type}
+    nb_kinesis=$(find /dev/input/by-id/ -name 'usb-Kinesis_Advantage2_Keyboard*' | wc -l)
+    if [ "$nb_kinesis" -gt 0 ]; then
+        kb_type="kinesis"
+    else
+        kb_type="laptop"
+    fi
+    "$HOME"/.bin/custom_keyboard_layout $kb_type
 fi
 
 if [ "$1" = "display" ]; then

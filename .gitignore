@@ -1,0 +1,2 @@
+/keyboard/dist/*
+!/keyboard/dist/*.xkb_keymap
