@@ -23,7 +23,7 @@
 
 (defalias
     nav (tap-hold-next-release 200 esc (layer-toggle navigation))
-    qwe (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch qwerty))
+    bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
     sal (around lsft lalt)
     sct (around lsft lctl)
@@ -36,7 +36,7 @@
     cv  (around lctl v)
 )
 
-(deflayer qwerty
+(deflayer base
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    XX   XX
   @nav a    s    d    f    g    h    j    k    l    ;    '    \    ret
@@ -55,7 +55,7 @@
 (deflayer navigationlock
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
-  @qwe _    _    lalt lctl _    left down up   rght bspc _    _    _
+  @bas _    _    lalt lctl _    left down up   rght bspc _    _    _
   _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
   _    _    _              _              _    _    _
 )
