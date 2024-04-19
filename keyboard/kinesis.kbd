@@ -22,7 +22,7 @@
     bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
     sal (around lsft lalt)
-    sct (around lsft lctl)
+    sct (sticky-key 1000 (around lsft lctl))
     tmx (around lctl spc)
     stc (sticky-key 1000 lctl)
     sra (sticky-key 1000 ralt)
@@ -47,7 +47,7 @@
   _    _    _    _    _    _       _    _    _    _    _    _
   _    _    _    @sal @sct _       home pgdn pgup end  _    _
   _    _    @tmx lalt @stc _       left down up   rght bspc @nal
-  _    _    @cz  @cx  @cc  @cv     _    _    _    _    _    _
+  _    @cz  @cx  @cc  @cv  _       _    _    _    _    _    _
        _    _                                     _    _
                       _    _       _    _
                  _    _    _       _    _    _
@@ -58,7 +58,7 @@
   _    _    _    _    _    _       _    _    _    _    _    _
   _    _    _    @sal @sct _       home pgdn pgup end  _    _
   @bas _    @tmx lalt @stc _       left down up   rght bspc _
-  _    _    @cz  @cx  @cc  @cv     _    _    _    _    _    _
+  _    @cz  @cx  @cc  @cv  _       _    _    _    _    _    _
        _    _                                     _    _
                       _    _       _    _
                  _    _    _       _    _    _
