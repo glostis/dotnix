@@ -29,7 +29,8 @@
     cz  (around lctl z)
     cx  (around lctl x)
     cc  (around lctl c)
-    cv  (around lctl v)
+    ;; Need to map CTRL+V to CTRL+B, because kmonad isn't aware that I'm actually in Colemak
+    cv  (around lctl b)
 )
 
 (deflayer base
@@ -47,7 +48,7 @@
   _    _    _    _    _    _       _    _    _    _    _    _
   _    _    _    @sal @sct _       home pgdn pgup end  _    _
   _    _    @tmx lalt @stc _       left down up   rght bspc @nal
-  _    @cz  @cx  @cc  @cv  _       _    _    _    _    _    _
+  _    @cz  @cx  @cc  _    @cv     _    _    _    _    _    _
        _    _                                     _    _
                       _    _       _    _
                  _    _    _       _    _    _
@@ -58,7 +59,7 @@
   _    _    _    _    _    _       _    _    _    _    _    _
   _    _    _    @sal @sct _       home pgdn pgup end  _    _
   @bas _    @tmx lalt @stc _       left down up   rght bspc _
-  _    @cz  @cx  @cc  @cv  _       _    _    _    _    _    _
+  _    @cz  @cx  @cc  _    @cv     _    _    _    _    _    _
        _    _                                     _    _
                       _    _       _    _
                  _    _    _       _    _    _
