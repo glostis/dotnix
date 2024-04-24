@@ -57,7 +57,7 @@ in {
     gthumb # Quick photo editing
     gimp # Not-so-quick photo editing
     mupdf # pdf viewer
-    # spotify                         # Music streaming (aur)
+    # spotify                         # Music streaming
     rhythmbox # Local music player
     # gparted # GUI for partioning disks and writing filesystems
     foliate # e-book reader
@@ -65,27 +65,27 @@ in {
     ## Window manager
     feh # Background image setter
     maim # Screenshot
-    rofi-screenshot # Take screencaptures (.mp4 or .gif) (aur)
+    rofi-screenshot # Take screencaptures (.mp4 or .gif)
     rofimoji # Provides an emoji picker using rofi
-    haskellPackages.greenclip # Rofi-based clipboard manager (aur)
-    # Temporarily disable due to build issues
-    # haskellPackages.kmonad # Advanced keyboard configuration (aur)
+    haskellPackages.greenclip # Rofi-based clipboard manager
+    haskellPackages.kmonad # Advanced keyboard configuration
+    nur.repos.glostis.kalamine # Keyboard layout remapping tool
     android-file-transfer # Required to connect to Android phones through USB
     android-udev-rules # Dependency of android-file-transfer
-    devour # Open a new program by hiding the current window (aur)
+    devour # Open a new program by hiding the current window
 
     i3 # WM
     libnotify # Provides `notify-send`
-    corrupter # Script that "corrupts" an image for i3lock bg (aur)
+    corrupter # Script that "corrupts" an image for i3lock bg
     unclutter-xfixes # Remove mouse cursor when idle
-    xidlehook # Trigger action after some time idle (aur)
+    xidlehook # Trigger action after some time idle
     # polybarFull comes with i3 support
     # This could also be done with just `polybar` with an override to add `i3Support = true;`,
     # but then polybar gets compiled locally which is a bit of a pain.
     polybarFull # Status bar
-    xplugd # Execute action on device plug/unplug (aur)
-    rofi-bluetooth # Rofi front-end to bluetoothctl (aur)
-    networkmanager_dmenu # Rofi front-end to networkmanager (aur)
+    xplugd # Execute action on device plug/unplug
+    rofi-bluetooth # Rofi front-end to bluetoothctl
+    networkmanager_dmenu # Rofi front-end to networkmanager
 
     xdg-utils # Provides command-line tools such as `xdg-open`
 
@@ -133,11 +133,12 @@ in {
       config = null;
       extraConfig = builtins.readFile ./i3/config;
     };
+    # `-m -1` is included in the call to `sxhkd` so that it reacts to keyboard layout changes (see `man sxhkd`).
     initExtra = ''
       picom -b
       ${pkgs.xplugd}/bin/xplugd &
       ${pkgs.haskellPackages.greenclip}/bin/greenclip daemon &
-      ${pkgs.sxhkd}/bin/sxhkd &
+      ${pkgs.sxhkd}/bin/sxhkd -m -1 &
       if [ -f $HOME/.bin/custom_keyboard_layout ]; then
           $HOME/.bin/custom_keyboard_layout laptop &
       fi

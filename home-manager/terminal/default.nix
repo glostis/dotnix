@@ -14,10 +14,10 @@
   home.packages = with pkgs; [
     xclip # clipboard
     xdotool # xorg
-    ntfs3g # For NTFS filestystem (eg USB sticks)
+    ntfs3g # For NTFS filesystem (eg USB sticks)
     trash-cli # Use trash-put instead of rm to keep a version of deleted files
     gnumake # `make`
-    # gcc # C compiler
+    gcc # C compiler
 
     ncdu # Curses disk usage explorer
     chezmoi # Dotfiles manager
@@ -27,13 +27,13 @@
     jq # JSON parser
     gron # Make JSON greppable!
     neofetch # System information
-    ranger # File browser (aur)
+    ranger # File browser
     tree # Recursive directory listing
     zip # Archiving
     unzip # Unarchiving
     wget # File download
     # python310
-    nodePackages.fixjson # JSON formatter (aur)
+    nodePackages.fixjson # JSON formatter
     entr # run arbitrary commands when files change
     bc # Command-line calculations
     w3m # Text-based web browser
@@ -41,15 +41,14 @@
     parallel # Runs commands in parallel
     usbutils # Provides `lsusb` to show connected USB devices
     gpsbabel # GPS file format swiss-knife
-    # csvkit fails to build, see https://github.com/NixOS/nixpkgs/pull/291423
-    # csvkit # CSV manipulation on the command-line
+    csvkit # CSV manipulation on the command-line
     pdftk # PDF manipulation on the command-line
     shellcheck # Shell (bash) file linter/LSP
     gh
     pre-commit # Run hooks before committing on a Git repo
     alejandra # Nix file auto-formatter
 
-    pandoc # Document conversion utility (aur)
+    pandoc # Document conversion utility
     bind # DNS resolution through `dig`
   ];
 
