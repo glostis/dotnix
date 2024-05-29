@@ -3,10 +3,6 @@
   nixpkgsflake,
   ...
 }: {
-  imports = [
-    ./day-n-night.nix
-  ];
-
   home.username = "glostis";
   home.homeDirectory = "/home/glostis";
 
@@ -69,7 +65,6 @@
   };
 
   home.shellAliases = {
-    # Need to re-do the pyright shenanigans for nvim, but without pyenv
     v = "nvim";
     x = "exit";
     py = "ipython";
@@ -91,9 +86,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # Make Home-Manager work better on non-NixOS Linux distributions
-  targets.genericLinux.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

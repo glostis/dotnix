@@ -2,8 +2,6 @@
   home.packages = with pkgs; [
     _1password-gui
     slack
-    # vpv      # OpenGL issue
-    ctop # terminfo issue?
     dive
     (writeShellApplication {
       name = "qgis";
@@ -14,8 +12,7 @@
     })
   ];
 
-  # `awscli` seems very long to install, disabling for now
-  # programs.awscli.enable = true;
+  programs.awscli.enable = true;
 
   home.sessionVariables = {
     # Make `pipx` use the system python instead of the nix python
@@ -35,4 +32,7 @@
   # crashing when trying to open a directory containing a JSON file.
   # This crash could also be reproduced with `gio info file.json`.
   xdg.mime.enable = false;
+
+  # Make Home-Manager work better on non-NixOS Linux distributions
+  targets.genericLinux.enable = true;
 }

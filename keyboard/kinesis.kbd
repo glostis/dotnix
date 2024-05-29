@@ -17,7 +17,7 @@
 )
 
 (defalias
-    ral (tap-hold-next-release 200 ret ralt)
+    ral (tap-hold-next-release 150 ret ralt)
     nav (tap-hold-next-release 200 esc (layer-toggle navigation))
     bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))

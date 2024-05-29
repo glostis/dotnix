@@ -37,23 +37,20 @@
         ];
       };
 
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
       modules = [
         ./home-manager/home.nix
         ./home-manager/terminal
         ./home-manager/graphical
         ./home-manager/xps.nix
-        # There's probably a more elegant way to do this...
-        (import ./home-manager/graphical/firefox {enableWorkProfile = true;})
+        ./home-manager/graphical/firefox
       ];
 
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
+      # The arguments here are passed to all modules
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
         pkgs-stable = import nixpkgs {system = system;};
         inherit nix-colors;
+        enableWorkProfile = true;
       };
     };
   };

@@ -43,6 +43,7 @@ in {
     ./alacritty.nix
     ./dunst
     ./sxhkd
+    ./day-n-night.nix
   ];
 
   home.packages = with pkgs; [

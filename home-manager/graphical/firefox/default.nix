@@ -1,4 +1,8 @@
-{enableWorkProfile ? false}: {pkgs, ...}: let
+{
+  pkgs,
+  enableWorkProfile,
+  ...
+}: let
   firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
 in {
   programs.firefox = let
