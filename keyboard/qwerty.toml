@@ -45,3 +45,10 @@ altgr = '''
 ┃ Ctrl  ┃ super ┃ Alt   ┃ ␣                              ┃ AltGr ┃ super ┃ menu  ┃ Ctrl  ┃
 ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹────────────────────────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┻━━━━━━━┛
 '''
+
+[spacebar]
+shift       = "\u0020"  # SPACE
+altgr       = "\u202f"  # NARROW NO-BREAK SPACE
+altgr_shift = "\u00a0"  # NO-BREAK SPACE
+1dk         = "\u2019"  # RIGHT SINGLE QUOTATION MARK
+1dk_shift   = "\u2019"  # RIGHT SINGLE QUOTATION MARK

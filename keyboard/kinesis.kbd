@@ -18,14 +18,13 @@
 
 (defalias
     ral (tap-hold-next-release 150 ret ralt)
-    nav (tap-hold-next-release 200 esc (layer-toggle navigation))
+    nav (tap-hold-next-release 150 esc (layer-toggle navigation))
     bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
     nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
     sal (around lsft lalt)
     sct (sticky-key 1000 (around lsft lctl))
     tmx (around lctl spc)
     stc (sticky-key 1000 lctl)
-    sra (sticky-key 1000 ralt)
     cz  (around lctl z)
     cx  (around lctl x)
     cc  (around lctl c)
