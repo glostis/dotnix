@@ -9,15 +9,15 @@ Install nix using the [Determinate Systems installer](https://github.com/Determi
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-### Clone dotfiles
+### Clone dotnix
 ```
-git clone https://github.com/glostis/dotfiles.git ~/dotfiles
+git clone https://github.com/glostis/dotnix.git ~/dotnix
 ```
 
 ### Home-manager installation and profile switch
 ```
 rm -f ~/.profile ~/.bashrc
-nix run --no-write-lock-file github:nix-community/home-manager -- --flake ~/dotfiles switch
+nix run --no-write-lock-file github:nix-community/home-manager -- --flake ~/dotnix switch
 ```
 
 ### Remove snap from Ubuntu

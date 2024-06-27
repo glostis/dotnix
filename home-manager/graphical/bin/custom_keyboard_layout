@@ -12,7 +12,7 @@ IFS=$'\n\t'
 
 kb_type=$1
 
-kb_files="$HOME"/dotfiles/keyboard
+kb_files="$HOME"/dotnix/keyboard
 
 # Sleep to avoid having endless "enter/return" when starting kmonad by hand
 sleep 2

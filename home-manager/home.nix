@@ -77,7 +77,7 @@
     tp = "trash-put";
     tl = "trash-list";
     ranger = "TERM=screen-256color ranger";
-    hm = "home-manager --flake ${config.home.homeDirectory}/dotfiles";
+    hm = "home-manager --flake ${config.home.homeDirectory}/dotnix";
   };
 
   # Make `nix run np#<some-package>` use the same nixpkgs as the one used by this flake
