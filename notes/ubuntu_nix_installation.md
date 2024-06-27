@@ -9,10 +9,9 @@ Install nix using the [Determinate Systems installer](https://github.com/Determi
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-### Chezmoi installation and application
+### Clone dotfiles
 ```
-nix run "nixpkgs#chezmoi" -- --source ~/dotfiles init glostis --branch nix
-nix run "nixpkgs#chezmoi" -- --source ~/dotfiles apply
+git clone https://github.com/glostis/dotfiles.git ~/dotfiles
 ```
 
 ### Home-manager installation and profile switch

@@ -48,9 +48,7 @@
         # Relaunch xrdb and i3
         xrdb "$HOME"/.Xresources && i3-msg reload &
 
-        # The polybar bars are launched using `--reload` which auto-reloads them when the
-        # config changes, so touching the config to "change" it
-        touch "$HOME"/.config/polybar/config.ini
+        bash "$HOME"/.config/polybar/launch.sh
 
         tmux source-file "$HOME"/.config/tmux/tmux.conf &
       '';

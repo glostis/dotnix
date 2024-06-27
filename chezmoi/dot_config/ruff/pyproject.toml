@@ -1,4 +1,0 @@
-[tool.ruff]
-line-length = 120
-# Select: Flake rules (E, F, W), isort (I)
-select = ["E", "F", "W", "I"]

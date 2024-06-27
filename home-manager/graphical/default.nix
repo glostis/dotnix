@@ -43,7 +43,9 @@ in {
     ./alacritty.nix
     ./dunst
     ./sxhkd
+    ./static
     ./day-n-night.nix
+    ./bin
   ];
 
   home.packages = with pkgs; [

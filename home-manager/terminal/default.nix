@@ -7,6 +7,7 @@
     ./zsh
     ./neovim
     ./tmux
+    ./static
     ./git.nix
     ./direnv.nix
   ];
@@ -20,7 +21,6 @@
     gcc # C compiler
 
     ncdu # Curses disk usage explorer
-    chezmoi # Dotfiles manager
     fzf # Fuzzy finder
     htop # System resources monitoring
     imagemagick # Image manipulation commands
