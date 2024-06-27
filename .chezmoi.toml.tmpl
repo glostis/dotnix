@@ -1,9 +1,0 @@
-# vim: ft=toml
-{{ $email := promptString "email" -}}
-[diff]
-    format = "git"
-    pager = "delta"
-[data]
-    email = "{{ $email}}"
-    compositor_special_fx = false
-    headless = false

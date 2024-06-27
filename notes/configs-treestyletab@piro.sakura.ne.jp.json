@@ -1,0 +1,41 @@
+{
+  "__ConfigsMigration__userValeusSameToDefaultAreCleared": true,
+  "autoAttachOnAnyOtherTrigger": 0,
+  "autoCollapseExpandSubtreeOnAttach": false,
+  "autoCollapseExpandSubtreeOnSelect": false,
+  "autoGroupNewTabsFromPinned": false,
+  "chunkedUserStyleRules0": "dGFiLWl0ZW1bZGF0YS1jdXJyZW50LXVyaSo9ImxvY2FsaG9zdCJdIHRhYi1pdGVtLXN1YnN0YW5jZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogaHNsYSgwLDAlLDU1JSwwLjU0KTsKfQoKdGFiLWl0ZW1bZGF0YS1jdXJyZW50LXVyaSo9Ii5sb2NhbC8iXSB0YWItaXRlbS1zdWJzdGFuY2UgewogIGJhY2tncm91bmQtY29sb3I6IGhzbGEoMCwwJSw1NSUsMC41NCk7Cn0KCiN0YWJiYXIgdGFiLWl0ZW0gdGFiLWl0ZW0tc3Vic3RhbmNlOm5vdCg6aG92ZXIpIHRhYi1jbG9zZWJveCB7CiAgZGlzcGxheTogbm9uZTsKfQ==",
+  "colorScheme": "photon",
+  "configsVersion": 29,
+  "context_bookmarkTree": false,
+  "context_topLevel_sendTreeToDevice": false,
+  "enableLinuxBehaviors": true,
+  "insertNewChildAt": 3,
+  "notifiedFeaturesVersion": 9,
+  "optionsExpandedSections": [
+    "section-appearance",
+    "section-contextMenu",
+    "section-newTabWithOwner",
+    "section-newTab",
+    "section-debug",
+    "section-treeBehavior",
+    "section-drag",
+    "section-advanced",
+    "section-addons"
+  ],
+  "showExpertOptions": true,
+  "showTabDragBehaviorNotification": false,
+  "sidebarPositionRighsideNotificationShown": true,
+  "skipCollapsedTabsForTabSwitchingShortcuts": true,
+  "syncDevices": {
+    "device-1681714445653-25011": {
+      "id": "device-1681714445653-25011",
+      "name": "Firefox on Linux",
+      "icon": "device-desktop",
+      "timestamp": 1701783827388
+    }
+  },
+  "treeDoubleClickBehavior": 1,
+  "userStyleRules": "",
+  "userStyleRulesFieldHeight": "328px"
+}

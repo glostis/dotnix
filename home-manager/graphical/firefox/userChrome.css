@@ -1,0 +1,121 @@
+/*
+Follow these instructions https://github.com/Aris-t2/CustomCSSforFx#how-to-find-item-ids-and-attributes to enable an "Inspector" of the browser elements.
+This repo https://github.com/Timvde/UserChrome-Tweaks contains nice snippets.
+*/
+
+/*
+ * Hide the tab bar (I use the sidebar provided by the Tree Style Tab
+ * extension instead)
+ */
+#TabsToolbar {
+  visibility: collapse;
+}
+
+/*
+ * Move navbar (containing the addons and the url bar) to the bottom
+ * Taken from https://github.com/jonhoo/configs/blob/master/gui/.mozilla/firefox/chrome/userChrome.css
+ */
+
+#main-window body { flex-direction: column-reverse !important; }
+#navigator-toolbox { flex-direction: column-reverse !important; }
+
+#urlbar {
+    top: unset !important;
+    bottom: calc(var(--urlbar-margin-inline)) !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#urlbar > * {
+    flex: none;
+}
+
+#urlbar-input-container {
+    order: 2;
+}
+
+#urlbar > .urlbarView {
+    order: 1;
+    border-bottom: 1px solid #666;
+}
+
+#urlbar-results {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+toolbox[inFullscreen=true] { display: none; }
+
+/* Remove annoying stuff from the search bar */
+.search-one-offs { display: none !important; }
+
+
+/*
+ * Hide certain elements of the sidebar (for Tree Style Tab)
+ * and move its header to the bottom
+ */
+#sidebar-box {
+  flex-direction: column-reverse !important;
+}
+
+#sidebar-title,
+#sidebar-close {
+  visibility: collapse;
+}
+
+/*
+ * Edit "statuspanel" (the box that shows urls on hover and that show page loading information)
+ */
+
+/* Disable the statuspanel when it shows page loading information */
+#statuspanel[type="status"] {
+  display: none !important;
+}
+
+/* Move statuspanel to top and customize its style */
+/* In order to remove the delay to display the statuspanel on hover, */
+/* set `browser.overlink-delay`to 0 in Firefox's about:config */
+/* cf https://superuser.com/a/431278 */
+statuspanel[type=overLink], statuspanel[inactive][previoustype=overLink]
+{
+    -moz-transition: none !important;
+}
+
+#statuspanel
+{
+  padding-top: 0 !important;
+  top: 0 !important;
+  inset-inline: auto !important;
+  font-size: 16px !important;
+  bottom: auto !important;
+}
+
+#statuspanel-inner
+{
+  -moz-box-align: start !important;
+}
+
+#statuspanel-label
+{
+  padding: 5px !important;
+  background-color: black !important;
+  color: white !important;
+}
+
+/* Remove some stuff from the "right-click" context menu */
+#context-savepage,
+#context-pocket,
+#context-openlink,
+#context-openlinkprivate,
+#context-openlinkinusercontext-menu,
+#context-savelink,
+#context-savelinktopocket,
+#context-selectall,
+#context-sendpagetodevice,
+#context-sendlinktodevice,
+#context-inspect-a11y,
+#context-printselection
+{
+  display: none !important;
+}

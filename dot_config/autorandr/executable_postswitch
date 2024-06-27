@@ -1,7 +1,0 @@
-#! /bin/bash
-
-# See https://github.com/phillipberndt/autorandr/issues/326#issuecomment-1426853781 for why this dirty `i3-msg` hack...
-i3-msg exec $HOME/.config/polybar/launch.sh
-
-feh --no-fehbg --randomize --bg-fill $HOME/Pictures/Wallpapers/*
-notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"

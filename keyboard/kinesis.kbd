@@ -1,0 +1,66 @@
+(defcfg
+    input (device-file "/dev/input/by-id/usb-Kinesis_Advantage2_Keyboard_314159265359-if01-event-kbd")
+    output (uinput-sink "Kinesis kmonad")
+    fallthrough true
+    allow-cmd true
+)
+
+(defsrc
+  =    1    2    3    4    5       6    7    8    9    0    -
+  tab  q    w    e    r    t       y    u    i    o    p    \
+  caps a    s    d    f    g       h    j    k    l    ;    '
+  lsft z    x    c    v    b       n    m    ,    .    /    rsft
+       grv  102d                                  [    ]
+                      home end     pgdn pgup
+                 spc  del  lalt    ralt ret  bspc
+                           rmet    lctl
+)
+
+(defalias
+    ral (tap-hold-next-release 150 ret ralt)
+    nav (tap-hold-next-release 150 esc (layer-toggle navigation))
+    bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
+    nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
+    sal (around lsft lalt)
+    sct (sticky-key 1000 (around lsft lctl))
+    tmx (around lctl spc)
+    stc (sticky-key 1000 lctl)
+    cz  (around lctl z)
+    cx  (around lctl x)
+    cc  (around lctl c)
+    ;; Need to map CTRL+V to CTRL+B, because kmonad isn't aware that I'm actually in Colemak
+    cv  (around lctl b)
+)
+
+(deflayer base
+  =    1    2    3    4    5       6    7    8    9    0    -
+  tab  q    w    e    r    t       y    u    i    o    p    \
+  @nav a    s    d    f    g       h    j    k    l    ;    '
+  XX   z    x    c    v    b       n    m    ,    .    /    XX
+       grv  102d                                  XX   XX
+                      XX   XX      XX   XX
+                 spc  lsft lalt    XX   @ral bspc
+                           rmet    lctl
+)
+
+(deflayer navigation
+  _    _    _    _    _    _       _    _    _    _    _    _
+  _    _    _    @sal @sct _       home pgdn pgup end  _    _
+  _    _    @tmx lalt @stc _       left down up   rght bspc @nal
+  _    @cz  @cx  @cc  _    @cv     _    _    _    _    _    _
+       _    _                                     _    _
+                      _    _       _    _
+                 _    _    _       _    _    _
+                           _       _
+)
+
+(deflayer navigationlock
+  _    _    _    _    _    _       _    _    _    _    _    _
+  _    _    _    @sal @sct _       home pgdn pgup end  _    _
+  @bas _    @tmx lalt @stc _       left down up   rght bspc _
+  _    @cz  @cx  @cc  _    @cv     _    _    _    _    _    _
+       _    _                                     _    _
+                      _    _       _    _
+                 _    _    _       _    _    _
+                           _       _
+)
