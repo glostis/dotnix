@@ -139,8 +139,8 @@
       nui-nvim # Dep of navbuddy
     ];
     extraPackages = with pkgs; [
-      nodePackages.pyright
-      nodePackages.bash-language-server
+      pyright
+      bash-language-server
       ruff-lsp
       black
       stylua
