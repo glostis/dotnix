@@ -15,7 +15,7 @@ for m in $(xrandr | sed -n '/ connected /p' | sed 's/ /@/g'); do
         bars="${bars} center"
     fi
     for bar in $bars; do
-        DEFAULT_NETWORK_INTERFACE="$net_interface" MONITOR="$monitor" polybar --reload --log=info "$bar" > /tmp/polybar_"$monitor"_"$bar".log 2>&1 &
+        DEFAULT_NETWORK_INTERFACE="$net_interface" MONITOR="$monitor" polybar  --log=info "$bar" > /tmp/polybar_"$monitor"_"$bar".log 2>&1 &
     done
     sleep 1
 done

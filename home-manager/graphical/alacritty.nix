@@ -8,7 +8,12 @@
       name = "alacritty";
       runtimeInputs = with pkgs; [alacritty];
       text = ''
-        nixGLIntel alacritty
+        if command -v nixGLIntel &> /dev/null
+        then
+          nixGLIntel alacritty
+        else
+          alacritty
+        fi
       '';
     })
   ];

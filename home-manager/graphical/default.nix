@@ -122,9 +122,6 @@ in {
     ubuntu_font_family
     terminus_font
     meslo-lgs-nf
-
-    # OpenGL on non-NixOS
-    nixgl.nixGLIntel
   ];
 
   fonts.fontconfig.enable = true;

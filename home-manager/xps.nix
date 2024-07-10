@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    # OpenGL on non-NixOS
+    nixgl.nixGLIntel
+
     _1password-gui
     slack
     dive

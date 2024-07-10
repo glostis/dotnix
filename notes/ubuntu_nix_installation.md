@@ -89,15 +89,3 @@ sudo apt purge netplan netplan.io -y
 - lightdm doesn't kick in
 
 - (minor) All app icons don't show in `rofi`
-
-### Nice to haves
-
-- Use NixGL to wrap apps that need it:
-    - gthumb
-    - Alacritty
-    - mupdf
-    - Firefox?
-    - picom?
-```bash
-nix shell --override-input nixpkgs np 'github:guibou/nixGL#nixGLIntel'
-```
