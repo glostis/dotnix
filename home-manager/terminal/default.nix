@@ -26,7 +26,7 @@
     imagemagick # Image manipulation commands
     jq # JSON parser
     gron # Make JSON greppable!
-    neofetch # System information
+    # neofetch # System information
     ranger # File browser
     tree # Recursive directory listing
     zip # Archiving
