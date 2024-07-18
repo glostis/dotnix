@@ -80,7 +80,7 @@
         nixpkgsflake = nixpkgs;
         pkgs-stable = import nixpkgs {system = system;};
         inherit nix-colors;
-        enableWorkProfile = true;
+        enableWorkProfile = false;
       };
     };
   };
