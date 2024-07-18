@@ -122,6 +122,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
       # For kmonad
       "input"
       "uinput"
@@ -163,6 +164,11 @@
     enable = true;
     package = pkgs.plocate;
     localuser = null;
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
   };
 
   programs.i3lock.enable = true;
