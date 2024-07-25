@@ -6,13 +6,13 @@
     _1password-gui
     slack
     dive
-    (writeShellApplication {
-      name = "qgis";
-      runtimeInputs = with pkgs; [qgis];
-      text = ''
-        nixGLIntel qgis
-      '';
-    })
+    # (writeShellApplication {
+    #   name = "qgis";
+    #   runtimeInputs = [pkgs-stable.qgis];
+    #   text = ''
+    #     nixGLIntel pkgs-stable.qgis
+    #   '';
+    # })
   ];
 
   programs.awscli.enable = true;

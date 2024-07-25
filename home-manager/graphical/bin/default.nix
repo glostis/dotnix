@@ -34,6 +34,8 @@
             pgrep -af 'kmonad.*kinesis' >/dev/null || kmonad "$kb_files"/kinesis.kbd &
             sleep 1
             ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 "$kb_files"/dist/glostis-colemak.xkb_keymap "$DISPLAY"
+        elif [ "$kb_type" = "corne" ]; then
+            ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 "$kb_files"/dist/glostis-colemak.xkb_keymap "$DISPLAY"
         else
             pgrep -af 'kmonad.*laptop' >/dev/null || kmonad "$kb_files"/laptop.kbd &
             sleep 1
