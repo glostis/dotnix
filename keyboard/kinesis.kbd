@@ -22,10 +22,10 @@
     nav (tap-hold-next-release 150 esc (layer-toggle navigation))
     bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
     sal (around lsft lalt)
-    sct (sticky-key 1000 (around lsft lctl))
+    sct (sticky-key 2000 (around lsft lctl))
     tmx (around lctl spc)
-    stc (sticky-key 1000 lctl)
-    ssf (sticky-key 1000 lsft)
+    stc (sticky-key 2000 lctl)
+    ssf (sticky-key 2000 lsft)
     cz  (around lctl z)
     cx  (around lctl x)
     cc  (around lctl c)
@@ -38,8 +38,8 @@
 )
 
 (deflayer base
-  =    1    2    3    4    5       6    7    8    9    0    -
-  tab  q    w    e    r    t       y    u    i    o    p    \
+  XX   1    2    3    4    5       6    7    8    9    0    XX
+  tab  q    w    e    r    t       y    u    i    o    p    XX
   @nav a    s    d    f    g       h    j    k    l    ;    '
   XX   z    x    c    v    b       n    m    ,    .    /    rsft
        grv  102d                                  XX   XX
