@@ -63,8 +63,11 @@
         # an xplug event with device=keyboard
         if [ "$1" = "keyboard" ]; then
             nb_kinesis=$(find /dev/input/by-id/ -name 'usb-Kinesis_Advantage2_Keyboard*' | wc -l)
+            nb_corne=$(find /dev/input/by-id/ -name 'usb-foostan_Corne_v4_vial*' | wc -l)
             if [ "$nb_kinesis" -gt 0 ]; then
                 kb_type="kinesis"
+            elif [ "$nb_corne" -gt 0 ]; then
+                kb_type="corne"
             else
                 kb_type="laptop"
             fi

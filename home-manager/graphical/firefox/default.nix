@@ -27,7 +27,7 @@ in {
     profiles = {
       perso = {
         isDefault = !enableWorkProfile;
-        id = 1;
+        id = 0;
         extensions = with firefox-addons;
           extensions
           ++ [
@@ -42,6 +42,7 @@ in {
         else null
       } = {
         isDefault = true;
+        id = 1;
         extensions = with firefox-addons;
           extensions
           ++ [

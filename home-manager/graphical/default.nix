@@ -5,11 +5,11 @@
   lib,
   ...
 }: let
-  gtkTheme = "Gruvbox-${
+  gtkTheme = "Gruvbox-Orange-${
     if ("${config.colorScheme.variant}" == "dark")
     then "Dark"
     else "Light"
-  }-BL";
+  }-Compact";
   preferDark =
     if ("${config.colorScheme.variant}" == "dark")
     then true
@@ -56,7 +56,7 @@ in {
     vlc # Video viewer
     redshift # Turns screen to red to avoid blue light
     libreoffice-fresh # Bureautique
-    bitwarden # Password manager GUI
+    # bitwarden # Password manager GUI
     gthumb # Quick photo editing
     gimp # Not-so-quick photo editing
     mupdf # pdf viewer
@@ -149,16 +149,16 @@ in {
     enable = true;
     theme = {
       name = "${gtkTheme}";
-      # Override to an older commit that still contained the Light theme versions
-      # See https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme/issues/42
+      # Override to change the color of the theme
       package = pkgs.gruvbox-gtk-theme.overrideAttrs (previousAttrs: {
-        version = "fixed-version-with-light";
-        src = pkgs.fetchFromGitHub {
-          owner = "Fausto-Korpsvart";
-          repo = "Gruvbox-GTK-Theme";
-          rev = "c7a852728717e60a41c2b2fbeac70d2b2269b86c";
-          hash = "sha256-sbSQbyvgd3LOnLXuV2ALNckz2mh0O8KB0d6jzfBT1yA=";
-        };
+        version = "${previousAttrs.version}-patch-orange";
+        installPhase = ''
+          runHook preInstall
+          mkdir -p $out/share/themes
+          cd themes
+          ./install.sh -n Gruvbox --theme orange --size compact -d "$out/share/themes"
+          runHook postInstall
+        '';
       });
     };
     gtk2.extraConfig = ''
@@ -219,6 +219,60 @@ in {
       }
     ];
   };
+
+  # Using an overlay for `autorandr` because the `programs.autorandr.package` option does not exist,
+  # and I want version 1.15 of the package because it suppresses SyntaxWarnings with Python 3.12
+  nixpkgs.overlays = [
+    (final: prev: {
+      autorandr = prev.autorandr.overrideAttrs (previousAttrs: rec {
+        version = "1.15";
+        src = pkgs.fetchFromGitHub {
+          owner = "phillipberndt";
+          repo = "autorandr";
+          rev = "refs/tags/${version}";
+          hash = "sha256-8FMfy3GCN4z/TnfefU2DbKqV3W35I29/SuGGqeOrjNg";
+        };
+        # Need to do `fish_copletion` → `fish_completion`
+        installPhase = ''
+          runHook preInstall
+          make install TARGETS='autorandr' PREFIX=$out
+
+          # zsh completions exist but currently have no make target, use
+          # installShellCompletions for both
+          # see https://github.com/phillipberndt/autorandr/issues/197
+          installShellCompletion --cmd autorandr \
+              --bash contrib/bash_completion/autorandr \
+              --zsh contrib/zsh_completion/_autorandr \
+              --fish contrib/fish_completion/autorandr.fish
+          # In the line above there's a typo that needs to be fixed in the next
+          # release
+
+          make install TARGETS='autostart_config' PREFIX=$out DESTDIR=$out
+
+          make install TARGETS='manpage' PREFIX=$man
+
+          ${
+            if pkgs.systemd != null
+            then ''
+              make install TARGETS='systemd udev' PREFIX=$out DESTDIR=$out \
+                SYSTEMD_UNIT_DIR=/lib/systemd/system \
+                UDEV_RULES_DIR=/etc/udev/rules.d
+              substituteInPlace $out/etc/udev/rules.d/40-monitor-hotplug.rules \
+                --replace /bin/systemctl "/run/current-system/systemd/bin/systemctl"
+            ''
+            else ''
+              make install TARGETS='pmutils' DESTDIR=$out \
+                PM_SLEEPHOOKS_DIR=/lib/pm-utils/sleep.d
+              make install TARGETS='udev' PREFIX=$out DESTDIR=$out \
+                UDEV_RULES_DIR=/etc/udev/rules.d
+            ''
+          }
+
+          runHook postInstall
+        '';
+      });
+    })
+  ];
 
   programs.autorandr = {
     enable = true;

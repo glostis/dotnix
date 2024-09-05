@@ -265,9 +265,6 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.alejandra,
-    null_ls.builtins.formatting.sqlfluff.with({
-      extra_args = { "--dialect", "duckdb" },
-    }),
     null_ls.builtins.formatting.hclfmt,
   },
   on_attach = function(client, bufnr)
