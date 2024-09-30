@@ -21,6 +21,7 @@
       save = 100000;
       size = 100000;
       share = false;
+      append = true;
     };
     initExtra = builtins.readFile ./initextra.zsh;
     syntaxHighlighting.enable = true;
