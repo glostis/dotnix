@@ -23,6 +23,7 @@
     toml
     */
     ''
+      [general]
       working_directory = "/home/glostis/"
 
       [colors.normal]
@@ -59,7 +60,7 @@
       [mouse]
       hide_when_typing = true
 
-      [shell]
+      [terminal.shell]
       args = ["--login", "-c", "tmux new-session -A -s ࿋"]
       program = "${pkgs.zsh}/bin/zsh"
 

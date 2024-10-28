@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
 lock() {
-    tmpbg="/tmp/screen.png"
-    $HOME/.bin/screenshot "$tmpbg"
-    convert "$tmpbg" -scale 20% -scale 500% -fill black -colorize 25% "$tmpbg"
-    corrupter -add 0 -mag 0 "$tmpbg" "$tmpbg"
-    i3lock -i "$tmpbg"
+    i3lock-multimonitor
 }
 
 if [ -z "$1" ]; then

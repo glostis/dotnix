@@ -425,10 +425,7 @@ require("gitsigns").setup()
 
 require("Comment").setup()
 
-require("auto-save").setup({
-  -- Disable message showing that buffer was saved
-  execution_message = { message = "" },
-})
+require("auto-save").setup()
 
 require("nvim-tree").setup({
   sync_root_with_cwd = true,

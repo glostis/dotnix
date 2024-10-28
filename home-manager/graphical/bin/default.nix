@@ -51,6 +51,10 @@
     executable = true;
     source = ./farewell;
   };
+  home.file.".bin/i3lock-multimonitor" = {
+    executable = true;
+    source = ./i3lock-multimonitor;
+  };
   home.file.".bin/launch_application" = {
     executable = true;
     source = ./launch_application;
