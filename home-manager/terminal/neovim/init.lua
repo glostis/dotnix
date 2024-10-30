@@ -187,6 +187,8 @@ require("telescope").setup({
         ["<esc>"] = "close",
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-f>"] = actions.to_fuzzy_refine,
+        ["<C-Down>"] = actions.cycle_history_next,
+        ["<C-Up>"] = actions.cycle_history_prev,
       },
     },
   },

@@ -64,7 +64,7 @@ do
     if ! [ -e $CACHE_IMG ]
     then
         # Create image for that screensize
-        magick "$BKG_IMG" -thumbnail "${SCREEN_WIDTH}x${SCREEN_HEIGHT}>" -background white -gravity center -extent "${SCREEN_WIDTH}x${SCREEN_HEIGHT}" "$CACHE_IMG"
+        magick "$BKG_IMG" -thumbnail "${SCREEN_WIDTH}x${SCREEN_HEIGHT}>" -background '#014491' -gravity center -extent "${SCREEN_WIDTH}x${SCREEN_HEIGHT}" "$CACHE_IMG"
     fi
 
     # Decide size of output image
