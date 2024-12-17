@@ -23,8 +23,6 @@
 
 (defalias
     nav (tap-hold-next-release 150 esc (layer-toggle navigation))
-    bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
-    nal (tap-macro (cmd-button "polybar-msg action kmonad send ' 󰆋 '") (layer-switch navigationlock))
     sal (around lsft lalt)
     sct (sticky-key 1000 (around lsft lctl))
     tmx (around lctl spc)
@@ -46,15 +44,7 @@
 (deflayer navigation
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
-  _    _    @tmx lalt @stc _    left down up   rght bspc @nal _    _
-  _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
-  _    _    _              _              _    _    _
-)
-
-(deflayer navigationlock
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
-  @bas _    _    lalt @stc _    left down up   rght bspc _    _    _
+  _    _    @tmx lalt @stc _    left down up   rght bspc _    _    _
   _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
   _    _    _              _              _    _    _
 )

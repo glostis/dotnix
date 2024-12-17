@@ -267,7 +267,11 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.alejandra,
+    null_ls.builtins.formatting.sqlfluff.with({
+      extra_args = { "--dialect", "duckdb" },
+    }),
     null_ls.builtins.formatting.hclfmt,
+    null_ls.builtins.formatting.prettier,
   },
   on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>b", function()

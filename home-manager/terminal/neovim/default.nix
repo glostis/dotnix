@@ -58,6 +58,8 @@
       vim-surround
       # Add dot-repeat to plugin actions
       vim-repeat
+      # Work with several variants of a word at once: `:S/word/substitution`
+      vim-abolish
       # Auto-detect file indentation / tabstop, etc.
       vim-sleuth
       # "gc" to comment visual regions/lines
@@ -145,7 +147,8 @@
       black
       stylua
       alejandra
-      # sqlfluff
+      nodePackages.prettier
+      sqlfluff
       hclfmt
       docker-compose-language-service
       dockerfile-language-server-nodejs

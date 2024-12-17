@@ -20,7 +20,6 @@
     ral (tap-hold-next-release 150 ret ralt)
     num (tap-hold-next-release 150 bspc (layer-toggle num))
     nav (tap-hold-next-release 150 esc (layer-toggle navigation))
-    bas (tap-macro (cmd-button "polybar-msg action kmonad send")       (layer-switch base))
     sal (around lsft lalt)
     sct (sticky-key 2000 (around lsft lctl))
     tmx (around lctl spc)

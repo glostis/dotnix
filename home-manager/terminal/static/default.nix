@@ -23,11 +23,6 @@
       vim.bo.commentstring="# %s"
     '';
 
-  home.file.".config/pip/pip.conf".text = ''
-    [global]
-    disable-pip-version-check = True
-  '';
-
   # Could symlink to the whole ./ranger directory, but then ranger crashes with
   # `--confdir is not writable`
   home.file.".config/ranger/scope.sh" = {

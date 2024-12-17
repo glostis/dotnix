@@ -122,6 +122,8 @@ in {
     ubuntu_font_family
     terminus_font
     meslo-lgs-nf
+    # See https://github.com/polybar/polybar/issues/991 for why this font is installed
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
   ];
 
   fonts.fontconfig.enable = true;
