@@ -55,9 +55,9 @@ super + q
 
 # Application launches
 
-# Launch alacritty
+# Launch terminal
 super + space
-    alacritty
+    ghostty
 
 # rofi launcher
 super + d

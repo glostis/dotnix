@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   enableWorkProfile,
   ...
 }: let
@@ -24,6 +25,8 @@ in {
     };
   in {
     enable = true;
+    package = config.lib.nixGL.wrap pkgs.firefox;
+    languagePacks = ["fr"];
     profiles = {
       perso = {
         isDefault = !enableWorkProfile;

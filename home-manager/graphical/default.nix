@@ -40,7 +40,7 @@
   };
 in {
   imports = [
-    ./alacritty.nix
+    ./ghostty.nix
     ./dunst
     ./sxhkd
     ./static
@@ -121,9 +121,7 @@ in {
     roboto
     ubuntu_font_family
     terminus_font
-    meslo-lgs-nf
-    # See https://github.com/polybar/polybar/issues/991 for why this font is installed
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    nerd-fonts.jetbrains-mono
   ];
 
   fonts.fontconfig.enable = true;

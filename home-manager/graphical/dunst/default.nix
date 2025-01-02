@@ -43,7 +43,7 @@
         sort = yes
         idle_threshold = 0
 
-        font = MesloLGS NF:style=Regular:size=12
+        font = JetBrainsMono NF:style=Regular:size=10
         line_height = 0
         markup = full
         format = "<b>%s</b>\n%b"

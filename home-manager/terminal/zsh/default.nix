@@ -6,7 +6,6 @@
       enable = true;
       plugins = [
         "paulirish/git-open"
-        "valiev/almostontop"
         "zsh-users/zsh-completions"
         "wfxr/forgit"
       ];

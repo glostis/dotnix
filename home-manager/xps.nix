@@ -1,18 +1,14 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # OpenGL on non-NixOS
-    nixgl.nixGLIntel
+{
+  pkgs,
+  nixgl,
+  ...
+}: {
+  nixGL.packages = nixgl.packages;
 
+  home.packages = with pkgs; [
     _1password-gui
     slack
     dive
-    # (writeShellApplication {
-    #   name = "qgis";
-    #   runtimeInputs = [pkgs-stable.qgis];
-    #   text = ''
-    #     nixGLIntel pkgs-stable.qgis
-    #   '';
-    # })
   ];
 
   programs.awscli.enable = true;

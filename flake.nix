@@ -5,12 +5,20 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    nurpkgs.url = "github:nix-community/nur";
+    nurpkgs = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +32,7 @@
     nurpkgs,
     nix-colors,
     nixgl,
+    ghostty,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -38,7 +47,7 @@
       pkgs = import nixpkgs {
         system = system;
         overlays = [
-          nurpkgs.overlay
+          nurpkgs.overlays.default
           nixgl.overlay
         ];
       };
@@ -57,13 +66,15 @@
         pkgs-stable = import nixpkgs {system = system;};
         inherit nix-colors;
         enableWorkProfile = true;
+        inherit ghostty;
+        inherit nixgl;
       };
     };
     homeConfigurations."glostis@suzanne" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = system;
         overlays = [
-          nurpkgs.overlay
+          nurpkgs.overlays.default
         ];
       };
 

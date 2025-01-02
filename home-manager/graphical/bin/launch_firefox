@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-if command -v nixGLIntel &> /dev/null
-then
-    # MOZ_USE_XINPUT2 is used to enable pixel-perfect trackpad scrolling
-    # cf https://wiki.archlinux.org/title/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
-    MOZ_USE_XINPUT2=1 nixGLIntel firefox -P "$1"
-else
-    MOZ_USE_XINPUT2=1 firefox -P "$1"
-fi
+# MOZ_USE_XINPUT2 is used to enable pixel-perfect trackpad scrolling
+# cf https://wiki.archlinux.org/title/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
+MOZ_USE_XINPUT2=1 firefox -P "$1"

@@ -93,9 +93,8 @@ key_mapper("v", "<leader>Y", '"+Y')
 key_mapper("n", "<leader>p", ":set paste<CR>:put  +<CR>:set nopaste<CR>")
 key_mapper("n", "<leader>P", ":set paste<CR>:put!  +<CR>:set nopaste<CR>")
 
--- Toggle and resize ranger and nvim-tree file explorers
-key_mapper("n", "<leader>r", ":RnvimrToggle<CR>")
-key_mapper("t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>")
+-- Toggle and resize yazi and nvim-tree file explorers
+-- key_mapper("n", "<leader>f", ":RnvimrToggle<CR>")
 key_mapper("n", "<leader>tt", ":NvimTreeToggle<CR>")
 
 -- Telescope mappings
@@ -338,11 +337,11 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require("lspconfig").pyright.setup({
+require("lspconfig").basedpyright.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
-require("lspconfig").ruff_lsp.setup({
+require("lspconfig").ruff.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })

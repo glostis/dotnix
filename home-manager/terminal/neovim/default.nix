@@ -66,8 +66,6 @@
       comment-nvim
       # Auto-save a buffer when it is changed
       auto-save-nvim
-      # Seamless navigation between vim splits and tmux panes
-      vim-tmux-navigator
       # Close a buffer without closing the window, using :Bdelete
       vim-bbye
       # Deactivate search highlighting when search finished
@@ -80,8 +78,8 @@
       # ~~~~~~~~ UI ~~~~~~~~
       # Colorscheme
       gruvbox-material
-      # Use ranger as file explorer
-      rnvimr
+      # Use yazi as file explorer
+      yazi-nvim
       # Dependency of nvim-tree-lua, bufferline-nvim and trouble-nvim
       nvim-web-devicons
       # File tree explorer
@@ -141,9 +139,9 @@
       nui-nvim # Dep of navbuddy
     ];
     extraPackages = with pkgs; [
-      pyright
+      basedpyright
       bash-language-server
-      ruff-lsp
+      ruff
       black
       stylua
       alejandra

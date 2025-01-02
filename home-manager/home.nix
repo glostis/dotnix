@@ -38,7 +38,7 @@
   ];
 
   home.sessionVariables = {
-    TERMINAL = "alacritty";
+    TERMINAL = "ghostty";
     PAGER = "less";
 
     # ~/ Clean-up:
@@ -76,7 +76,6 @@
     rm = "echo Use trash-put instead. Or use 'backslash rm' if you really want to.; false";
     tp = "trash-put";
     tl = "trash-list";
-    ranger = "TERM=screen-256color ranger";
     hm = "home-manager --flake ${config.home.homeDirectory}/dotnix";
   };
 

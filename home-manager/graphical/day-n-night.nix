@@ -23,7 +23,7 @@
   home.packages = with pkgs; [
     (writeShellApplication {
       name = "day-n-night";
-      runtimeInputs = with pkgs; [home-manager gawk neovim-remote xorg.xrdb i3 tmux];
+      runtimeInputs = with pkgs; [home-manager gawk neovim-remote xorg.xrdb i3];
       text = ''
         for gen in $(home-manager generations | awk '{print $5","$7}'); do
           # gen_id=$(echo "$gen" | cut -d, -f1)
@@ -49,8 +49,6 @@
         xrdb "$HOME"/.Xresources && i3-msg reload &
 
         bash "$HOME"/.config/polybar/launch.sh
-
-        tmux source-file "$HOME"/.config/tmux/tmux.conf &
       '';
     })
   ];

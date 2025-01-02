@@ -6,7 +6,6 @@
   imports = [
     ./zsh
     ./neovim
-    ./tmux
     ./static
     ./git.nix
     ./direnv.nix
@@ -27,7 +26,6 @@
     jq # JSON parser
     gron # Make JSON greppable!
     # neofetch # System information
-    ranger # File browser
     tree # Recursive directory listing
     zip # Archiving
     unzip # Unarchiving
@@ -36,7 +34,6 @@
     nodePackages.fixjson # JSON formatter
     entr # run arbitrary commands when files change
     bc # Command-line calculations
-    w3m # Text-based web browser
     pipx # Install executables in python venvs from PyPI
     parallel # Runs commands in parallel
     usbutils # Provides `lsusb` to show connected USB devices
@@ -114,6 +111,11 @@
       ''
         [[ -f ${config.home.homeDirectory}/.secrets ]] && . ${config.home.homeDirectory}/.secrets
       '';
+  };
+
+  programs.yazi = {
+    enable = true;
+    shellWrapperName = "y";
   };
 
   xdg.configFile."pypoetry/config.toml".text =

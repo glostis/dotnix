@@ -23,15 +23,6 @@
       vim.bo.commentstring="# %s"
     '';
 
-  # Could symlink to the whole ./ranger directory, but then ranger crashes with
-  # `--confdir is not writable`
-  home.file.".config/ranger/scope.sh" = {
-    source = ./ranger/scope.sh;
-    executable = true;
-  };
-  home.file.".config/ranger/rc.conf".source = ./ranger/rc.conf;
-  home.file.".config/ranger/rifle.conf".source = ./ranger/rifle.conf;
-
   home.file.".config/ruff/pyproject.toml".text =
     /*
     toml
