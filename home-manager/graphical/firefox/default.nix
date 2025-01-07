@@ -12,6 +12,7 @@ in {
       darkreader
       tree-style-tab
       vimium
+      french-dictionary
     ];
     extraConfig = builtins.readFile ./user.js;
     userChrome = builtins.readFile ./userChrome.css;

@@ -40,6 +40,8 @@
           fi
         done
 
+        bash "$HOME"/.config/polybar/launch.sh &
+
         # Use neovim-remote to re-source the colorshcheme.lua module in all existing neovim instances
         for s in $(nvr --serverlist); do
             nvr --nostart --servername "$s" -c "source $HOME/.config/nvim/lua/colorscheme.lua" &
@@ -47,8 +49,6 @@
 
         # Relaunch xrdb and i3
         xrdb "$HOME"/.Xresources && i3-msg reload &
-
-        bash "$HOME"/.config/polybar/launch.sh
       '';
     })
   ];

@@ -9,6 +9,7 @@
     ./static
     ./git.nix
     ./direnv.nix
+    ./open-in-editor.nix
   ];
 
   home.packages = with pkgs; [
@@ -99,6 +100,8 @@
       "--glob=!.git/"
       # Always include dotfiles
       "--hidden"
+      # Add OSC 8 hyperlinks on file names
+      "--hyperlink-format=file-line-column://{path}:{line}:{column}"
     ];
   };
 

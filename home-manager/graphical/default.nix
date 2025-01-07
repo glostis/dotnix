@@ -124,7 +124,14 @@ in {
     nerd-fonts.jetbrains-mono
   ];
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      emoji = ["Noto Color Emoji"];
+      monospace = ["JetBrainsMono NF"];
+      sansSerif = ["Roboto"];
+    };
+  };
 
   xsession = {
     enable = true;
@@ -165,10 +172,23 @@ in {
       gtk-application-prefer-dark-theme=${toString preferDark}
     '';
     gtk3.extraConfig.gtk-application-prefer-dark-theme = preferDark;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = preferDark;
     iconTheme = {
       package = pkgs.gruvbox-dark-icons-gtk;
       name = "gruvbox-dark";
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-${config.colorScheme.variant}";
+    };
+  };
+
+  services.xsettingsd = {
+    enable = true;
+    settings = {
+      "Net/ThemeName" = "${gtkTheme}";
+      "Gtk/CursorThemeName" = "graphite-${config.colorScheme.variant}";
     };
   };
 
@@ -219,60 +239,6 @@ in {
       }
     ];
   };
-
-  # Using an overlay for `autorandr` because the `programs.autorandr.package` option does not exist,
-  # and I want version 1.15 of the package because it suppresses SyntaxWarnings with Python 3.12
-  nixpkgs.overlays = [
-    (final: prev: {
-      autorandr = prev.autorandr.overrideAttrs (previousAttrs: rec {
-        version = "1.15";
-        src = pkgs.fetchFromGitHub {
-          owner = "phillipberndt";
-          repo = "autorandr";
-          rev = "refs/tags/${version}";
-          hash = "sha256-8FMfy3GCN4z/TnfefU2DbKqV3W35I29/SuGGqeOrjNg";
-        };
-        # Need to do `fish_copletion` → `fish_completion`
-        installPhase = ''
-          runHook preInstall
-          make install TARGETS='autorandr' PREFIX=$out
-
-          # zsh completions exist but currently have no make target, use
-          # installShellCompletions for both
-          # see https://github.com/phillipberndt/autorandr/issues/197
-          installShellCompletion --cmd autorandr \
-              --bash contrib/bash_completion/autorandr \
-              --zsh contrib/zsh_completion/_autorandr \
-              --fish contrib/fish_completion/autorandr.fish
-          # In the line above there's a typo that needs to be fixed in the next
-          # release
-
-          make install TARGETS='autostart_config' PREFIX=$out DESTDIR=$out
-
-          make install TARGETS='manpage' PREFIX=$man
-
-          ${
-            if pkgs.systemd != null
-            then ''
-              make install TARGETS='systemd udev' PREFIX=$out DESTDIR=$out \
-                SYSTEMD_UNIT_DIR=/lib/systemd/system \
-                UDEV_RULES_DIR=/etc/udev/rules.d
-              substituteInPlace $out/etc/udev/rules.d/40-monitor-hotplug.rules \
-                --replace /bin/systemctl "/run/current-system/systemd/bin/systemctl"
-            ''
-            else ''
-              make install TARGETS='pmutils' DESTDIR=$out \
-                PM_SLEEPHOOKS_DIR=/lib/pm-utils/sleep.d
-              make install TARGETS='udev' PREFIX=$out DESTDIR=$out \
-                UDEV_RULES_DIR=/etc/udev/rules.d
-            ''
-          }
-
-          runHook postInstall
-        '';
-      });
-    })
-  ];
 
   programs.autorandr = {
     enable = true;

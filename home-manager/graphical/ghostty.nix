@@ -10,11 +10,7 @@
     settings = {
       command = "${pkgs.zsh}/bin/zsh";
 
-      # Automatic theme switching should work, but doesn’t on my machine…
-      theme =
-        if ("${config.colorScheme.variant}" == "light")
-        then "GruvboxLight"
-        else "GruvboxDark";
+      theme = "dark:GruvboxDark,light:GruvboxLight";
 
       # Disable the blinking cursor bar
       shell-integration-features = "no-cursor";
@@ -30,8 +26,10 @@
       resize-overlay = "never"; # Remove the popup that indicates terminal size on resize
       copy-on-select = "clipboard";
 
-      # For some reason, the default ctrl+shift+comma doesn’t work with my setup…
-      keybind = "ctrl+shift+r=reload_config";
+      keybind = [
+        # For some reason, the default ctrl+shift+comma doesn’t work with my setup…
+        "ctrl+shift+r=reload_config"
+      ];
     };
   };
 

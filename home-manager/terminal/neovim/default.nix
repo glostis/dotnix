@@ -74,6 +74,8 @@
       flash-nvim
       # Extended f, F, t and T key mappings for Vim.
       clever-f-vim
+      # Smart, seamless, directional navigation and resizing of Neovim splits
+      smart-splits-nvim
 
       # ~~~~~~~~ UI ~~~~~~~~
       # Colorscheme
