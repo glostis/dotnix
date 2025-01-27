@@ -62,7 +62,7 @@
         symbol = " ";
       };
       nix_shell = {
-        heuristic = true;
+        disabled = true;
       };
       python = {
         symbol = " ";
@@ -119,6 +119,11 @@
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
+    settings = {
+      manager = {
+        linemode = "size";
+      };
+    };
   };
 
   xdg.configFile."pypoetry/config.toml".text =

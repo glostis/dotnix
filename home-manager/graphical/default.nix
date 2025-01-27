@@ -70,12 +70,12 @@ in {
     maim # Screenshot
     rofi-screenshot # Take screencaptures (.mp4 or .gif)
     rofimoji # Provides an emoji picker using rofi
-    haskellPackages.greenclip # Rofi-based clipboard manager
     haskellPackages.kmonad # Advanced keyboard configuration
     nur.repos.glostis.kalamine # Keyboard layout remapping tool
     android-file-transfer # Required to connect to Android phones through USB
     android-udev-rules # Dependency of android-file-transfer
     devour # Open a new program by hiding the current window
+    exiftool # Read EXIF properties of images
 
     i3 # WM
     libnotify # Provides `notify-send`
@@ -144,7 +144,6 @@ in {
     initExtra = ''
       picom -b
       ${pkgs.xplugd}/bin/xplugd &
-      ${pkgs.haskellPackages.greenclip}/bin/greenclip daemon &
       ${pkgs.sxhkd}/bin/sxhkd -m -1 &
       if [ -f $HOME/.bin/custom_keyboard_layout ]; then
           $HOME/.bin/custom_keyboard_layout laptop &
@@ -261,4 +260,8 @@ in {
     enable = true;
     theme = "gruvbox-${config.colorScheme.variant}";
   };
+
+  # Disable recording the PRIMARY clipboard (the one that gets populated when highlighting text)
+  systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
+  services.clipmenu.enable = true;
 }

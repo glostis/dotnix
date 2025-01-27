@@ -80,23 +80,6 @@
       '';
   };
 
-  home.file.".config/greenclip.toml".text =
-    /*
-    toml
-    */
-    ''
-      [greenclip]
-        blacklisted_applications = []
-        enable_image_support = false
-        history_file = "${config.home.homeDirectory}/.cache/greenclip.history"
-        image_cache_directory = "/tmp/greenclip"
-        max_history_length = 50
-        max_selection_size_bytes = 1000000
-        static_history = ["Empty history"]
-        trim_space_from_selection = true
-        use_primary_selection_as_input = false
-    '';
-
   # TODO: variabilize browser between personal and work computer
   home.file.".config/mimeapps.list".text =
     /*

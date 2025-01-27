@@ -117,6 +117,6 @@ super + {_,shift +} t
 super + s
     i3-msg -q split toggle
 
-# greenclip (clipboard manager)
+# clipmenu (clipboard manager)
 super + g
-    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+    CM_LAUNCHER=rofi clipmenu

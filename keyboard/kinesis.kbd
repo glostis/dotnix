@@ -18,11 +18,10 @@
 
 (defalias
     ral (tap-hold-next-release 150 ret ralt)
-    num (tap-hold-next-release 150 bspc (layer-toggle num))
-    nav (tap-hold-next-release 150 esc (layer-toggle navigation))
-    sal (around lsft lalt)
+    num (tap-hold-next-release 150 esc (layer-toggle num))
+    nav (tap-hold-next-release 150 bspc (layer-toggle navigation))
+    sal (sticky-key 2000 (around lsft lalt))
     sct (sticky-key 2000 (around lsft lctl))
-    tmx (around lctl spc)
     stc (sticky-key 2000 lctl)
     ssf (sticky-key 2000 lsft)
     cz  (around lctl z)
@@ -39,18 +38,18 @@
 (deflayer base
   XX   1    2    3    4    5       6    7    8    9    0    XX
   tab  q    w    e    r    t       y    u    i    o    p    XX
-  @nav a    s    d    f    g       h    j    k    l    ;    '
+  @num a    s    d    f    g       h    j    k    l    ;    '
   XX   z    x    c    v    b       n    m    ,    .    /    rsft
        grv  102d                                  XX   XX
                       XX   XX      XX   XX
-                 spc  @ral XX      XX   @ssf @num
+                 spc  @ral XX      XX   @ssf @nav
                            rmet    lctl
 )
 
 (deflayer navigation
   _    _    _    _    _    _       _    _    _    _    _    _
   _    _    _    @sal @sct _       home pgdn pgup end  _    _
-  _    _    @tmx lalt @stc _       left down up   rght bspc _
+  _    _    lsft lalt @stc _       left down up   rght bspc _
   _    @cz  @cx  @cc  _    @cv     _    _    _    _    _    _
        _    _                                     _    _
                       _    _       _    _

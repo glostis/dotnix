@@ -22,10 +22,9 @@
 ;; )
 
 (defalias
-    nav (tap-hold-next-release 150 esc (layer-toggle navigation))
-    sal (around lsft lalt)
+    nav (tap-hold-next-release 150 lalt (layer-toggle navigation))
+    sal (sticky-key 2000 (around lsft lalt))
     sct (sticky-key 1000 (around lsft lctl))
-    tmx (around lctl spc)
     stc (sticky-key 1000 lctl)
     cz  (around lctl z)
     cx  (around lctl x)
@@ -36,15 +35,15 @@
 (deflayer base
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    XX   XX
-  @nav a    s    d    f    g    h    j    k    l    ;    '    \    ret
+  esc  a    s    d    f    g    h    j    k    l    ;    '    \    ret
   lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt prnt rctl
+  lctl lmet ralt           spc            @nav prnt rctl
 )
 
 (deflayer navigation
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
-  _    _    @tmx lalt @stc _    left down up   rght bspc _    _    _
+  _    _    lsft lalt @stc _    left down up   rght bspc _    _    _
   _    _    @cz  @cx  @cc  @cv  _    _    _    _    _    _    _
   _    _    _              _              _    _    _
 )

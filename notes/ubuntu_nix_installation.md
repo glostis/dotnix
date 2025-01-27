@@ -41,6 +41,7 @@ sudo apt upgrade
 sudo apt install --no-install-recommends \
     apt-file \
     bluez \
+    cups \
     pulseaudio-module-bluetooth \
     i3lock \
     lightdm \
@@ -51,10 +52,11 @@ sudo apt install --no-install-recommends \
     policykit-1-gnome \
     pulseaudio \
     seahorse \
+    vim \
+    xdg-desktop-portal-gtk \
     xorg
-sudo apt remove command-not-found xdg-desktop-portal
+sudo apt remove command-not-found
 ```
-*Note: `xdg-desktop-portal` is removed due to [creating slow startup issues of applications like Firefox](https://github.com/flatpak/xdg-desktop-portal/issues/1032)*
 
 [Switch from netplan to NetworkManager](https://askubuntu.com/a/1463401):
 ```

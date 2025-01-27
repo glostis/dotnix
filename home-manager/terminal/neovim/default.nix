@@ -114,8 +114,8 @@
       cmp-buffer
       cmp-path
 
-      # "Fake" LSP server to run stuff like linters and formatters - `none-ls` is the maintained fork of `null-ls`
-      none-ls-nvim
+      # Code formatter
+      conform-nvim
       # Dependency of null-ls-nvim and telescope-nvim
       plenary-nvim
 

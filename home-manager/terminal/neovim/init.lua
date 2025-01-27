@@ -47,6 +47,10 @@ vim.o.listchars = "tab:▷⋅,trail:⋅,nbsp:⋅"
 -- When pressing `*` to search for word under cursor, consider that `-` is part of a word.
 vim.opt_local.iskeyword:append("-")
 
+-- Set terminal title, from https://www.reddit.com/r/neovim/comments/17uez05/set_powershellwindows_terminal_tab_title/
+vim.opt.title = true
+vim.opt.titlestring = [[%t – %{fnamemodify(getcwd(), ':t')}]]
+
 -- -------------- Mappings --------------
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
@@ -117,10 +121,18 @@ vim.keymap.set("n", "<leader>dd", function()
 end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
 
 -- smart-splits mappings
-vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
-vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
-vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
-vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
+vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
+vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
+vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+
+-- conform mappings
+vim.keymap.set({ "n", "v" }, "<leader>b", function()
+  require("conform").format({
+    async = true,
+    bufnr = bufnr,
+  })
+end, { buffer = bufnr, desc = "[B]eautify (format) current buffer", noremap = true })
 
 require("colorscheme")
 
@@ -267,25 +279,16 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
-local null_ls = require("null-ls")
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.alejandra,
-    null_ls.builtins.formatting.sqlfluff.with({
-      extra_args = { "--dialect", "duckdb" },
-    }),
-    null_ls.builtins.formatting.hclfmt,
-    null_ls.builtins.formatting.prettier,
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+    javascript = { "prettier" },
+    html = { "prettier" },
+    sql = { "sqlfluff" },
+    hcl = { "hcl" },
+    nix = { "alejandra" },
   },
-  on_attach = function(client, bufnr)
-    vim.keymap.set("n", "<leader>b", function()
-      vim.lsp.buf.format({
-        async = true,
-        bufnr = bufnr,
-      })
-    end, { buffer = bufnr, desc = "[B]eautify (format) current buffer", noremap = true })
-  end,
 })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -330,13 +333,6 @@ local on_attach = function(client, bufnr)
   nmap("<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "[W]orkspace [L]ist Folders")
-
-  vim.keymap.set({ "n", "v" }, "<leader>b", function()
-    vim.lsp.buf.format({
-      async = true,
-      bufnr = bufnr,
-    })
-  end, { buffer = bufnr, desc = "[B]eautify (format) current buffer", noremap = true })
 end
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -346,6 +342,20 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 require("lspconfig").basedpyright.setup({
   capabilities = capabilities,
   on_attach = on_attach,
+  settings = {
+    basedpyright = {
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportAny = false,
+          reportMissingTypeStubs = false,
+          reportUnknownParameterType = false,
+          reportUnknownVariableType = false,
+          reportUnknownArgumentType = false,
+          reportUnknownMemberType = false,
+        },
+      },
+    },
+  },
 })
 require("lspconfig").ruff.setup({
   capabilities = capabilities,
