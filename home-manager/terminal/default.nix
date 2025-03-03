@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -123,6 +124,18 @@
       manager = {
         linemode = "size";
       };
+    };
+    keymap = {
+      manager.prepend_keymap = [
+        {
+          on = ["c" "a"];
+          run = "plugin compress";
+          desc = "Archive selected files";
+        }
+      ];
+    };
+    plugins = {
+      compress = "${inputs.yazi-compress-plugin}";
     };
   };
 

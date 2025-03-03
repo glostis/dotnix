@@ -23,6 +23,10 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    yazi-compress-plugin = {
+      url = "github:KKV9/compress.yazi";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -68,6 +72,7 @@
         enableWorkProfile = true;
         inherit ghostty;
         inherit nixgl;
+        inherit inputs;
       };
     };
     homeConfigurations."glostis@suzanne" = home-manager.lib.homeManagerConfiguration {

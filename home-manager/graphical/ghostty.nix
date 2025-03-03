@@ -1,12 +1,11 @@
 {
   config,
   pkgs,
-  ghostty,
   ...
 }: {
   programs.ghostty = {
     enable = true;
-    package = config.lib.nixGL.wrap ghostty.packages."${pkgs.system}".default;
+    package = config.lib.nixGL.wrap pkgs.ghostty;
     settings = {
       command = "${pkgs.zsh}/bin/zsh";
 

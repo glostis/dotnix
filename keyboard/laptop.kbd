@@ -6,6 +6,7 @@
 )
 
 (defsrc
+  esc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]
   caps a    s    d    f    g    h    j    k    l    ;    '    \    ret
@@ -33,6 +34,7 @@
 )
 
 (deflayer base
+  caps
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    XX   XX
   esc  a    s    d    f    g    h    j    k    l    ;    '    \    ret
@@ -41,6 +43,7 @@
 )
 
 (deflayer navigation
+  _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    @sal @sct _    home pgdn pgup end  _    _    _
   _    _    lsft lalt @stc _    left down up   rght bspc _    _    _

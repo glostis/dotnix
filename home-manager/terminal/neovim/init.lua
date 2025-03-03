@@ -352,6 +352,7 @@ require("lspconfig").basedpyright.setup({
           reportUnknownVariableType = false,
           reportUnknownArgumentType = false,
           reportUnknownMemberType = false,
+          reportUnusedCallResult = false,
         },
       },
     },
