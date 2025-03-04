@@ -4,6 +4,10 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Color scheme detection was broken by https://github.com/ghostty-org/ghostty/pull/5064 (first introduced in v1.1.0)
+    # and was fixed in https://github.com/ghostty-org/ghostty/pull/6007 (unreleased for now).
+    # Falling back to a nixpkgs version that provides v1.0.1
+    nixpkgs-ghostty.url = "github:nixos/nixpkgs/c44821d5fcbe4797868daa0838002577105a161f";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nurpkgs = {
       url = "github:nix-community/nur";
@@ -14,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-    };
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,11 +31,11 @@
   outputs = {
     nixpkgs,
     nixpkgs-stable,
+    nixpkgs-ghostty,
     home-manager,
     nurpkgs,
     nix-colors,
     nixgl,
-    ghostty,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -67,10 +66,10 @@
       # The arguments here are passed to all modules
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
-        pkgs-stable = import nixpkgs {system = system;};
+        pkgs-stable = import nixpkgs-stable {system = system;};
+        pkgs-ghostty = import nixpkgs-ghostty {system = system;};
         inherit nix-colors;
         enableWorkProfile = true;
-        inherit ghostty;
         inherit nixgl;
         inherit inputs;
       };

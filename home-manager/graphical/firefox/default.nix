@@ -24,6 +24,11 @@ in {
         {template = "https://kagi.com/search?q={searchTerms}";}
       ];
     };
+    settings = {
+      # Auto-enable extensions after first installation
+      # (https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.profiles._name_.extensions.packages)
+      "extensions.autoDisableScopes" = 0;
+    };
   in {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.firefox;
@@ -32,12 +37,12 @@ in {
       perso = {
         isDefault = !enableWorkProfile;
         id = 0;
-        extensions = with firefox-addons;
+        extensions.packages = with firefox-addons;
           extensions
           ++ [
             bitwarden
           ];
-        inherit extraConfig search userChrome userContent;
+        inherit extraConfig search userChrome userContent settings;
       };
       # This hack makes sure that `profiles.work` does not exist if not enableWorkProfile
       ${
@@ -47,12 +52,12 @@ in {
       } = {
         isDefault = true;
         id = 1;
-        extensions = with firefox-addons;
+        extensions.packages = with firefox-addons;
           extensions
           ++ [
             onepassword-password-manager
           ];
-        inherit extraConfig search userChrome userContent;
+        inherit extraConfig search userChrome userContent settings;
       };
     };
   };
