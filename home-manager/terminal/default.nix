@@ -91,6 +91,7 @@
   programs.fzf = rec {
     enable = true;
     defaultCommand = "rg --files --hidden -g '!.git'";
+    defaultOptions = ["--reverse"];
     fileWidgetCommand = defaultCommand;
   };
 

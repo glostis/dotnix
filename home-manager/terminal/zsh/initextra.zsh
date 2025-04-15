@@ -68,4 +68,5 @@ fi
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+[[ -f ${HOME}/.secrets ]] && source ${HOME}/.secrets
 ### END OF MY CUSTOM zshrc ###

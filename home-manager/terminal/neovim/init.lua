@@ -411,6 +411,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
+    ["<C-y>"] = require("minuet").make_cmp_map(), -- trigger manual minuet-ai completion
   }),
   sources = {
     { name = "nvim_lsp" },
@@ -430,6 +431,7 @@ cmp.setup({
         end,
       },
     },
+    { name = "minuet" },
   },
   formatting = {
     format = function(entry, vim_item)
@@ -525,3 +527,48 @@ require("which-key").setup()
 require("trouble").setup({ mode = "document_diagnostics" })
 
 require("nvim-navbuddy").setup({ lsp = { auto_attach = true } })
+
+require("minuet").setup({
+  provider = "codestral",
+  context_window = 8192,
+  throttle = 250, -- only send the request every x milliseconds
+  provider_options = {
+    codestral = {
+      model = "codestral-latest",
+      end_point = "https://codestral.mistral.ai/v1/fim/completions",
+      api_key = "CODESTRAL_API_KEY",
+      stream = true,
+      optional = {
+        max_tokens = 64,
+        stop = { "\n\n" },
+      },
+    },
+  },
+})
+
+-- require("codecompanion").setup({
+--   adapters = {
+--     mistral = function()
+--       return require("codecompanion.adapters").extend("mistral", {
+--         env = {
+--           url = "https://codestral.mistral.ai",
+--           api_key = "CODESTRAL_API_KEY",
+--         },
+--         schema = {
+--           model = {
+--             default = "codestral-latest",
+--           },
+--         },
+--       })
+--     end,
+--   },
+--   -- log_level = "ERROR", -- TRACE|DEBUG|ERROR|INFO
+--   strategies = {
+--     chat = {
+--       adapter = "mistral",
+--     },
+--     inline = {
+--       adapter = "mistral",
+--     },
+--   },
+-- })
