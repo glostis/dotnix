@@ -323,7 +323,7 @@ local on_attach = function(client, bufnr)
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
   nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-  nmap("<leader>s", ":SymbolsOutline<CR>", "Open symbols outline")
+  nmap("<leader>s", "<cmd>AerialToggle!<CR>", "Open Aerial symbols outline")
 
   nmap("K", vim.lsp.buf.hover, "Hover documentation")
 
@@ -485,7 +485,7 @@ vim.keymap.set("o", "r", function()
   require("flash").remote()
 end, { noremap = true, silent = true, desc = "Flash remote" })
 
-require("symbols-outline").setup({ autofold_depth = 1 })
+require("aerial").setup({})
 
 require("lualine").setup({
   sections = {

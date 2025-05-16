@@ -89,7 +89,7 @@
       # Highlight HEX/RGB colors in a buffer
       nvim-colorizer-lua
       # Symbols outline using LSP
-      symbols-outline-nvim
+      aerial-nvim
       # kmonad config file syntax highlighting
       kmonad-vim
       # Set lualine as statusline
