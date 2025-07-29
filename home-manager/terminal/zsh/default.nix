@@ -22,7 +22,7 @@
       share = false;
       append = true;
     };
-    initExtra = builtins.readFile ./initextra.zsh;
+    initContent = builtins.readFile ./initextra.zsh;
     syntaxHighlighting.enable = true;
   };
 }

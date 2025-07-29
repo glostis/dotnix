@@ -37,6 +37,7 @@
     entr # run arbitrary commands when files change
     bc # Command-line calculations
     pipx # Install executables in python venvs from PyPI
+    uv # Python package manager
     parallel # Runs commands in parallel
     usbutils # Provides `lsusb` to show connected USB devices
     gpsbabel # GPS file format swiss-knife
@@ -107,6 +108,12 @@
     ];
   };
 
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    flags = ["--disable-up-arrow"];
+  };
+
   programs.bash = {
     enable = true;
     profileExtra =
@@ -122,12 +129,12 @@
     enable = true;
     shellWrapperName = "y";
     settings = {
-      manager = {
+      mgr = {
         linemode = "size";
       };
     };
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = ["c" "a"];
           run = "plugin compress";

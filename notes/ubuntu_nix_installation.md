@@ -74,6 +74,13 @@ sudo apt purge netplan netplan.io -y
 
 ### Install Docker
 
+### Nix tips and tricks
+
+```shell
+hm expire-generations -2days
+nix store gc
+```
+
 ## TODO list
 
 ### Problems

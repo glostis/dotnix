@@ -158,6 +158,7 @@ in {
       # Override to change the color of the theme
       package = pkgs.gruvbox-gtk-theme.overrideAttrs (previousAttrs: {
         version = "${previousAttrs.version}-patch-orange";
+        __intentionallyOverridingVersion = true;
         installPhase = ''
           runHook preInstall
           mkdir -p $out/share/themes
