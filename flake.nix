@@ -97,6 +97,7 @@
         pkgs-ghostty = import nixpkgs-ghostty {system = system;};
         inherit nix-colors;
         enableWorkProfile = false;
+        inherit inputs;
       };
     };
   };
