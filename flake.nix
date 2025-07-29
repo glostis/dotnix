@@ -94,6 +94,7 @@
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
         pkgs-stable = import nixpkgs {system = system;};
+        pkgs-ghostty = import nixpkgs-ghostty {system = system;};
         inherit nix-colors;
         enableWorkProfile = false;
       };
