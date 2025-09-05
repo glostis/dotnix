@@ -15,10 +15,9 @@ This repo https://github.com/Timvde/UserChrome-Tweaks contains nice snippets.
  * Move navbar (containing the addons and the url bar) to the bottom
  * Taken from https://github.com/jonhoo/configs/blob/master/gui/.mozilla/firefox/chrome/userChrome.css
  */
-
 #main-window body { flex-direction: column-reverse !important; }
 #navigator-toolbox { flex-direction: column-reverse !important; }
-
+#urlbar-searchmode-switcher { display: none !important; }
 #urlbar {
     top: unset !important;
     bottom: calc(var(--urlbar-margin-inline)) !important;
@@ -26,30 +25,23 @@ This repo https://github.com/Timvde/UserChrome-Tweaks contains nice snippets.
     display: flex !important;
     flex-direction: column !important;
 }
-
 #urlbar > * {
     flex: none;
 }
-
 #urlbar .urlbar-input-container {
     order: 2;
 }
-
 #urlbar > .urlbarView {
     order: 1;
     border-bottom: 1px solid #666;
 }
-
 #urlbar-results {
     display: flex;
     flex-direction: column-reverse;
 }
-
-toolbox[inFullscreen=true] { display: none; }
-
-/* Remove annoying stuff from the search bar */
 .search-one-offs { display: none !important; }
-
+#navigator-toolbox::after { border: none; }
+toolbox[inFullscreen=true] { display: none; }
 
 /*
  * Hide certain elements of the sidebar (for Tree Style Tab)

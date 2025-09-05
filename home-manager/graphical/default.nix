@@ -38,6 +38,11 @@
       platforms = ["x86_64-linux"];
     };
   };
+
+  # See https://github.com/nickclyde/rofi-bluetooth/pull/43
+  patched-rofi-bluetooth = pkgs.rofi-bluetooth.overrideAttrs (previousAttrs: {
+    patches = (previousAttrs.patches or []) ++ [./../patches/rofi-bluetooth.patch];
+  });
 in {
   imports = [
     ./ghostty.nix
@@ -87,7 +92,7 @@ in {
     # but then polybar gets compiled locally which is a bit of a pain.
     polybarFull # Status bar
     xplugd # Execute action on device plug/unplug
-    rofi-bluetooth # Rofi front-end to bluetoothctl
+    patched-rofi-bluetooth # Rofi front-end to bluetoothctl
     networkmanager_dmenu # Rofi front-end to networkmanager
 
     xdg-utils # Provides command-line tools such as `xdg-open`

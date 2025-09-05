@@ -16,7 +16,6 @@ in {
     ];
     extraConfig = builtins.readFile ./user.js;
     userChrome = builtins.readFile ./userChrome.css;
-    userContent = builtins.readFile ./userContent.css;
     search = {
       default = "kagi";
       force = true;
@@ -42,7 +41,7 @@ in {
           ++ [
             bitwarden
           ];
-        inherit extraConfig search userChrome userContent settings;
+        inherit extraConfig search userChrome settings;
       };
       # This hack makes sure that `profiles.work` does not exist if not enableWorkProfile
       ${
@@ -57,7 +56,7 @@ in {
           ++ [
             onepassword-password-manager
           ];
-        inherit extraConfig search userChrome userContent settings;
+        inherit extraConfig search userChrome settings;
       };
     };
   };
