@@ -49,7 +49,6 @@ in {
     ./dunst
     ./sxhkd
     ./static
-    ./day-n-night.nix
     ./bin
   ];
 
