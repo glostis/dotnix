@@ -13,7 +13,7 @@
 5. Refresh `hardware-configuration.nix` if needed:
 
   ```bash
-  nixos-generate-config --show-hardware-config > ~/dotnix/nixos/hardware-configuration.nix
+  nixos-generate-config --show-hardware-config > ~/dotnix/nixos/suzanne/hardware-configuration.nix
   ```
 
 6. Rebuild with the new configuration

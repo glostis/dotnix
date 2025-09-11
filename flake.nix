@@ -43,7 +43,13 @@
     nixosConfigurations.suzanne = nixpkgs.lib.nixosSystem {
       system = system;
       modules = [
-        ./nixos/configuration.nix
+        ./nixos/suzanne/configuration.nix
+      ];
+    };
+    nixosConfigurations.hector = nixpkgs.lib.nixosSystem {
+      system = system;
+      modules = [
+        ./nixos/hector/configuration.nix
       ];
     };
     homeConfigurations."glostis@fr-glostis-xps" = home-manager.lib.homeManagerConfiguration {
@@ -97,6 +103,25 @@
         pkgs-ghostty = import nixpkgs-ghostty {system = system;};
         inherit nix-colors;
         enableWorkProfile = false;
+        inherit inputs;
+      };
+    };
+    homeConfigurations."glostis@hector" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = system;
+        overlays = [
+          nurpkgs.overlays.default
+        ];
+      };
+
+      modules = [
+        ./home-manager/home.nix
+        ./home-manager/terminal
+      ];
+
+      # The arguments here are passed to all modules
+      extraSpecialArgs = {
+        nixpkgsflake = nixpkgs;
         inherit inputs;
       };
     };
