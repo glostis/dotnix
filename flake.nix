@@ -122,6 +122,7 @@
       # The arguments here are passed to all modules
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
+        inherit nix-colors;
         inherit inputs;
       };
     };
