@@ -69,4 +69,16 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 [[ -f ${HOME}/.secrets ]] && source ${HOME}/.secrets
+
+# Finds all git repos directly under the pwd, and executes `$@` in them
+function repall() {
+    actual=$PWD
+    for repo in $(ls -d */.git | sed "s.[^/]*$.."); do
+        cd $repo
+        echo $repo
+        "$@"
+        cd $actual
+        echo
+    done
+}
 ### END OF MY CUSTOM zshrc ###
