@@ -13,6 +13,8 @@ in {
       tree-style-tab
       vimium
       french-dictionary
+      youtube-no-translation
+      refined-github
     ];
     extraConfig = builtins.readFile ./user.js;
     userChrome = builtins.readFile ./userChrome.css;

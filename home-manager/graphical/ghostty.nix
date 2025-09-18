@@ -1,16 +1,15 @@
 {
   config,
   pkgs,
-  pkgs-ghostty,
   ...
 }: {
   programs.ghostty = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs-ghostty.ghostty;
+    package = config.lib.nixGL.wrap pkgs.ghostty;
     settings = {
       command = "${pkgs.zsh}/bin/zsh";
 
-      theme = "dark:GruvboxDark,light:GruvboxLight";
+      theme = "dark:Gruvbox Dark,light:Gruvbox Light";
 
       # Disable the blinking cursor bar
       shell-integration-features = "no-cursor";

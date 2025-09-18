@@ -68,6 +68,7 @@ in {
     rhythmbox # Local music player
     # gparted # GUI for partioning disks and writing filesystems
     foliate # e-book reader
+    calibre # e-book manager
 
     ## Window manager
     feh # Background image setter
@@ -75,7 +76,7 @@ in {
     rofi-screenshot # Take screencaptures (.mp4 or .gif)
     rofimoji # Provides an emoji picker using rofi
     haskellPackages.kmonad # Advanced keyboard configuration
-    nur.repos.glostis.kalamine # Keyboard layout remapping tool
+    kalamine # Keyboard layout remapping tool
     android-file-transfer # Required to connect to Android phones through USB
     android-udev-rules # Dependency of android-file-transfer
     devour # Open a new program by hiding the current window
