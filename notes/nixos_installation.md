@@ -1,3 +1,5 @@
+## Desktop
+
 1. Boot on a Nixos graphical installer ISO image
 
 2. Go through the graphical installation process, select Plasma as a graphical desktop environment
@@ -13,7 +15,7 @@
 5. Refresh `hardware-configuration.nix` if needed:
 
   ```bash
-  nixos-generate-config --show-hardware-config > ~/dotnix/nixos/hardware-configuration.nix
+  nixos-generate-config --show-hardware-config > ~/dotnix/nixos/suzanne/hardware-configuration.nix
   ```
 
 6. Rebuild with the new configuration
@@ -39,3 +41,7 @@
   ```bash
   sudo reboot
   ```
+
+## Server
+
+https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud#Hetnzer_base_configuration

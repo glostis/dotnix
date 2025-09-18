@@ -11,6 +11,7 @@
     ./git.nix
     ./direnv.nix
     ./open-in-editor.nix
+    ./day-n-night.nix
   ];
 
   home.packages = with pkgs; [

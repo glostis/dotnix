@@ -47,6 +47,7 @@
       "__pycache__/"
       ".direnv/"
       ".envrc"
+      ".env"
     ];
     includes = [
       {
