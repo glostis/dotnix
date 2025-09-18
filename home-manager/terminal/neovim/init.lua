@@ -111,14 +111,14 @@ key_mapper("n", "<leader>tr", ":Telescope resume<CR>")
 key_mapper("n", "<leader>tb", ":Telescope buffers<CR>")
 
 -- Trouble (diagnostics window) mappings
-key_mapper("n", "<leader>dl", "<cmd>TroubleToggle<cr>")
-key_mapper("n", "<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+-- key_mapper("n", "<leader>dl", "<cmd>TroubleToggle<cr>")
+-- key_mapper("n", "<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
 -- key_mapper("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>")
 -- key_mapper("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>")
-key_mapper("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
-vim.keymap.set("n", "<leader>dd", function()
-  vim.diagnostic.open_float({ source = true })
-end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
+-- key_mapper("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
+-- vim.keymap.set("n", "<leader>dd", function()
+--   vim.diagnostic.open_float({ source = true })
+-- end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
 
 -- smart-splits mappings
 vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
@@ -318,22 +318,21 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc, noremap = true })
   end
 
-  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  nmap("grn", vim.lsp.buf.rename, "ReName")
 
-  nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-  nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-  nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+  nmap("<leader>d", require("telescope.builtin").lsp_definitions, "Goto Definition")
+  nmap("<leader>r", require("telescope.builtin").lsp_references, "Goto Reference(s)")
+  nmap("<leader>i", require("telescope.builtin").lsp_incoming_calls, "Incoming calls")
   nmap("<leader>s", "<cmd>AerialToggle!<CR>", "Open Aerial symbols outline")
 
   nmap("K", vim.lsp.buf.hover, "Hover documentation")
 
-  nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-  nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-  nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+  nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
+  nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add folder")
+  nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove folder")
   nmap("<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, "[W]orkspace [L]ist Folders")
+  end, "Workspace List folders")
 end
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -378,6 +377,10 @@ require("lspconfig").docker_compose_language_service.setup({
   on_attach = on_attach,
 })
 require("lspconfig").jsonls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+require("lspconfig").ts_ls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })

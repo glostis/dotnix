@@ -116,7 +116,7 @@
 
       # Code formatter
       conform-nvim
-      # Dependency of null-ls-nvim and telescope-nvim
+      # Dependency of telescope-nvim
       plenary-nvim
 
       # Show code diagnostics
@@ -155,7 +155,8 @@
       sqlfluff
       hclfmt
       docker-compose-language-service
-      dockerfile-language-server-nodejs
+      dockerfile-language-server
+      typescript-language-server
       # Provides `jsonls`
       vscode-langservers-extracted
     ];

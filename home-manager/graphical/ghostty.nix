@@ -15,6 +15,9 @@
       shell-integration-features = "no-cursor";
       cursor-style-blink = false;
 
+      cursor-color = "cell-foreground";
+      cursor-text = "cell-background";
+
       # Window styling
       window-decoration = false;
       gtk-tabs-location = "bottom";
