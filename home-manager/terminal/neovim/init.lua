@@ -116,9 +116,9 @@ key_mapper("n", "<leader>tb", ":Telescope buffers<CR>")
 -- key_mapper("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>")
 -- key_mapper("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>")
 -- key_mapper("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
--- vim.keymap.set("n", "<leader>dd", function()
---   vim.diagnostic.open_float({ source = true })
--- end, { noremap = true, silent = true, desc = "Open floating [D]iagnostic message" })
+vim.keymap.set("n", "<leader>q", function()
+  vim.diagnostic.open_float({ source = true })
+end, { noremap = true, silent = true, desc = "Open floating diagnostic message" })
 
 -- smart-splits mappings
 vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)

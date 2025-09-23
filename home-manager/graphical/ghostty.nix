@@ -27,6 +27,7 @@
 
       resize-overlay = "never"; # Remove the popup that indicates terminal size on resize
       copy-on-select = "clipboard";
+      app-notifications = ["no-clipboard-copy"];
 
       keybind = [
         # For some reason, the default ctrl+shift+comma doesn’t work with my setup…

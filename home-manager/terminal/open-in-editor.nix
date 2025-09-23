@@ -12,8 +12,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "glostis";
       repo = "open-in-editor";
-      rev = "aa8634f11c31ec7f09373be18c2b3c06ec856b23";
-      hash = "sha256-yhWN7ewv+5a4P54fgG5DuBGG3HU0aIZSWJSOhFFiYnA=";
+      rev = "1bd3de5cdb0b4985f3d17a6c7257f959697c2c82";
+      hash = "sha256-vS5dOHlk4G+CoDN8c/xfCqnZlVL7EG1VA7j+T3iTQd0=";
     };
     dontConfigure = true;
     dontBuild = true;
