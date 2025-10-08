@@ -47,6 +47,7 @@ in {
   imports = [
     ./ghostty.nix
     ./dunst
+    ./niri
     ./sxhkd
     ./static
     ./bin
@@ -190,7 +191,7 @@ in {
   };
 
   services.xsettingsd = {
-    enable = true;
+    enable = false;
     settings = {
       "Net/ThemeName" = "${gtkTheme}";
       "Gtk/CursorThemeName" = "graphite-${config.colorScheme.variant}";
@@ -207,7 +208,7 @@ in {
 
   services.network-manager-applet.enable = true;
   services.redshift = {
-    enable = true;
+    enable = false;
     latitude = 48.5;
     longitude = 2.3;
     tray = true;
