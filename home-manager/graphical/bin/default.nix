@@ -113,25 +113,27 @@
         if [[ "$1" = "wifi" ]]; then
             state=$(nmcli radio wifi)
             if [[ "$state" = "enabled" ]]; then
+                dunstify "Turning wifi off"
                 nmcli radio wifi off
             else
+                dunstify "Turning wifi on"
                 nmcli radio wifi on
             fi
         elif [[ "$1" = "vpn" ]]; then
-            vpn_line=$(nmcli --fields type,name,active connection show | grep '^wireguard')
-
-            connection_name=$(echo $vpn_line | awk '{print $2}')
-            connection_active=$(echo $vpn_line | awk '{print $3}')
-
-            if [[ "$connection_active" = "no" ]]; then
-                nmcli connection up $connection_name
+            state=$(warp-cli --json status | jq -r .status)
+            if [[ "$state" = "Connected" ]]; then
+                dunstify "Turning VPN off"
+                warp-cli disconnect
             else
-                nmcli connection down $connection_name
+                dunstify "Turning VPN on"
+                warp-cli connect
             fi
         elif [[ "$1" = "bluetooth" ]]; then
             if bluetoothctl show | grep -q "Powered: yes"; then
+                dunstify "Turning bluetooth off"
                 bluetoothctl power off
             else
+                dunstify "Turning bluetooth on"
                 bluetoothctl power on
             fi
         fi

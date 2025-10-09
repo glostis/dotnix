@@ -17,11 +17,18 @@ in {
     shikane
     slackOzone
     xwayland-satellite
+    waybar
+    wofi
+    wl-clipboard
   ];
 
   programs.niri = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.niri-stable;
+  };
+
+  services.cliphist = {
+    enable = true;
   };
 
   systemd.user.services.niri = {

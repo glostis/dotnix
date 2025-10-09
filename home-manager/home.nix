@@ -28,7 +28,7 @@
   home.stateVersion = "23.05";
 
   # Disable `man home-configuration.nix`
-  manual.manpages.enable = false;
+  manual.manpages.enable = true;
 
   home.sessionPath = [
     # Contains all of my custom executable scripts
