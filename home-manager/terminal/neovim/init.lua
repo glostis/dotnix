@@ -22,7 +22,7 @@ vim.o.undofile = true
 vim.o.number = true
 vim.o.relativenumber = true
 
--- Color the column number 101 differently
+-- Color the column number 121 differently
 vim.o.colorcolumn = "121"
 
 -- Keep signcolumn on by default
@@ -469,6 +469,9 @@ cmp.setup({
     },
     { name = "minuet" },
   },
+  performance = {
+    fetching_timeout = 2000, -- For Minuet LLM completion that can be slow
+  },
   formatting = {
     format = function(entry, vim_item)
       vim_item.menu = ({
@@ -564,47 +567,60 @@ require("trouble").setup({ mode = "document_diagnostics" })
 
 require("nvim-navbuddy").setup({ lsp = { auto_attach = true } })
 
-require("minuet").setup({
-  provider = "codestral",
-  context_window = 8192,
-  throttle = 250, -- only send the request every x milliseconds
-  provider_options = {
-    codestral = {
-      model = "codestral-latest",
-      end_point = "https://codestral.mistral.ai/v1/fim/completions",
-      api_key = "CODESTRAL_API_KEY",
-      stream = true,
-      optional = {
-        max_tokens = 64,
-        stop = { "\n\n" },
+function isWorkDirectory()
+  local cwd = vim.fn.getcwd()
+  local workDir = vim.fs.normalize("~/code-work")
+  for dir in vim.fs.parents(cwd) do
+    if dir == workDir then
+      return true
+    end
+  end
+  return false
+end
+
+if isWorkDirectory() then
+  require("minuet").setup({
+    provider = "codestral",
+    context_window = 8192,
+    throttle = 250, -- only send the request every x milliseconds
+    provider_options = {
+      codestral = {
+        model = "codestral-latest",
+        end_point = "https://api.mistral.ai/v1/fim/completions",
+        api_key = "MISTRAL_API_KEY",
+        stream = true,
+        optional = {
+          max_tokens = 64,
+          stop = { "\n\n" },
+        },
       },
     },
-  },
-})
+  })
 
--- require("codecompanion").setup({
---   adapters = {
---     mistral = function()
---       return require("codecompanion.adapters").extend("mistral", {
---         env = {
---           url = "https://codestral.mistral.ai",
---           api_key = "CODESTRAL_API_KEY",
---         },
---         schema = {
---           model = {
---             default = "codestral-latest",
---           },
---         },
---       })
---     end,
---   },
---   -- log_level = "ERROR", -- TRACE|DEBUG|ERROR|INFO
---   strategies = {
---     chat = {
---       adapter = "mistral",
---     },
---     inline = {
---       adapter = "mistral",
---     },
---   },
--- })
+  require("codecompanion").setup({
+    adapters = {
+      mistral = function()
+        return require("codecompanion.adapters").extend("mistral", {
+          env = {
+            url = "https://api.mistral.ai",
+            api_key = "MISTRAL_API_KEY",
+          },
+          schema = {
+            model = {
+              default = "devstral-medium-latest",
+            },
+          },
+        })
+      end,
+    },
+    log_level = "ERROR", -- TRACE|DEBUG|ERROR|INFO
+    strategies = {
+      chat = {
+        adapter = "mistral",
+      },
+      inline = {
+        adapter = "mistral",
+      },
+    },
+  })
+end
