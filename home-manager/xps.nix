@@ -2,12 +2,22 @@
   pkgs,
   nixgl,
   ...
-}: {
+}: let
+  slack-wayland-with-desktop = pkgs.slack.overrideAttrs (old: {
+    postInstall = ''
+      ${old.postInstall or ""}
+      wrapProgram $out/bin/slack \
+        --add-flags "--ozone-platform=wayland"
+      sed -i "s|^Exec=.*|Exec=$out/bin/slack -s %U|" \
+        $out/share/applications/slack.desktop
+    '';
+  });
+in {
   nixGL.packages = nixgl.packages;
 
   home.packages = with pkgs; [
     _1password-gui
-    slack
+    slack-wayland-with-desktop
     dive
   ];
 

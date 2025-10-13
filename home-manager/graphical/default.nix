@@ -45,6 +45,7 @@
   });
 in {
   imports = [
+    ./keyboard.nix
     ./ghostty.nix
     ./dunst
     ./niri
@@ -223,7 +224,7 @@ in {
     timeout = 5;
   };
   services.xidlehook = {
-    enable = true;
+    enable = false;
     environment = {
       sleep_notif_id = "123497";
     };
@@ -269,6 +270,6 @@ in {
   };
 
   # Disable recording the PRIMARY clipboard (the one that gets populated when highlighting text)
-  systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
-  services.clipmenu.enable = true;
+  # systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
+  # services.clipmenu.enable = true;
 }

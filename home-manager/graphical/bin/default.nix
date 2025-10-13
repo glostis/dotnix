@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.file.".bin/custom_keyboard_layout" = {
+  home.file.".bin/set_niri_keyboard_layout" = {
     executable = true;
     text =
       /*
@@ -17,34 +17,28 @@
         set -euo pipefail
         IFS=$'\n\t'
 
-        # This script is used to activate my modded Colemak-DH/French touch keyboard layout
-        # It uses a mix of XKB (to remap alpha keys, create a one-dead-key, and customize the AltGr layer)
-        # and kmonad (to remap non-alpha keys, make sticky modifiers, etc.).
+        # This script is used to activate one of my keyboard layouts:
+        # - the modded Colemak-DH/French touch layout for my external keyboard
+        # - the modded QWERTY/French touch layout for my laptop keyboard
         #
-        # It is executed on X startup in ~/.xinitrc, and on keyboard plug/unplug in ~/.config/xplugrc
+        # It is executed on whenever my external keyboard is plugged/unplugged, thanks to
+        # the systemd path unit I have made that listens to the device presence on the system.
 
-        kb_type=$1
-
-        kb_files="$HOME"/dotnix/keyboard
-
-        # Sleep to avoid having endless "enter/return" when starting kmonad by hand
-        sleep 2
-
-        if [ "$kb_type" = "kinesis" ]; then
-            pgrep -af 'kmonad.*kinesis' >/dev/null || kmonad "$kb_files"/kinesis.kbd &
-            sleep 1
-            ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 "$kb_files"/dist/glostis-colemak.xkb_keymap "$DISPLAY"
-        elif [ "$kb_type" = "corne" ]; then
-            ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 "$kb_files"/dist/glostis-colemak.xkb_keymap "$DISPLAY"
+        if [ -e /dev/input/by-id/usb-Kinesis_Advantage2_Keyboard_314159265359-if01-event-kbd ]; then
+            layout=colemak
         else
-            pgrep -af 'kmonad.*laptop' >/dev/null || kmonad "$kb_files"/laptop.kbd &
-            sleep 1
-            ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 "$kb_files"/dist/glostis-qwerty.xkb_keymap "$DISPLAY"
+            layout=qwerty
         fi
 
-        xset r rate 230 50
-
-        echo "All done."
+        cat > "$HOME/.config/niri/keyboard.kdl" <<EOL
+        input {
+            keyboard {
+                xkb {
+                    file "~/dotnix/keyboard/dist/glostis-$layout.xkb_keymap"
+                }
+            }
+        }
+        EOL
       '';
   };
   home.file.".bin/farewell" = {

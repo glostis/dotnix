@@ -26,7 +26,6 @@
       runtimeInputs = with pkgs; [home-manager gawk neovim-remote xorg.xrdb i3];
       text = ''
         for gen in $(home-manager generations | awk '{print $5","$7}'); do
-          # gen_id=$(echo "$gen" | cut -d, -f1)
           gen_path=$(echo "$gen" | cut -d, -f2)
           if [ -f "$gen_path"/specialisation/light/activate ]; then
             if [ "$1" = "day" ]; then
@@ -40,15 +39,13 @@
           fi
         done
 
-        bash "$HOME"/.config/polybar/launch.sh &
-
         # Use neovim-remote to re-source the colorshcheme.lua module in all existing neovim instances
         for s in $(nvr --serverlist); do
             nvr --nostart --servername "$s" -c "source $HOME/.config/nvim/lua/colorscheme.lua" &
         done
 
-        # Relaunch xrdb and i3
-        xrdb "$HOME"/.Xresources && i3-msg reload &
+        # Relaunch xrdb
+        # xrdb "$HOME"/.Xresources
       '';
     })
   ];

@@ -5,7 +5,23 @@
   ...
 }: let
   firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+  ffwork = pkgs.makeDesktopItem {
+    name = "ff work";
+    desktopName = "ff work";
+    exec = "firefox -P work";
+    icon = "firefox";
+  };
+  ffperso = pkgs.makeDesktopItem {
+    name = "ff perso";
+    desktopName = "ff perso";
+    exec = "firefox -P perso";
+    icon = "firefox";
+  };
 in {
+  home.packages = with pkgs; [
+    ffwork
+    ffperso
+  ];
   programs.firefox = let
     extensions = with firefox-addons; [
       ublock-origin
