@@ -599,19 +599,21 @@ if isWorkDirectory() then
 
   require("codecompanion").setup({
     adapters = {
-      mistral = function()
-        return require("codecompanion.adapters").extend("mistral", {
-          env = {
-            url = "https://api.mistral.ai",
-            api_key = "MISTRAL_API_KEY",
-          },
-          schema = {
-            model = {
-              default = "devstral-medium-latest",
+      http = {
+        mistral = function()
+          return require("codecompanion.adapters.http").extend("mistral", {
+            env = {
+              url = "https://api.mistral.ai",
+              api_key = "MISTRAL_API_KEY",
             },
-          },
-        })
-      end,
+            schema = {
+              model = {
+                default = "devstral-medium-latest",
+              },
+            },
+          })
+        end,
+      },
     },
     log_level = "ERROR", -- TRACE|DEBUG|ERROR|INFO
     strategies = {

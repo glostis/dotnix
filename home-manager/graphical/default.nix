@@ -87,7 +87,6 @@ in {
     i3 # WM
     libnotify # Provides `notify-send`
     corrupter # Script that "corrupts" an image for i3lock bg
-    unclutter-xfixes # Remove mouse cursor when idle
     xidlehook # Trigger action after some time idle
     # polybarFull comes with i3 support
     # This could also be done with just `polybar` with an override to add `i3Support = true;`,
@@ -219,10 +218,6 @@ in {
     };
   };
 
-  services.unclutter = {
-    enable = true;
-    timeout = 5;
-  };
   services.xidlehook = {
     enable = false;
     environment = {

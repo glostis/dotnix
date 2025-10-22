@@ -26,6 +26,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # stylix = {
+    #   url = "github:nix-community/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
@@ -36,6 +40,7 @@
     nix-colors,
     nixgl,
     niri-flake,
+    # stylix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -69,6 +74,7 @@
         ./home-manager/xps.nix
         ./home-manager/graphical/firefox
         inputs.niri-flake.homeModules.niri
+        # inputs.stylix.homeModules.stylix
       ];
 
       # The arguments here are passed to all modules
