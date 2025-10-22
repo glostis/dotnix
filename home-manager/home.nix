@@ -28,7 +28,7 @@
   home.stateVersion = "23.05";
 
   # Disable `man home-configuration.nix`
-  manual.manpages.enable = false;
+  manual.manpages.enable = true;
 
   home.sessionPath = [
     # Contains all of my custom executable scripts
@@ -69,13 +69,13 @@
     x = "exit";
     py = "ipython";
     open = "xdg-open";
-    copy = "xclip -selection c";
+    copy = "wl-copy";
     diff = "diff --color=auto";
     grep = "grep --color=auto";
     l = "eza -la";
-    rm = "echo Use trash-put instead. Or use 'backslash rm' if you really want to.; false";
-    tp = "trash-put";
-    tl = "trash-list";
+    rm = "echo Use `trash put` (`tp`) instead. Or use 'backslash rm' if you really want to.; false";
+    tp = "trash put";
+    tl = "trash list";
     hm = "home-manager --flake ${config.home.homeDirectory}/dotnix";
   };
 
@@ -86,5 +86,5 @@
   programs.home-manager.enable = true;
 
   # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  systemd.user.startServices = "suggest";
 }

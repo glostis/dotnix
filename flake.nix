@@ -15,13 +15,21 @@
     };
     nix-colors.url = "github:misterio77/nix-colors";
     nixgl = {
-      url = "github:guibou/nixGL";
+      url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi-compress-plugin = {
       url = "github:KKV9/compress.yazi";
       flake = false;
     };
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # stylix = {
+    #   url = "github:nix-community/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
@@ -31,6 +39,8 @@
     nurpkgs,
     nix-colors,
     nixgl,
+    niri-flake,
+    # stylix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -53,6 +63,7 @@
         overlays = [
           nurpkgs.overlays.default
           nixgl.overlay
+          niri-flake.overlays.niri
         ];
       };
 
@@ -62,6 +73,8 @@
         ./home-manager/graphical
         ./home-manager/xps.nix
         ./home-manager/graphical/firefox
+        inputs.niri-flake.homeModules.niri
+        # inputs.stylix.homeModules.stylix
       ];
 
       # The arguments here are passed to all modules

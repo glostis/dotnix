@@ -19,7 +19,7 @@
         width = 400
         height = 1000
         origin = top-right
-        offset = 10x27
+        offset = 0x0
         scale = 0
         notification_limit = 0
 
@@ -37,7 +37,7 @@
         padding = 8
         horizontal_padding = 8
         text_icon_padding = 0
-        frame_width = 0
+        frame_width = 1
         frame_color = "#aaaaaa"
         separator_color = auto
         sort = yes
