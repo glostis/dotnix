@@ -23,6 +23,199 @@ in {
     package = config.lib.nixGL.wrap pkgs.niri-unstable;
   };
 
+  xdg.configFile."niri/config.kdl".text =
+    /*
+    kdl
+    */
+    ''
+      // https://yalter.github.io/niri/Configuration:-Input
+      include "${config.home.homeDirectory}/.config/niri/keyboard.kdl"
+      input {
+          keyboard {
+              repeat-delay 230
+              repeat-rate 50
+          }
+
+          touchpad {
+              tap
+              natural-scroll
+          }
+      }
+      cursor {
+          hide-when-typing
+          hide-after-inactive-ms 5000
+          xcursor-theme "graphite-${config.colorScheme.variant}"
+          xcursor-size 16
+      }
+
+      // https://yalter.github.io/niri/Configuration:-Layout
+      layout {
+          gaps 10
+
+          center-focused-column "never"
+
+          preset-column-widths {
+              proportion 0.5
+              proportion 0.333
+          }
+
+          preset-window-heights {
+              proportion 0.5
+              proportion 0.333
+          }
+
+          default-column-width { proportion 1.0; }
+
+          focus-ring {
+              width 2
+              active-color "#7fc8ff"
+              inactive-color "#505050"
+          }
+      }
+
+      hotkey-overlay {
+          skip-at-startup
+      }
+
+      prefer-no-csd
+
+      screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+
+      // https://yalter.github.io/niri/Configuration:-Window-Rules
+      window-rule {
+          match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+          open-floating true
+      }
+
+      window-rule {
+          match app-id=r#"^1Password$"#
+          block-out-from "screen-capture"
+      }
+
+      window-rule {
+          geometry-corner-radius 8
+          clip-to-geometry true
+      }
+
+      overview {
+          zoom 0.4
+      }
+
+      binds {
+          Mod+Shift+Slash { show-hotkey-overlay; }
+
+          Mod+Space repeat=false hotkey-overlay-title=null { spawn "ghostty"; }
+          Mod+D hotkey-overlay-title=null { spawn-sh "rofi -modi drun -show drun -show-icons"; }
+          Mod+Shift+J { spawn "rofimoji"; }
+          Mod+G       { spawn-sh "cliphist-wofi-img | wl-copy"; }
+          Mod+0       { spawn "slack"; }
+
+          Mod+N       { spawn-sh "networking-toggle wifi"; }
+          Mod+Shift+N { spawn "networkmanager_dmenu"; }
+          Mod+V       { spawn-sh "networking-toggle vpn"; }
+          Mod+B       { spawn-sh "networking-toggle bluetooth"; }
+          Mod+Shift+B { spawn "rofi-bluetooth"; }
+          Mod+W       { spawn-sh "rofi -show window"; }
+
+          Mod+T       { spawn-sh "day-n-night day"; }
+          Mod+Shift+T { spawn-sh "day-n-night night"; }
+
+          Mod+Z hotkey-overlay-title="Lock and suspend" { spawn-sh "swaylock --daemonize && systemctl suspend"; }
+          Mod+Shift+Z hotkey-overlay-title="Lock" { spawn-sh "swaylock --daemonize"; }
+          Mod+Ctrl+Z hotkey-overlay-title="Poweroff" { spawn-sh "systemctl poweroff"; }
+
+          XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "volumectl increase"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn-sh "volumectl decrease"; }
+          XF86AudioMute        allow-when-locked=true { spawn-sh "pamixer --toggle-mute"; }
+          XF86AudioPlay                               { spawn-sh "playerctl play-pause && dunstify --appname=\"volume\" \"Play/pause\""; }
+          XF86AudioNext                               { spawn-sh "playerctl next"; }
+          XF86AudioPrev                               { spawn-sh "playerctl previous"; }
+
+          // Screen brightness controls
+          // Uses https://github.com/Hummer12007/brightnessctl
+          // Need to add the user to the `video` group
+          XF86MonBrightnessUp allow-when-locked=true { spawn-sh "brightnessctl s +5%"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl s 5%-"; }
+
+          Mod+O repeat=false { toggle-overview; }
+
+          Mod+Q repeat=false { close-window; }
+
+          Mod+X      repeat=false { focus-monitor-next; }
+          Mod+Ctrl+X repeat=false { move-workspace-to-monitor-next; }
+
+          Mod+Left  repeat=false { focus-column-or-monitor-left; }
+          Mod+Down  repeat=false { focus-window-or-workspace-down; }
+          Mod+Up    repeat=false { focus-window-or-workspace-up; }
+          Mod+Right repeat=false { focus-column-or-monitor-right; }
+          Mod+H     repeat=false { focus-column-or-monitor-left; }
+          Mod+J     repeat=false { focus-window-or-workspace-down; }
+          Mod+K     repeat=false { focus-window-or-workspace-up; }
+          Mod+L     repeat=false { focus-column-or-monitor-right; }
+
+          Mod+Tab repeat=false { focus-window-previous; }
+
+          Mod+Ctrl+Left        repeat=false { move-column-left; }
+          Mod+Ctrl+Down        repeat=false { move-window-down; }
+          Mod+Ctrl+Up          repeat=false { move-window-up; }
+          Mod+Ctrl+Right       repeat=false { move-column-right; }
+          Mod+Ctrl+H           repeat=false { move-column-left; }
+          Mod+Ctrl+J           repeat=false { move-window-down; }
+          Mod+Ctrl+K           repeat=false { move-window-up; }
+          Mod+Ctrl+L           repeat=false { move-column-right; }
+          Mod+Ctrl+Shift+Left  repeat=false { consume-or-expel-window-left; }
+          Mod+Ctrl+Shift+Right repeat=false { consume-or-expel-window-right; }
+          Mod+Ctrl+Shift+H     repeat=false { consume-or-expel-window-left; }
+          Mod+Ctrl+Shift+L     repeat=false { consume-or-expel-window-right; }
+
+          Mod+Page_Down      repeat=false { focus-workspace-down; }
+          Mod+Page_Up        repeat=false { focus-workspace-up; }
+          Mod+U              repeat=false { focus-workspace-down; }
+          Mod+I              repeat=false { focus-workspace-up; }
+          Mod+Ctrl+Page_Down repeat=false { move-column-to-workspace-down; }
+          Mod+Ctrl+Page_Up   repeat=false { move-column-to-workspace-up; }
+          Mod+Ctrl+U         repeat=false { move-column-to-workspace-down; }
+          Mod+Ctrl+I         repeat=false { move-column-to-workspace-up; }
+
+          Mod+Shift+Page_Down repeat=false { move-workspace-down; }
+          Mod+Shift+Page_Up   repeat=false { move-workspace-up; }
+
+          Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+          Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+
+          Mod+R       { switch-preset-column-width; }
+          Mod+F       { maximize-column; }
+          Mod+Shift+R { switch-preset-window-height; }
+          Mod+Shift+F { reset-window-height; }
+          Mod+Return  { fullscreen-window; }
+
+          Mod+Ctrl+F { expand-column-to-available-width; }
+
+          Mod+C { center-column; }
+          Mod+Ctrl+C { center-visible-columns; }
+
+          Mod+Minus       { set-column-width "-10%"; }
+          Mod+Equal       { set-column-width "+10%"; }
+          Mod+Shift+Minus { set-window-height "-10%"; }
+          Mod+Shift+Equal { set-window-height "+10%"; }
+
+          Mod+Y            { screenshot; }
+          Mod+Ctrl+Y       { screenshot-screen; }
+          Mod+Ctrl+Shift+Y { screenshot-window; }
+
+          // Applications such as remote-desktop clients and software KVM switches may
+          // request that niri stops processing the keyboard shortcuts defined here
+          // so they may, for example, forward the key presses as-is to a remote machine.
+          // It's a good idea to bind an escape hatch to toggle the inhibitor,
+          // so a buggy application can't hold your session hostage.
+          //
+          // The allow-inhibiting=false property can be applied to other binds as well,
+          // which ensures niri always processes them, even when an inhibitor is active.
+          Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+          Mod+Shift+E { quit; }
+      }
+    '';
+
   # programs.swaylock = {
   #   enable = true;
   #   package = null; # swaylock is installed from source on Ubuntu to avoid PAM incompatibility issues

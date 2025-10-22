@@ -16,7 +16,7 @@
 
   home.packages = with pkgs; [
     ntfs3g # For NTFS filesystem (eg USB sticks)
-    trash-cli # Use trash-put instead of rm to keep a version of deleted files
+    trashy # Use `trashy put` instead of rm to keep a version of deleted files
     gnumake # `make`
     gcc # C compiler
 
