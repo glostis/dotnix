@@ -15,8 +15,6 @@
   ];
 
   home.packages = with pkgs; [
-    xclip # clipboard
-    xdotool # xorg
     ntfs3g # For NTFS filesystem (eg USB sticks)
     trash-cli # Use trash-put instead of rm to keep a version of deleted files
     gnumake # `make`
@@ -45,7 +43,7 @@
     csvkit # CSV manipulation on the command-line
     pdftk # PDF manipulation on the command-line
     shellcheck # Shell (bash) file linter/LSP
-    gh
+    gh # Github CLI
     pre-commit # Run hooks before committing on a Git repo
     alejandra # Nix file auto-formatter
 

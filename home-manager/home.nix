@@ -69,7 +69,7 @@
     x = "exit";
     py = "ipython";
     open = "xdg-open";
-    copy = "xclip -selection c";
+    copy = "wl-copy";
     diff = "diff --color=auto";
     grep = "grep --color=auto";
     l = "eza -la";
