@@ -14,19 +14,10 @@
   # stylix.enable = false;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
-  xresources.properties = {
-    background = "#${config.colorScheme.palette.base00}";
-    background-alt = "#${config.colorScheme.palette.base01}";
-    foreground = "#${config.colorScheme.palette.base06}";
-    border = "#${config.colorScheme.palette.base04}";
-    border-alt = "#${config.colorScheme.palette.base00}";
-    orange = "#${config.colorScheme.palette.base09}";
-  };
-
   home.packages = with pkgs; [
     (writeShellApplication {
       name = "day-n-night";
-      runtimeInputs = with pkgs; [home-manager gawk neovim-remote xorg.xrdb i3];
+      runtimeInputs = with pkgs; [home-manager gawk neovim-remote];
       text = ''
         niri msg action do-screen-transition
         for gen in $(home-manager generations | awk '{print $5","$7}'); do
@@ -49,9 +40,6 @@
         done
 
         systemctl --user restart dunst.service
-
-        # Relaunch xrdb
-        # xrdb "$HOME"/.Xresources
       '';
     })
   ];

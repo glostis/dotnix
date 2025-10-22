@@ -42,19 +42,20 @@ sudo apt install --no-install-recommends \
     apt-file \
     bluez \
     cups \
-    pulseaudio-module-bluetooth \
-    i3lock \
-    lightdm \
-    lightdm-gtk-greeter \
+    google-chrome-stable \
+    gthumb \
+    ncdu \
     network-manager \
-    picom \
     plocate \
     policykit-1-gnome \
     pulseaudio \
+    pulseaudio-module-bluetooth \
+    rhythmbox \
+    sddm \
+    swaylock \
     seahorse \
     vim \
-    xdg-desktop-portal-gtk \
-    xorg
+    xdg-desktop-portal-gnome
 sudo apt remove command-not-found
 ```
 
@@ -85,16 +86,10 @@ nix store gc
 
 ### Problems
 
-- Run binary as sudo: https://github.com/NixOS/nix/issues/6038
-
 - Using systemd services on non-NixOS: [SO](https://unix.stackexchange.com/questions/349199/how-does-nix-manage-systemd-modules-on-a-non-nixos)
 
 - Some graphical apps not working:
 
     - gparted : `The value for the SHELL variable was not found the /etc/shells file`
-
-- docker: cf systemd services
-
-- lightdm doesn't kick in
 
 - (minor) All app icons don't show in `rofi`

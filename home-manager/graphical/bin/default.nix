@@ -41,60 +41,6 @@
         EOL
       '';
   };
-  home.file.".bin/farewell" = {
-    executable = true;
-    source = ./farewell;
-  };
-  home.file.".bin/i3lock-multimonitor" = {
-    executable = true;
-    source = ./i3lock-multimonitor;
-  };
-  home.file.".bin/launch_application" = {
-    executable = true;
-    source = ./launch_application;
-  };
-  home.file.".bin/launch_firefox" = {
-    executable = true;
-    source = ./launch_firefox;
-  };
-  home.file.".bin/monitor-layout" = {
-    executable = true;
-    text =
-      /*
-      bash
-      */
-      ''
-        #! ${pkgs.bash}/bin/bash
-
-        choices="autorandr\nLaptop\nDual - Left\nDual - Top"
-        choice=$(echo -e "$choices" | rofi -dmenu -i -hide-scrollbar -l 4 -p "Screen layout")
-        laptop_monitor=$(xrandr | sed -n '/^eDP/p' | cut -d\  -f1)
-        connected_monitor=$(xrandr | sed -n '/ connected/p' | grep -v '^eDP' | cut -d\  -f1)
-        disconnected_monitor=$(xrandr | sed -n '/ disconnected/p' | cut -d\  -f1)
-
-        command_root="xrandr --output $laptop_monitor"
-        command_dual="$command_root $(for monitor in $disconnected_monitor; do echo -n "--output $monitor --off "; done) --output $connected_monitor --primary --auto"
-
-        case "$choice" in
-            autorandr)
-                autorandr -c
-                ;;
-            Laptop)
-                $command_root --primary $(for monitor in $connected_monitor $disconnected_monitor; do echo -n "--output $monitor --off "; done)
-                ;;
-            "Dual - Left")
-                $command_dual --left-of $laptop_monitor
-                ;;
-            "Dual - Top")
-                $command_dual --above $laptop_monitor
-                ;;
-            *)
-                exit 2
-        esac
-
-        bash ${config.home.homeDirectory}/.config/polybar/launch.sh
-      '';
-  };
   home.file.".bin/networking-toggle" = {
     executable = true;
     text =
@@ -130,31 +76,6 @@
                 dunstify "Turning bluetooth on"
                 bluetoothctl power on
             fi
-        fi
-      '';
-  };
-  home.file.".bin/screenshot" = {
-    executable = true;
-    text =
-      /*
-      bash
-      */
-      ''
-        #! ${pkgs.bash}/bin/bash
-
-        if [ $# -eq 0 ]; then
-            mkdir -p "${config.home.homeDirectory}/Pictures"
-            filename="${config.home.homeDirectory}/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png"
-
-            # Takes a screenshot (by clicking on window or dragging an area of screen), saves it to file,
-            # and copies it into the clipboard.
-            maim --select --hidecursor --nokeyboard $filename
-            xclip -selection clipboard -t image/png $filename
-        else
-            # Takes a screenshot of the whole screen and saves it to file
-            # This is used for the lock screen
-            filename=$1
-            maim --hidecursor $filename
         fi
       '';
   };

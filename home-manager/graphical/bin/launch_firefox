@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# MOZ_USE_XINPUT2 is used to enable pixel-perfect trackpad scrolling
-# cf https://wiki.archlinux.org/title/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
-MOZ_USE_XINPUT2=1 firefox -P "$1"
