@@ -68,6 +68,25 @@ fi
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Taken from https://github.com/guillaumeboehm/zsh-copybuffer/blob/master/zsh-copybuffer.plugin.zsh
+copybuffer () {
+  # If line is empty, get the last run command from history
+  if test -z $BUFFER; then
+    buf=$(fc -ln -1)
+  else
+    buf=$BUFFER
+  fi
+
+  printf "%s" "$buf" | wl-copy
+  if test -n notify-send; then
+    notify-send "Copied '$buf' to clipboard"
+  fi
+}
+
+zle -N copybuffer
+
+bindkey '^y' copybuffer
+
 [[ -f ${HOME}/.secrets ]] && source ${HOME}/.secrets
 
 # Finds all git repos directly under the pwd, and executes `$@` in them

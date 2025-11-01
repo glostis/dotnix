@@ -43,12 +43,52 @@ This repo https://github.com/Timvde/UserChrome-Tweaks contains nice snippets.
 #navigator-toolbox::after { border: none; }
 toolbox[inFullscreen=true] { display: none; }
 
+#mainPopupSet panel.panel-no-padding { margin-top: calc(-50vh + 40px) !important; }
+#mainPopupSet .panel-viewstack, #mainPopupSet popupnotification { max-height: 50vh !important; height: 50vh; }
+#mainPopupSet panel.panel-no-padding.popup-notification-panel { margin-top: calc(-50vh - 35px) !important; }
+#navigator-toolbox .panel-viewstack { max-height: 75vh !important; }
+panelview.cui-widget-panelview { flex: 1; }
+panelview.cui-widget-panelview > vbox { flex: 1; min-height: 50vh; }
+
 /*
  * Hide certain elements of the sidebar (for Tree Style Tab)
  * and move its header to the bottom
  */
 #sidebar-box {
   flex-direction: column-reverse !important;
+  max-width: none !important;
+  min-width: 0px !important;
+}
+
+:root {
+    --thin-tab-width: 50px;
+    --wide-tab-width: 300px;
+}
+
+@media (max-width: 1000px) {
+    /* Hide splitter, when using Tree Style Tab. */
+    #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
+        display: none !important;
+    }
+
+    /* Shrink sidebar until hovered, when using Tree Style Tab. */
+    #sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+        min-width: var(--wide-tab-width) !important;
+        max-width: none !important;
+    }
+    #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+        position: relative !important;
+        transition: all 200ms !important;
+        min-width: var(--thin-tab-width) !important;
+        max-width: var(--thin-tab-width) !important;
+        z-index: calc(var(--browser-area-z-index-tabbox, 10000) + 1) !important;
+    }
+    #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+        transition: all 200ms !important;
+        min-width: var(--wide-tab-width) !important;
+        max-width: var(--wide-tab-width) !important;
+        margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+    }
 }
 
 #sidebar-title,

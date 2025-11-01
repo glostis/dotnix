@@ -26,6 +26,8 @@
 
         if [ -e /dev/input/by-id/usb-Kinesis_Advantage2_Keyboard_314159265359-if01-event-kbd ]; then
             layout=colemak
+        elif [ -e /dev/input/by-id/usb-foostan_Corne_v4_vial:f64c2b3c-event-kbd ]; then
+            layout=colemak
         else
             layout=qwerty
         fi

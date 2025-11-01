@@ -73,7 +73,7 @@
     diff = "diff --color=auto";
     grep = "grep --color=auto";
     l = "eza -la";
-    rm = "echo Use `trash put` (`tp`) instead. Or use 'backslash rm' if you really want to.; false";
+    rm = "echo Use trash put instead. Or use 'backslash rm' if you really want to.; false";
     tp = "trash put";
     tl = "trash list";
     hm = "home-manager --flake ${config.home.homeDirectory}/dotnix";

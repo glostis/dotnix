@@ -143,7 +143,7 @@ in {
     x11.enable = true;
   };
 
-  services.network-manager-applet.enable = true;
+  services.network-manager-applet.enable = false;
 
   programs.rofi = {
     enable = true;

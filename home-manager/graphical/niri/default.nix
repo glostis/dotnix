@@ -57,14 +57,16 @@ in {
           preset-column-widths {
               proportion 0.5
               proportion 0.333
+              proportion 0.666
           }
 
           preset-window-heights {
               proportion 0.5
               proportion 0.333
+              proportion 0.666
           }
 
-          default-column-width { proportion 1.0; }
+          default-column-width { proportion 0.5; }
 
           focus-ring {
               width 2

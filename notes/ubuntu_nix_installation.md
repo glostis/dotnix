@@ -20,20 +20,6 @@ rm -f ~/.profile ~/.bashrc
 nix run --no-write-lock-file github:nix-community/home-manager -- --flake ~/dotnix switch
 ```
 
-### Remove snap from Ubuntu
-[Link1](https://www.kevin-custer.com/blog/disabling-snaps-in-ubuntu-20-10-and-20-04-lts/)
-[Link2](https://askubuntu.com/questions/1035915/how-to-remove-snap-from-ubuntu/1114686#1114686)
-- Check that no snaps installed with `snap list`
-```bash
-sudo snap remove lxd
-sudo snap remove core20
-sudo snap remove snapd
-sudo rm -rf /var/cache/snapd/
-sudo apt autoremove --purge snapd
-rm -rf ~/snap
-sudo apt-mark hold snapd
-```
-
 ### `apt` installs
 ```bash
 sudo apt update
@@ -49,7 +35,9 @@ sudo apt install --no-install-recommends \
     plocate \
     policykit-1-gnome \
     pulseaudio \
-    pulseaudio-module-bluetooth \
+    wireplumber \
+    libspa-0.2-bluetooth \
+    libspa-0.2-libcamera \
     rhythmbox \
     sddm \
     swaylock \
@@ -59,28 +47,12 @@ sudo apt install --no-install-recommends \
 sudo apt remove command-not-found
 ```
 
-[Switch from netplan to NetworkManager](https://askubuntu.com/a/1463401):
+[Switch from netplan to NetworkManager](https://documentation.ubuntu.com/core/explanation/system-snaps/network-manager/how-to-guides/networkmanager-and-netplan/):
 ```
-sudo vim /etc/NetworkManager/conf.d/manage-all.conf
-```
-```
-[keyfile]
-unmanaged-devices=none
-```
-```
-sudo systemctl restart NetworkManager
-sudo systemctl disable --now systemd-networkd.service systemd-networkd.socket networkd-dispatcher.service && sudo systemctl restart NetworkManager
-sudo apt purge netplan netplan.io -y
+snap install network-manager
 ```
 
 ### Install Docker
-
-### Nix tips and tricks
-
-```shell
-hm expire-generations -2days
-nix store gc
-```
 
 ## TODO list
 

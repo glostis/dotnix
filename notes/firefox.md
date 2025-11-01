@@ -16,3 +16,23 @@ Firefox is highly customizable:
     - By using the GUI and checking some boxes → only gives access to a limited number of options
     - By using the `about:config` page
     - By using a pre-profile `user.js` that sets the options of `about:config`, and that is read at start-up.
+
+# Bookmarklets
+
+Save the following bookmarklet to copy the current page’s title and URL as markdown:
+```javascript
+javascript:(function(){
+  var title = document.title;
+  if (document.location.href.match(/github\.com\/[^\/]+\/[^\/]+\/pull\/\d+/i)) {
+    title = title.replace(/\s+by\s+.+/, '');
+  }
+  if (document.location.href.match(/atlassian\.net/i)) {
+    title = title.replace(/\s+-\s+Jira/, '');
+  }
+  if (document.location.href.match(/notion\.so/i)) {
+    title = title.replace(/^\(\d+\+?\)\s*/, '');
+  }
+  title = title.replace(/\[/g, '(').replace(/\]/g, ')');
+  window.prompt("Press Ctrl+C then Enter to close the dialog", '[' + title + '](' + document.location.href + ')');
+})();
+```
