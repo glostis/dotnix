@@ -218,10 +218,17 @@ in {
       }
     '';
 
-  # programs.swaylock = {
-  #   enable = true;
-  #   package = null; # swaylock is installed from source on Ubuntu to avoid PAM incompatibility issues
-  #   settings =
+  programs.swaylock = {
+    enable = true;
+    package = null; # swaylock is installed from source on Ubuntu to avoid PAM incompatibility issues
+    settings = {
+      image = "${config.home.homeDirectory}/Pictures/lock.png";
+      scaling = "center";
+      color = "#282828";
+      ignore-empty-password = true;
+      hide-keyboard-layout = true;
+    };
+  };
 
   services.cliphist = {
     enable = true;
@@ -310,16 +317,16 @@ in {
           format = "󰟆 {}%";
         };
         disk = {
-          format = "󰋊 {}%";
+          format = "󰋊 {percentage_free}%";
         };
         backlight = {
           format = "{icon}";
           format-icons = ["" "" "" "" "" "" "" "" "" "" "" "" "" "" ""];
         };
         pulseaudio = {
-          format = "{icon} {volume}%";
-          format-bluetooth = "{icon} {volume}%";
-          format-muted = "󰖁    ";
+          format = "{icon}  {volume}%";
+          format-bluetooth = "{icon}  {volume}%";
+          format-muted = "󰖁     ";
           format-icons = {
             headphone = "";
             hands-free = "";
