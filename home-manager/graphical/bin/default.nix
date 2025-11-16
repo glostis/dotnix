@@ -11,7 +11,7 @@
       bash
       */
       ''
-        #!/usr/bin/env bash
+        #! ${pkgs.bash}/bin/bash
 
         # http://redsymbol.net/articles/unofficial-bash-strict-mode
         set -euo pipefail
@@ -84,5 +84,24 @@
   home.file.".bin/volumectl" = {
     executable = true;
     source = ./volumectl;
+  };
+  home.file.".bin/fermeadoubletour" = {
+    executable = true;
+    text =
+      /*
+      bash
+      */
+      ''
+        #! ${pkgs.bash}/bin/bash
+
+        # http://redsymbol.net/articles/unofficial-bash-strict-mode
+        set -euo pipefail
+        IFS=$'\n\t'
+
+        swaylock --daemonize
+        if [[ "$1" = "suspend" ]]; then
+            systemctl suspend
+        fi
+      '';
   };
 }

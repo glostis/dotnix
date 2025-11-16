@@ -103,6 +103,10 @@ in {
           zoom 0.4
       }
 
+      switch-events {
+          lid-close { spawn "fermeadoubletour" "suspend"; }
+      }
+
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
 
@@ -122,8 +126,8 @@ in {
           Mod+T       { spawn-sh "day-n-night day"; }
           Mod+Shift+T { spawn-sh "day-n-night night"; }
 
-          Mod+Z hotkey-overlay-title="Lock and suspend" { spawn-sh "swaylock --daemonize && systemctl suspend"; }
-          Mod+Shift+Z hotkey-overlay-title="Lock" { spawn-sh "swaylock --daemonize"; }
+          Mod+Z hotkey-overlay-title="Lock and suspend" { spawn "fermeadoubletour" "suspend"; }
+          Mod+Shift+Z hotkey-overlay-title="Lock" { spawn "fermeadoubletour"; }
           Mod+Ctrl+Z hotkey-overlay-title="Poweroff" { spawn-sh "systemctl poweroff"; }
 
           XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "volumectl increase"; }
