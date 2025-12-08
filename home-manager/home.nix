@@ -77,6 +77,7 @@
     tp = "trash put";
     tl = "trash list";
     hm = "home-manager --flake ${config.home.homeDirectory}/dotnix";
+    chat = "nvim -c ':CodeCompanionChat' -c ':only'";
   };
 
   # Make `nix run np#<some-package>` use the same nixpkgs as the one used by this flake

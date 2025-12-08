@@ -65,7 +65,7 @@ panelview.cui-widget-panelview > vbox { flex: 1; min-height: 50vh; }
     --wide-tab-width: 300px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
     /* Hide splitter, when using Tree Style Tab. */
     #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
         display: none !important;

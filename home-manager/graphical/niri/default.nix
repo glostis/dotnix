@@ -18,10 +18,10 @@ in {
 
   wayland.systemd.target = "niri.service";
 
-  programs.niri = {
-    enable = true;
-    package = config.lib.nixGL.wrap pkgs.niri-unstable;
-  };
+  # programs.niri = {
+  #   enable = true;
+  #   package = config.lib.nixGL.wrap pkgs.niri-unstable;
+  # };
 
   xdg.configFile."niri/config.kdl".text =
     /*
@@ -126,9 +126,9 @@ in {
           Mod+T       { spawn-sh "day-n-night day"; }
           Mod+Shift+T { spawn-sh "day-n-night night"; }
 
-          Mod+Z hotkey-overlay-title="Lock and suspend" { spawn "fermeadoubletour" "suspend"; }
+          Mod+Z allow-when-locked=true hotkey-overlay-title="Lock and suspend" { spawn "fermeadoubletour" "suspend"; }
           Mod+Shift+Z hotkey-overlay-title="Lock" { spawn "fermeadoubletour"; }
-          Mod+Ctrl+Z hotkey-overlay-title="Poweroff" { spawn-sh "systemctl poweroff"; }
+          Mod+Ctrl+Shift+Z hotkey-overlay-title="Poweroff" { spawn-sh "systemctl poweroff"; }
 
           XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "volumectl increase"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn-sh "volumectl decrease"; }
@@ -321,7 +321,7 @@ in {
           format = "󰟆 {}%";
         };
         disk = {
-          format = "󰋊 {percentage_free}%";
+          format = "󰋊 {percentage_used}%";
         };
         backlight = {
           format = "{icon}";
@@ -471,24 +471,24 @@ in {
     };
   };
 
-  systemd.user.services.niri = {
-    Unit = {
-      Description = "A scrollable-tiling Wayland compositor";
-      BindsTo = "graphical-session.target";
-      Wants = [
-        "graphical-session-pre.target"
-        "xdg-desktop-autostart.target"
-      ];
-      After = [
-        "graphical-session-pre.target"
-        "xdg-desktop-autostart.target"
-      ];
-    };
-
-    Service = {
-      Slice = "session.slice";
-      Type = "notify";
-      ExecStart = "${config.programs.niri.package}/bin/niri --session";
-    };
-  };
+  # systemd.user.services.niri = {
+  #   Unit = {
+  #     Description = "A scrollable-tiling Wayland compositor";
+  #     BindsTo = "graphical-session.target";
+  #     Wants = [
+  #       "graphical-session-pre.target"
+  #       "xdg-desktop-autostart.target"
+  #     ];
+  #     After = [
+  #       "graphical-session-pre.target"
+  #       "xdg-desktop-autostart.target"
+  #     ];
+  #   };
+  #
+  #   Service = {
+  #     Slice = "session.slice";
+  #     Type = "notify";
+  #     ExecStart = "${config.programs.niri.package}/bin/niri --session";
+  #   };
+  # };
 }

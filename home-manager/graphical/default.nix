@@ -50,8 +50,6 @@ in {
     rofimoji # Provides an emoji picker using rofi
     haskellPackages.kmonad # Advanced keyboard configuration
     kalamine # Keyboard layout remapping tool
-    android-file-transfer # Required to connect to Android phones through USB
-    android-udev-rules # Dependency of android-file-transfer
     devour # Open a new program by hiding the current window
     exiftool # Read EXIF properties of images
 
@@ -88,7 +86,7 @@ in {
     inconsolata
     liberation_ttf
     roboto
-    ubuntu_font_family
+    ubuntu-classic
     terminus_font
     nerd-fonts.jetbrains-mono
   ];

@@ -18,7 +18,7 @@
     ntfs3g # For NTFS filesystem (eg USB sticks)
     trashy # Use `trashy put` instead of rm to keep a version of deleted files
     gnumake # `make`
-    gcc # C compiler
+    # gcc # C compiler
 
     ncdu # Curses disk usage explorer
     fzf # Fuzzy finder
@@ -26,6 +26,7 @@
     imagemagick # Image manipulation commands
     jq # JSON parser
     gron # Make JSON greppable!
+    sd  # Intuitive find & replace CLI (sed alternative)
     # neofetch # System information
     tree # Recursive directory listing
     zip # Archiving

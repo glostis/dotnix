@@ -6,6 +6,7 @@ user_pref("browser.overlink-delay", 0);
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 3);
 user_pref("browser.toolbars.bookmarks.visibility", "never");
+user_pref("browser.ctrlTab.sortByRecentlyUsed");
 user_pref("browser.uidensity", 1);
 user_pref("browser.display.use_system_colors", true);
 user_pref("browser.urlbar.placeholderName", "DuckDuckGo");

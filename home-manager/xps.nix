@@ -13,8 +13,6 @@
     '';
   });
 in {
-  nixGL.packages = nixgl.packages;
-
   home.packages = with pkgs; [
     _1password-gui
     slack-wayland-with-desktop
@@ -43,5 +41,9 @@ in {
   xdg.mime.enable = false;
 
   # Make Home-Manager work better on non-NixOS Linux distributions
-  targets.genericLinux.enable = true;
+  targets.genericLinux = {
+    enable = true;
+    nixGL.packages = nixgl.packages;
+    nixGL.installScripts = [ "mesa" ];
+  };
 }

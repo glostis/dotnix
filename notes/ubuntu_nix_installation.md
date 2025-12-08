@@ -2,6 +2,43 @@
 
 Not much to keep an eye for here: burn the ISO image to a USB device, boot, follow the installer.
 
+### `apt` installs
+
+```bash
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:glostis/danklinux
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt upgrade
+sudo apt install niri
+sudo apt install --no-install-recommends \
+    apt-file \
+    google-chrome-stable \
+    gthumb \
+    ncdu \
+    plocate \
+    wireplumber \
+    rhythmbox \
+    swaylock
+sudo apt remove command-not-found
+```
+
+```
+# Already installed
+    network-manager \
+    bluez \
+    cups \
+    seahorse \
+    vim \
+    xdg-desktop-portal-gnome
+
+# Not installed, but are they really necessary?
+    policykit-1-gnome \
+    pulseaudio \
+    libspa-0.2-bluetooth \
+    libspa-0.2-libcamera \
+```
+
 ### Nix installation
 
 Install nix using the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer)
@@ -20,38 +57,6 @@ rm -f ~/.profile ~/.bashrc
 nix run --no-write-lock-file github:nix-community/home-manager -- --flake ~/dotnix switch
 ```
 
-### `apt` installs
-```bash
-sudo apt update
-sudo apt upgrade
-sudo apt install --no-install-recommends \
-    apt-file \
-    bluez \
-    cups \
-    google-chrome-stable \
-    gthumb \
-    ncdu \
-    network-manager \
-    plocate \
-    policykit-1-gnome \
-    pulseaudio \
-    wireplumber \
-    libspa-0.2-bluetooth \
-    libspa-0.2-libcamera \
-    rhythmbox \
-    sddm \
-    swaylock \
-    seahorse \
-    vim \
-    xdg-desktop-portal-gnome
-sudo apt remove command-not-found
-```
-
-[Switch from netplan to NetworkManager](https://documentation.ubuntu.com/core/explanation/system-snaps/network-manager/how-to-guides/networkmanager-and-netplan/):
-```
-snap install network-manager
-```
-
 ### Install Docker
 
 ## TODO list
@@ -63,5 +68,3 @@ snap install network-manager
 - Some graphical apps not working:
 
     - gparted : `The value for the SHELL variable was not found the /etc/shells file`
-
-- (minor) All app icons don't show in `rofi`

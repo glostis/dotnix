@@ -51,6 +51,30 @@ vim.opt_local.iskeyword:append("-")
 vim.opt.title = true
 vim.opt.titlestring = [[%t – %{fnamemodify(getcwd(), ':t')}]]
 
+-- File indentation
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "json",
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.geojson",
+  callback = function()
+    vim.bo.filetype = "json"
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.vrt",
+  callback = function()
+    vim.bo.filetype = "xml"
+  end,
+})
+
 -- -------------- Mappings --------------
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
@@ -567,18 +591,12 @@ require("trouble").setup({ mode = "document_diagnostics" })
 
 require("nvim-navbuddy").setup({ lsp = { auto_attach = true } })
 
-function isWorkDirectory()
-  local cwd = vim.fn.getcwd()
-  local workDir = vim.fs.normalize("~/code-work")
-  for dir in vim.fs.parents(cwd) do
-    if dir == workDir then
-      return true
-    end
-  end
-  return false
+function hasApiKey()
+  local apiKey = os.getenv("MISTRAL_API_KEY")
+  return apiKey ~= nil and apiKey ~= ""
 end
 
-if isWorkDirectory() then
+if hasApiKey() then
   require("minuet").setup({
     provider = "codestral",
     context_window = 8192,
