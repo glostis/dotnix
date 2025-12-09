@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   enableWorkProfile,
   ...
@@ -31,6 +32,21 @@ in {
       french-dictionary
       youtube-no-translation
       refined-github
+      # Used https://git.sr.ht/~rycee/mozilla-addons-to-nix to generate the nix code
+      (buildFirefoxXpiAddon rec {
+        pname = "humble-new-tab";
+        version = "1.26.2";
+        addonId = "{bb9cfae3-9ac6-4c72-b90b-71814ab7d789}";
+        url = "https://addons.mozilla.org/firefox/downloads/file/4511933/humble_new_tab-${version}.xpi";
+        sha256 = "c4708739bc3556a86a04b4d70e4d085326b69750dfb51aca32b7f38c0e444eff";
+        meta = with lib; {
+          homepage = "https://github.com/ibillingsley/HumbleNewTabPage";
+          description = "Redesigned new tab page featuring your bookmarks, most visited, recently closed, and weather in a custom layout.";
+          license = licenses.mit;
+          mozPermissions = ["bookmarks" "topSites" "tabs" "sessions"];
+          platforms = platforms.all;
+        };
+      })
     ];
     extraConfig = builtins.readFile ./user.js;
     userChrome = builtins.readFile ./userChrome.css;

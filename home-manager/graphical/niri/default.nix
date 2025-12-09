@@ -14,6 +14,9 @@ in {
     waybar
     wofi
     wl-clipboard
+    # Dependency of cliphist-wofi-img
+    # https://github.com/sentriz/cliphist/blob/efb61cb5b5a28d896c05a24ac83b9c39c96575f2/contrib/cliphist-wofi-img#L40
+    gawk
   ];
 
   wayland.systemd.target = "niri.service";
@@ -234,6 +237,12 @@ in {
     };
   };
 
+  programs.wofi = {
+    enable = true;
+    settings = {
+      insensitive = true;
+    };
+  };
   services.cliphist = {
     enable = true;
     allowImages = false; # See https://github.com/nix-community/home-manager/issues/7898
@@ -251,9 +260,8 @@ in {
 
   services.shikane = {
     enable = true;
-    # Run `shikanectl export <profile-name>`, copy the config to ~/.config/shikane/config.toml,
-    # and add the following line under the profile name:
-    #   exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+    # shikanectl export <profile-name> | sed '/^name/a exec = ["notify-send shikane \\"Profile $SHIKANE_PROFILE_NAME has been applied\\""]' >> ~/.config/shikane/config.toml
+    # systemctl --user restart shikane
   };
 
   programs.waybar = {
