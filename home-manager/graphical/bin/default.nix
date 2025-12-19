@@ -98,6 +98,12 @@
         set -euo pipefail
         IFS=$'\n\t'
 
+        lock_dir="$HOME/Pictures/lock"
+        if [ -d "$lock_dir" ] && [ -n "$(find "$lock_dir" -type f)" ]; then
+            image=$(find "$lock_dir" -type f | shuf -n 1)
+            ln -s --force "$image" "$HOME/Pictures/lock.png"
+        fi
+
         swaylock --daemonize
         if [[ "$1" = "suspend" ]]; then
             systemctl suspend

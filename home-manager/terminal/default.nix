@@ -14,6 +14,8 @@
     ./day-n-night.nix
   ];
 
+  home.shell.enableZshIntegration = true;
+
   home.packages = with pkgs; [
     ntfs3g # For NTFS filesystem (eg USB sticks)
     trashy # Use `trashy put` instead of rm to keep a version of deleted files
@@ -110,7 +112,6 @@
 
   programs.atuin = {
     enable = true;
-    enableZshIntegration = true;
     flags = ["--disable-up-arrow"];
   };
 

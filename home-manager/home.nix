@@ -35,6 +35,8 @@
     "${config.home.homeDirectory}/.bin"
     # programs such as `pipx` put some stuff there
     "${config.home.homeDirectory}/.local/bin"
+    # programs installed by cargo
+    "${config.home.homeDirectory}/.cargo/bin"
   ];
 
   home.sessionVariables = {

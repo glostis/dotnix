@@ -83,6 +83,7 @@ vim.g.maplocalleader = " "
 -- Override vim-gh-line default keymap
 vim.g.gh_line_map = "<leader>og"
 vim.g.gh_line_blame_map_default = 0
+vim.g.gh_open_command = 'fn() { echo "$@" | wl-copy && notify-send "Copied \'$@\' to clipboard"; }; fn '
 -- A gh_repo_map_default variable is missing:
 -- https://github.com/ruanyl/vim-gh-line/blob/fbf368bdfad7e5478009a6dc62559e6b2c72d603/plugin/vim-gh-line.vim#L37-L39
 vim.g.gh_repo_map = "_"

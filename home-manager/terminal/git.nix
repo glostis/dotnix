@@ -1,11 +1,25 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: {
+}: let
+  lockdiff = pkgs.rustPlatform.buildRustPackage rec {
+    pname = "lockdiff";
+    version = "2.0.1";
+    src = pkgs.fetchFromGitHub {
+      owner = "your-tools";
+      repo = "lockdiff";
+      rev = "${version}";
+      sha256 = "1hwiccnnbk7zwk4sxbilsfy0y0jam8l5dgwybxvkqq2fhzj5cyap";
+    };
+    cargoHash = "sha256-jHsRcPqfI44dhrJp39ynzEwQkl1eJ3YaJrJU+7E6efs=";
+  };
+in {
   home.packages = with pkgs; [
     git-lfs
     difftastic # a structural diff that understands syntax
+    lockdiff
   ];
 
   home.sessionVariables = {
@@ -48,6 +62,9 @@
       diff = {
         # This is hardly readable with `delta`
         colorMoved = "false";
+        lockdiff = {
+          textconv = "lockdiff";
+        };
       };
       color = {
         ui = true;
@@ -69,6 +86,11 @@
         enabled = true;
       };
     };
+    # Pretty poetry.lock diffs
+    # Temporarily disable with `git diff --no-textconv`
+    attributes = [
+      "poetry.lock diff=lockdiff"
+    ];
     ignores = [
       ".ipynb_checkpoints/"
       "__pycache__/"

@@ -135,10 +135,12 @@ in {
 
           XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "volumectl increase"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn-sh "volumectl decrease"; }
-          XF86AudioMute        allow-when-locked=true { spawn-sh "pamixer --toggle-mute"; }
+          XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
           XF86AudioPlay                               { spawn-sh "playerctl play-pause && dunstify --appname=\"volume\" \"Play/pause\""; }
           XF86AudioNext                               { spawn-sh "playerctl next"; }
           XF86AudioPrev                               { spawn-sh "playerctl previous"; }
+          Mod+M                                       { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+          Mod+Shift+M                                 { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
 
           // Screen brightness controls
           // Uses https://github.com/Hummer12007/brightnessctl
@@ -162,15 +164,9 @@ in {
           Mod+K     repeat=false { focus-window-or-workspace-up; }
           Mod+L     repeat=false { focus-column-or-monitor-right; }
 
-          Mod+Tab repeat=false { focus-window-previous; }
-
           Mod+Ctrl+Left        repeat=false { move-column-left; }
-          Mod+Ctrl+Down        repeat=false { move-window-down; }
-          Mod+Ctrl+Up          repeat=false { move-window-up; }
           Mod+Ctrl+Right       repeat=false { move-column-right; }
           Mod+Ctrl+H           repeat=false { move-column-left; }
-          Mod+Ctrl+J           repeat=false { move-window-down; }
-          Mod+Ctrl+K           repeat=false { move-window-up; }
           Mod+Ctrl+L           repeat=false { move-column-right; }
           Mod+Ctrl+Shift+Left  repeat=false { consume-or-expel-window-left; }
           Mod+Ctrl+Shift+Right repeat=false { consume-or-expel-window-right; }
@@ -181,8 +177,8 @@ in {
           Mod+Page_Up        repeat=false { focus-workspace-up; }
           Mod+U              repeat=false { focus-workspace-down; }
           Mod+I              repeat=false { focus-workspace-up; }
-          Mod+Ctrl+Page_Down repeat=false { move-column-to-workspace-down; }
-          Mod+Ctrl+Page_Up   repeat=false { move-column-to-workspace-up; }
+          Mod+Ctrl+Down      repeat=false { move-column-to-workspace-down; }
+          Mod+Ctrl+Up        repeat=false { move-column-to-workspace-up; }
           Mod+Ctrl+U         repeat=false { move-column-to-workspace-down; }
           Mod+Ctrl+I         repeat=false { move-column-to-workspace-up; }
 
@@ -297,7 +293,7 @@ in {
           format-disconnected = "Disconnected ⚠";
           format-alt = "{ifname}: {ipaddr} - ↘️ {bandwidthDownBytes} ↗️ {bandwidthUpBytes}";
         };
-        modules-right = ["backlight" "pulseaudio" "memory" "cpu" "disk" "battery" "clock"];
+        modules-right = ["backlight" "wireplumber" "memory" "cpu" "disk" "battery" "clock"];
         clock = {
           format = "{:%Y-%m-%d %H:%M}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
@@ -335,21 +331,19 @@ in {
           format = "{icon}";
           format-icons = ["" "" "" "" "" "" "" "" "" "" "" "" "" "" ""];
         };
-        pulseaudio = {
-          format = "{icon}  {volume}%";
-          format-bluetooth = "{icon}  {volume}%";
+        wireplumber = {
+          format = "{icon}  {volume}%{format_source}";
           format-muted = "󰖁     ";
+          format-source = "";
+          format-source-muted = " 󰍭";
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            phone-muted = "";
-            portable = "";
-            default = [""];
+              default = ["" "" ""];
           };
-          scroll-step = 1;
           on-click = "pavucontrol";
+          on-click-middle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          tooltip-format = "{node_name} {volume}% - {source_desc} {source_volume}%";
+          scroll-step = 5;
         };
         battery = {
           states = {
@@ -398,10 +392,14 @@ in {
             padding: 2 2 2 8;
         }
 
-        #pulseaudio.muted,
+        #wireplumber.sink-muted,
         #bluetooth.disabled,
         #bluetooth.off {
             color: #666;
+        }
+
+        #wireplumber.source-muted {
+            color: #f53c3c;
         }
 
         #workspaces button {
@@ -424,7 +422,7 @@ in {
         #disk,
         #network,
         #bluetooth,
-        #pulseaudio,
+        #wireplumber,
         #backlight,
         #tray {
             padding: 0 10px 0 5px;
