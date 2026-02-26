@@ -41,7 +41,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    extraLuaConfig = builtins.readFile ./init.lua;
+    initLua = builtins.readFile ./init.lua;
     plugins = with pkgs.vimPlugins; [
       # ~~~~~~~~ Git related plugins ~~~~~~~~
       # :Gdiff, :Gblame, etc.
@@ -134,7 +134,6 @@
       nvim-treesitter.withAllGrammars
       nvim-treesitter-textobjects
       nvim-treesitter-context
-      playground
 
       nvim-navbuddy
       nvim-navic # Dep of navbuddy
@@ -159,6 +158,7 @@
       typescript-language-server
       # Provides `jsonls`
       vscode-langservers-extracted
+      tree-sitter  # provides tree-sitter-cli
     ];
   };
 }

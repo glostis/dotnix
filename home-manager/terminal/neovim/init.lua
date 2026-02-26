@@ -261,10 +261,9 @@ require("telescope").load_extension("live_grep_args")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
   highlight = { enable = true },
   indent = { enable = true, disable = { "python" } },
-  playground = { enable = true },
   textobjects = {
     select = {
       enable = true,

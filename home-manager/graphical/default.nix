@@ -43,7 +43,6 @@ in {
     rhythmbox # Local music player
     # gparted # GUI for partioning disks and writing filesystems
     foliate # e-book reader
-    calibre # e-book manager
 
     ## Window manager
     feh # Background image setter
@@ -147,4 +146,7 @@ in {
     enable = true;
     theme = "gruvbox-${config.colorScheme.variant}";
   };
+
+  # See https://github.com/nixos/nixpkgs/issues/493843
+  # programs.calibre.enable = true;
 }
