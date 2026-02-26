@@ -56,17 +56,18 @@ in {
           gaps 10
 
           center-focused-column "never"
+          always-center-single-column
 
           preset-column-widths {
               proportion 0.5
-              proportion 0.333
               proportion 0.666
+              proportion 0.333
           }
 
           preset-window-heights {
               proportion 0.5
-              proportion 0.333
               proportion 0.666
+              proportion 0.333
           }
 
           default-column-width { proportion 0.5; }
@@ -128,6 +129,8 @@ in {
 
           Mod+T       { spawn-sh "day-n-night day"; }
           Mod+Shift+T { spawn-sh "day-n-night night"; }
+
+          Mod+apostrophe { spawn-sh "pkill -USR2 -n handy"; }
 
           Mod+Z allow-when-locked=true hotkey-overlay-title="Lock and suspend" { spawn "fermeadoubletour" "suspend"; }
           Mod+Shift+Z hotkey-overlay-title="Lock" { spawn "fermeadoubletour"; }
