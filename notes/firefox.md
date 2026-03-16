@@ -30,7 +30,7 @@ javascript:(function(){
     title = title.replace(/\s+-\s+Jira/, '');
   }
   if (document.location.href.match(/notion\.so/i)) {
-    title = title.replace(/^\(\d+\+?\)\s*/, '');
+    title = title.replace(/^\(\d+\+?\)\s*/, '').replace(/\s*\|\s*Notion\s*/, '');
   }
   title = title.replace(/\[/g, '(').replace(/\]/g, ')');
   window.prompt("Press Ctrl+C then Enter to close the dialog", '[' + title + '](' + document.location.href + ')');

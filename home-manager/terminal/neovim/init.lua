@@ -90,7 +90,7 @@ vim.g.maplocalleader = " "
 -- Override vim-gh-line default keymap
 vim.g.gh_line_map = "<leader>og"
 vim.g.gh_line_blame_map_default = 0
-vim.g.gh_open_command = 'fn() { echo "$@" | wl-copy && notify-send "Copied \'$@\' to clipboard"; }; fn '
+vim.g.gh_open_command = 'fn() { echo "$@" | tr -d "\n" | wl-copy && notify-send "Copied \'$@\' to clipboard"; }; fn '
 -- A gh_repo_map_default variable is missing:
 -- https://github.com/ruanyl/vim-gh-line/blob/fbf368bdfad7e5478009a6dc62559e6b2c72d603/plugin/vim-gh-line.vim#L37-L39
 vim.g.gh_repo_map = "_"
@@ -599,7 +599,7 @@ require("trouble").setup({ mode = "document_diagnostics" })
 require("nvim-navbuddy").setup({ lsp = { auto_attach = true } })
 
 function hasApiKey()
-  local apiKey = os.getenv("MISTRAL_API_KEY")
+  local apiKey = os.getenv("CODESTRAL_API_KEY")
   return apiKey ~= nil and apiKey ~= ""
 end
 
@@ -611,8 +611,8 @@ if hasApiKey() then
     provider_options = {
       codestral = {
         model = "codestral-latest",
-        end_point = "https://api.mistral.ai/v1/fim/completions",
-        api_key = "MISTRAL_API_KEY",
+        end_point = "https://codestral.mistral.ai/v1/fim/completions",
+        api_key = "CODESTRAL_API_KEY",
         stream = true,
         optional = {
           max_tokens = 64,
@@ -628,8 +628,8 @@ if hasApiKey() then
         mistral = function()
           return require("codecompanion.adapters.http").extend("mistral", {
             env = {
-              url = "https://api.mistral.ai",
-              api_key = "MISTRAL_API_KEY",
+              url = "https://codestral.mistral.ai",
+              api_key = "CODESTRAL_API_KEY",
             },
             schema = {
               model = {
