@@ -11,7 +11,6 @@ in {
     wdisplays
     shikane
     xwayland-satellite
-    waybar
     wofi
     wl-clipboard
     # Dependency of cliphist-wofi-img
@@ -265,6 +264,7 @@ in {
 
   programs.waybar = {
     enable = true;
+    package = pkgs-stable.waybar;
     settings = {
       mainBar = {
         modules-left = ["niri/workspaces" "network" "bluetooth" "tray"];

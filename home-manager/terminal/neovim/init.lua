@@ -261,7 +261,7 @@ require("telescope").load_extension("live_grep_args")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require("nvim-treesitter").setup({
+require("nvim-treesitter.configs").setup({
   highlight = { enable = true },
   indent = { enable = true, disable = { "python" } },
   textobjects = {
@@ -441,8 +441,7 @@ vim.lsp.config("basedpyright", {
 vim.lsp.enable("basedpyright")
 vim.lsp.enable("ruff")
 vim.lsp.enable("bashls")
-vim.lsp.enable("dockerls")
-vim.lsp.enable("docker_compose_language_service")
+vim.lsp.enable("docker_language_server")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("ts_ls")
 

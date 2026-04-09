@@ -35,7 +35,7 @@
     unzip # Unarchiving
     wget # File download
     # python310
-    nodePackages.fixjson # JSON formatter
+    fixjson # JSON formatter
     entr # run arbitrary commands when files change
     bc # Command-line calculations
     pipx # Install executables in python venvs from PyPI
