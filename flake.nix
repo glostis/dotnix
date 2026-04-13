@@ -5,6 +5,7 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-staging-next.url = "github:nixos/nixpkgs/staging-next";
     nurpkgs = {
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +36,7 @@
   outputs = {
     nixpkgs,
     nixpkgs-stable,
+    nixpkgs-staging-next,
     home-manager,
     nurpkgs,
     nix-colors,
@@ -81,6 +83,7 @@
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
         pkgs-stable = import nixpkgs-stable {system = system;};
+        pkgs-staging-next = import nixpkgs-staging-next {system = system;};
         inherit nix-colors;
         enableWorkProfile = true;
         inherit nixgl;
@@ -107,6 +110,7 @@
       extraSpecialArgs = {
         nixpkgsflake = nixpkgs;
         pkgs-stable = import nixpkgs {system = system;};
+        pkgs-staging-next = import nixpkgs-staging-next {system = system;};
         inherit nix-colors;
         enableWorkProfile = false;
         inherit inputs;

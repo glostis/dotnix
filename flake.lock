@@ -236,6 +236,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-staging-next": {
+      "locked": {
+        "lastModified": 1775823481,
+        "narHash": "sha256-Cn2WEDLCSV52jQZMo3tgeyucwW0QoNqoxlIoXZUXHN0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "53e044686581e7fd39bd2a7e29ab55933c0d17b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "staging-next",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nurpkgs": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -265,6 +281,7 @@
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
+        "nixpkgs-staging-next": "nixpkgs-staging-next",
         "nurpkgs": "nurpkgs",
         "yazi-compress-plugin": "yazi-compress-plugin"
       }

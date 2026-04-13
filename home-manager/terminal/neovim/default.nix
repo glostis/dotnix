@@ -2,6 +2,7 @@
   config,
   pkgs,
   pkgs-stable,
+  pkgs-staging-next,
   ...
 }: {
   editorconfig = {
@@ -132,9 +133,9 @@
       telescope-fzf-native-nvim
 
       # Highlight, edit, and navigate code
-      pkgs-stable.vimPlugins.nvim-treesitter.withAllGrammars
-      pkgs-stable.vimPlugins.nvim-treesitter-textobjects
-      # pkgs-stable.vimPlugins.nvim-treesitter-context
+      nvim-treesitter.withAllGrammars
+      nvim-treesitter-textobjects
+      nvim-treesitter-context
 
       nvim-navbuddy
       nvim-navic # Dep of navbuddy
@@ -158,7 +159,7 @@
       typescript-language-server
       # Provides `jsonls`
       vscode-langservers-extracted
-      tree-sitter # provides tree-sitter-cli
+      pkgs-staging-next.tree-sitter # provides tree-sitter-cli v0.26.8
     ];
   };
 }
