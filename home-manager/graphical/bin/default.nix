@@ -41,6 +41,8 @@
             }
         }
         EOL
+
+        dunstify "Keyboard layout set to $layout"
       '';
   };
   home.file.".bin/networking-toggle" = {
