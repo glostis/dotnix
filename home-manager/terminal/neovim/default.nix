@@ -152,6 +152,7 @@
       black
       stylua
       alejandra
+      deno
       prettier
       sqlfluff
       hclfmt

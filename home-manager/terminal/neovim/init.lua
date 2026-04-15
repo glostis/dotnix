@@ -266,7 +266,16 @@ require("nvim-treesitter").setup({
   indent = { enable = true, disable = { "python" } },
 })
 
--- vim.g.no_python_maps = true -- disable python-mode mappings, use the mappings from nvim-treesitter-textobjects instead
+-- Enable treesitter syntax highlighting for all supported languages
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(event)
+    if vim.treesitter.language.add(event.match) then
+      vim.treesitter.start()
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+})
+
 vim.keymap.set({ "x", "o" }, "af", function()
   require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
 end, { desc = "Select around function" })
@@ -290,6 +299,7 @@ require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+    astro = { "deno_fmt" },
     javascript = { "prettier" },
     json = { "jq" },
     html = { "prettier" },
