@@ -206,9 +206,9 @@ in {
           Mod+Shift+Minus { set-window-height "-10%"; }
           Mod+Shift+Equal { set-window-height "+10%"; }
 
-          Mod+Y            { screenshot; }
-          Mod+Ctrl+Y       { screenshot-screen; }
-          Mod+Ctrl+Shift+Y { screenshot-window; }
+          Mod+Y            { screenshot show-pointer=false; }
+          Mod+Ctrl+Y       { screenshot-screen show-pointer=false; }
+          Mod+Ctrl+Shift+Y { screenshot-window show-pointer=false; }
 
           // Applications such as remote-desktop clients and software KVM switches may
           // request that niri stops processing the keyboard shortcuts defined here
