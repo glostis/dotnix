@@ -44,6 +44,8 @@
     enable = true;
     defaultEditor = true;
     initLua = builtins.readFile ./init.lua;
+    withRuby = false;
+    withPython3 = false;
     plugins = with pkgs.vimPlugins; [
       # ~~~~~~~~ Git related plugins ~~~~~~~~
       # :Gdiff, :Gblame, etc.

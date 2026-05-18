@@ -16,6 +16,7 @@ in {
     # Dependency of cliphist-wofi-img
     # https://github.com/sentriz/cliphist/blob/efb61cb5b5a28d896c05a24ac83b9c39c96575f2/contrib/cliphist-wofi-img#L40
     gawk
+    # niri
   ];
 
   wayland.systemd.target = "niri.service";
@@ -73,8 +74,8 @@ in {
 
           focus-ring {
               width 2
-              active-color "#7fc8ff"
-              inactive-color "#505050"
+              active-color "#fe8019"
+              inactive-color "#bdae93"
           }
       }
 
@@ -86,6 +87,16 @@ in {
 
       screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
+      window-rule {
+          match is-window-cast-target=true
+
+          focus-ring {
+              width 3
+              active-color "#b8bb26"
+              inactive-color "#b8bb26"
+          }
+      }
+
       // https://yalter.github.io/niri/Configuration:-Window-Rules
       window-rule {
           match app-id=r#"firefox$"# title="^Picture-in-Picture$"
@@ -93,7 +104,14 @@ in {
       }
 
       window-rule {
-          match app-id=r#"^1Password$"#
+          match app-id="xdg-desktop-portal-gnome" title="^(Open File|File Upload)"
+          open-floating true
+          default-column-width { proportion 0.5; }
+          default-window-height { proportion 0.667; }
+      }
+
+      window-rule {
+          match app-id=r#"^1password$"#
           block-out-from "screen-capture"
       }
 
@@ -128,8 +146,6 @@ in {
 
           Mod+T       { spawn-sh "day-n-night day"; }
           Mod+Shift+T { spawn-sh "day-n-night night"; }
-
-          Mod+apostrophe { spawn-sh "pkill -USR2 -n handy"; }
 
           Mod+Z allow-when-locked=true hotkey-overlay-title="Lock and suspend" { spawn "fermeadoubletour" "suspend"; }
           Mod+Shift+Z hotkey-overlay-title="Lock" { spawn "fermeadoubletour"; }
@@ -199,7 +215,6 @@ in {
           Mod+Ctrl+F { expand-column-to-available-width; }
 
           Mod+C { center-column; }
-          Mod+Ctrl+C { center-visible-columns; }
 
           Mod+Minus       { set-column-width "-10%"; }
           Mod+Equal       { set-column-width "+10%"; }
@@ -209,6 +224,9 @@ in {
           Mod+Y            { screenshot show-pointer=false; }
           Mod+Ctrl+Y       { screenshot-screen show-pointer=false; }
           Mod+Ctrl+Shift+Y { screenshot-window show-pointer=false; }
+
+          Mod+Shift+C { set-dynamic-cast-window; }
+          Mod+Ctrl+Shift+C { clear-dynamic-cast-target; }
 
           // Applications such as remote-desktop clients and software KVM switches may
           // request that niri stops processing the keyboard shortcuts defined here
@@ -340,7 +358,7 @@ in {
           format-source = "";
           format-source-muted = " 󰍭";
           format-icons = {
-              default = ["" "" ""];
+            default = ["" "" ""];
           };
           on-click = "pavucontrol";
           on-click-middle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";

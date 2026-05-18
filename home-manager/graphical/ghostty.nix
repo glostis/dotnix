@@ -5,7 +5,6 @@
 }: {
   programs.ghostty = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.ghostty;
     settings = {
       command = "${pkgs.zsh}/bin/zsh";
 

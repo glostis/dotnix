@@ -1,6 +1,5 @@
 {
   pkgs,
-  nixgl,
   ...
 }: let
   slack-wayland-with-desktop = pkgs.slack.overrideAttrs (old: {
@@ -43,7 +42,5 @@ in {
   # Make Home-Manager work better on non-NixOS Linux distributions
   targets.genericLinux = {
     enable = true;
-    nixGL.packages = nixgl.packages;
-    nixGL.installScripts = [ "mesa" ];
   };
 }

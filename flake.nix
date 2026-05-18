@@ -15,10 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     yazi-compress-plugin = {
       url = "github:KKV9/compress.yazi";
       flake = false;
@@ -40,7 +36,6 @@
     home-manager,
     nurpkgs,
     nix-colors,
-    nixgl,
     niri-flake,
     # stylix,
     ...
@@ -64,7 +59,6 @@
         system = system;
         overlays = [
           nurpkgs.overlays.default
-          nixgl.overlay
           niri-flake.overlays.niri
         ];
       };
@@ -86,7 +80,6 @@
         pkgs-staging-next = import nixpkgs-staging-next {system = system;};
         inherit nix-colors;
         enableWorkProfile = true;
-        inherit nixgl;
         inherit inputs;
       };
     };

@@ -64,8 +64,8 @@ in {
     };
   in {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.firefox;
     languagePacks = ["fr"];
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles = {
       perso = {
         isDefault = !enableWorkProfile;
