@@ -104,7 +104,7 @@ in {
       }
 
       window-rule {
-          match app-id="xdg-desktop-portal-gnome" title="^(Open File|File Upload)"
+          match app-id="xdg-desktop-portal-gnome" title="^(Open File|File Upload|Ouvrir)"
           open-floating true
           default-column-width { proportion 0.5; }
           default-window-height { proportion 0.667; }

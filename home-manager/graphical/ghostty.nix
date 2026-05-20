@@ -10,6 +10,8 @@
 
       theme = "dark:Gruvbox Dark,light:Gruvbox Light";
 
+      font-size = 11;
+
       # Disable the blinking cursor bar
       shell-integration-features = "no-cursor";
       cursor-style-blink = false;
