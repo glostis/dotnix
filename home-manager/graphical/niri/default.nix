@@ -35,7 +35,7 @@ in {
       include "${config.home.homeDirectory}/.config/niri/keyboard.kdl"
       input {
           keyboard {
-              repeat-delay 230
+              repeat-delay 300
               repeat-rate 50
           }
 
@@ -104,7 +104,7 @@ in {
       }
 
       window-rule {
-          match app-id="xdg-desktop-portal-gnome" title="^(Open File|File Upload|Ouvrir)"
+          match app-id="xdg-desktop-portal-gnome" title="^(Open File|File Upload|Ouvrir le fichier|Envoi du fichier)"
           open-floating true
           default-column-width { proportion 0.5; }
           default-window-height { proportion 0.667; }
@@ -157,6 +157,7 @@ in {
           XF86AudioPlay                               { spawn-sh "playerctl play-pause && dunstify --appname=\"volume\" \"Play/pause\""; }
           XF86AudioNext                               { spawn-sh "playerctl next"; }
           XF86AudioPrev                               { spawn-sh "playerctl previous"; }
+          XF86ScreenSaver                             { spawn "fermeadoubletour"; }
           Mod+M                                       { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
           Mod+Shift+M                                 { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
 
