@@ -48,6 +48,7 @@ in {
     feh # Background image setter
     rofimoji # Provides an emoji picker using rofi
     haskellPackages.kmonad # Advanced keyboard configuration
+    kanata # Advanced keyboard configuration
     kalamine # Keyboard layout remapping tool
     devour # Open a new program by hiding the current window
     exiftool # Read EXIF properties of images
