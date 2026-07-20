@@ -122,8 +122,8 @@ key_mapper("n", "<leader>z", ":ZoomWinTabToggle<CR>")
 key_mapper("n", "<leader>y", '"+y')
 key_mapper("n", "<leader>yA", 'magg"+yG`a') -- "yank all"
 key_mapper("v", "<leader>y", '"+y')
-key_mapper("n", "<leader>Y", '"+Y')
-key_mapper("v", "<leader>Y", '"+Y')
+key_mapper("n", "<leader>Y", '"+y$')
+key_mapper("v", "<leader>Y", '"+y$')
 
 -- preserve indentation while pasting text from the clipboard
 key_mapper("n", "<leader>p", ":set paste<CR>:put  +<CR>:set nopaste<CR>")
@@ -483,7 +483,7 @@ cmp.setup({
         end,
       },
     },
-    { name = "minuet" },
+    -- { name = "minuet" },
   },
   performance = {
     fetching_timeout = 2000, -- For Minuet LLM completion that can be slow
@@ -603,35 +603,6 @@ if hasApiKey() then
           max_tokens = 64,
           stop = { "\n\n" },
         },
-      },
-    },
-  })
-
-  require("codecompanion").setup({
-    adapters = {
-      http = {
-        mistral = function()
-          return require("codecompanion.adapters.http").extend("mistral", {
-            env = {
-              url = "https://codestral.mistral.ai",
-              api_key = "CODESTRAL_API_KEY",
-            },
-            schema = {
-              model = {
-                default = "devstral-medium-latest",
-              },
-            },
-          })
-        end,
-      },
-    },
-    log_level = "ERROR", -- TRACE|DEBUG|ERROR|INFO
-    strategies = {
-      chat = {
-        adapter = "mistral",
-      },
-      inline = {
-        adapter = "mistral",
       },
     },
   })

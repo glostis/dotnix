@@ -145,7 +145,6 @@
 
       # AI stuff
       minuet-ai-nvim
-      codecompanion-nvim
     ];
     extraPackages = with pkgs; [
       basedpyright

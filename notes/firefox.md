@@ -29,7 +29,7 @@ javascript:(function(){
   if (document.location.href.match(/atlassian\.net/i)) {
     title = title.replace(/\s+-\s+Jira/, '');
   }
-  if (document.location.href.match(/notion\.so/i)) {
+  if (document.location.href.match(/notion\.com/i)) {
     title = title.replace(/^\(\d+\+?\)\s*/, '').replace(/\s*\|\s*Notion\s*/, '');
   }
   title = title.replace(/\[/g, '(').replace(/\]/g, ')');

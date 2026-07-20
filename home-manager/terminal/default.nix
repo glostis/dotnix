@@ -28,7 +28,7 @@
     imagemagick # Image manipulation commands
     jq # JSON parser
     gron # Make JSON greppable!
-    sd  # Intuitive find & replace CLI (sed alternative)
+    sd # Intuitive find & replace CLI (sed alternative)
     # neofetch # System information
     tree # Recursive directory listing
     zip # Archiving
@@ -38,7 +38,16 @@
     fixjson # JSON formatter
     entr # run arbitrary commands when files change
     bc # Command-line calculations
-    pipx # Install executables in python venvs from PyPI
+    # pipx # Install executables in python venvs from PyPI
+    # See https://github.com/NixOS/nixpkgs/issues/522307
+    (pipx.overridePythonAttrs (old: {
+      disabledTests =
+        (old.disabledTests or [])
+        ++ [
+          "test_fix_package_name"
+          "test_parse_specifier_for_metadata"
+        ];
+    }))
     uv # Python package manager
     parallel # Runs commands in parallel
     usbutils # Provides `lsusb` to show connected USB devices

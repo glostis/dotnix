@@ -14,7 +14,7 @@
 in {
   home.packages = with pkgs; [
     _1password-gui
-    slack-wayland-with-desktop
+    # slack-wayland-with-desktop
     dive
   ];
 

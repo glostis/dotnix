@@ -28,6 +28,8 @@
             layout=colemak
         elif [ -e /dev/input/by-id/usb-foostan_Corne_v4_vial:f64c2b3c-event-kbd ]; then
             layout=colemak
+        elif [ -e /dev/input/by-id/usb-ZMK_Project_Quacken_Flex_E66568714F268421-if02-event-kbd ]; then
+            layout=colemak
         else
             layout=qwerty
         fi
