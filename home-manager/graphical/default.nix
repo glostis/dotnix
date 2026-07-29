@@ -141,6 +141,7 @@ in {
   };
 
   home.pointerCursor = {
+    enable = true;
     package = pkgs.graphite-cursors;
     name = "graphite-${config.colorScheme.variant}";
     size = 16;

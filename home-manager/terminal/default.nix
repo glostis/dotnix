@@ -104,7 +104,8 @@
     enable = true;
     defaultCommand = "rg --files --hidden -g '!.git'";
     defaultOptions = ["--reverse"];
-    fileWidgetCommand = defaultCommand;
+    fileWidget.command = defaultCommand;
+    historyWidget.command = "";
   };
 
   programs.ripgrep = {
