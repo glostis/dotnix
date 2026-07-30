@@ -129,8 +129,7 @@ key_mapper("v", "<leader>Y", '"+y$')
 key_mapper("n", "<leader>p", ":set paste<CR>:put  +<CR>:set nopaste<CR>")
 key_mapper("n", "<leader>P", ":set paste<CR>:put!  +<CR>:set nopaste<CR>")
 
--- Toggle and resize yazi and nvim-tree file explorers
--- key_mapper("n", "<leader>f", ":RnvimrToggle<CR>")
+-- Toggle nvim-tree file explorer
 key_mapper("n", "<leader>tt", ":NvimTreeToggle<CR>")
 
 -- Telescope mappings
@@ -141,6 +140,8 @@ key_mapper("n", "<leader>g", ":lua require('telescope').extensions.live_grep_arg
 key_mapper("n", "<leader>wg", ":Telescope grep_string<CR>") -- "word grep"
 key_mapper("n", "<leader>tr", ":Telescope resume<CR>")
 key_mapper("n", "<leader>tb", ":Telescope buffers<CR>")
+
+key_mapper("i", "<S-Tab>", "<C-D>") -- make shift-tab work as expected in insert mode (https://stackoverflow.com/a/4766304/9977650)
 
 -- Trouble (diagnostics window) mappings
 -- key_mapper("n", "<leader>dl", "<cmd>TroubleToggle<cr>")
