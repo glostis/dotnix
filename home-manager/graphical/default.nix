@@ -117,6 +117,7 @@ in {
         '';
       });
     };
+    gtk2.force = true;
     gtk2.extraConfig = ''
       gtk-application-prefer-dark-theme=${toString preferDark}
     '';

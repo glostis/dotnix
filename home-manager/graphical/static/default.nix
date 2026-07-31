@@ -31,6 +31,7 @@
       # gui_if_available = <True or False> (Default: True)
     '';
 
+  home.file.".config/mimeapps.list".force = true;
   home.file.".config/mimeapps.list".text =
     /*
     ini
