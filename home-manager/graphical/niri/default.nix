@@ -131,7 +131,8 @@ in {
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
 
-          Mod+Space repeat=false hotkey-overlay-title=null { spawn "ghostty"; }
+          // See https://github.com/ghostty-org/ghostty/discussions/8899#discussioncomment-14717979 for GTK_IM_MODULE
+          Mod+Space repeat=false hotkey-overlay-title=null { spawn-sh "GTK_IM_MODULE=simple ghostty"; }
           Mod+D hotkey-overlay-title=null { spawn-sh "rofi -modi drun -show drun -show-icons"; }
           Mod+Shift+J { spawn "rofimoji"; }
           Mod+G       { spawn-sh "cliphist-wofi-img | wl-copy"; }
@@ -250,7 +251,7 @@ in {
       scaling = "center";
       color = "#282828";
       ignore-empty-password = true;
-      hide-keyboard-layout = true;
+      show-keyboard-layout = true;
     };
   };
 

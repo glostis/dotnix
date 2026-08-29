@@ -6,10 +6,6 @@
 }: let
   keyboards = [
     {
-      name = "kinesis";
-      path = "/dev/input/by-id/usb-Kinesis_Advantage2_Keyboard_314159265359-if01-event-kbd";
-    }
-    {
       name = "laptop";
       path = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
       kanataPathType = "PathExists";
@@ -61,7 +57,7 @@ in {
     };
 
     Service = {
-      ExecStart = "${pkgs.kanata}/bin/kanata --no-wait -c %h/dotnix/keyboard/%i-kanata.kbd";
+      ExecStart = "${pkgs.kanata}/bin/kanata --no-wait -c %h/dotnix/keyboard/%i.kbd";
     };
   };
 

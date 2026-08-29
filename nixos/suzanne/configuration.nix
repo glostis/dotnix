@@ -100,6 +100,8 @@
       # For kmonad
       "input"
       "uinput"
+      # For zmk-studio
+      "dialout"
     ];
     packages = with pkgs; [
       git

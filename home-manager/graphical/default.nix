@@ -158,5 +158,5 @@ in {
   };
 
   # See https://github.com/nixos/nixpkgs/issues/493843
-  # programs.calibre.enable = true;
+  programs.calibre.enable = true;
 }

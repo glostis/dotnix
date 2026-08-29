@@ -18,27 +18,32 @@
         IFS=$'\n\t'
 
         # This script is used to activate one of my keyboard layouts:
-        # - the modded Colemak-DH/French touch layout for my external keyboard
-        # - the modded QWERTY/French touch layout for my laptop keyboard
+        # - Ergo-L for my external keyboard
+        # - a modded QWERTY-Lafayette for my laptop keyboard
         #
         # It is executed on whenever my external keyboard is plugged/unplugged, thanks to
         # the systemd path unit I have made that listens to the device presence on the system.
 
-        if [ -e /dev/input/by-id/usb-Kinesis_Advantage2_Keyboard_314159265359-if01-event-kbd ]; then
-            layout=colemak
-        elif [ -e /dev/input/by-id/usb-foostan_Corne_v4_vial:f64c2b3c-event-kbd ]; then
-            layout=colemak
+        if [ -e /dev/input/by-id/usb-foostan_Corne_v4_vial:f64c2b3c-event-kbd ]; then
+            layout=ergol
         elif [ -e /dev/input/by-id/usb-ZMK_Project_Quacken_Flex_E66568714F268421-if02-event-kbd ]; then
-            layout=colemak
+            layout=ergol
         else
             layout=qwerty
         fi
 
+        if [ "$layout" = "ergol" ]; then
+            xkb="layout \"fr\"
+                    variant \"ergol\"
+                    options \"compose:rctrl\""
+        else
+            xkb="file \"~/dotnix/keyboard/dist/glostis-$layout.xkb_keymap\""
+        fi
         cat > "$HOME/.config/niri/keyboard.kdl" <<EOL
         input {
             keyboard {
                 xkb {
-                    file "~/dotnix/keyboard/dist/glostis-$layout.xkb_keymap"
+                    $xkb
                 }
             }
         }
