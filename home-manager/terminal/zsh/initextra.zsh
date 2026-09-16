@@ -87,6 +87,25 @@ zle -N copybuffer
 
 bindkey '^y' copybuffer
 
+# Paste on ctrl+V instead of the default ctrl+shift+V
+clipboard-paste () {
+  local copied=$(wl-paste)
+  if [[ -n "$copied" ]]; then
+    LBUFFER+="$copied"
+  fi
+}
+
+zle -N clipboard-paste
+
+bindkey '^v' clipboard-paste
+
+setopt auto_cd
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+alias -- -='cd -'
+
 [[ -f ${HOME}/.secrets ]] && source ${HOME}/.secrets
 
 # Finds all git repos directly under the pwd, and executes `$@` in them

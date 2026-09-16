@@ -138,7 +138,7 @@ in {
           Mod+G       { spawn-sh "cliphist-wofi-img | wl-copy"; }
           Mod+0       { spawn "slack"; }
 
-          Mod+N       { spawn-sh "networking-toggle wifi"; }
+          // Mod+N       { spawn-sh "networking-toggle wifi"; }
           Mod+Shift+N { spawn "networkmanager_dmenu"; }
           Mod+V       { spawn-sh "networking-toggle vpn"; }
           Mod+B       { spawn-sh "networking-toggle bluetooth"; }

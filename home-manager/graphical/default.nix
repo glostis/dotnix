@@ -52,6 +52,8 @@ in {
     kalamine # Keyboard layout remapping tool
     devour # Open a new program by hiding the current window
     exiftool # Read EXIF properties of images
+    slurp # Select a region of the screen
+    wf-recorder # Screen recording
 
     libnotify # Provides `notify-send`
     patched-rofi-bluetooth # Rofi front-end to bluetoothctl
